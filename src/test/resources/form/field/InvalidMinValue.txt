@@ -1,0 +1,20 @@
+{
+    "revision":"26",
+    "properties":{
+        "Number":{
+            "type":"NUMBER",
+            "code":"Number",
+            "label":"Number",
+            "noLabel":true,
+            "required":true,
+            "minValue":"ABC",
+            "maxValue":"1000",
+            "digit":true,
+            "unique":true,
+            "defaultValue":"12345",
+            "displayScale":"2",
+            "unit":"$",
+            "unitPosition":"AFTER"
+        }
+    }
+}
