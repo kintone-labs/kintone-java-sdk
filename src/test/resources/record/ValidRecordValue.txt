@@ -1,0 +1,154 @@
+{
+    "record": {
+        "添付ファイル_0": {
+            "type": "FILE",
+            "value": [{
+                "fileKey": "201808200251565FD53E7E0D534820A63D91B7E954C63B067",
+                "name": "!#$%&'()=~.js",
+                "contentType": "application/javascript",
+                "size": "72"
+            }]
+        },
+        "レコード番号": {
+            "type": "RECORD_NUMBER",
+            "value": "1"
+        },
+        "リッチエディター": {
+            "type": "RICH_TEXT",
+            "value": "<div><span style=\"white-space:nowrap;background-color:rgb( 245 , 245 , 245 )\">リッチエディター</span><br /></div>"
+        },
+        "更新者": {
+            "type": "MODIFIER",
+            "value": {
+                "code": "cybozu",
+                "name": "cybozu"
+            }
+        },
+        "文字列__1行_": {
+            "type": "SINGLE_LINE_TEXT",
+            "value": "文字列 (1行)"
+        },
+        "ユーザー選択": {
+            "type": "USER_SELECT",
+            "value": [{
+                "code": "cybozu",
+                "name": "cybozu"
+            }, {
+                "code": "Administrator",
+                "name": "Administrator"
+            }]
+        },
+        "文字列__複数行_": {
+            "type": "MULTI_LINE_TEXT",
+            "value": "文字列 (複数行)\n"
+        },
+        "ルックアップ": {
+            "type": "SINGLE_LINE_TEXT",
+            "value": "111"
+        },
+        "計算": {
+            "type": "CALC",
+            "value": "1"
+        },
+        "日付": {
+            "type": "DATE",
+            "value": "2018-08-20"
+        },
+        "Table": {
+            "type": "SUBTABLE",
+            "value": [{
+                "id": "201",
+                "value": {
+                    "文字列__1行__0": {
+                        "type": "SINGLE_LINE_TEXT",
+                        "value": "test"
+                    },
+                    "数値_0": {
+                        "type": "NUMBER",
+                        "value": "111"
+                    }
+                }
+            }]
+        },
+        "グループ選択": {
+            "type": "GROUP_SELECT",
+            "value": [{
+                "code": "Administrators",
+                "name": "Administrators"
+            }, {
+                "code": "everyone",
+                "name": "Everyone"
+            }]
+        },
+        "作成者": {
+            "type": "CREATOR",
+            "value": {
+                "code": "cybozu",
+                "name": "cybozu"
+            }
+        },
+        "ラジオボタン": {
+            "type": "RADIO_BUTTON",
+            "value": "sample1"
+        },
+        "ドロップダウン": {
+            "type": "DROP_DOWN",
+            "value": "sample1"
+        },
+        "組織選択": {
+            "type": "ORGANIZATION_SELECT",
+            "value": [{
+                "code": "test_nYH2Kg",
+                "name": "test"
+            }]
+        },
+        "$revision": {
+            "type": "__REVISION__",
+            "value": "1"
+        },
+        "更新日時": {
+            "type": "UPDATED_TIME",
+            "value": "2018-08-20T02:52:00Z"
+        },
+        "日時": {
+            "type": "DATETIME",
+            "value": "2018-08-20T02:49:00Z"
+        },
+        "時刻": {
+            "type": "TIME",
+            "value": "11:49"
+        },
+        "チェックボックス": {
+            "type": "CHECK_BOX",
+            "value": ["sample1"]
+        },
+        "複数選択": {
+            "type": "MULTI_SELECT",
+            "value": ["sample1"]
+        },
+        "数値": {
+            "type": "NUMBER",
+            "value": "1"
+        },
+        "メール": {
+            "type": "LINK",
+            "value": "xxxxxxx"
+        },
+        "アドレス帳": {
+            "type": "LINK",
+            "value": "xxxxxxx"
+        },
+        "リンク": {
+            "type": "LINK",
+            "value": "xxxxxxxxx"
+        },
+        "作成日時": {
+            "type": "CREATED_TIME",
+            "value": "2018-08-20T02:52:00Z"
+        },
+        "$id": {
+            "type": "__ID__",
+            "value": "1"
+        }
+    }
+}

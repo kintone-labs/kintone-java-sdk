@@ -1,0 +1,40 @@
+{
+    "apps": [
+        {
+            "appId": "1",
+            "code": "BAR",
+            "name": "MyTestApp",
+            "description": "",
+            "spaceId": null,
+            "threadId": null,
+            "createdAt": "2018-08-17T05:14:05.000Z",
+            "creator": {
+                "code": "user1",
+                "name": "user1"
+            },
+            "modifiedAt": "2018-08-17T05:14:05.000Z",
+            "modifier": {
+                "code": "user1",
+                "name": "user1"
+            }
+        },
+        {
+            "appId": "2",
+            "code": "FOO",
+            "name": "TEST",
+            "description": "",
+            "spaceId": "123",
+            "threadId": "456",
+            "createdAt": "2014-06-03T05:14:05.000Z",
+            "creator": {
+                "code": "user2",
+                "name": "user2"
+            },
+            "modifiedAt": "2014-06-03T05:14:05.000Z",
+            "modifier": {
+                "code": "user2",
+                "name": "user2"
+            }
+        }
+    ]
+}
