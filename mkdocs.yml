@@ -1,0 +1,54 @@
+site_name: kintone Java SDK
+site_description: The SDK of kintone REST API client on Java
+site_favicon: favicon.ico
+
+repo_url: https://github.dev.cybozu.co.jp/SC/kintone-java-sdk
+theme:
+  name: 'material'
+  favicon: favicon.ico
+  palette:
+    primary: 'Light Blue'
+    accent: 'Light Blue'
+  logo:
+   icon: 'cloud'
+extra_javascript:
+  - 'asset/js/extra.js'
+extra_css:
+  - 'asset/style/extra.css'
+markdown_extensions:
+  - admonition
+
+pages:
+- Home: index.md
+- Getting Started:
+  - Quickstart: getting-started/quickstart.md
+- Reference:
+  - Authentication: reference/authentication.md
+  - Connection: reference/connection.md
+  - Record:
+    - Record: reference/record.md
+    - Record Model: reference/record-model.md
+    - Field Model: reference/record-field-model.md
+    - Comment Model: reference/record-comment-model.md
+  - Bulk Request:
+    - Bulk Request: reference/bulk-request.md
+    - Bulk Request Model: reference/bulk-request-model.md
+  - App:
+    - App: reference/app.md
+    - App Model: reference/app-model.md
+    - Form fields:
+        - Form fields: reference/form-fields.md
+        - Input:
+            - Input: reference/form-fields-input.md
+            - Lookup: reference/form-fields-input-lookup.md
+            - Member: reference/form-fields-input-member.md
+            - Selection: reference/form-fields-input-selection.md
+            - Time: reference/form-fields-input-time.md
+        - Related_record: reference/form-fields-related_record.md
+        - System: reference/form-fields-system.md
+    - Form Layout: reference/form-layout.md
+  - Kintone APIException: reference/kintone-api-exception.md
+  - File:
+    - File: reference/file.md
+    - FileModel: reference/file-model.md
+  - Member: reference/member.md
