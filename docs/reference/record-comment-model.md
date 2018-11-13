@@ -130,7 +130,7 @@ Date commentCreatedAt = comment.getCreatedAt();
 
 **Return**
 
-[Member](./member/#member)
+[Member](../member/#member)
 
 **Sample code**
 

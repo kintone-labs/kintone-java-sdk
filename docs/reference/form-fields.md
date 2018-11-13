@@ -240,7 +240,7 @@ String relatedFields = fieldMapping.getRelatedFields();
 
 **Return**
 
- Map<String, [AbstractInputField](./form-fields-input/#abstractinputfield)\>
+ Map<String, [AbstractInputField](../form-fields-input/#abstractinputfield)\>
 
 **Sample code**
 

@@ -187,7 +187,7 @@ Integer threadId = appModel.getThreadId();
 
 **Return**
 
-[Member](./member)
+[Member](../member)
 
 **Sample code**
 
@@ -212,7 +212,7 @@ Member member = appModel.getCreator();
 
 **Return**
 
-[Member](./member)
+[Member](../member)
 
 **Sample code**
 

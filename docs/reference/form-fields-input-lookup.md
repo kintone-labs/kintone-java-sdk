@@ -9,7 +9,7 @@ Get a list of fields and their settings.
 ## LookupField
 
 !!! warning
-    - extend the abstract class  "[AbstractInputField](./form-fields-input/#abstractinputfield)"
+    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield)"
 
 ### Methods
 
@@ -52,7 +52,7 @@ LookupItem lookup = lookupField.getLookup();
 
 **Return**
 
-List<[FieldMapping](./form-fields/#fieldmapping)\>
+List<[FieldMapping](../form-fields/#fieldmapping)\>
 
 **Sample code**
 
@@ -127,7 +127,7 @@ List<String> lookupPickerFields = lookupItem.getLookupPickerFields();
 
 **Return**
 
-[RelatedApp](./form-fields-related_record/#relatedapp)
+[RelatedApp](../form-fields-related_record/#relatedapp)
 
 **Sample code**
 

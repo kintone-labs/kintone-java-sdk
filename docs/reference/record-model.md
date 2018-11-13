@@ -16,7 +16,7 @@ General record response, using for data response from the kintone app
 
 **Return**
 
-HashMap<String, [FieldValue](./record-field-model#fieldvalue)\>
+HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>
 
 
 **Sample code**
@@ -51,7 +51,7 @@ HashMap<String, FieldValue> resultRecord = response.getRecord();
 
 **Return**
 
-ArrayList<HashMap<String, [FieldValue](./record-field-model#fieldvalue)\>\>
+ArrayList<HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>\>
 
 **Sample code**
 
@@ -493,7 +493,7 @@ Integer resultRevision = resultRusi.getRevision();
 | id | Integer  | The ID of the record.
 | revision | Integer  | The revision number of the record.
 | updateKey | [RecordUpdateKey](#recordupdatekey)  |  The unique key of the record to be updated. Required, if id will not be specified. To specify this field, the field must have the "Prohibit duplicate values" option turned on.
-| record | HashMap<String, [FieldValue](./record-field-model#fieldvalue)\>  | The data to update record.
+| record | HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>  | The data to update record.
 
 **Sample code**
 
