@@ -1085,7 +1085,7 @@
 <tbody>
 <tr>
 <td>connection</td>
-<td><a href="./connection">Connection</a></td>
+<td><a href="../connection">Connection</a></td>
 <td>yes</td>
 <td>The connection module of this SDK.</td>
 </tr>
@@ -1142,7 +1142,7 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#getrecordresponse">GetRecordResponse</a></p>
+<p><a href="../record-model/#getrecordresponse">GetRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Get record</Summary></p>
@@ -1210,7 +1210,7 @@ GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#getrecordsresponse">GetRecordsResponse</a></p>
+<p><a href="../record-model/#getrecordsresponse">GetRecordsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Get records</Summary></p>
@@ -1258,14 +1258,14 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 </tr>
 <tr>
 <td>record</td>
-<td>HashMap&lt;String, <a href="./record-field-model#fieldvalue">FieldValue</a>></td>
+<td>HashMap&lt;String, <a href="../record-field-model#fieldvalue">FieldValue</a>></td>
 <td>(optional)</td>
 <td>The record data to be add to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#addrecordresponse">AddRecordResponse</a></p>
+<p><a href="../record-model/#addrecordresponse">AddRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Add record</Summary></p>
@@ -1319,14 +1319,14 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 </tr>
 <tr>
 <td>records</td>
-<td>ArrayList&lt;HashMap&lt;String, <a href="./record-field-model#fieldvalue">FieldValue</a>>></td>
+<td>ArrayList&lt;HashMap&lt;String, <a href="../record-field-model#fieldvalue">FieldValue</a>>></td>
 <td>yes</td>
 <td>List of records data to be add to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#addrecordsresponse">AddRecordsResponse</a></p>
+<p><a href="../record-model/#addrecordsresponse">AddRecordsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Add multi records</Summary></p>
@@ -1397,7 +1397,7 @@ AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 </tr>
 <tr>
 <td>record</td>
-<td>HashMap&lt;String, <a href="./record-field-model#fieldvalue">FieldValue</a>></td>
+<td>HashMap&lt;String, <a href="../record-field-model#fieldvalue">FieldValue</a>></td>
 <td>yes</td>
 <td>The record data to be update in  kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
@@ -1410,7 +1410,7 @@ AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><a href="../record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update record by ID</Summary></p>
@@ -1466,13 +1466,13 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordByID(appID, rec
 </tr>
 <tr>
 <td>updateKey</td>
-<td><a href="./record-model/#recordupdatekey">RecordUpdateKey</a></td>
+<td><a href="../record-model/#recordupdatekey">RecordUpdateKey</a></td>
 <td>yes</td>
 <td>The unique key of the record to be updated. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
 <tr>
 <td>record</td>
-<td>HashMap&lt;String, <a href="./record-field-model#fieldvalue">FieldValue</a>></td>
+<td>HashMap&lt;String, <a href="../record-field-model#fieldvalue">FieldValue</a>></td>
 <td>yes</td>
 <td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
@@ -1485,7 +1485,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordByID(appID, rec
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><a href="../record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update record by UpdateKey</Summary></p>
@@ -1542,14 +1542,14 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordByUpdateKey(app
 </tr>
 <tr>
 <td>records</td>
-<td>ArrayList&lt;<a href="./record-model/#recordupdateitem">RecordUpdateItem</a>></td>
+<td>ArrayList&lt;<a href="../record-model/#recordupdateitem">RecordUpdateItem</a>></td>
 <td>yes</td>
 <td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
+<p><a href="../record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update multi records</Summary></p>
@@ -1751,7 +1751,7 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><a href="../record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>update record Assignees</Summary></p>
@@ -1828,7 +1828,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><a href="../record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update record status</Summary></p>
@@ -1880,14 +1880,14 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 </tr>
 <tr>
 <td>records</td>
-<td>ArrayList&lt;<a href="./record-model/#recordupdatestatusitem">RecordUpdateStatusItem</a>></td>
+<td>ArrayList&lt;<a href="../record-model/#recordupdatestatusitem">RecordUpdateStatusItem</a>></td>
 <td>yes</td>
 <td>The recod status data. See belowsample codee or <a href="#reference">reference</a> at the end of this page to know format.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
+<p><a href="../record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update multi record status</Summary></p>
@@ -1970,7 +1970,7 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-comment-model/#getcommentsresponse">GetCommentsResponse</a></p>
+<p><a href="../record-comment-model/#getcommentsresponse">GetCommentsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Get comments</Summary></p>
@@ -2025,14 +2025,14 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 </tr>
 <tr>
 <td>comment</td>
-<td><a href="./record-comment-model/#commentcontent">CommentContent</a></td>
+<td><a href="../record-comment-model/#commentcontent">CommentContent</a></td>
 <td>yes</td>
 <td>About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p><a href="./record-comment-model/#addcommentresponse">AddCommentResponse</a></p>
+<p><a href="../record-comment-model/#addcommentresponse">AddCommentResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Add comment</Summary></p>
