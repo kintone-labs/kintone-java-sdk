@@ -9,7 +9,7 @@ Get a list of fields and their settings.
 ## DateField
 
 !!! warning
-    - extend the abstract class  "[AbstractInputField](./form-fields-input/#abstractinputfield)"
+    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield)"
 
 ### Methods
 
@@ -91,7 +91,7 @@ Boolean defaultNowValue = dateField.getDefaultNowValue();
 ## DateTimeField
 
 !!! warning
-    - extend the abstract class  "[AbstractInputField](./form-fields-input/#abstractinputfield)"
+    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield)"
 
 ### Methods
 
@@ -173,7 +173,7 @@ Boolean defaultNowValue = dateTimeField.getDefaultNowValue();
 ## TimeField
 
 !!! warning
-    - extend the abstract class  "[AbstractInputField](./form-fields-input/#abstractinputfield)"
+    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield)"
 
 ### Methods
 

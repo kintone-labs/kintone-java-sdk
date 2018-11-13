@@ -763,7 +763,7 @@ Boolean unique = singleLineTextField.getUnique();
 ## AbstractInputField
 
 !!! warning
-    - extend the abstract class  "[Field](form-fields/#field)"
+    - extend the abstract class  "[Field](../form-fields/#field)"
     - This class is an abstract class.
 
 ### Methods

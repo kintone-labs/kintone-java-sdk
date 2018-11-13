@@ -104,7 +104,7 @@ Boolean enabled = categoryField.getEnabled();
 ## AbstractSystemField
 
 !!! warning
-    - extend the abstract class  "[Field](form-fields/#field)"
+    - extend the abstract class  "[Field](../form-fields/#field)"
     - This class is an abstract class.
 
 ### Methods

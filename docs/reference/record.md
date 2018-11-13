@@ -8,7 +8,7 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| connection | [Connection](./connection) | yes | The connection module of this SDK.
+| connection | [Connection](../connection) | yes | The connection module of this SDK.
 
 **Sample code**
 
@@ -51,7 +51,7 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
 **Return**
 
-[GetRecordResponse](./record-model/#getrecordresponse)
+[GetRecordResponse](../record-model/#getrecordresponse)
 
 **Sample code**
 
@@ -98,7 +98,7 @@ GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 
 **Return**
 
-[GetRecordsResponse](./record-model/#getrecordsresponse)
+[GetRecordsResponse](../record-model/#getrecordsresponse)
 
 **Sample code**
 
@@ -138,11 +138,11 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
-| record | HashMap<String, [FieldValue](./record-field-model#fieldvalue)\> | (optional) | The record data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page
+| record | HashMap<String, [FieldValue](../record-field-model#fieldvalue)\> | (optional) | The record data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page
 
 **Return**
 
-[AddRecordResponse](./record-model/#addrecordresponse)
+[AddRecordResponse](../record-model/#addrecordresponse)
 
 **Sample code**
 
@@ -188,11 +188,11 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
-| records | ArrayList<HashMap<String, [FieldValue](./record-field-model#fieldvalue)\>\> | yes | List of records data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| records | ArrayList<HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>\> | yes | List of records data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 
 **Return**
 
-[AddRecordsResponse](./record-model/#addrecordsresponse)
+[AddRecordsResponse](../record-model/#addrecordsresponse)
 
 **Sample code**
 
@@ -250,12 +250,12 @@ AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
 | id | Integer | yes | The record ID on kintone app
-| record | HashMap<String, [FieldValue](./record-field-model#fieldvalue)\> | yes | The record data to be update in  kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| record | HashMap<String, [FieldValue](../record-field-model#fieldvalue)\> | yes | The record data to be update in  kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 | revision | Integer | (optional) | The revision number of record
 
 **Return**
 
-[UpdateRecordResponse](./record-model/#updaterecordresponse)
+[UpdateRecordResponse](../record-model/#updaterecordresponse)
 
 **Sample code**
 
@@ -305,13 +305,13 @@ Updates details of 1 record in an app by unique key.
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
-| updateKey | [RecordUpdateKey](./record-model/#recordupdatekey) | yes | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| record | HashMap<String, [FieldValue](./record-field-model#fieldvalue)\>  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| updateKey | [RecordUpdateKey](../record-model/#recordupdatekey) | yes | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| record | HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 | revision | Integer | (optional) | The revision number of record
 
 **Return**
 
-[UpdateRecordResponse](./record-model/#updaterecordresponse)
+[UpdateRecordResponse](../record-model/#updaterecordresponse)
 
 **Sample code**
 
@@ -360,11 +360,11 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordByUpdateKey(app
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateItem](./record-model/#recordupdateitem)\> | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| records | ArrayList<[RecordUpdateItem](../record-model/#recordupdateitem)\> | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 
 **Return**
 
-[UpdateRecordsResponse](./record-model/#updaterecordsresponse)
+[UpdateRecordsResponse](../record-model/#updaterecordsresponse)
 
 **Sample code**
 
@@ -523,7 +523,7 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 
 **Return**
 
-[UpdateRecordResponse](./record-model/#updaterecordresponse)
+[UpdateRecordResponse](../record-model/#updaterecordresponse)
 
 **Sample code**
 
@@ -574,7 +574,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 
 **Return**
 
-[UpdateRecordResponse](./record-model/#updaterecordresponse)
+[UpdateRecordResponse](../record-model/#updaterecordresponse)
 
 **Sample code**
 
@@ -618,11 +618,11 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateStatusItem](./record-model/#recordupdatestatusitem)\> | yes | The recod status data. See belowsample codee or [reference](#reference) at the end of this page to know format.
+| records | ArrayList<[RecordUpdateStatusItem](../record-model/#recordupdatestatusitem)\> | yes | The recod status data. See belowsample codee or [reference](#reference) at the end of this page to know format.
 
 **Return**
 
-[UpdateRecordsResponse](./record-model/#updaterecordsresponse)
+[UpdateRecordsResponse](../record-model/#updaterecordsresponse)
 
 **Sample code**
 
@@ -680,7 +680,7 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 
 **Return**
 
-[GetCommentsResponse](./record-comment-model/#getcommentsresponse)
+[GetCommentsResponse](../record-comment-model/#getcommentsresponse)
 
 **Sample code**
 
@@ -723,11 +723,11 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID |
 | record | Integer | yes | The kintone app ID |
-| comment | [CommentContent](./record-comment-model/#commentcontent) | yes | About the format, please look the sample below or [reference](#reference) at the end of this page.|
+| comment | [CommentContent](../record-comment-model/#commentcontent) | yes | About the format, please look the sample below or [reference](#reference) at the end of this page.|
 
 **Return**
 
-[AddCommentResponse](./record-comment-model/#addcommentresponse)
+[AddCommentResponse](../record-comment-model/#addcommentresponse)
 
 **Sample code**
 

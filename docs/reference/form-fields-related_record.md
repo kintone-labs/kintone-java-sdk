@@ -74,7 +74,7 @@ String app = relatedApp.getCode();
 
 **Return**
 
-[FieldMapping](./form-fields/#fieldmapping)
+[FieldMapping](../form-fields/#fieldmapping)
 
 **Sample code**
 
@@ -217,7 +217,7 @@ String sort = referenceTable.getSort();
 ## RelatedRecordsField
 
 !!! warning
-    - extend the abstract class  "[Field](form-fields/#field)"
+    - extend the abstract class  "[Field](../form-fields/#field)"
 
 ### Methods
 

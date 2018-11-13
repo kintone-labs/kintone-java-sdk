@@ -12,7 +12,7 @@ Gets general information of an App, including the name, description, related Spa
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| connection | [Connection](./connection) | yes | The connection module of this SDK.
+| connection | [Connection](../connection) | yes | The connection module of this SDK.
 
 ### **Sample code**
 
@@ -41,7 +41,7 @@ App appManagerment = new App(connection);
 
 **Return**
 
-[AppModel](./app-model#appmodel)
+[AppModel](../app-model#appmodel)
 
 **Sample code**
 
@@ -72,7 +72,7 @@ AppModel app = appManagerment.getApp(appID);
 
 **Return**
 
-List<[AppModel](./app-model#appmodel)>
+List<[AppModel](../app-model#appmodel)>
 
 **Sample code**
 
@@ -105,7 +105,7 @@ List<AppModel> app_list = appManagerment.getApps(offset, limit);
 
 **Return**
 
-List<[AppModel](./app-model#appmodel)>
+List<[AppModel](../app-model#appmodel)>
 
 **Sample code**
 
@@ -143,7 +143,7 @@ List<AppModel> app_list = appManagerment.getAppsByIDs(ids, offset, limit);
 
 **Return**
 
-List<[AppModel](./app-model#appmodel)>
+List<[AppModel](../app-model#appmodel)>
 
 **Sample code**
 
@@ -180,7 +180,7 @@ List<AppModel> app_list = appManagerment.getAppsByCodes(codes, offset, limit);
 
 **Return**
 
-List<[AppModel](./app-model#appmodel)>
+List<[AppModel](../app-model#appmodel)>
 
 **Sample code**
 
@@ -214,7 +214,7 @@ List<AppModel> app_list = appManagerment.getAppsByName(name, offset, limit);
 
 **Return**
 
-List<[AppModel](./app-model#appmodel)>
+List<[AppModel](../app-model#appmodel)>
 
 **Sample code**
 
@@ -248,7 +248,7 @@ List<AppModel> app_list = appManagerment.getAppsBySpaceIDs(spaceIds, offset, lim
 
 **Return**
 
-[FormFields](./form-fields/#formfields)
+[FormFields](../form-fields/#formfields)
 
 **Sample code**
 
@@ -281,7 +281,7 @@ FormFields fields = appManagerment.getFormFields(appID, lang, isPreview);
 
 **Return**
 
-[FormLayout](./form-layout#formlayout)
+[FormLayout](../form-layout#formlayout)
 
 **Sample code**
 
