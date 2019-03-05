@@ -63,7 +63,7 @@ Gets general information of an App, including the name, description, related Spa
 
     Integer appId = {your_app_id};
     App appManagerment = new App(connection);
-    AppModel app = appManagerment.getApp(appID);
+    AppModel app = appManagerment.getApp(appId);
 
 ```
 

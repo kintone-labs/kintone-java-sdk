@@ -8,13 +8,13 @@
 
 ## Reference
 
-- [Authentication](./reference/authentication)
-- [Connection](./reference/connection)
-- [Record](./reference/record)
-- [BulkRequest](./reference/bulk-request)
-- [App](./reference/app)
-- [KintoneAPIException](./reference/kintone-api-exception)
-- [File](./reference/file)
+- [Authentication](./reference/authentication.md)
+- [Connection](./reference/connection.md)
+- [Record](./reference/record.md)
+- [BulkRequest](./reference/bulk-request.md)
+- [App](./reference/app.md)
+- [KintoneAPIException](./reference/kintone-api-exception.md)
+- [File](./reference/file.md)
 - Model
     - App
         - App

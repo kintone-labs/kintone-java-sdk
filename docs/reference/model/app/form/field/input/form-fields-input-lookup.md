@@ -8,7 +8,7 @@ Get a list of fields and their settings.
 ## LookupField
 
 !!! warning
-    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield)"
+    - extend the abstract class  "[AbstractInputField](../form-fields-input/#abstractinputfield.md)"
 
 ### Methods
 
@@ -38,7 +38,7 @@ Get the fieldMapping
 
 **Return**
 
-List<[FieldMapping](../form-fields/#fieldmapping)\>
+List<[FieldMapping](../form-fields/#fieldmapping.md)\>
 
 #### getFilterCond()
 
@@ -74,7 +74,7 @@ Get the relatedApp
 
 **Return**
 
-[RelatedApp](../form-fields-related_record/#relatedapp)
+[RelatedApp](../form-fields-related_record/#relatedapp.md)
 
 #### getRelatedKeyField()
 

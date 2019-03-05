@@ -95,7 +95,7 @@ Get the creator
 
 **Return**
 
-[Member](../member)
+[Member](../member.md)
 
 ### getModifier()
 
@@ -107,7 +107,7 @@ Get the modifier
 
 **Return**
 
-[Member](../member)
+[Member](../member.md)
 
 ### getCreatedAt()
 

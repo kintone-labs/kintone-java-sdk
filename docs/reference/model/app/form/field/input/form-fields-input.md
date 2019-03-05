@@ -398,7 +398,7 @@ Boolean
 ## AbstractInputField
 
 !!! warning
-    - extend the abstract class  "[Field](../form-fields/#field)"
+    - extend the abstract class  "[Field](../form-fields/#field.md)"
     - This class is an abstract class.
 
 ### Methods
