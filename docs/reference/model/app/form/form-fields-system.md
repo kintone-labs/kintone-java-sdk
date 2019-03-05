@@ -24,7 +24,7 @@ Get a list of fields and their settings.
 
 #### getEnabled()
 
-> Get the enabled
+Get the enabled
 
 **Parameter**
 
@@ -39,10 +39,12 @@ Boolean
 <details class="tab-container" open>
 <Summary>get Enabled</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Boolean enabled = categoryField.getEnabled();
+
+    Boolean enabled = categoryField.getEnabled();
+    
 ```
 
 </details>
@@ -111,7 +113,7 @@ Boolean enabled = categoryField.getEnabled();
 
 #### getLabel()
 
-> Get the label
+Get the label
 
 **Parameter**
 
@@ -131,7 +133,7 @@ String
 
 #### getEnabled()
 
-> Get the enabled
+Get the enabled
 
 **Parameter**
 
@@ -151,7 +153,7 @@ Boolean
 
 #### getNoLabel()
 
-> Get the noLabel
+Get the noLabel
 
 **Parameter**
 
@@ -163,7 +165,7 @@ Boolean
 
 ## Reference
 
-- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)`on developer network`
-- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)`on developer network`
-- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)`on developer network`
-- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)`on developer network`
+- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
+- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
+- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)
