@@ -838,7 +838,11 @@ Updates the View settings of an App.
 - [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
 - [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
 - [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Update Form fields](https://developer.kintone.io/hc/en-us/articles/115005507788)
+- [Delete Form fields](https://developer.kintone.io/hc/en-us/articles/115005341187)
+
 - [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)
+- [Update Form Layout](https://developer.kintone.io/hc/en-us/articles/115005341427)
 
 - [Add Preview App](https://developer.kintone.io/hc/en-us/articles/115004712547)
 - [Deploy App Settings](https://developer.kintone.io/hc/en-us/articles/115004881348)

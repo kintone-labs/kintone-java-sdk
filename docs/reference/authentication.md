@@ -144,3 +144,70 @@ for (HTTPHeader header : kintoneAuth.createHeaderCredentials()) {
 ```
 
 </details>
+
+### setClientCert(cert, password)
+
+Set certificate by certificate data
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+| cert | InputStream | yes | Data read from certificate file received from kintone
+| password | String | yes | The password from kintone to decode the cert file
+
+**Return**
+
+[Auth](../authentication)
+
+**Sample code**
+
+<details class="tab-container" open>
+<Summary>Set certificate by certificate data</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+```Java
+    Auth certAuth = new Auth();
+    certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
+    String certPassword = "YOUR_CERT_PASSWORD"
+    String certPath = "YOUR_CERT_PATH"
+    InputStream cert = new FileInputStream(certPath);
+    auth.setClientCert(cert, certPassword)
+    Connection connection = new Connection("YOUR_DOMAIN", certAuth, -1);
+```
+
+</details>
+
+### setClientCertByPath(filePath, password)
+
+Set certificate by path
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+| filePath | String | yes | Path to kintone certificate file
+| password | String | yes | The password from kintone to decode the cert file
+
+**Return**
+
+[Auth](../authentication)
+
+**Sample code**
+
+<details class="tab-container" open>
+<Summary>Set certificate by path</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+```Java
+    Auth certauth = new Auth();
+    certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
+    String certPassword = "YOUR_CERT_PASSWORD"
+    String certPath = "YOUR_CERT_PATH"
+    certauth.setClientCertByPath(certPath, certPassword);
+    Connection connection = new Connection("YOUR_DOMAIN", certAuth);
+```
+
+</details>
