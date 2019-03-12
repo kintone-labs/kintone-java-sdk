@@ -838,6 +838,7 @@ Updates the View settings of an App.
 - [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
 - [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
 - [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Add Form fields](https://developer.kintone.io/hc/en-us/articles/115005506868)
 - [Update Form fields](https://developer.kintone.io/hc/en-us/articles/115005507788)
 - [Delete Form fields](https://developer.kintone.io/hc/en-us/articles/115005341187)
 
