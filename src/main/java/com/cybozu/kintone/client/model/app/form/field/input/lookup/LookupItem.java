@@ -8,37 +8,29 @@
 package com.cybozu.kintone.client.model.app.form.field.input.lookup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
 import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedApp;
 
 public class LookupItem {
-    private List<FieldMapping> fieldMappings = new ArrayList<FieldMapping>();
+    private ArrayList<FieldMapping> fieldMappings;
     private String filterCond;
-    private List<String> lookupPickerFields = new ArrayList<String>();
+    private ArrayList<String> lookupPickerFields;
     private RelatedApp relatedApp;
     private String relatedKeyField;
     private String sort;
 
     /**
-     * default constructor
-     */
-    public LookupItem() {
-
-    }
-
-    /**
      * @return the fieldMapping
      */
-    public List<FieldMapping> getFieldMapping() {
+    public ArrayList<FieldMapping> getFieldMapping() {
         return this.fieldMappings;
     }
 
     /**
      * @param fieldMapping the fieldMapping to set
      */
-    public void setFieldMapping(List<FieldMapping> fieldMapping) {
+    public void setFieldMapping(ArrayList<FieldMapping> fieldMapping) {
         this.fieldMappings = fieldMapping;
     }
 
@@ -59,14 +51,14 @@ public class LookupItem {
     /**
      * @return the lookupPickerFields
      */
-    public List<String> getLookupPickerFields() {
+    public ArrayList<String> getLookupPickerFields() {
         return this.lookupPickerFields;
     }
 
     /**
      * @param lookupPickerFields the lookupPickerFields to set
      */
-    public void setLookupPickerFields(List<String> lookupPickerFields) {
+    public void setLookupPickerFields(ArrayList<String> lookupPickerFields) {
         this.lookupPickerFields = lookupPickerFields;
     }
 

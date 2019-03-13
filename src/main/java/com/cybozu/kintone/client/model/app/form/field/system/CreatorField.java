@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class CreatorField extends AbstractSystemInfoField {
     /**
-     * @param code
+     * @param code code of the CreatorField
      */
     public CreatorField(String code) {
         this.code = code;

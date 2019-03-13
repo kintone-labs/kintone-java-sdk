@@ -14,17 +14,10 @@ import com.cybozu.kintone.client.model.app.form.UnitPosition;
 public class CalculatedField extends AbstractInputField {
     private String expression;
     private Boolean hideExpression;
-    private Integer displayScale;
+    private String displayScale;
     private String unit;
     private UnitPosition unitPosition;
     private NumberFormat format;
-
-    /**
-     * default constructor
-     */
-    public CalculatedField() {
-        this.type = FieldType.CALC;
-    }
 
     public CalculatedField(String code) {
         this.code = code;
@@ -64,7 +57,7 @@ public class CalculatedField extends AbstractInputField {
     /**
      * @return the displayScale
      */
-    public Integer getDisplayScale() {
+    public String getDisplayScale() {
         return this.displayScale;
     }
 
@@ -72,7 +65,7 @@ public class CalculatedField extends AbstractInputField {
      * @param displayScale
      *            the displayScale to set
      */
-    public void setDisplayScale(Integer displayScale) {
+    public void setDisplayScale(String displayScale) {
         this.displayScale = displayScale;
     }
 

@@ -13,7 +13,7 @@ public class DropDownField extends AbstractSelectionField {
     protected String defaultValue;
 
     /**
-     * @param code
+     * @param code code of the DropDownField
      */
     public DropDownField(String code) {
         this.code = code;

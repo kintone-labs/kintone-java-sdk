@@ -16,8 +16,8 @@ public class UpdateRecordsStatusRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param records
+	 * @param app app of the UpdateRecordsStatusRequest
+	 * @param records records of the UpdateRecordsStatusRequest
 	 */
 	public UpdateRecordsStatusRequest(Integer app, ArrayList<RecordUpdateStatusItem> records) {
 		this.app = app;

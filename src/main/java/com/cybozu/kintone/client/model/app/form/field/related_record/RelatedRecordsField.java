@@ -16,7 +16,7 @@ public class RelatedRecordsField extends Field {
     protected ReferenceTable referenceTable;
 
     /**
-     * @param code
+     * @param code code of the RelatedRecordsField
      */
     public RelatedRecordsField(String code) {
         this.code = code;

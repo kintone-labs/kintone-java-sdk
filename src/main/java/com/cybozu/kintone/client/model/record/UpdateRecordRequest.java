@@ -21,11 +21,11 @@ public class UpdateRecordRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param id
-	 * @param updateKey
-	 * @param revision
-	 * @param record
+	 * @param app app of the UpdateRecordRequest
+	 * @param id id of the UpdateRecordRequest
+	 * @param updateKey updateKey of the UpdateRecordRequest
+	 * @param revision revision of the UpdateRecordRequest
+	 * @param record record of the UpdateRecordRequest
 	 */
 	public UpdateRecordRequest(Integer app, Integer id, RecordUpdateKey updateKey, Integer revision, HashMap<String, FieldValue> record) {
 		this.app = app;

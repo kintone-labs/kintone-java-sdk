@@ -7,11 +7,11 @@
 
 package com.cybozu.kintone.client.model.comment;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CommentContent {
     private String text;
-    private List<CommentMention> mentions;
+    private ArrayList<CommentMention> mentions;
 
     /*
      * Get text
@@ -33,7 +33,7 @@ public class CommentContent {
      * Get mention
      * @return
      */
-    public List<CommentMention> getMentions() {
+    public ArrayList<CommentMention> getMentions() {
         return this.mentions;
     }
 
@@ -41,7 +41,7 @@ public class CommentContent {
      * Set mention
      * @param mention
      */
-    public void setMentions(List<CommentMention> mentions) {
+    public void setMentions(ArrayList<CommentMention> mentions) {
         this.mentions = mentions;
     }
 }

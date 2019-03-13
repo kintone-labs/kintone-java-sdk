@@ -18,10 +18,10 @@ public class UpdateRecordAssigneesRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param id
-	 * @param assignees
-	 * @param revision
+	 * @param app app of the UpdateRecordAssigneesRequest
+	 * @param id id of the UpdateRecordAssigneesRequest
+	 * @param assignees assignees of the UpdateRecordAssigneesRequest
+	 * @param revision revision of the UpdateRecordAssigneesRequest
 	 */
 	public UpdateRecordAssigneesRequest(Integer app, Integer id, ArrayList<String> assignees, Integer revision) {
 		this.app = app;

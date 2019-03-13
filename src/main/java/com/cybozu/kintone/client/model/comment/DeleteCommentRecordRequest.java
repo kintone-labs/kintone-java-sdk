@@ -14,9 +14,9 @@ public class DeleteCommentRecordRequest {
 
     /**
      * Constructor
-     * @param app
-     * @param record
-     * @param comment
+     * @param app app of the DeleteCommentRecordRequest
+     * @param record record of the DeleteCommentRecordRequest
+     * @param comment comment of the DeleteCommentRecordRequest
      */
     public DeleteCommentRecordRequest(Integer app, Integer record, Integer comment) {
 

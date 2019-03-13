@@ -36,6 +36,9 @@ public enum FieldType {
     STATUS,
     STATUS_ASSIGNEE,
     CATEGORY,
+    SPACER,
+    LABEL,
+    HR,
     __ID__,
     __REVISION__
 }

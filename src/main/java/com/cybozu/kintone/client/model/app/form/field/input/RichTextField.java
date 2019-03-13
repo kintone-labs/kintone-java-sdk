@@ -13,7 +13,7 @@ public class RichTextField extends AbstractInputField {
     private String defaultValue;
 
     /**
-     * @param code
+     * @param code code of the RichTextField
      */
     public RichTextField(String code) {
         this.code = code;
