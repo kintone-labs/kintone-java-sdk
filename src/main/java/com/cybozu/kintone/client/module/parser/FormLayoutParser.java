@@ -7,6 +7,7 @@
 
 package com.cybozu.kintone.client.module.parser;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -25,9 +26,10 @@ public class FormLayoutParser {
 
     /**
      * Convert json to FormLayout
-     * @param input
-     * @return
+     * @param input input of the parseFormLayout
+     * @return FormLayout
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public FormLayout parseFormLayout(JsonElement input) throws KintoneAPIException {
         if (!input.isJsonObject()) {
@@ -36,7 +38,7 @@ public class FormLayoutParser {
 
         JsonObject root = input.getAsJsonObject();
         FormLayout formLayout = new FormLayout();
-
+        formLayout.setLayout(new ArrayList<ItemLayout>());
         formLayout.setRevision(root.get("revision").getAsString());
 
         JsonArray layoutProperties = root.get("layout").getAsJsonArray();
@@ -50,9 +52,10 @@ public class FormLayoutParser {
 
     /**
      * Convert json to ItemLayout
-     * @param input
-     * @return
+     * @param input input of the parseItemLayout
+     * @return ItemLayout
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public ItemLayout parseItemLayout(JsonElement input) throws KintoneAPIException {
         if (!input.isJsonObject()) {
@@ -74,11 +77,12 @@ public class FormLayoutParser {
 
     /**
      * Convert json to GroupLayout
-     * @param root
-     * @return
+     * @param root root of the parseGroupLayout
+     * @return GroupLayout
      */
     public GroupLayout parseGroupLayout(JsonObject root) {
         GroupLayout groupLayout = new GroupLayout();
+        groupLayout.setLayout(new ArrayList<RowLayout>());
         groupLayout.setCode(root.get("code").getAsString());
 
         JsonArray layout = root.get("layout").getAsJsonArray();
@@ -92,12 +96,12 @@ public class FormLayoutParser {
 
     /**
      * Convert json to SubTableLayout
-     * @param root
-     * @return
+     * @param root root of the parseSubTableLayout
+     * @return SubTableLayout
      */
     public SubTableLayout parseSubTableLayout(JsonObject root) {
         SubTableLayout subTableLayout = new SubTableLayout();
-
+        subTableLayout.setFields(new ArrayList<FieldLayout>());
         subTableLayout.setCode(root.get("code").getAsString());
 
         JsonArray fields = root.get("fields").getAsJsonArray();
@@ -111,11 +115,12 @@ public class FormLayoutParser {
 
     /**
      * Convert json to RowLayout
-     * @param root
-     * @return
+     * @param root root of the parseRowLayout
+     * @return RowLayout
      */
     public RowLayout parseRowLayout(JsonObject root) {
         RowLayout rowLayout = new RowLayout();
+        rowLayout.setFields(new ArrayList<FieldLayout>());
         JsonArray fields = root.get("fields").getAsJsonArray();
 
         Iterator<JsonElement> iterator = fields.iterator();
@@ -128,8 +133,8 @@ public class FormLayoutParser {
 
     /**
      * Convert json to FieldLayout
-     * @param input
-     * @return
+     * @param input input of the parseFieldLayout
+     * @return FieldLayout
      */
     public FieldLayout parseFieldLayout(JsonElement input) {
         JsonObject root = input.getAsJsonObject();
@@ -162,8 +167,8 @@ public class FormLayoutParser {
 
     /**
      * Convert json to FieldSize
-     * @param root
-     * @return
+     * @param root root of the parseFieldSize
+     * @return FieldSize
      */
     public FieldSize parseFieldSize(JsonObject root) {
         FieldSize fieldSize = new FieldSize();

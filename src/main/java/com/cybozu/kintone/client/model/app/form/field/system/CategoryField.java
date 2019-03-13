@@ -13,7 +13,7 @@ public class CategoryField extends AbstractSystemField {
     protected Boolean enabled;
 
     /**
-     * @param code
+     * @param code code of the CategoryField
      */
     public CategoryField(String code) {
         this.code = code;
@@ -21,14 +21,14 @@ public class CategoryField extends AbstractSystemField {
     }
 
     /**
-     * @return
+     * @return enabled
      */
     public Boolean getEnabled() {
         return this.enabled;
     }
 
     /**
-     * @param enabled
+     * @param enabled the enabled to set
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;

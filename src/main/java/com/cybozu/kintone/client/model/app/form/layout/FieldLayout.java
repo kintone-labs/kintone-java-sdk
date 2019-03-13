@@ -15,13 +15,6 @@ public class FieldLayout {
     private FieldSize size;
 
     /**
-     * default constructor
-     */
-    public FieldLayout() {
-
-    }
-
-    /**
      * @return the type
      */
     public String getType() {

@@ -8,23 +8,15 @@
 package com.cybozu.kintone.client.model.app.form.field;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.app.form.field.input.AbstractInputField;
 
 public class SubTableField extends Field {
-    protected Map<String, AbstractInputField> fields = new HashMap<String, AbstractInputField>();
+    protected HashMap<String, AbstractInputField> fields;
 
     /**
-     * default constructor
-     */
-    public SubTableField() {
-        this.type = FieldType.SUBTABLE;
-    }
-
-    /**
-     * @param code
+     * @param code the code of the SubTableField
      */
     public SubTableField(String code) {
         this.code = code;
@@ -34,30 +26,32 @@ public class SubTableField extends Field {
     /**
      * @return the fields
      */
-    public Map<String, AbstractInputField> getFields() {
+    public HashMap<String, AbstractInputField> getFields() {
         return this.fields;
     }
 
     /**
      * @param fields the fields to set
      */
-    public void setFields(Map<String, AbstractInputField> fields) {
+    public void setFields(HashMap<String, AbstractInputField> fields) {
         this.fields = fields;
     }
 
     /**
-     * @param field
+     * @param field AbstractInputField
      */
     public void addField(AbstractInputField field) {
         if (field == null || field.getCode() == null || field.getCode().trim().length() == 0) {
             return;
         }
-
-        fields.put(field.getCode(), field);
+        if (this.fields == null) {
+        	this.fields = new HashMap<String, AbstractInputField>();
+        }
+        this.fields.put(field.getCode(), field);
     }
 
     /**
-     * @param field
+     * @param field AbstractInputField
      */
     public void removeField(AbstractInputField field) {
         if (field == null || field.getCode() == null || field.getCode().trim().length() == 0) {

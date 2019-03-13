@@ -10,10 +10,10 @@ package com.cybozu.kintone.client.model.app.form.field.input;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class AttachmentField extends AbstractInputField {
-    protected Integer thumbnailSize;
+    protected String thumbnailSize;
 
     /**
-     * @param code
+     * @param code code of the AttachmentField
      */
     public AttachmentField(String code) {
         this.code = code;
@@ -23,7 +23,7 @@ public class AttachmentField extends AbstractInputField {
     /**
      * @return the thumbnailSize
      */
-    public Integer getThumbnailSize() {
+    public String getThumbnailSize() {
         return this.thumbnailSize;
     }
 
@@ -31,7 +31,7 @@ public class AttachmentField extends AbstractInputField {
      * @param thumbnailSize
      *            the thumbnailSize to set
      */
-    public void setThumbnailSize(Integer thumbnailSize) {
+    public void setThumbnailSize(String thumbnailSize) {
         this.thumbnailSize = thumbnailSize;
     }
 }

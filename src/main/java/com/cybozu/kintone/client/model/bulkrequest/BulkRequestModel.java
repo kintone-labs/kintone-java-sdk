@@ -21,7 +21,7 @@ public class BulkRequestModel {
 	/**
 	 * Add bulk Request Item to the bulk request function.
 	 *
-	 * @param bulkRequestItem
+	 * @param bulkRequestItem the bulkRequestItem to add
 	 */
 	public void addRequest(BulkRequestItem bulkRequestItem) {
 		this.requests.add(bulkRequestItem);
@@ -29,6 +29,7 @@ public class BulkRequestModel {
 
 	/**
 	 * Get bulk Request Item to the bulk request function.
+	 * @return requests
 	 */
 	public ArrayList<BulkRequestItem> getRequests() {
 		return this.requests;

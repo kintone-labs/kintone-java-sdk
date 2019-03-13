@@ -14,8 +14,8 @@ public class GetRecordRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param id
+	 * @param app app of the GetRecordRequest
+	 * @param id id of the GetRecordRequest
 	 */
 	public GetRecordRequest(Integer app, Integer id) {
 		this.app = app;

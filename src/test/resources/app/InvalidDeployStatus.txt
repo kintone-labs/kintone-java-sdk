@@ -1,0 +1,16 @@
+{
+    "apps": [
+        {
+            "app": a,
+            "status": "PROCESSING"
+        },
+        {
+            "app": b,
+            "status": "SUCCESS"
+        },
+        {
+            "app": c,
+            "status": "FAIL"
+        }
+    ]
+}

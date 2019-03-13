@@ -15,6 +15,7 @@ import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
+import com.cybozu.kintone.client.model.record.AddRecordRequest;
 import com.cybozu.kintone.client.model.record.AddRecordResponse;
 import com.cybozu.kintone.client.model.record.AddRecordsResponse;
 import com.cybozu.kintone.client.model.record.GetRecordResponse;
@@ -30,8 +31,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class BulkRequestParserTest {
-    private static String USERNAME = "xxxxx";
-    private static String PASSWORD = "xxxxx";
     private static int APP_ID = 1660;
 
     private BulkRequest bulkRequest;
@@ -41,7 +40,7 @@ public class BulkRequestParserTest {
     @Before
     public void setup() {
         Auth auth = new Auth();
-        auth.setPasswordAuth(USERNAME, PASSWORD);
+        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         this.connection = new Connection(TestConstants.DOMAIN, auth);
         this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
 
@@ -172,7 +171,16 @@ public class BulkRequestParserTest {
         String parseObject = brp.parseObject(parseJson);
         assertTrue(parseObject.contains("id"));
     }
+    
+    @Test(expected = KintoneAPIException.class)
+    public void testParseJsonReturnAddRecordResponseShouldFailWithInvalidJson() throws KintoneAPIException {
+        JsonObject postBody = new JsonObject();
+        postBody.addProperty("app", "\"\"");
 
+        BulkRequestParser brp = new BulkRequestParser();
+        brp.parseJson(postBody, AddRecordRequest.class);
+    }
+    
     @Test
     public void testParseJsonReturnAddRecordsResponseSuccess() throws KintoneAPIException {
         JsonObject postBody = new JsonObject();

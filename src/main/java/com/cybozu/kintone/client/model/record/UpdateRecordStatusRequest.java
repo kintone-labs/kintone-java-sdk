@@ -17,11 +17,11 @@ public class UpdateRecordStatusRequest {
 
 	/**
 	 * Constructor
-	 * @param action
-	 * @param app
-	 * @param assignee
-	 * @param id
-	 * @param revision
+	 * @param action action of the UpdateRecordStatusRequest
+	 * @param app app of the UpdateRecordStatusRequest
+	 * @param assignee assignee of the UpdateRecordStatusRequest
+	 * @param id id of the UpdateRecordStatusRequest
+	 * @param revision revision of the UpdateRecordStatusRequest
 	 */
 	public UpdateRecordStatusRequest(String action, Integer app, String assignee, Integer id, Integer revision) {
 		this.action = action;

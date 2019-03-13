@@ -26,10 +26,6 @@ public class AppModel {
     private Date modifiedAt;
     private Member modifier;
 
-    public AppModel() {
-
-    }
-
     /**
      * @return the appId
      */

@@ -14,8 +14,9 @@ public class BulkRequestItem {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param record
+	 * @param method method of the BulkRequestItem
+	 * @param api api of the BulkRequestItem
+	 * @param payload payload of the BulkRequestItem
 	 */
 	public BulkRequestItem(String method, String api, Object payload) {
 		this.method = method;
@@ -25,7 +26,7 @@ public class BulkRequestItem {
 
 	/**
 	 * Get api
-	 * @return
+	 * @return api
 	 */
 	public String getApi() {
 		return this.api;
@@ -33,7 +34,7 @@ public class BulkRequestItem {
 
 	/**
 	 * Get http method
-	 * @return
+	 * @return method
 	 */
 	public String getMethod() {
 		return this.method;
@@ -41,7 +42,7 @@ public class BulkRequestItem {
 
 	/**
 	 * Get payload
-	 * @return
+	 * @return payload
 	 */
 	public Object getPayload() {
 		return this.payload;

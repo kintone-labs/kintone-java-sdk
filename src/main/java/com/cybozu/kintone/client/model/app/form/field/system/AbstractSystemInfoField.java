@@ -11,14 +11,14 @@ public abstract class AbstractSystemInfoField extends AbstractSystemField {
     protected Boolean noLabel;
 
     /**
-     * @return
+     * @return noLabel
      */
     public Boolean getNoLabel() {
         return this.noLabel;
     }
 
     /**
-     * @param noLabel
+     * @param noLabel the noLabel to set
      */
     public void setNoLabel(Boolean noLabel) {
         this.noLabel = noLabel;

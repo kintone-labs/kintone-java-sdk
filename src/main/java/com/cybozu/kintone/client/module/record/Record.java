@@ -52,7 +52,7 @@ public class Record {
 
     /**
      * Constractor
-     * @param connection
+     * @param connection connection of the Record
      */
     public Record(Connection connection) {
         this.connection = connection;
@@ -60,10 +60,11 @@ public class Record {
 
     /**
      * Get a record from kintone APP
-     * @param app
-     * @param id
-     * @return
+     * @param app app of the getRecord
+     * @param id id of the getRecord
+     * @return GetRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public GetRecordResponse getRecord(Integer app, Integer id) throws KintoneAPIException {
         // execute GET RECORD API
@@ -91,12 +92,13 @@ public class Record {
 
     /**
      * Get records from kintone APP by query
-     * @param app
-     * @param query
-     * @param fields
-     * @param totalCount
-     * @return
+     * @param app app of the getRecords
+     * @param query query of the getRecords
+     * @param fields fields of the getRecords
+     * @param totalCount totalCount of the getRecords
+     * @return GetRecordsResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount)
             throws KintoneAPIException {
@@ -133,10 +135,11 @@ public class Record {
 
     /**
      * Add a record to kintone APP
-     * @param app
-     * @param record
-     * @return
+     * @param app app of the addRecord
+     * @param record record of the addRecord
+     * @return AddRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException {
         // execute POST RECORD API
@@ -150,10 +153,11 @@ public class Record {
 
     /**
      * Add records to kintone APP
-     * @param app
-     * @param records
-     * @return
+     * @param app app of the addRecords
+     * @param records records of the addRecords
+     * @return AddRecordsResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records)
             throws KintoneAPIException {
@@ -168,12 +172,13 @@ public class Record {
 
     /**
      * Update a record on kintone APP by ID
-     * @param app
-     * @param id
-     * @param record
-     * @param revision
-     * @return
+     * @param app app of the updateRecordByID
+     * @param id id of the updateRecordByID
+     * @param record record of the updateRecordByID
+     * @param revision revision of the updateRecordByID
+     * @return UpdateRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordResponse updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record,
             Integer revision) throws KintoneAPIException {
@@ -188,12 +193,13 @@ public class Record {
 
     /**
      * Update a record on kintone APP by UpdateKey
-     * @param app
-     * @param updateKey
-     * @param record
-     * @param revision
-     * @return
+     * @param app app of the updateRecordByUpdateKey
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param record record of the updateRecordByUpdateKey
+     * @param revision revision of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey,
             HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
@@ -208,10 +214,11 @@ public class Record {
 
     /**
      * Update records on kintone APP
-     * @param app
-     * @param records
-     * @return
+     * @param app app of the updateRecords
+     * @param records records of the updateRecords
+     * @return UpdateRecordsResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordsResponse updateRecords(Integer app, ArrayList<RecordUpdateItem> records)
             throws KintoneAPIException {
@@ -226,10 +233,10 @@ public class Record {
 
     /**
      * Delete records on kintone APP
-     * @param app
-     * @param ids
-     * @return
+     * @param app app of the deleteRecords
+     * @param ids ids of the deleteRecords
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public void deleteRecords(Integer app, ArrayList<Integer> ids) throws KintoneAPIException {
         // execute DELETE RECORDS API
@@ -240,10 +247,10 @@ public class Record {
 
     /**
      * Delete records on kintone APP with revision
-     * @param app
-     * @param idsWithRevision
-     * @return
+     * @param app app of the deleteRecordsWithRevision
+     * @param idsWithRevision idsWithRevision of the deleteRecordsWithRevision
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public void deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> idsWithRevision)
             throws KintoneAPIException {
@@ -266,12 +273,13 @@ public class Record {
 
     /**
      * Update assignees of record on kintone APP
-     * @param app
-     * @param id
-     * @param assignees
-     * @param revision
-     * @return
+     * @param app app of the updateRecordAssignees
+     * @param id id of the updateRecordAssignees
+     * @param assignees assignees of the updateRecordAssignees
+     * @param revision revision of the updateRecordAssignees
+     * @return UpdateRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordResponse updateRecordAssignees(Integer app, Integer id, ArrayList<String> assignees,
             Integer revision) throws KintoneAPIException {
@@ -288,13 +296,14 @@ public class Record {
 
     /**
      * Update status of record on kintone APP
-     * @param app
-     * @param id
-     * @param action
-     * @param assignee
-     * @param revision
-     * @return
+     * @param app app of the updateRecordStatus
+     * @param id id of the updateRecordStatus
+     * @param action action of the updateRecordStatus
+     * @param assignee assignee of the updateRecordStatus
+     * @param revision revision of the updateRecordStatus
+     * @return UpdateRecordResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String action, String assignee,
             Integer revision) throws KintoneAPIException {
@@ -311,10 +320,11 @@ public class Record {
 
     /**
      * Update statuses of records on kintone APP
-     * @param app
-     * @param records
-     * @return
+     * @param app app of the updateRecordsStatus
+     * @param records records of the updateRecordsStatus
+     * @return UpdateRecordsResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUpdateStatusItem> records)
             throws KintoneAPIException {
@@ -330,13 +340,14 @@ public class Record {
 
     /**
      * Get comments of a record on kintone APP
-     * @param app
-     * @param record
-     * @param order
-     * @param offset
-     * @param limit
-     * @return
+     * @param app app of the getComments
+     * @param record record of the getComments
+     * @param order order of the getComments
+     * @param offset offset of the getComments
+     * @param limit limit of the getComments
+     * @return GetCommentsResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset, Integer limit)
             throws KintoneAPIException {
@@ -352,11 +363,12 @@ public class Record {
 
     /**
      * Add a comment to record on kintone APP
-     * @param app
-     * @param record
-     * @param comment
-     * @return
+     * @param app app of the addComment
+     * @param record record of the addComment
+     * @param comment comment of the addComment
+     * @return AddCommentResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public AddCommentResponse addComment(Integer app, Integer record, CommentContent comment)
             throws KintoneAPIException {
@@ -372,11 +384,11 @@ public class Record {
 
     /**
      * Delete a comment in record on kintone APP
-     * @param app
-     * @param record
-     * @param comment
-     * @return
+     * @param app app of the deleteComment
+     * @param record record of the deleteComment
+     * @param comment comment of the deleteComment
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public void deleteComment(Integer app, Integer record, Integer comment) throws KintoneAPIException {
         // execute DELETE RECORD_COMMENT API

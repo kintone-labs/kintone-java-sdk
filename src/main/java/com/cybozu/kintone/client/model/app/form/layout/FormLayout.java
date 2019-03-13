@@ -8,18 +8,10 @@
 package com.cybozu.kintone.client.model.app.form.layout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FormLayout {
     private String revision;
-    private List<ItemLayout> layout = new ArrayList<ItemLayout>();
-
-    /**
-     * default constructor
-     */
-    public FormLayout() {
-
-    }
+    private ArrayList<ItemLayout> layout;
 
     /**
      * @return the revision
@@ -38,14 +30,14 @@ public class FormLayout {
     /**
      * @return the layout
      */
-    public List<ItemLayout> getLayout() {
+    public ArrayList<ItemLayout> getLayout() {
         return this.layout;
     }
 
     /**
      * @param layout the layout to set
      */
-    public void setLayout(List<ItemLayout> layout) {
+    public void setLayout(ArrayList<ItemLayout> layout) {
         this.layout = layout;
     }
 }

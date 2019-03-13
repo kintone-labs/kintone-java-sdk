@@ -8,13 +8,12 @@
 package com.cybozu.kintone.client.model.app.form.layout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.LayoutType;
 
 public class GroupLayout extends ItemLayout {
     private String code;
-    private List<RowLayout> layout = new ArrayList<RowLayout>();
+    private ArrayList<RowLayout> layout;
 
     /**
      * default constructor
@@ -40,14 +39,14 @@ public class GroupLayout extends ItemLayout {
     /**
      * @return the layout
      */
-    public List<RowLayout> getLayout() {
+    public ArrayList<RowLayout> getLayout() {
         return this.layout;
     }
 
     /**
      * @param layout the layout to set
      */
-    public void setLayout(List<RowLayout> layout) {
+    public void setLayout(ArrayList<RowLayout> layout) {
         this.layout = layout;
     }
 }

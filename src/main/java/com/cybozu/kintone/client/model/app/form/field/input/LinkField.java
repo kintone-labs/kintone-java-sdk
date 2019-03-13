@@ -13,12 +13,12 @@ import com.cybozu.kintone.client.model.app.form.LinkProtocol;
 public class LinkField extends AbstractInputField {
 	private String defaultValue;
     private Boolean unique;
-    private Integer maxLength;
-    private Integer minLength;
+    private String maxLength;
+    private String minLength;
     private LinkProtocol protocol;
 
     /**
-     * @param code
+     * @param code code of the LinkField
      */
     public LinkField(String code) {
         this.code = code;
@@ -55,28 +55,28 @@ public class LinkField extends AbstractInputField {
     /**
      * @return the maxLength
      */
-    public Integer getMaxLength() {
+    public String getMaxLength() {
         return this.maxLength;
     }
 
     /**
      * @param maxLength the maxLength to set
      */
-    public void setMaxLength(Integer maxLength) {
+    public void setMaxLength(String maxLength) {
         this.maxLength = maxLength;
     }
 
     /**
      * @return the minLength
      */
-    public Integer getMinLength() {
+    public String getMinLength() {
         return this.minLength;
     }
 
     /**
      * @param minLength the minLength to set
      */
-    public void setMinLength(Integer minLength) {
+    public void setMinLength(String minLength) {
         this.minLength = minLength;
     }
 

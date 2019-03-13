@@ -15,14 +15,14 @@ public abstract class AbstractInputField extends Field {
     protected Boolean required;
 
     /**
-     * @return
+     * @return label
      */
     public String getLabel() {
         return this.label;
     }
 
     /**
-     * @param label
+     * @param label the label to set
      */
     public void setLabel(String label) {
         this.label = label;
@@ -44,14 +44,14 @@ public abstract class AbstractInputField extends Field {
     }
 
     /**
-     * @return
+     * @return required
      */
     public Boolean getRequired() {
         return this.required;
     }
 
     /**
-     * @param required
+     * @param required the required to set
      */
     public void setRequired(Boolean required) {
         this.required = required;

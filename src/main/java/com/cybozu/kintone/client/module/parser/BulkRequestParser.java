@@ -17,10 +17,11 @@ public class BulkRequestParser {
 
     /**
      * Convert Json to designated class
-     * @param json
-     * @param type
-     * @return
+     * @param json json of the parseJson
+     * @param type type of the parseJson
+     * @return Object
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
         try {
@@ -32,9 +33,10 @@ public class BulkRequestParser {
 
     /**
      * Convert Object to jsonString
-     * @param obj
-     * @return
+     * @param obj obj of the parseObject
+     * @return String
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public String parseObject(Object obj) throws KintoneAPIException {
         try {
