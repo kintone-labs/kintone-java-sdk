@@ -8,7 +8,6 @@
 package com.cybozu.kintone.client.model.app.form.field.related_record;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
 
@@ -17,25 +16,18 @@ public class ReferenceTable {
     private String filterCond;
     private RelatedApp relatedApp;
     private Integer size;
-    private List<String> displayFields = new ArrayList<String>();
+    private ArrayList<String> displayFields;
     private String sort;
 
     /**
-     * default constructor
-     */
-    public ReferenceTable() {
-
-    }
-
-    /**
-     * @param condition
-     * @param filterCond
-     * @param relatedApp
-     * @param size
-     * @param displayFields
+     * @param condition condition of the ReferenceTable
+     * @param filterCond filterCond of the ReferenceTable
+     * @param relatedApp relatedApp of the ReferenceTable
+     * @param size size of the ReferenceTable
+     * @param displayFields displayFields of the ReferenceTable
      */
     public ReferenceTable(FieldMapping condition, String filterCond, RelatedApp relatedApp, Integer size,
-            List<String> displayFields) {
+            ArrayList<String> displayFields) {
         this.condition = condition;
         this.filterCond = filterCond;
         this.relatedApp = relatedApp;
@@ -102,14 +94,14 @@ public class ReferenceTable {
     /**
      * @return the displayFields
      */
-    public List<String> getDisplayFields() {
+    public ArrayList<String> getDisplayFields() {
         return this.displayFields;
     }
 
     /**
      * @param displayFields the displayFields to set
      */
-    public void setDisplayFields(List<String> displayFields) {
+    public void setDisplayFields(ArrayList<String> displayFields) {
         this.displayFields = displayFields;
     }
 

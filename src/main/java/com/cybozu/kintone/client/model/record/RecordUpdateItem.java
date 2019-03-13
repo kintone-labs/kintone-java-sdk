@@ -20,10 +20,10 @@ public class RecordUpdateItem {
 
 	/**
 	 * Constructor
-	 * @param id
-	 * @param revision
-	 * @param updateKey
-	 * @param record
+	 * @param id id of the RecordUpdateItem
+	 * @param revision revision of the RecordUpdateItem
+	 * @param updateKey updateKey of the RecordUpdateItem
+	 * @param record record of the RecordUpdateItem
 	 */
 	public RecordUpdateItem(Integer id, Integer revision, RecordUpdateKey updateKey, HashMap<String, FieldValue> record) {
 		this.id = id;

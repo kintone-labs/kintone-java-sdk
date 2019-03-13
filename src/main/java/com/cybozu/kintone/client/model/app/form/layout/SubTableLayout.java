@@ -8,13 +8,12 @@
 package com.cybozu.kintone.client.model.app.form.layout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.LayoutType;
 
 public class SubTableLayout extends ItemLayout {
     private String code;
-    private List<FieldLayout> fields = new ArrayList<FieldLayout>();
+    private ArrayList<FieldLayout> fields;
 
     /**
      * default constructor
@@ -40,14 +39,14 @@ public class SubTableLayout extends ItemLayout {
     /**
      * @return the fields
      */
-    public List<FieldLayout> getFields() {
+    public ArrayList<FieldLayout> getFields() {
         return this.fields;
     }
 
     /**
      * @param fields the fields to set
      */
-    public void setFields(List<FieldLayout> fields) {
+    public void setFields(ArrayList<FieldLayout> fields) {
         this.fields = fields;
     }
 }

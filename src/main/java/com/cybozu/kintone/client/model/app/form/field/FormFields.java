@@ -8,12 +8,11 @@
 package com.cybozu.kintone.client.model.app.form.field;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class FormFields {
     private Integer app;
     private Integer revision;
-    private Map<String, Field> properties;
+    private HashMap<String, Field> properties;
 
     /**
      * default constructor
@@ -25,11 +24,11 @@ public class FormFields {
     }
 
     /**
-     * @param app
-     * @param properties
-     * @param revision
+     * @param app app of the FormFields
+     * @param properties properties of the FormFields
+     * @param revision revision of the FormFields
      */
-    public FormFields(Integer app, Map<String, Field> properties, Integer revision) {
+    public FormFields(Integer app, HashMap<String, Field> properties, Integer revision) {
         this.app = app;
         this.revision = revision;
         this.properties = properties;
@@ -68,7 +67,7 @@ public class FormFields {
     /**
      * @return the properties
      */
-    public Map<String, Field> getProperties() {
+    public HashMap<String, Field> getProperties() {
         return this.properties;
     }
 
@@ -76,7 +75,7 @@ public class FormFields {
      * @param properties
      *            the properties to set
      */
-    public void setProperties(Map<String, Field> properties) {
+    public void setProperties(HashMap<String, Field> properties) {
         this.properties = properties;
     }
 }

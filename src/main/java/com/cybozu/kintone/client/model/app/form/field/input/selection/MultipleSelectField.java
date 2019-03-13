@@ -8,15 +8,14 @@
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class MultipleSelectField extends AbstractSelectionField {
-    protected List<String> defaultValue = new ArrayList<String>();
+    protected ArrayList<String> defaultValue;
 
     /**
-     * @param code
+     * @param code code of the MultipleSelectField
      */
     public MultipleSelectField(String code) {
         this.code = code;
@@ -26,7 +25,7 @@ public class MultipleSelectField extends AbstractSelectionField {
     /**
      * @return the defaultValue
      */
-    public List<String> getDefaultValue() {
+    public ArrayList<String> getDefaultValue() {
         return this.defaultValue;
     }
 
@@ -34,7 +33,7 @@ public class MultipleSelectField extends AbstractSelectionField {
      * @param defaultValue
      *            the defaultValue to set
      */
-    public void setDefaultValue(List<String> defaultValue) {
+    public void setDefaultValue(ArrayList<String> defaultValue) {
         this.defaultValue = defaultValue;
     }
 }

@@ -14,8 +14,8 @@ public class RecordUpdateKey {
 
 	/**
 	 * Constructor
-	 * @param field
-	 * @param value
+	 * @param field field of the RecordUpdateKey
+	 * @param value value of the RecordUpdateKey
 	 */
 	public RecordUpdateKey(String field, String value) {
 		this.field = field;

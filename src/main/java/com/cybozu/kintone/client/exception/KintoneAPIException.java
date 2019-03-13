@@ -23,8 +23,8 @@ public class KintoneAPIException extends Exception {
     private ArrayList<ErrorResponse> errorResponses;
 
     /**
-     * @param httpErrorCode
-     * @param errorResponse
+     * @param httpErrorCode httpErrorCode of the KintoneAPIException
+     * @param errorResponse errorResponse of the KintoneAPIException
      */
     public KintoneAPIException(int httpErrorCode, ErrorResponse errorResponse) {
         super(errorResponse.getMessage());
@@ -39,7 +39,7 @@ public class KintoneAPIException extends Exception {
     }
 
     /**
-     * @param error
+     * @param error the error of the KintoneAPIException
      */
     public KintoneAPIException(String error) {
         super(error);

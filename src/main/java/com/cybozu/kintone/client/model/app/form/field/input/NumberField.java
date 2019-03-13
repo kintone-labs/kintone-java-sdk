@@ -10,17 +10,17 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.app.form.UnitPosition;
 
 public class NumberField extends AbstractInputField {
-    private Integer displayScale;
+    private String displayScale;
     private String unit;
     private UnitPosition unitPosition;
     private Boolean digit;
-    private Integer maxValue;
-    private Integer minValue;
+    private String maxValue;
+    private String minValue;
     private String defaultValue;
     private Boolean unique;
 
     /**
-     * @param code
+     * @param code code of the NumberField
      */
     public NumberField(String code) {
         this.code = code;
@@ -30,14 +30,14 @@ public class NumberField extends AbstractInputField {
     /**
      * @return the displayScale
      */
-    public Integer getDisplayScale() {
+    public String getDisplayScale() {
         return this.displayScale;
     }
 
     /**
      * @param displayScale the displayScale to set
      */
-    public void setDisplayScale(Integer displayScale) {
+    public void setDisplayScale(String displayScale) {
         this.displayScale = displayScale;
     }
 
@@ -86,28 +86,28 @@ public class NumberField extends AbstractInputField {
     /**
      * @return the maxValue
      */
-    public Integer getMaxValue() {
+    public String getMaxValue() {
         return this.maxValue;
     }
 
     /**
      * @param maxValue the maxValue to set
      */
-    public void setMaxValue(Integer maxValue) {
+    public void setMaxValue(String maxValue) {
         this.maxValue = maxValue;
     }
 
     /**
      * @return the minValue
      */
-    public Integer getMinValue() {
+    public String getMinValue() {
         return this.minValue;
     }
 
     /**
      * @param minValue the minValue to set
      */
-    public void setMinValue(Integer minValue) {
+    public void setMinValue(String minValue) {
         this.minValue = minValue;
     }
 
@@ -126,14 +126,14 @@ public class NumberField extends AbstractInputField {
     }
 
     /**
-     * @return
+     * @return unique
      */
     public Boolean getUnique() {
         return this.unique;
     }
 
     /**
-     * @param unique
+     * @param unique the unique to set
      */
     public void setUnique(Boolean unique) {
         this.unique = unique;

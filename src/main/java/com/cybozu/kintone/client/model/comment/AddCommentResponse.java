@@ -12,7 +12,7 @@ public class AddCommentResponse {
 
     /**
      * Get record id
-     * @return
+     * @return id
      */
     public Integer getId() {
         return this.id;
@@ -20,7 +20,7 @@ public class AddCommentResponse {
 
     /**
      * Set rocord id
-     * @param id
+     * @param id the id to set
      */
     public void setId(Integer id) {
         this.id = id;

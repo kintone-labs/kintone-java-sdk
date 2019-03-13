@@ -15,9 +15,9 @@ public class AddCommentRecordRequest {
 
     /**
      * Constructor
-     * @param app
-     * @param record
-     * @param comment
+     * @param app app of the AddCommentRecordRequest
+     * @param record record of the AddCommentRecordRequest
+     * @param comment comment of the AddCommentRecordRequest
      */
     public AddCommentRecordRequest(Integer app, Integer record, CommentContent comment) {
         this.app = app;

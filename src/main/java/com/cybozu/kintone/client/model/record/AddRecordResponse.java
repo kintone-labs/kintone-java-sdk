@@ -14,7 +14,7 @@ public class AddRecordResponse {
 
 	/**
 	 * Get record id
-	 * @return
+	 * @return id
 	 */
 	public Integer getID() {
 		return this.id;
@@ -22,7 +22,7 @@ public class AddRecordResponse {
 
 	/**
 	 * Set record id
-	 * @param id
+	 * @param id the id to set
 	 */
 	public void setID(Integer id) {
 		this.id = id;
@@ -30,7 +30,7 @@ public class AddRecordResponse {
 
 	/**
 	 * Get revision number of record
-	 * @return
+	 * @return revision
 	 */
 	public Integer getRevision() {
 		return this.revision;
@@ -38,7 +38,7 @@ public class AddRecordResponse {
 
 	/**
 	 * Set revision number of record
-	 * @param revision
+	 * @param revision the revision to set
 	 */
 	public void setRevision(Integer revision) {
 		this.revision = revision;

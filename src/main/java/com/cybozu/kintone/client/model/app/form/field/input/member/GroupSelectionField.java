@@ -11,14 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class GroupSelectionField extends AbstractMemberSelectField {
     /**
-     * default constructor
-     */
-    public GroupSelectionField() {
-        this.type = FieldType.GROUP_SELECT;
-    }
-
-    /**
-     * @param code
+     * @param code code of the GroupSelectionField
      */
     public GroupSelectionField(String code) {
         this.code = code;

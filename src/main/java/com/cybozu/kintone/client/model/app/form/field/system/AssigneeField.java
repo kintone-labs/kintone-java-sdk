@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class AssigneeField extends AbstractProcessManagementField {
     /**
-     * @param code
+     * @param code code of the AssigneeField
      */
     public AssigneeField(String code) {
         this.code = code;

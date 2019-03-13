@@ -17,7 +17,7 @@ public class GetRecordResponse {
 
 	/**
 	 * Get Record data response
-	 * @return
+	 * @return record
 	 */
 	public HashMap<String, FieldValue> getRecord() {
 		return this.record;
@@ -25,7 +25,7 @@ public class GetRecordResponse {
 
 	/**
 	 * Set Record data response
-	 * @param record
+	 * @param record the record to set
 	 */
 	public void setRecord(HashMap<String, FieldValue> record) {
 		this.record = record;

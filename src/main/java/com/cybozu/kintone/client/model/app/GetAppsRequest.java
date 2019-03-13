@@ -7,18 +7,18 @@
 
 package com.cybozu.kintone.client.model.app;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class GetAppsRequest {
 
-    private List<Integer> ids;
-    private List<String> codes;
+    private ArrayList<Integer> ids;
+    private ArrayList<String> codes;
     private String name;
-    private List<Integer> spaceIds;
+    private ArrayList<Integer> spaceIds;
     private Integer offset;
     private Integer limit;
 
-    public GetAppsRequest(List<Integer> ids, List<String> codes, String name, List<Integer> spaceIds, Integer offset,
+    public GetAppsRequest(ArrayList<Integer> ids, ArrayList<String> codes, String name, ArrayList<Integer> spaceIds, Integer offset,
             Integer limit) {
         this.ids = ids;
         this.codes = codes;

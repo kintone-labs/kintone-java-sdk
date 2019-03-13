@@ -16,7 +16,7 @@ public class FileModel {
 
 	/**
 	 * Get the type of the uploaded file.
-	 * @return
+	 * @return contentType
 	 */
 	public String getContentType() {
 		return this.contentType;
@@ -24,7 +24,7 @@ public class FileModel {
 
 	/**
 	 * Set the type of the uploaded file.
-	 * @param contentType
+	 * @param contentType the contentType to set
 	 */
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
@@ -32,7 +32,7 @@ public class FileModel {
 
 	/**
 	 * Get the file key of the uploaded file.
-	 * @return
+	 * @return fileKey
 	 */
 	public String getFileKey() {
 		return this.fileKey;
@@ -40,7 +40,7 @@ public class FileModel {
 
 	/**
 	 * Set the file key of the uploaded file.
-	 * @param fileKey
+	 * @param fileKey the fileKey to set
 	 */
 	public void setFileKey(String fileKey) {
 		this.fileKey = fileKey;
@@ -48,7 +48,7 @@ public class FileModel {
 
 	/**
 	 * Get the name of the uploaded file.
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return this.name;
@@ -56,7 +56,7 @@ public class FileModel {
 
 	/**
 	 * Set the name of the uploaded file.
-	 * @param name
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -64,7 +64,7 @@ public class FileModel {
 
 	/**
 	 * Get the size of the uploaded file.
-	 * @return
+	 * @return size
 	 */
 	public String getSize() {
 		return this.size;
@@ -72,7 +72,7 @@ public class FileModel {
 
 	/**
 	 * Set the size of the uploaded file.
-	 * @param size
+	 * @param size the size to set
 	 */
 	public void setSize(String size) {
 		this.size = size;

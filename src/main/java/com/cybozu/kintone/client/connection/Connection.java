@@ -8,10 +8,6 @@
 package com.cybozu.kintone.client.connection;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,10 +21,10 @@ import java.net.Proxy;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.exception.ErrorResponse;
@@ -87,7 +83,7 @@ public class Connection {
     /*
      * Contains addition headers user set.
      */
-    private List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+    private ArrayList<HTTPHeader> headers = new ArrayList<HTTPHeader>();
 
     /*
      * Contains information for bypass proxy.
@@ -124,10 +120,11 @@ public class Connection {
      * This method is low level api, use the correspondence methods in module package instead.
      *
      * @param method rest http method. Only accept "GET", "POST", "PUT", "DELETE" value.
-     * @param apiName
+     * @param apiName api name
      * @param body body of http request. In case "GET" method, the parameters.
      * @return json object
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public JsonElement request(String method, String apiName, String body) throws KintoneAPIException {
         HttpsURLConnection connection = null;
@@ -151,6 +148,11 @@ public class Connection {
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
                 connection = (HttpsURLConnection) url.openConnection(proxy);
+            }
+
+            if (this.auth.getClientCert() != null) {
+                SSLContext sslcontext = this.auth.getClientCert();
+                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
             }
 
             this.setHTTPHeaders(connection);
@@ -205,11 +207,12 @@ public class Connection {
      * Rest http request.
      * This method is execute file download
      *
-     * @param body
-     * @param outPutFilePath
+     * @param body the body of the downloadfile
+     * @return inputstream
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
-    public void downloadFile(String body, String outPutFilePath) throws KintoneAPIException {
+    public InputStream downloadFile(String body) throws KintoneAPIException {
         HttpsURLConnection connection = null;
         URL url;
 
@@ -225,6 +228,11 @@ public class Connection {
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
                 connection = (HttpsURLConnection) url.openConnection(proxy);
+            }
+
+            if (this.auth.getClientCert() != null) {
+                SSLContext sslcontext = this.auth.getClientCert();
+                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
             }
 
             this.setHTTPHeaders(connection);
@@ -261,22 +269,7 @@ public class Connection {
         try {
             checkStatus(connection, body);
             InputStream is = connection.getInputStream();
-            try {
-                if (outPutFilePath != null) {
-                    OutputStream fos = new FileOutputStream(outPutFilePath);
-                    try {
-                        byte[] buffer = new byte[8192];
-                        int n = 0;
-                        while (-1 != (n = is.read(buffer))) {
-                            fos.write(buffer, 0, n);
-                        }
-                    } finally {
-                        fos.close();
-                    }
-                }
-            } finally {
-                is.close();
-            }
+            return is;
         } catch (IOException e) {
             throw new KintoneAPIException("an error occurred while receiving data");
         }
@@ -286,11 +279,13 @@ public class Connection {
      * Rest http request.
      * This method is execute file upload.
      *
-     * @param filePath
-     * @return
+     * @param fileName upload file name
+     * @param fis file inputstream
+     * @return json object
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
-    public JsonElement uploadFile(String filePath) throws KintoneAPIException {
+    public JsonElement uploadFile(String fileName, InputStream fis) throws KintoneAPIException {
 
         HttpsURLConnection connection;
         String response = null;
@@ -310,6 +305,11 @@ public class Connection {
                 connection = (HttpsURLConnection) url.openConnection(proxy);
             }
 
+            if (this.auth.getClientCert() != null) {
+                SSLContext sslcontext = this.auth.getClientCert();
+                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
+            }
+
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
         } catch (IOException e) {
@@ -327,17 +327,6 @@ public class Connection {
         }
 
         OutputStream os;
-        InputStream fis = null;
-        String fileName;
-
-        try {
-            File uploadFile = new File(filePath);
-            fileName = uploadFile.getName();
-            fis = new FileInputStream(uploadFile.getAbsolutePath());
-        } catch (FileNotFoundException e1) {
-            throw new KintoneAPIException("cannot open file");
-        }
-
         try {
             os = connection.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
@@ -377,6 +366,7 @@ public class Connection {
         return jsonParser.parse(response);
     }
 
+
     /**
      * Get url string from domain name, api name and parameters.
      *
@@ -384,8 +374,9 @@ public class Connection {
      * @param parameters
      * @return url
      * @throws MalformedURLException
+     * @throws KintoneAPIException
      */
-    private URL getURL(String apiName, String parameters) throws MalformedURLException {
+    private URL getURL(String apiName, String parameters) throws MalformedURLException, KintoneAPIException {
         if (this.domain == null || this.domain.isEmpty()) {
             throw new NullPointerException("domain is empty");
         }
@@ -397,6 +388,9 @@ public class Connection {
         StringBuilder sb = new StringBuilder();
         if (!this.domain.contains(ConnectionConstants.HTTPS_PREFIX)) {
             sb.append(ConnectionConstants.HTTPS_PREFIX);
+        }
+        if(this.domain.contains(ConnectionConstants.SECURE_ACCESS_SYMBOL) && this.auth.getClientCert() == null) {
+            throw new KintoneAPIException("client-cert is not set");
         }
         sb.append(this.domain);
 
@@ -433,9 +427,10 @@ public class Connection {
     /**
      * Set addition header when connect.
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key the key to set
+     * @param value the value to set
+     * @return connection
+     *            Connection object.
      */
     public Connection setHeader(String key, String value) {
         this.headers.add(new HTTPHeader(key, value));
@@ -445,7 +440,7 @@ public class Connection {
     /**
      * Set authentication for connection
      *
-     * @param auth
+     * @param auth the auth to set
      * @return connection
      *            Connection object.
      */
@@ -675,7 +670,7 @@ public class Connection {
     /**
      * Get uri string from api name.
      *
-     * @param apiName
+     * @param apiName api name
      * @return pathURI
      */
     public String getPathURI(String apiName) {

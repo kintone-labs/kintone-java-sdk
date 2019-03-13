@@ -17,9 +17,9 @@ public class DeleteRecordsRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param ids
-	 * @param revision
+	 * @param app app of the DeleteRecordsRequest
+	 * @param ids ids of the DeleteRecordsRequest
+	 * @param revisions revisions of the DeleteRecordsRequest
 	 */
 	public DeleteRecordsRequest(Integer app, ArrayList<Integer> ids, ArrayList<Integer> revisions) {
 		this.app = app;
