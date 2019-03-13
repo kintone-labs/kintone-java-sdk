@@ -15,7 +15,7 @@ public class RadioButtonField extends AbstractSelectionField {
     protected AlignLayout align;
 
     /**
-     * @param code
+     * @param code code of the RadioButtonField
      */
     public RadioButtonField(String code) {
         this.code = code;
@@ -38,14 +38,14 @@ public class RadioButtonField extends AbstractSelectionField {
     }
 
     /**
-     * @return
+     * @return defaultValue
      */
     public String getDefaultValue() {
         return this.defaultValue;
     }
 
     /**
-     * @param defaultValue
+     * @param defaultValue the defaultValue to set
      */
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;

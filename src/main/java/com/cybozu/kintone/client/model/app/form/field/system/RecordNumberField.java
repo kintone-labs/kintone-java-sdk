@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class RecordNumberField extends AbstractSystemInfoField {
     /**
-     * @param code
+     * @param code code of the RecordNumberField
      */
     public RecordNumberField(String code) {
         this.code = code;

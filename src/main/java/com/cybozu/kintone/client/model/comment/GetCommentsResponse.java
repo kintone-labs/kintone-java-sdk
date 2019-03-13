@@ -17,7 +17,7 @@ public class GetCommentsResponse {
 
     /**
      * Get comment
-     * @return
+     * @return comments
      */
 
     public ArrayList<Comment> getComments() {
@@ -26,7 +26,7 @@ public class GetCommentsResponse {
 
     /**
      * Set comment
-     * @param comments
+     * @param comments the comments to set
      */
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
@@ -34,7 +34,7 @@ public class GetCommentsResponse {
 
     /**
      * Get Older comment
-     * @return
+     * @return older
      */
     public Boolean getOlder() {
         return this.older;
@@ -42,7 +42,7 @@ public class GetCommentsResponse {
 
     /**
      * Set Older comment
-     * @param older
+     * @param older the older to set
      */
     public void setOlder(Boolean older) {
         this.older = older;
@@ -50,7 +50,7 @@ public class GetCommentsResponse {
 
     /**
      * Get Newer comment
-     * @return
+     * @return newer
      */
     public Boolean getNewer() {
         return this.newer;
@@ -58,7 +58,7 @@ public class GetCommentsResponse {
 
     /**
      * Set Newer comment
-     * @param newer
+     * @param newer the newer to set
      */
     public void setNewer(Boolean newer) {
         this.newer = newer;

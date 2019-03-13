@@ -8,17 +8,16 @@
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import com.cybozu.kintone.client.model.app.form.field.input.AbstractInputField;
 
 public class AbstractSelectionField extends AbstractInputField {
-    protected Map<String, OptionData> options = new HashMap<String, OptionData>();
+    protected HashMap<String, OptionData> options;
 
     /**
      * @return the options
      */
-    public Map<String, OptionData> getOptions() {
+    public HashMap<String, OptionData> getOptions() {
         return this.options;
     }
 
@@ -26,12 +25,12 @@ public class AbstractSelectionField extends AbstractInputField {
      * @param options
      *            the options to set
      */
-    public void setOptions(Map<String, OptionData> options) {
+    public void setOptions(HashMap<String, OptionData> options) {
         this.options = options;
     }
 
     /**
-     * @param option
+     * @param option the option to add
      */
     public void addOption(OptionData option) {
         if (option == null || option.getLabel() == null || option.getLabel().trim().length() == 0) {
@@ -42,7 +41,7 @@ public class AbstractSelectionField extends AbstractInputField {
     }
 
     /**
-     * @param option
+     * @param option the option to remove
      */
     public void removeOption(OptionData option) {
         if (option == null || option.getLabel() == null || option.getLabel().trim().length() == 0) {

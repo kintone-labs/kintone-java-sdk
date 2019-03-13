@@ -11,14 +11,14 @@ public abstract class AbstractProcessManagementField extends AbstractSystemField
     protected Boolean enabled;
 
     /**
-     * @return
+     * @return enabled
      */
     public Boolean getEnabled() {
         return this.enabled;
     }
 
     /**
-     * @param enabled
+     * @param enabled the enabled to set
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;

@@ -8,18 +8,17 @@
 package com.cybozu.kintone.client.model.app.form.field.input.member;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.field.input.AbstractInputField;
 
 public abstract class AbstractMemberSelectField extends AbstractInputField {
-    protected List<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
-    protected List<MemberSelectEntity> entites = new ArrayList<MemberSelectEntity>();
+    protected ArrayList<MemberSelectEntity> defaultValue;
+    protected ArrayList<MemberSelectEntity> entities;
 
     /**
      * @return the defaultValue
      */
-    public List<MemberSelectEntity> getDefaultValue() {
+    public ArrayList<MemberSelectEntity> getDefaultValue() {
         return this.defaultValue;
     }
 
@@ -27,22 +26,22 @@ public abstract class AbstractMemberSelectField extends AbstractInputField {
      * @param defaultValue
      *            the defaultValue to set
      */
-    public void setDefaultValue(List<MemberSelectEntity> defaultValue) {
+    public void setDefaultValue(ArrayList<MemberSelectEntity> defaultValue) {
         this.defaultValue = defaultValue;
     }
 
     /**
-     * @return the entites
+     * @return the entities
      */
-    public List<MemberSelectEntity> getEntites() {
-        return this.entites;
+    public ArrayList<MemberSelectEntity> getEntities() {
+        return this.entities;
     }
 
     /**
-     * @param entites
-     *            the entites to set
+     * @param entities
+     *            the entities to set
      */
-    public void setEntites(List<MemberSelectEntity> entites) {
-        this.entites = entites;
+    public void setEntities(ArrayList<MemberSelectEntity> entities) {
+        this.entities = entities;
     }
 }

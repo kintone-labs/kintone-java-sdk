@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class ModifierField extends AbstractSystemInfoField {
     /**
-     * @param code
+     * @param code code of the ModifierField
      */
     public ModifierField(String code) {
         this.code = code;

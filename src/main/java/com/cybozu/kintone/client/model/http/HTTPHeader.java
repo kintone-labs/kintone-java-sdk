@@ -13,8 +13,8 @@ public class HTTPHeader {
 
 
     /**
-     * @param key
-     * @param value
+     * @param key key of the HTTPHeader
+     * @param value value of the HTTPHeader
      */
     public HTTPHeader(String key, String value) {
         this.key = key;

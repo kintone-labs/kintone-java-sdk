@@ -13,7 +13,7 @@ public class DownloadRequest {
 
     /**
      * Constructor
-     * @param fileKey
+     * @param fileKey fileKey of the DownloadRequest
      */
     public DownloadRequest(String fileKey) {
         this.fileKey = fileKey;

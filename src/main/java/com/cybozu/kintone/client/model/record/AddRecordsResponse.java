@@ -16,7 +16,7 @@ public class AddRecordsResponse {
 
 	/**
 	 * Get record ids
-	 * @return
+	 * @return ids
 	 */
 	public ArrayList<Integer> getIDs() {
 		return this.ids;
@@ -24,7 +24,7 @@ public class AddRecordsResponse {
 
 	/**
 	 * Set record ids
-	 * @param id
+	 * @param ids the ids to set
 	 */
 	public void setIDs(ArrayList<Integer> ids) {
 		this.ids = ids;
@@ -32,7 +32,7 @@ public class AddRecordsResponse {
 
 	/**
 	 * Get revision number of records
-	 * @return
+	 * @return revisions
 	 */
 	public ArrayList<Integer> getRevisions() {
 		return this.revisions;
@@ -40,7 +40,7 @@ public class AddRecordsResponse {
 
 	/**
 	 * Set revision number of records
-	 * @param revision
+	 * @param revisions the revisions to set
 	 */
 	public void setRevisions(ArrayList<Integer> revisions) {
 		this.revisions = revisions;

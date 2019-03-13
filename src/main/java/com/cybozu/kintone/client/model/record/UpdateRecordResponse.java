@@ -13,7 +13,7 @@ public class UpdateRecordResponse {
 
 	/**
 	 * Get revision number of record
-	 * @return
+	 * @return revision
 	 */
 	public Integer getRevision() {
 		return this.revision;
@@ -21,7 +21,7 @@ public class UpdateRecordResponse {
 
 	/**
 	 * Set revision number of record
-	 * @param revision
+	 * @param revision the revision to set
 	 */
 	public void setRevision(Integer revision) {
 		this.revision = revision;

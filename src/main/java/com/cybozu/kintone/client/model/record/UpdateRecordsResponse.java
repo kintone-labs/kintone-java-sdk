@@ -15,7 +15,7 @@ public class UpdateRecordsResponse {
 
 	/**
 	 * Get record ids
-	 * @return
+	 * @return records
 	 */
 	public ArrayList<RecordUpdateResponseItem> getRecords() {
 		return this.records;
@@ -23,7 +23,7 @@ public class UpdateRecordsResponse {
 
 	/**
 	 * Set record ids
-	 * @param records
+	 * @param records the records to set
 	 */
 	public void setRecords(ArrayList<RecordUpdateResponseItem> records) {
 		this.records = records;

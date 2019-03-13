@@ -10,7 +10,6 @@ package com.cybozu.kintone.client.module.parser;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -58,9 +57,10 @@ public class FormFieldParser {
 
     /**
      * Convert json to FormFields class
-     * @param root
-     * @return
+     * @param root root of the parse
+     * @return FormFields
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public FormFields parse(JsonElement root) throws KintoneAPIException {
         if (!root.isJsonObject()) {
@@ -75,19 +75,19 @@ public class FormFieldParser {
     }
 
     /**
-     * Convert json to Map<String, Field> class
+     * Convert json to HashMap<String, Field> class
      * @param input
      * @return
      * @throws KintoneAPIException
      */
-    private Map<String, Field> parseProperties(JsonElement input) throws KintoneAPIException {
-        Map<String, Field> result = new HashMap<String, Field>();
+    private HashMap<String, Field> parseProperties(JsonElement input) throws KintoneAPIException {
+        HashMap<String, Field> result = new HashMap<String, Field>();
         if (!input.isJsonObject()) {
             return result;
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = input.getAsJsonObject().entrySet();
-        for (Map.Entry<String, JsonElement> entry : entries) {
+        Set<HashMap.Entry<String, JsonElement>> entries = input.getAsJsonObject().entrySet();
+        for (HashMap.Entry<String, JsonElement> entry : entries) {
             Field formField = parseFormField(entry.getValue());
             if (formField != null) {
                 result.put(formField.getCode(), formField);
@@ -106,7 +106,12 @@ public class FormFieldParser {
         if (!input.isJsonObject()) {
             return null;
         }
-        FormFieldParseData data = gson.fromJson(input, FormFieldParseData.class);
+        FormFieldParseData data = null;
+        try {
+            data = gson.fromJson(input, FormFieldParseData.class);
+        } catch (Exception e) {
+            throw new KintoneAPIException("Invalid data type");
+        }
 
         if (data == null) {
             throw new KintoneAPIException("Invalid data form stucture");
@@ -178,7 +183,13 @@ public class FormFieldParser {
         if (!input.isJsonObject()) {
             return null;
         }
-        FormFieldParseData data = gson.fromJson(input, FormFieldParseData.class);
+
+        FormFieldParseData data = null;
+        try {
+            data = gson.fromJson(input, FormFieldParseData.class);
+        } catch (Exception e) {
+            throw new KintoneAPIException("Invalid data type");
+        }
 
         if (data == null) {
             throw new KintoneAPIException("Invalid data form stucture");
@@ -278,9 +289,9 @@ public class FormFieldParser {
             throw new KintoneAPIException("Invalid default value data type:" + data.getDefaultValue());
         }
 
-        number.setMaxValue(parseInteger(data.getMaxValue()));
-        number.setMinValue(parseInteger(data.getMinValue()));
-        number.setDisplayScale(parseInteger(data.getDisplayScale()));
+        number.setMaxValue(data.getMaxValue());
+        number.setMinValue(data.getMinValue());
+        number.setDisplayScale(data.getDisplayScale());
         number.setDigit(data.getDigit());
         number.setUnit(data.getUnit());
         number.setUnitPosition(data.getUnitPosition());
@@ -465,8 +476,8 @@ public class FormFieldParser {
         LinkField link = new LinkField(data.getCode());
 
         link.setProtocol(data.getProtocol());
-        link.setMinLength(parseInteger(data.getMinLength()));
-        link.setMaxLength(parseInteger(data.getMaxLength()));
+        link.setMinLength(data.getMinLength());
+        link.setMaxLength(data.getMaxLength());
         link.setUnique(data.getUnique());
 
         if (data.getDefaultValue() == null ) {
@@ -570,7 +581,7 @@ public class FormFieldParser {
     private AttachmentField parseAttachmentType(FormFieldParseData data) throws KintoneAPIException {
         AttachmentField attachment = new AttachmentField(data.getCode());
 
-        attachment.setThumbnailSize(parseInteger(data.getThumbnailSize()));
+        attachment.setThumbnailSize(data.getThumbnailSize());
 
         return attachment;
     }
@@ -654,8 +665,8 @@ public class FormFieldParser {
 
         if (data.getDefaultValue() == null ) {
             checkbox.setDefaultValue(new ArrayList<String>());
-        } else if (data.getDefaultValue() instanceof List) {
-            checkbox.setDefaultValue((List)data.getDefaultValue());
+        } else if (data.getDefaultValue() instanceof ArrayList) {
+            checkbox.setDefaultValue((ArrayList<String>) data.getDefaultValue());
         } else {
             throw new KintoneAPIException("Invalid default value data type:" + data.getDefaultValue());
         }
@@ -677,8 +688,8 @@ public class FormFieldParser {
 
         if (data.getDefaultValue() == null ) {
             multiSelect.setDefaultValue(new ArrayList<String>());
-        } else if (data.getDefaultValue() instanceof List) {
-            multiSelect.setDefaultValue((List)data.getDefaultValue());
+        } else if (data.getDefaultValue() instanceof ArrayList) {
+            multiSelect.setDefaultValue((ArrayList<String>) data.getDefaultValue());
         } else {
             throw new KintoneAPIException("Invalid default value data type:" + data.getDefaultValue());
         }
@@ -733,19 +744,19 @@ public class FormFieldParser {
     @SuppressWarnings("unchecked")
     private UserSelectionField parseUserSelectionType(FormFieldParseData data) throws KintoneAPIException {
         UserSelectionField userSelection = new UserSelectionField(data.getCode());
-        userSelection.setEntites(data.getEntities());
+        userSelection.setEntities(data.getEntities());
 
         if (data.getDefaultValue() == null ) {
             userSelection.setDefaultValue(null);
-        } else if (data.getDefaultValue() instanceof List) {
-            List<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
+        } else if (data.getDefaultValue() instanceof ArrayList) {
+            ArrayList<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
 
             @SuppressWarnings("rawtypes")
-            Iterator iterator = ((List) data.getDefaultValue()).iterator();
+            Iterator iterator = ((ArrayList) data.getDefaultValue()).iterator();
             while (iterator.hasNext()) {
-                Map<String, String> map = (Map<String, String>)iterator.next();
+            	Map<String, String> map = (Map<String, String>)iterator.next();
                 MemberSelectEntity entity = new MemberSelectEntity();
-                for (Map.Entry<String, String> entry : map.entrySet()) {
+                for (HashMap.Entry<String, String> entry : map.entrySet()) {
                     if (entry.getKey().equals("type")) {
                         entity.setType(MemberSelectEntityType.valueOf(entry.getValue()));
                     } else if (entry.getKey().equals("code")) {
@@ -772,19 +783,19 @@ public class FormFieldParser {
     @SuppressWarnings("unchecked")
     private GroupSelectionField parseGroupSelectionType(FormFieldParseData data) throws KintoneAPIException {
         GroupSelectionField groupSelection = new GroupSelectionField(data.getCode());
-        groupSelection.setEntites(data.getEntities());
+        groupSelection.setEntities(data.getEntities());
 
         if (data.getDefaultValue() == null ) {
             groupSelection.setDefaultValue(null);
-        } else if (data.getDefaultValue() instanceof List) {
-            List<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
+        } else if (data.getDefaultValue() instanceof ArrayList) {
+            ArrayList<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
 
             @SuppressWarnings("rawtypes")
-            Iterator iterator = ((List) data.getDefaultValue()).iterator();
+            Iterator iterator = ((ArrayList) data.getDefaultValue()).iterator();
             while (iterator.hasNext()) {
-                Map<String, String> map = (Map<String, String>)iterator.next();
+            	Map<String, String> map = (Map<String, String>)iterator.next();
                 MemberSelectEntity entity = new MemberSelectEntity();
-                for (Map.Entry<String, String> entry : map.entrySet()) {
+                for (HashMap.Entry<String, String> entry : map.entrySet()) {
                     if (entry.getKey().equals("type")) {
                         entity.setType(MemberSelectEntityType.valueOf(entry.getValue()));
                     } else if (entry.getKey().equals("code")) {
@@ -811,19 +822,19 @@ public class FormFieldParser {
     @SuppressWarnings("unchecked")
     private DepartmentSelectionField parseDepartmentSelectionType(FormFieldParseData data) throws KintoneAPIException {
         DepartmentSelectionField departSelect = new DepartmentSelectionField(data.getCode());
-        departSelect.setEntites(data.getEntities());
+        departSelect.setEntities(data.getEntities());
 
         if (data.getDefaultValue() == null ) {
             departSelect.setDefaultValue(null);
-        } else if (data.getDefaultValue() instanceof List) {
-            List<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
+        } else if (data.getDefaultValue() instanceof ArrayList) {
+            ArrayList<MemberSelectEntity> defaultValue = new ArrayList<MemberSelectEntity>();
 
             @SuppressWarnings("rawtypes")
-            Iterator iterator = ((List) data.getDefaultValue()).iterator();
+            Iterator iterator = ((ArrayList) data.getDefaultValue()).iterator();
             while (iterator.hasNext()) {
-                Map<String, String> map = (Map<String, String>)iterator.next();
+            	Map<String, String> map = (Map<String, String>)iterator.next();
                 MemberSelectEntity entity = new MemberSelectEntity();
-                for (Map.Entry<String, String> entry : map.entrySet()) {
+                for (HashMap.Entry<String, String> entry : map.entrySet()) {
                     if (entry.getKey().equals("type")) {
                         entity.setType(MemberSelectEntityType.valueOf(entry.getValue()));
                     } else if (entry.getKey().equals("code")) {
@@ -850,7 +861,7 @@ public class FormFieldParser {
     private SubTableField parseSubTableType(FormFieldParseData data) throws KintoneAPIException {
         SubTableField subtable = new SubTableField(data.getCode());
 
-        Map<String, AbstractInputField> fields = new HashMap<String, AbstractInputField>();
+        HashMap<String, AbstractInputField> fields = new HashMap<String, AbstractInputField>();
 
         Set<Entry<String, JsonElement>> fieldsJson = data.getFields().entrySet();
         for(Entry<String, JsonElement> element : fieldsJson) {

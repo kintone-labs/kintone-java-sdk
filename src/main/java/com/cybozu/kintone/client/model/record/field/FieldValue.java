@@ -16,7 +16,7 @@ public class FieldValue {
 
 	/**
 	 * Get field type
-	 * @return
+	 * @return type
 	 */
 	public FieldType getType() {
 		return this.type;
@@ -24,7 +24,7 @@ public class FieldValue {
 
 	/**
 	 * Set field type
-	 * @param type
+	 * @param type the type to set
 	 */
 	public void setType(FieldType type) {
 		this.type = type;
@@ -32,7 +32,7 @@ public class FieldValue {
 
 	/**
 	 * Get field value
-	 * @return
+	 * @return value
 	 */
 	public Object getValue() {
 		return this.value;
@@ -40,7 +40,7 @@ public class FieldValue {
 
 	/**
 	 * Set field value
-	 * @param value
+	 * @param value the value to set
 	 */
 	public void setValue(Object value) {
 		this.value = value;
