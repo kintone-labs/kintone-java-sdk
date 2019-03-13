@@ -2,7 +2,6 @@
 
 Get a list of fields and their settings.
 
->
 - Permissions to view the App is needed.
 - API Tokens cannot be used with this API.
 
@@ -12,7 +11,7 @@ Get a list of fields and their settings.
 
 #### getApp()
 
-> Get the app
+Get the app
 
 **Parameter**
 
@@ -27,17 +26,19 @@ Integer
 <details class="tab-container" open>
 <Summary>get App</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Integer app = formfields.getApp();
+
+    Integer app = formfields.getApp();
+
 ```
 
 </details>
 
 #### getRevision()
 
-> Get the revision
+Get the revision
 
 **Parameter **
 
@@ -52,17 +53,19 @@ Integer
 <details class="tab-container" open>
 <Summary>get Revision</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Integer revision = formfields.getRevision();
+
+    int revision = formfields.getRevision();
+
 ```
 
 </details>
 
 #### getProperties()
 
-> Get the properties
+Get the properties
 
 **Parameter **
 
@@ -77,10 +80,12 @@ Integer revision = formfields.getRevision();
 <details class="tab-container" open>
 <Summary>get Properties</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Map<String, Field> properties = formfields.getProperties();
+
+    Map<String, Field> properties = formfields.getProperties();
+
 ```
 
 </details>
@@ -94,7 +99,7 @@ Map<String, Field> properties = formfields.getProperties();
 
 #### getLabel()
 
-> Get the label
+Get the label
 
 **Parameter**
 
@@ -109,17 +114,19 @@ String
 <details class="tab-container" open>
 <Summary>get Label</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String label = fieldGroup.getLabel();
+
+    String label = fieldGroup.getLabel();
+
 ```
 
 </details>
 
 #### getNoLabel()
 
-> Get the noLabel
+Get the noLabel
 
 **Parameter**
 
@@ -134,17 +141,19 @@ Boolean
 <details class="tab-container" open>
 <Summary>get NoLabel</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Boolean noLabel = fieldGroup.getNoLabel();
+
+    Boolean noLabel = fieldGroup.getNoLabel();
+
 ```
 
 </details>
 
 #### getOpenGroup()
 
-> Get the openGroup
+Get the openGroup
 
 **Parameter**
 
@@ -159,10 +168,12 @@ Boolean
 <details class="tab-container" open>
 <Summary>get OpenGroup</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Boolean openGroup = fieldGroup.getOpenGroup();
+
+    Boolean openGroup = fieldGroup.getOpenGroup();
+
 ```
 
 </details>
@@ -173,7 +184,7 @@ Boolean openGroup = fieldGroup.getOpenGroup();
 
 #### getField()
 
-> Get the field
+Get the field
 
 **Parameter**
 
@@ -188,17 +199,19 @@ String
 <details class="tab-container" open>
 <Summary>get Field</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String field = fieldMapping.getField();
+
+    String field = fieldMapping.getField();
+
 ```
 
 </details>
 
 #### getRelatedFields()
 
-> Get the relatedFields
+Get the relatedFields
 
 **Parameter**
 
@@ -213,10 +226,12 @@ String
 <details class="tab-container" open>
 <Summary>get Related Fields</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String relatedFields = fieldMapping.getRelatedFields();
+
+    String relatedFields = fieldMapping.getRelatedFields();
+
 ```
 
 </details>
@@ -232,7 +247,7 @@ String relatedFields = fieldMapping.getRelatedFields();
 
 #### getFields()
 
-> Get the fields
+Get the fields
 
 **Parameter**
 
@@ -247,10 +262,12 @@ String relatedFields = fieldMapping.getRelatedFields();
 <details class="tab-container" open>
 <Summary>get Fields</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
- Map<String, AbstractInputField> fields = subTableField.getFields();
+
+    Map<String, AbstractInputField> fields = subTableField.getFields();
+    
 ```
 
 </details>
@@ -264,7 +281,7 @@ String relatedFields = fieldMapping.getRelatedFields();
 
 #### getCode()
 
-> Get the code
+Get the code
 
 **Parameter**
 
@@ -276,7 +293,7 @@ String
 
 #### getType()
 
-> Get the type
+Get the type
 
 **Parameter**
 
@@ -288,7 +305,7 @@ LayoutType
 
 ## Reference
 
-- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)`on developer network`
-- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)`on developer network`
-- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)`on developer network`
-- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)`on developer network`
+- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
+- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
+- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)

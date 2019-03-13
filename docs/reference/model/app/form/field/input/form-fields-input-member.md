@@ -2,7 +2,6 @@
 
 Get a list of fields and their settings.
 
->
 - Permissions to view the App is needed.
 - API Tokens cannot be used with this API.
 
@@ -30,7 +29,7 @@ Get a list of fields and their settings.
 
 #### getCode()
 
-> Get the code
+Get the code
 
 **Parameter**
 
@@ -40,22 +39,9 @@ Get a list of fields and their settings.
 
 String
 
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>get Code</Summary>
-
-** Source code **
-
-```java
-String code = memberSelectEntity.getCode();
-```
-
-</details>
-
 #### getType()
 
-> Get the type
+Get the type
 
 **Parameter**
 
@@ -64,19 +50,6 @@ String code = memberSelectEntity.getCode();
 **Return**
 
 MemberSelectEntityType
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>get Code</Summary>
-
-** Source code **
-
-```java
-MemberSelectEntityType type = memberSelectEntity.getType();
-```
-
-</details>
 
 ## UserSelectionField
 
@@ -90,14 +63,14 @@ MemberSelectEntityType type = memberSelectEntity.getType();
 ## AbstractMemberSelectField
 
 !!! warning
-    - extend the abstract class "[AbstractInputField](../form-fields-input/#abstractinputfield)"
+    - extend the abstract class "[AbstractInputField](../form-fields-input/#abstractinputfield.md)"
     - This class is an abstract class.
 
 ### Methods
 
 #### getDefaultValue()
 
-> Get the defaultValue
+Get the defaultValue
 
 **Parameter**
 
@@ -109,7 +82,7 @@ List<[MemberSelectEntity](#memberselectentity)\>
 
 #### getEntites()
 
-> Get the entites
+Get the entites
 
 **Parameter**
 
@@ -121,7 +94,7 @@ List<[MemberSelectEntity](#memberselectentity)\>
 
 ## Reference
 
-- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)`on developer network`
-- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)`on developer network`
-- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)`on developer network`
-- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)`on developer network`
+- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
+- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
+- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)

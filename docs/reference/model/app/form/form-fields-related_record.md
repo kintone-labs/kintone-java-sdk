@@ -12,7 +12,7 @@ Get a list of fields and their settings.
 
 #### getApp()
 
-> Get the app
+Get the app
 
 **Parameter**
 
@@ -27,17 +27,19 @@ Get a list of fields and their settings.
 <details class="tab-container" open>
 <Summary>get App</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String app = relatedApp.getApp();
+
+    String app = relatedApp.getApp();
+
 ```
 
 </details>
 
 #### getCode()
 
-> Get the code
+Get the code
 
 **Parameter**
 
@@ -52,10 +54,12 @@ String
 <details class="tab-container" open>
 <Summary>get Code</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String app = relatedApp.getCode();
+
+    String app = relatedApp.getCode();
+
 ```
 
 </details>
@@ -66,7 +70,7 @@ String app = relatedApp.getCode();
 
 #### getCondition()
 
-> Get the condition
+Get the condition
 
 **Parameter**
 
@@ -81,17 +85,19 @@ String app = relatedApp.getCode();
 <details class="tab-container" open>
 <Summary>get Condition</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-FieldMapping condition = referenceTable.getCondition();
+
+    FieldMapping condition = referenceTable.getCondition();
+
 ```
 
 </details>
 
 #### getFilterCond()
 
-> Get the filterCond
+Get the filterCond
 
 **Parameter**
 
@@ -106,17 +112,19 @@ FieldMapping condition = referenceTable.getCondition();
 <details class="tab-container" open>
 <Summary>get FilterCond</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String filterCond = referenceTable.getFilterCond();
+
+    String filterCond = referenceTable.getFilterCond();
+
 ```
 
 </details>
 
 #### getRelatedApp()
 
-> Get the relatedApp
+Get the relatedApp
 
 **Parameter**
 
@@ -131,17 +139,19 @@ String filterCond = referenceTable.getFilterCond();
 <details class="tab-container" open>
 <Summary>get Related App</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-RelatedApp relatedApp = referenceTable.getRelatedApp();
+
+    RelatedApp relatedApp = referenceTable.getRelatedApp();
+
 ```
 
 </details>
 
 #### getSize()
 
-> Get the size
+Get the size
 
 **Parameter**
 
@@ -156,17 +166,19 @@ RelatedApp relatedApp = referenceTable.getRelatedApp();
 <details class="tab-container" open>
 <Summary>get Size</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Integer size = referenceTable.getSize();
+
+    Integer size = referenceTable.getSize();
+
 ```
 
 </details>
 
 #### getDisplayFields()
 
-> Get the displayFields
+Get the displayFields
 
 **Parameter**
 
@@ -181,17 +193,19 @@ Integer size = referenceTable.getSize();
 <details class="tab-container" open>
 <Summary>get Display Fields</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-List<String> displayFields = referenceTable.getDisplayFields();
+
+    ArrayList<String> displayFields = referenceTable.getDisplayFields();
+
 ```
 
 </details>
 
 #### getSort()
 
-> Get the sort
+Get the sort
 
 **Parameter**
 
@@ -206,10 +220,12 @@ String
 <details class="tab-container" open>
 <Summary>get Sort</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String sort = referenceTable.getSort();
+
+    String sort = referenceTable.getSort();
+
 ```
 
 </details>
@@ -223,7 +239,7 @@ String sort = referenceTable.getSort();
 
 #### getLabel()
 
-> Get the label
+Get the label
 
 **Parameter**
 
@@ -238,17 +254,19 @@ String
 <details class="tab-container" open>
 <Summary>get Label</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-String label = relatedRecordsField.getLabel();
+
+    String label = relatedRecordsField.getLabel();
+
 ```
 
 </details>
 
 #### getNoLabel()
 
-> Get the noLabel
+Get the noLabel
 
 **Parameter**
 
@@ -263,17 +281,19 @@ Boolean
 <details class="tab-container" open>
 <Summary>get NoLabel</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-Boolean noLabel = relatedRecordsField.getNoLabel();
+
+    Boolean noLabel = relatedRecordsField.getNoLabel();
+
 ```
 
 </details>
 
 #### getReferenceTable()
 
-> Get the referenceTable
+Get the referenceTable
 
 **Parameter**
 
@@ -288,17 +308,19 @@ Boolean noLabel = relatedRecordsField.getNoLabel();
 <details class="tab-container" open>
 <Summary>get Reference Table</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
 ```java
-ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
+
+    ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
+    
 ```
 
 </details>
 
 ## Reference
 
-- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)`on developer network`
-- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)`on developer network`
-- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)`on developer network`
-- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)`on developer network`
+- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
+- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
+- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
+- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)
