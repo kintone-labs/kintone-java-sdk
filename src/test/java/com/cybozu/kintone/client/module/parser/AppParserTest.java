@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -20,7 +21,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.app.AppDeployStatus;
+import com.cybozu.kintone.client.model.app.AppDeployStatus.Status;
 import com.cybozu.kintone.client.model.app.AppModel;
+import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
+import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
+import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.member.Member;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -29,7 +35,7 @@ public class AppParserTest {
 	private static final JsonParser jsonParser = new JsonParser();
 	private static JsonElement validAppDataInput;
 	private static JsonElement validAppsDataInput;
-
+	
 	@BeforeClass
 	public static void setup() {
 		validAppDataInput = jsonParser.parse(readInput("/app/ValidAppValue.txt"));
@@ -266,31 +272,44 @@ public class AppParserTest {
 		}
 	}
 
-	@Test(expected = KintoneAPIException.class)
+	@Test
 	public void testParseAppShouldFailWhenGivenInvalidAppIdIsInt() throws KintoneAPIException {
 		String invalidAppIdIsInt = readInput("/app/InvalidAppID.txt");
-		assertNotNull(invalidAppIdIsInt);
-
-		AppParser parser = new AppParser();
-		parser.parseApp(jsonParser.parse(invalidAppIdIsInt));
+		try {
+			AppParser parser = new AppParser();
+			parser.parseApp(jsonParser.parse(invalidAppIdIsInt));
+		} catch (KintoneAPIException e) {
+			assertEquals("Invalid data type", e.getMessage());
+		}
 	}
 	
 	@Test(expected = KintoneAPIException.class)
+	public void testParseAppShouldFailWhenGivenInvalidCreatedTime() throws KintoneAPIException {
+		String invalidCreatedTime = readInput("/app/InvalidCreatedTime.txt");
+		AppParser parser = new AppParser();
+		parser.parseApp(jsonParser.parse(invalidCreatedTime));
+	}
+	
+	@Test
 	public void testParseAppShouldFailWhenGivenInvalidAppSpaceId() throws KintoneAPIException {
 		String invalidAppSpaceId = readInput("/app/InvalidAppSpaceId.txt");
-		assertNotNull(invalidAppSpaceId);
-
-		AppParser parser = new AppParser();
-		parser.parseApp(jsonParser.parse(invalidAppSpaceId));
+		try {
+			AppParser parser = new AppParser();
+			parser.parseApp(jsonParser.parse(invalidAppSpaceId));
+		} catch (KintoneAPIException e) {
+			assertEquals("Invalid data type", e.getMessage());
+		}
 	}
 	
-	@Test(expected = KintoneAPIException.class)
+	@Test
 	public void testParseAppShouldFailWhenGivenInvalidAppThreadId() throws KintoneAPIException {
 		String invalidAppSpaceId = readInput("/app/InvalidAppThreadId.txt");
-		assertNotNull(invalidAppSpaceId);
-
-		AppParser parser = new AppParser();
-		parser.parseApp(jsonParser.parse(invalidAppSpaceId));
+		try {
+			AppParser parser = new AppParser();
+			parser.parseApp(jsonParser.parse(invalidAppSpaceId));
+		} catch (KintoneAPIException e) {
+			assertEquals("Invalid data type", e.getMessage());
+		}
 	}
 	
 	@Test
@@ -371,4 +390,121 @@ public class AppParserTest {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testParseAddPreviewAppResponseShouldSuccess() {
+		String validPreviewApp = readInput("/app/ValidPreviewAppResponse.txt");
+		assertNotNull(jsonParser.parse(validPreviewApp));
+		AppParser parser = new AppParser();
+		try {
+			AddPreviewAppResponse parseAddPreviewAppResponse = parser.parseAddPreviewAppResponse(jsonParser.parse(validPreviewApp));
+			assertNotNull(parseAddPreviewAppResponse.getApp());
+			assertNotNull(parseAddPreviewAppResponse.getRevision());
+			assertEquals(Integer.valueOf(123), parseAddPreviewAppResponse.getApp());
+			assertEquals(Integer.valueOf(12), parseAddPreviewAppResponse.getRevision());			
+		} catch (KintoneAPIException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	//KCB-660
+	@Test
+	public void testParseAddPreviewAppResponseShouldFailWithInvalidData() throws KintoneAPIException {
+		String invalidPreviewApp = readInput("/app/InvalidPreviewAppResponse.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseAddPreviewAppResponse(jsonParser.parse(invalidPreviewApp));
+		} catch (KintoneAPIException e) {
+			assertEquals(e.getMessage(), "Invalid data type");
+		}
+	}
+	
+	@Test
+	public void testParseAddPreviewAppResponseShouldFailWithParseError() throws KintoneAPIException {
+		String invalidParse = readInput("/app/InvalidPreviewAppResponse.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseAddPreviewAppResponse(jsonParser.parse(invalidParse).getAsJsonObject().get("app"));
+		} catch (KintoneAPIException e) {
+			assertEquals(e.getMessage(), "Parse error");
+		}
+	}
+	
+	@Test
+	public void testParseBasicResponseShouldSuccess() {
+		String validBasic = readInput("/app/ValidBasicResponse.txt");
+		assertNotNull(jsonParser.parse(validBasic));
+		AppParser parser = new AppParser();
+		try {
+			BasicResponse parseBasicResponse = parser.parseBasicResponse(jsonParser.parse(validBasic));
+			assertEquals(Integer.valueOf(123), parseBasicResponse.getRevision());
+		} catch (KintoneAPIException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	//KCB-660
+	@Test
+	public void testParseBasicResponseShouldFailWithInvalidData() throws KintoneAPIException{
+		String invalidBasic = readInput("/app/InvalidBasicResponse.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseBasicResponse(jsonParser.parse(invalidBasic));
+		} catch (KintoneAPIException e) {
+			assertEquals("Invalid data type", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testParseBasicResponseShouldFailWithParseError() throws KintoneAPIException{
+		String invalidParse = readInput("/app/InvalidBasicResponse.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseBasicResponse(jsonParser.parse(invalidParse).getAsJsonObject().get("revision"));
+		} catch (KintoneAPIException e) {
+			assertEquals("Parse error", e.getMessage());
+		}
+	}
+	
+	@Test 
+	public void testParseAppDeployStatusResponseShouldSuccess() {
+		String validParse = readInput("/app/ValidAppDeployStatus.txt");
+		assertNotNull(jsonParser.parse(validParse));
+		AppParser parser = new AppParser();
+		try {
+			GetAppDeployStatusResponse parseAppDeployStatusResponse = parser.parseAppDeployStatusResponse(jsonParser.parse(validParse));
+			ArrayList<AppDeployStatus> apps = parseAppDeployStatusResponse.getApps();
+			assertEquals(Integer.valueOf(20), apps.get(0).getApp());
+			assertEquals(Status.valueOf("PROCESSING"), apps.get(0).getStatus());
+			assertEquals(Integer.valueOf(21), apps.get(1).getApp());
+			assertEquals(Status.valueOf("SUCCESS"), apps.get(1).getStatus());
+			assertEquals(Integer.valueOf(22), apps.get(2).getApp());
+			assertEquals(Status.valueOf("FAIL"), apps.get(2).getStatus());						
+		} catch (KintoneAPIException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testParseAppDeployStatusResponseShouldFailWithInvalidData() throws KintoneAPIException {
+		String invalidDeployStatus = readInput("/app/InvalidDeployStatus.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseAppDeployStatusResponse(jsonParser.parse(invalidDeployStatus));
+		} catch (KintoneAPIException e) {
+			assertEquals("Invalid data type", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testParseAppDeployStatusResponseShouldFailWithParseError() throws KintoneAPIException {
+		String invalidDeployStatus = readInput("/app/InvalidDeployStatus.txt");
+		try {
+			AppParser parser = new AppParser();
+			parser.parseAppDeployStatusResponse(jsonParser.parse(invalidDeployStatus).getAsJsonObject().get("apps"));
+		} catch (KintoneAPIException e) {
+			assertEquals("Parse error", e.getMessage());
+		}
+	}
 }
+	

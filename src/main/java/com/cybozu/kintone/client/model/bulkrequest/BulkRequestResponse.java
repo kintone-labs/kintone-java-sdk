@@ -20,7 +20,7 @@ public class BulkRequestResponse {
 
 	/**
 	 * Get result
-	 * @return
+	 * @return results
 	 */
 	public ArrayList<Object> getResults() {
 		return results;
@@ -29,7 +29,7 @@ public class BulkRequestResponse {
 	/**
 	 * Add response Object to the results.
 	 *
-	 * @param responseObject
+	 * @param responseObject the responseObject to add
 	 */
 	public void addResponse(Object responseObject) {
 		results.add(responseObject);

@@ -7,8 +7,8 @@
 
 package com.cybozu.kintone.client.model.comment;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.member.Member;
 
@@ -18,7 +18,7 @@ public class Comment {
     private String text;
     private Date createdAt;
     private Member creator;
-    private List<CommentMention> mentions;
+    private ArrayList<CommentMention> mentions;
 
     /*
      * Get commnet id
@@ -88,7 +88,7 @@ public class Comment {
      * Get mention
      * @return
      */
-    public List<CommentMention> getMentions() {
+    public ArrayList<CommentMention> getMentions() {
         return this.mentions;
     }
 
@@ -96,7 +96,7 @@ public class Comment {
      * Set mention
      * @mentions
      */
-    public void setMentions(List<CommentMention> mentions) {
+    public void setMentions(ArrayList<CommentMention> mentions) {
         this.mentions = mentions;
     }
 }

@@ -16,10 +16,10 @@ public class RecordUpdateStatusItem {
 
 	/**
 	 * Constructor
-	 * @param action
-	 * @param assignee
-	 * @param id
-	 * @param revision
+	 * @param action action of the RecordUpdateStatusItem
+	 * @param assignee assignee of the RecordUpdateStatusItem
+	 * @param id id of the RecordUpdateStatusItem
+	 * @param revision revision of the RecordUpdateStatusItem
 	 */
 	public RecordUpdateStatusItem(String action, String assignee, Integer id, Integer revision) {
 		this.action = action;

@@ -8,13 +8,12 @@
 package com.cybozu.kintone.client.model.app.form.layout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.LayoutType;
 
 
 public class RowLayout extends ItemLayout {
-    private List<FieldLayout> fields = new ArrayList<FieldLayout>();
+    private ArrayList<FieldLayout> fields;
 
     /**
      * default constructor
@@ -26,7 +25,7 @@ public class RowLayout extends ItemLayout {
     /**
      * @return the fields
      */
-    public List<FieldLayout> getFields() {
+    public ArrayList<FieldLayout> getFields() {
         return this.fields;
     }
 
@@ -34,7 +33,7 @@ public class RowLayout extends ItemLayout {
      * @param fields
      *            the fields to set
      */
-    public void setFields(List<FieldLayout> fields) {
+    public void setFields(ArrayList<FieldLayout> fields) {
         this.fields = fields;
     }
 }

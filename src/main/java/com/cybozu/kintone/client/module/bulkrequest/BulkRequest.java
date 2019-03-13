@@ -46,7 +46,7 @@ public class BulkRequest {
 
     /**
      * Constructor function of BulkRequest.
-     * @param connection
+     * @param connection connection of the BulkRequest
      */
     public BulkRequest(Connection connection) {
         this.connection = connection;
@@ -56,8 +56,8 @@ public class BulkRequest {
     /**
      * Add the record.
      *
-     * @param app
-     * @param record
+     * @param app app of the addRecord
+     * @param record record of the addRecord
      * @return this
      */
     public BulkRequest addRecord(Integer app, HashMap<String, FieldValue> record) {
@@ -70,8 +70,8 @@ public class BulkRequest {
     /**
      * Add multi records.
      *
-     * @param app
-     * @param records
+     * @param app app of the addRecords
+     * @param records records of the addRecords
      * @return this
      */
     public BulkRequest addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) {
@@ -94,10 +94,10 @@ public class BulkRequest {
     /**
      * Update the specific record by ID.
      *
-     * @param app
-     * @param id
-     * @param record
-     * @param revision
+     * @param app app of the updateRecordByID
+     * @param id id of the updateRecordByID
+     * @param record record of the updateRecordByID
+     * @param revision revision of the updateRecordByID
      * @return this
      */
     public BulkRequest updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record, Integer revision) {
@@ -110,11 +110,11 @@ public class BulkRequest {
     /**
      * Update the specific record by updateKey.
      *
-     * @param app
-     * @param updateKey
-     * @param record
-     * @param revision
-     * @return this
+     * @param app app of the updateRecordByUpdateKey
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param record record of the updateRecordByUpdateKey
+     * @param revision revision of the updateRecordByUpdateKey
+     * @return this 
      */
     public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision) {
         UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, null, updateKey, revision, record);
@@ -126,8 +126,8 @@ public class BulkRequest {
     /**
      * Update multi records.
      *
-     * @param app
-     * @param records
+     * @param app app of the updateRecords
+     * @param records records of the updateRecords
      * @return this
      */
     public BulkRequest updateRecords(Integer app, ArrayList<RecordUpdateItem> records) {
@@ -140,8 +140,8 @@ public class BulkRequest {
     /**
      * Delete multi records.
      *
-     * @param app
-     * @param ids
+     * @param app app of the deleteRecords
+     * @param ids ids of the deleteRecords
      * @return this
      */
     public BulkRequest deleteRecords(Integer app, ArrayList<Integer> ids) {
@@ -154,8 +154,8 @@ public class BulkRequest {
     /**
      * Delete records at the specific revision.
      *
-     * @param app
-     * @param idsWithRevision
+     * @param app app of the deleteRecordsWithRevision
+     * @param idsWithRevision idsWithRevision of the deleteRecordsWithRevision
      * @return this
      */
     public BulkRequest deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> idsWithRevision) {
@@ -177,10 +177,10 @@ public class BulkRequest {
     /**
      * Update assignees of the specific record.
      *
-     * @param app
-     * @param record
-     * @param assignees
-     * @param revision
+     * @param app app of the updateRecordAssignees
+     * @param record record of the updateRecordAssignees
+     * @param assignees assignees of the updateRecordAssignees
+     * @param revision revision of the updateRecordAssignees
      * @return this
      */
     public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees, Integer revision) {
@@ -194,11 +194,11 @@ public class BulkRequest {
     /**
      * Update status of the specific record.
      *
-     * @param app
-     * @param id
-     * @param action
-     * @param assignee
-     * @param revision
+     * @param app app of the updateRecordStatus
+     * @param id id of the updateRecordStatus
+     * @param action action of the updateRecordStatus
+     * @param assignee assignee of the updateRecordStatus
+     * @param revision revision of the updateRecordStatus
      * @return this
      */
     public BulkRequest updateRecordStatus(Integer app, Integer id, String action, String assignee, Integer revision) {
@@ -212,10 +212,8 @@ public class BulkRequest {
     /**
      * Update status of the multi records.
      *
-     * @param app
-     * @param record
-     * @param assignees
-     * @param revision
+     * @param app app of the updateRecordsStatus
+     * @param records records of the updateRecordsStatus
      * @return this
      */
     public BulkRequest updateRecordsStatus(Integer app, ArrayList<RecordUpdateStatusItem> records) {
@@ -230,6 +228,8 @@ public class BulkRequest {
      * Execute the BulkRequest and get data which is returned from kintone.
      *
      * @return BulkRequestResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public BulkRequestResponse execute() throws KintoneAPIException {
         BulkRequestResponse responses = new BulkRequestResponse();

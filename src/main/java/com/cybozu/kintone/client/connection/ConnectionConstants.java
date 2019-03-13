@@ -15,6 +15,7 @@ public class ConnectionConstants {
     public static final String PUT_REQUEST = "PUT";
     public static final String DELETE_REQUEST = "DELETE";
     public static final String HTTPS_PREFIX = "https://";
+    public static final String SECURE_ACCESS_SYMBOL = ".s.";
     public static final String USER_AGENT_KEY = "User-Agent";
     public static final String USER_AGENT_VALUE = "kintone-java-sdk";
     public static final String CONTENT_TYPE_HEADER = "Content-Type";

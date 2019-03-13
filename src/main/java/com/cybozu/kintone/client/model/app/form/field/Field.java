@@ -10,7 +10,7 @@ package com.cybozu.kintone.client.model.app.form.field;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public abstract class Field {
-    protected String code = "";
+    protected String code;
     protected FieldType type;
 
     /**

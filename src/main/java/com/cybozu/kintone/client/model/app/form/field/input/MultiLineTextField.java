@@ -13,7 +13,7 @@ public class MultiLineTextField extends AbstractInputField {
     private String defaultValue;
 
     /**
-     * @param code
+     * @param code code of the MultiLineTextField
      */
     public MultiLineTextField(String code) {
         this.type = FieldType.MULTI_LINE_TEXT;

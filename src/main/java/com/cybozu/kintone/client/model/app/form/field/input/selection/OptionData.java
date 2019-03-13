@@ -12,15 +12,8 @@ public class OptionData {
     protected String label;
 
     /**
-     * default constructor
-     */
-    public OptionData() {
-
-    }
-
-    /**
-     * @param index
-     * @param label
+     * @param index index of the OptionData
+     * @param label label of the OptionData
      */
     public OptionData(Integer index, String label) {
         this.index = index;
