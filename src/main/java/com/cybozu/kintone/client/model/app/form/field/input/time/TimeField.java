@@ -15,7 +15,7 @@ public class TimeField extends AbstractInputField {
     protected Boolean defaultNowValue;
 
     /**
-     * @param code
+     * @param code code of the TimeField
      */
     public TimeField(String code) {
         this.code = code;

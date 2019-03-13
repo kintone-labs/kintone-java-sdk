@@ -18,8 +18,8 @@ public class AddRecordRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param record
+	 * @param app app of the AddRecordRequest
+	 * @param record record of the AddRecordRequest
 	 */
 	public AddRecordRequest(Integer app, HashMap<String, FieldValue> record) {
 		this.app = app;

@@ -12,15 +12,8 @@ public class RelatedApp {
     private String code;
 
     /**
-     * default constructor
-     */
-    public RelatedApp() {
-
-    }
-
-    /**
-     * @param app
-     * @param code
+     * @param app app of the RelatedApp
+     * @param code code of the RelatedApp
      */
     public RelatedApp(String app, String code) {
         this.app = app;

@@ -21,8 +21,8 @@ public class MemberSelectEntity {
     }
 
     /**
-     * @param code
-     * @param type
+     * @param code code of the MemberSelectEntity
+     * @param type type of the MemberSelectEntity
      */
     public MemberSelectEntity(String code, MemberSelectEntityType type) {
         this.code = code;

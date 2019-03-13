@@ -13,13 +13,6 @@ public class FieldSize {
     private String innerHeight;
 
     /**
-     * default constructor
-     */
-    public FieldSize() {
-
-    }
-
-    /**
      * @return the width
      */
     public String getWidth() {

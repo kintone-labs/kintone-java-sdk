@@ -18,7 +18,7 @@ public class SubTableValueItem {
 
 	/**
 	 * Get id
-	 * @return
+	 * @return id
 	 */
 	public Integer getID() {
 		return this.id;
@@ -26,7 +26,7 @@ public class SubTableValueItem {
 
 	/**
 	 * Set id
-	 * @param id
+	 * @param id the id to set
 	 */
 	public void setID(Integer id) {
 		this.id = id;
@@ -34,7 +34,7 @@ public class SubTableValueItem {
 
 	/**
 	 * Get value
-	 * @return
+	 * @return value
 	 */
 	public HashMap<String, FieldValue> getValue() {
 		return this.value;
@@ -42,7 +42,7 @@ public class SubTableValueItem {
 
 	/**
 	 * Set value
-	 * @param value
+	 * @param value the value to set
 	 */
 	public void setValue(HashMap<String, FieldValue> value) {
 		this.value = value;

@@ -10,5 +10,6 @@ package com.cybozu.kintone.client.model.member;
 public enum MemberSelectEntityType {
     USER,
     GROUP,
-    ORGANIZATION
+    ORGANIZATION,
+    FUNCTION
 }

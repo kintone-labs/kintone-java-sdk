@@ -10,19 +10,12 @@ package com.cybozu.kintone.client.model.app.form.field;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class FieldGroup extends Field {
-    protected String label = null;
-    protected Boolean noLabel = null;
-    protected Boolean openGroup = null;
+    protected String label;
+    protected Boolean noLabel;
+    protected Boolean openGroup;
 
     /**
-     * default constructor
-     */
-    public FieldGroup() {
-        this.type = FieldType.GROUP;
-    }
-
-    /**
-     * @param code
+     * @param code code of the FieldGroup
      */
     public FieldGroup(String code) {
         this.code = code;

@@ -8,24 +8,16 @@
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.cybozu.kintone.client.model.app.form.AlignLayout;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class CheckboxField extends AbstractSelectionField {
-    protected List<String> defaultValue = new ArrayList<String>();
+    protected ArrayList<String> defaultValue;
     protected AlignLayout align;
 
     /**
-     * default constructor
-     */
-    public CheckboxField() {
-        this.type = FieldType.CHECK_BOX;
-    }
-
-    /**
-     * @param code
+     * @param code code of the CheckboxField
      */
     public CheckboxField(String code) {
         this.code = code;
@@ -48,16 +40,16 @@ public class CheckboxField extends AbstractSelectionField {
     }
 
     /**
-     * @return
+     * @return defaultValue
      */
-    public List<String> getDefaultValue() {
+    public ArrayList<String> getDefaultValue() {
         return this.defaultValue;
     }
 
     /**
-     * @param defaultValue
+     * @param defaultValue the defaultValue to set
      */
-    public void setDefaultValue(List<String> defaultValue) {
+    public void setDefaultValue(ArrayList<String> defaultValue) {
         this.defaultValue = defaultValue;
     }
 }

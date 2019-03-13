@@ -7,10 +7,18 @@
 
 package com.cybozu.kintone.client.authentication;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
+import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.authentication.Credential;
 import com.cybozu.kintone.client.model.http.HTTPHeader;
 
@@ -41,11 +49,14 @@ public class Auth {
     private String apiToken;
 
     /**
+     * Client certification for kintone
+     */
+    private SSLContext clientCert;
+
+    /**
      * default constructor
      */
-    public Auth() {
-
-    }
+    public Auth() {}
 
     /**
      * @return the basicAuth
@@ -55,8 +66,11 @@ public class Auth {
     }
 
     /**
-     * @param basicAuth
-     *            the basicAuth to set
+     * @param username
+     *            the username to set
+     * @param password
+     *            the password to set
+     * @return auth
      */
     public Auth setBasicAuth(String username, String password) {
         this.basicAuth = new Credential(username, password);
@@ -71,8 +85,10 @@ public class Auth {
     }
 
     /**
-     * @param passwordAuth
-     *            the passwordAuth to set
+     * @param username
+     *            the username to set
+     * @param password
+     *            the password to set
      * @return auth
      *            the Auth object which contains username/password.
      */
@@ -100,16 +116,70 @@ public class Auth {
     }
 
     /**
+     * @return the client certification
+     */
+    public SSLContext getClientCert() {
+        return this.clientCert;
+    }
+
+    /**
+     *  set the client certification by file path
+     * @param filePath
+     *           the filePath to set
+     * @param password
+     *           the password to set
+     * @return auth
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public Auth setClientCertByPath(String filePath, String password) throws KintoneAPIException {
+        try {
+            InputStream cert = new FileInputStream(filePath);
+            return this.setClientCert(cert, password);
+        } catch (Exception e) {
+            throw new KintoneAPIException("Certificate error");
+        }
+    }
+
+    /**
+     * set the client certification by InputStream
+     * @param cert
+     *           the cert to set
+     * @param password
+     *           the password to set
+     * @return auth          
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public Auth setClientCert(InputStream cert, String password) throws KintoneAPIException {
+        try {
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            tmf.init((KeyStore) null);
+            KeyStore key_store = KeyStore.getInstance(AuthenticationConstants.KEY_STORE_TYPE);
+            char[] key_pass = password.toCharArray();
+            key_store.load(cert, key_pass);
+            KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+            kmf.init(key_store, key_pass);
+            this.clientCert = SSLContext.getInstance(AuthenticationConstants.SOCKET_PROTOCOL);
+            this.clientCert.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
+            return this;
+        } catch (Exception e) {
+            throw new KintoneAPIException("Certificate error");
+        }
+    }
+
+    /**
      * Provide the list of HTTP Headers which use to authentication in
      * {@link com.cybozu.kintone.client.connection.Connection}
      * @return headers list
      */
-    public List<HTTPHeader> createHeaderCredentials() {
-        List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+    public ArrayList<HTTPHeader> createHeaderCredentials() {
+        ArrayList<HTTPHeader> headers = new ArrayList<HTTPHeader>();
 
         if (this.passwordAuth != null) {
             String passwordAuthString = this.passwordAuth.getUsername() + ":" + this.passwordAuth.getPassword();
-            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_PASSWORD, Base64.getEncoder().encodeToString(passwordAuthString.getBytes())));
+            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_PASSWORD,
+                    Base64.getEncoder().encodeToString(passwordAuthString.getBytes())));
         }
 
         if (this.apiToken != null) {
@@ -118,7 +188,9 @@ public class Auth {
 
         if (this.basicAuth != null) {
             String basicAuthString = this.basicAuth.getUsername() + ":" + this.basicAuth.getPassword();
-            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_BASIC, AuthenticationConstants.AUTH_BASIC_PREFIX + Base64.getEncoder().encodeToString(basicAuthString.getBytes())));
+            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_BASIC,
+                    AuthenticationConstants.AUTH_BASIC_PREFIX
+                            + Base64.getEncoder().encodeToString(basicAuthString.getBytes())));
         }
 
         return headers;

@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class StatusField extends AbstractProcessManagementField {
     /**
-     * @param code
+     * @param code code of the StatusField
      */
     public StatusField(String code) {
         this.code = code;

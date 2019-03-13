@@ -149,8 +149,8 @@ public class FormFieldParserTest {
                 assertNotNull(number);
                 assertEquals("Number", number.getCode());
                 assertEquals(FieldType.NUMBER, number.getType());
-                assertEquals(Integer.valueOf(0), number.getMinValue());
-                assertEquals(Integer.valueOf(1000), number.getMaxValue());
+                assertEquals("0", number.getMinValue());
+                assertEquals("1000", number.getMaxValue());
                 assertEquals("Number", number.getLabel());
                 assertEquals("$", number.getUnit());
                 assertEquals(true, number.getRequired());
@@ -158,7 +158,7 @@ public class FormFieldParserTest {
                 assertEquals(true, number.getDigit());
                 assertEquals(true, number.getUnique());
                 assertEquals("12345", number.getDefaultValue());
-                assertEquals(Integer.valueOf(2), number.getDisplayScale());
+                assertEquals("2", number.getDisplayScale());
                 assertEquals(UnitPosition.AFTER, number.getUnitPosition());
             } catch (ClassCastException e) {
                 fail(e.getMessage());
@@ -464,8 +464,8 @@ public class FormFieldParserTest {
                 assertEquals(false, link.getNoLabel());
                 assertEquals(false, link.getRequired());
                 assertEquals(LinkProtocol.WEB, link.getProtocol());
-                assertEquals(null, link.getMinLength());
-                assertEquals(null, link.getMaxLength());
+                assertEquals("", link.getMinLength());
+                assertEquals("", link.getMaxLength());
                 assertEquals(false, link.getUnique());
                 assertEquals("", link.getDefaultValue());
             } catch (ClassCastException e) {
@@ -611,7 +611,7 @@ public class FormFieldParserTest {
                 assertEquals("Attachment", attachment.getLabel());
                 assertEquals(false, attachment.getNoLabel());
                 assertEquals(false, attachment.getRequired());
-                assertEquals(Integer.valueOf(150), attachment.getThumbnailSize());
+                assertEquals("150", attachment.getThumbnailSize());
             } catch (ClassCastException e) {
                 fail(e.getMessage());
             }
@@ -941,19 +941,19 @@ public class FormFieldParserTest {
                 assertEquals(false, userSelect.getNoLabel());
                 assertEquals(false, userSelect.getRequired());
 
-                List<MemberSelectEntity> entites = userSelect.getEntites();
+                List<MemberSelectEntity> entites = userSelect.getEntities();
                 assertNotNull(entites);
                 assertEquals(1, entites.size());
                 MemberSelectEntity entity = entites.get(0);
                 assertEquals(MemberSelectEntityType.USER, entity.getType());
-                assertEquals("xxxxx", entity.getCode());
+                assertEquals("dinh", entity.getCode());
 
                 List<MemberSelectEntity> defaultValue = userSelect.getDefaultValue();
                 assertNotNull(defaultValue);
                 assertEquals(2, defaultValue.size());
-
-                assertTrue(defaultValue.contains(new MemberSelectEntity("xxxxx", MemberSelectEntityType.USER)));
-                assertTrue(defaultValue.contains(new MemberSelectEntity("xxxxx", MemberSelectEntityType.USER)));
+                
+                assertTrue(defaultValue.contains(new MemberSelectEntity("dinh", MemberSelectEntityType.USER)));
+                assertTrue(defaultValue.contains(new MemberSelectEntity("cuc", MemberSelectEntityType.USER)));
             } catch (ClassCastException e) {
                 fail(e.getMessage());
             }
@@ -982,7 +982,7 @@ public class FormFieldParserTest {
                 assertEquals(false, groupSelect.getNoLabel());
                 assertEquals(false, groupSelect.getRequired());
 
-                List<MemberSelectEntity> entites = groupSelect.getEntites();
+                List<MemberSelectEntity> entites = groupSelect.getEntities();
                 assertNotNull(entites);
                 assertEquals(0, entites.size());
 
@@ -1017,7 +1017,7 @@ public class FormFieldParserTest {
                 assertEquals(false, departSelect.getNoLabel());
                 assertEquals(false, departSelect.getRequired());
 
-                List<MemberSelectEntity> entites = departSelect.getEntites();
+                List<MemberSelectEntity> entites = departSelect.getEntities();
                 assertNotNull(entites);
                 assertEquals(0, entites.size());
 
@@ -1062,10 +1062,10 @@ public class FormFieldParserTest {
                 assertEquals(false, numberField.getNoLabel());
                 assertEquals(false, numberField.getRequired());
                 assertEquals(false, numberField.getDigit());
-                assertEquals(null, numberField.getMinValue());
-                assertEquals(null, numberField.getMaxValue());
+                assertEquals("", numberField.getMinValue());
+                assertEquals("", numberField.getMaxValue());
                 assertEquals("", numberField.getDefaultValue());
-                assertEquals(null, numberField.getDisplayScale());
+                assertEquals("", numberField.getDisplayScale());
                 assertEquals("", numberField.getUnit());
                 assertEquals(UnitPosition.BEFORE, numberField.getUnitPosition());
 
@@ -1092,26 +1092,6 @@ public class FormFieldParserTest {
     @Test(expected = KintoneAPIException.class)
     public void testParseShouldFailWhenGivenNoField() throws KintoneAPIException {
         String invalidMaxValue = readInput("/form/field/NonTypeValue.txt");
-
-        assertNotNull(invalidMaxValue);
-
-        FormFieldParser parser = new FormFieldParser();
-        parser.parse(jsonParser.parse(invalidMaxValue));
-    }
-
-    @Test(expected = KintoneAPIException.class)
-    public void testParseShouldFailWhenGivenInvalidMaxValue() throws KintoneAPIException {
-        String invalidMaxValue = readInput("/form/field/InvalidMaxValue.txt");
-
-        assertNotNull(invalidMaxValue);
-
-        FormFieldParser parser = new FormFieldParser();
-        parser.parse(jsonParser.parse(invalidMaxValue));
-    }
-
-    @Test(expected = KintoneAPIException.class)
-    public void testParseShouldFailWhenGivenInvalidMinValue() throws KintoneAPIException {
-        String invalidMaxValue = readInput("/form/field/InvalidMinValue.txt");
 
         assertNotNull(invalidMaxValue);
 

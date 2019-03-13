@@ -19,7 +19,7 @@ public class GetRecordsResponse {
 
 	/**
 	 * Get records data response
-	 * @return
+	 * @return records
 	 */
 	public ArrayList<HashMap<String, FieldValue>> getRecords() {
 		return this.records;
@@ -27,7 +27,7 @@ public class GetRecordsResponse {
 
 	/**
 	 * Set records data response
-	 * @param records
+	 * @param records the records to set
 	 */
 	public void setRecords(ArrayList<HashMap<String, FieldValue>> records) {
 		this.records = records;
@@ -35,7 +35,7 @@ public class GetRecordsResponse {
 
 	/**
 	 * Get total count
-	 * @return
+	 * @return totalCount
 	 */
 	public Integer getTotalCount() {
 		return this.totalCount;
@@ -43,7 +43,7 @@ public class GetRecordsResponse {
 
 	/**
 	 * Set total count
-	 * @param totalCount
+	 * @param totalCount the totalCount to set
 	 */
 	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;

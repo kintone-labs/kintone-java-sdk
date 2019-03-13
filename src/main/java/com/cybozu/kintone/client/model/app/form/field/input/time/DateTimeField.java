@@ -16,7 +16,7 @@ public class DateTimeField extends AbstractInputField {
     protected Boolean defaultNowValue;
 
     /**
-     * @param code
+     * @param code code of the DateTimeField
      */
     public DateTimeField(String code) {
         this.code = code;
@@ -38,28 +38,28 @@ public class DateTimeField extends AbstractInputField {
     }
 
     /**
-     * @return
+     * @return defaultValue
      */
     public String getDefaultValue() {
         return defaultValue;
     }
 
     /**
-     * @param defaultValue
+     * @param defaultValue the defaultValue to set
      */
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
     }
 
     /**
-     * @return
+     * @return defaultValue
      */
     public Boolean getDefaultNowValue() {
         return defaultNowValue;
     }
 
     /**
-     * @param defaultNowValue
+     * @param defaultNowValue the defaultNowValue to set
      */
     public void setDefaultNowValue(Boolean defaultNowValue) {
         this.defaultNowValue = defaultNowValue;

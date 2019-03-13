@@ -12,14 +12,8 @@ public class FieldMapping {
     private String relatedField;
 
     /**
-     * default constructor
-     */
-    public FieldMapping() {
-    }
-
-    /**
-     * @param field
-     * @param relatedFields
+     * @param field field of the FieldMapping
+     * @param relatedFields relatedFields of the FieldMapping
      */
     public FieldMapping(String field, String relatedFields) {
         this.field = field;

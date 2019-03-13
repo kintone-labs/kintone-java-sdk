@@ -7,22 +7,27 @@
 
 package com.cybozu.kintone.client.module.parser;
 
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 import java.util.TimeZone;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.app.AppDeployStatus;
 import com.cybozu.kintone.client.model.app.AppModel;
+import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
+import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
+import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
 import com.cybozu.kintone.client.model.member.Member;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 public class AppParser {
     private static final Gson gson = new Gson();
@@ -35,9 +40,10 @@ public class AppParser {
 
     /**
      * Convert json to AppModel class
-     * @param input
-     * @return
+     * @param input input of the parseApp
+     * @return AppModel
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public AppModel parseApp(JsonElement input) throws KintoneAPIException {
         if (!input.isJsonObject()) {
@@ -60,7 +66,7 @@ public class AppParser {
                 Date modifiedDate = isoDateFormat.parse(jsonObject.get("modifiedAt").getAsString());
                 app.setModifiedAt(modifiedDate);
             } catch (ParseException e) {
-                throw new KintoneAPIException("Parse date error");
+                throw new KintoneAPIException("Parse data error");
             }
 
             app.setCreator(gson.fromJson(jsonObject.get("creator"), Member.class));
@@ -75,7 +81,7 @@ public class AppParser {
             if (threadId.isJsonPrimitive()) {
                 app.setThreadId(threadId.getAsInt());
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             throw new KintoneAPIException("Invalid data type");
         }
         return app;
@@ -83,11 +89,12 @@ public class AppParser {
 
     /**
      * Convert json to AppModel List
-     * @param input
-     * @return
+     * @param input input of the parseApps
+     * @return ArrayList
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
-    public List<AppModel> parseApps(JsonElement input) throws KintoneAPIException {
+    public ArrayList<AppModel> parseApps(JsonElement input) throws KintoneAPIException {
         if (!input.isJsonObject()) {
             throw new KintoneAPIException("Parse error");
         }
@@ -97,7 +104,7 @@ public class AppParser {
             throw new KintoneAPIException("Parse error");
         }
 
-        List<AppModel> result = new ArrayList<AppModel>();
+        ArrayList<AppModel> result = new ArrayList<AppModel>();
 
         Iterator<JsonElement> iterator = apps.getAsJsonArray().iterator();
         while (iterator.hasNext()) {
@@ -109,35 +116,125 @@ public class AppParser {
 
     /**
      * Convert json to FormFields class
-     * @param input
-     * @return
+     *
+     * @param input input of the parseFormFields
+     * @return FormFields
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public FormFields parseFormFields(JsonElement input) throws KintoneAPIException {
         FormFieldParser parser = new FormFieldParser();
         return parser.parse(input);
     }
 
-
     /**
-     * Convart json to FormLayout class
-     * @param input
-     * @return
+     * Convert json to FormLayout class
+     * @param input input of the parseFormLayout
+     * @return FormLayout
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public FormLayout parseFormLayout(JsonElement input) throws KintoneAPIException {
         return formLayoutParser.parseFormLayout(input);
     }
 
     /**
-     * Convert Object to jsonString
-     * @param obj
-     * @return
+     * Convert json to BasicResponse class
+     *
+     * @param input input of the parseBasicResponse
+     * @return BasicResponse
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public BasicResponse parseBasicResponse(JsonElement input) throws KintoneAPIException {
+        if (!input.isJsonObject()) {
+            throw new KintoneAPIException("Parse error");
+        }
+
+        try {
+            BasicResponse response = new BasicResponse();
+            response = gson.fromJson(input, BasicResponse.class);
+            return response;
+        } catch (Exception e) {
+            throw new KintoneAPIException("Invalid data type");
+        }
+    }
+
+    /**
+     * Convert json string to AddPreviewAppResponse class
+     *
+     * @param input input of the parseAddPreviewAppResponse
+     * @return AddPreviewAppResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public AddPreviewAppResponse parseAddPreviewAppResponse(JsonElement input) throws KintoneAPIException {
+        if (!input.isJsonObject()) {
+            throw new KintoneAPIException("Parse error");
+        }
+        try {
+            AddPreviewAppResponse response = new AddPreviewAppResponse();
+            response = gson.fromJson(input, AddPreviewAppResponse.class);
+            return response;
+        } catch (Exception e) {
+            throw new KintoneAPIException("Invalid data type");
+        }
+    }
+
+    /**
+     * Convert json string to AddPreviewAppResponse class
+     *
+     * @param input input of the parseAppDeployStatusResponse
+     * @return GetAppDeployStatusResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public GetAppDeployStatusResponse parseAppDeployStatusResponse(JsonElement input) throws KintoneAPIException {
+        if (!input.isJsonObject()) {
+            throw new KintoneAPIException("Parse error");
+        }
+
+        GetAppDeployStatusResponse response = new GetAppDeployStatusResponse();
+        JsonObject jsonObject = input.getAsJsonObject();
+        ArrayList<AppDeployStatus> arrayAppDeployStatus = new ArrayList<AppDeployStatus>();
+        Type appDeployStatusListType = new TypeToken<ArrayList<AppDeployStatus>>() {
+        }.getType();
+        try {
+            arrayAppDeployStatus = gson.fromJson(jsonObject.get("apps"), appDeployStatusListType);
+            response.setApps(arrayAppDeployStatus);
+
+            return response;
+        } catch (Exception e) {
+            throw new KintoneAPIException("Invalid data type");
+        }
+    }
+
+    /**
+     * Convert Object to jsonString
+     * @param obj obj of the parseObject
+     * @return String
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public String parseObject(Object obj) throws KintoneAPIException {
         try {
             return gson.toJson(obj);
+        } catch (Exception e) {
+            throw new KintoneAPIException("Parse error");
+        }
+    }
+
+    /**
+     * Convert Json to designated class
+     * @param json json of the parseJson
+     * @param type type of the parseJson
+     * @return Object
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
+        try {
+            return gson.fromJson(json, type);
         } catch (Exception e) {
             throw new KintoneAPIException("Parse error");
         }

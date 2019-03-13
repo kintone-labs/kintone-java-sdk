@@ -14,9 +14,10 @@ public class ErrorResponse {
     private Object errors;
 
     /**
-     * @param message
-     * @param id
-     * @param code
+     * @param message error response message
+     * @param id error response id
+     * @param code error response code
+     * @param errors error response errors
      */
     public ErrorResponse(String message, String id, String code, Object errors) {
         this.message = message;

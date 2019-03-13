@@ -19,10 +19,10 @@ public class GetRecordsRequest {
 
 	/**
 	 * Constructor
-	 * @param fields
-	 * @param app
-	 * @param query
-	 * @param totalCount
+	 * @param fields fields of the GetRecordsRequest
+	 * @param app app of the GetRecordsRequest
+	 * @param query query of the GetRecordsRequest
+	 * @param totalCount totalCount of the GetRecordsRequest
 	 */
 	public GetRecordsRequest(ArrayList<String> fields, Integer app, String query, Boolean totalCount) {
 		this.fields = fields;

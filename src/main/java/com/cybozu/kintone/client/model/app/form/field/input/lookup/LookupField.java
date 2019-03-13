@@ -14,8 +14,8 @@ public class LookupField extends AbstractInputField {
     private LookupItem lookup;
 
     /**
-     * @param code
-     * @param type
+     * @param code code of the LookupField
+     * @param type type of the LookupField
      */
     public LookupField(String code, FieldType type) {
         this.type = type;

@@ -13,8 +13,8 @@ public class Credential {
 
 
     /**
-     * @param username
-     * @param password
+     * @param username username of the Credential
+     * @param password password of the Credential
      */
     public Credential(String username, String password) {
         this.username = username;

@@ -19,8 +19,8 @@ public class AddRecordsRequest {
 
 	/**
 	 * Constructor
-	 * @param app
-	 * @param records
+	 * @param app app of the AddRecordsRequest
+	 * @param records records of the AddRecordsRequest
 	 */
 	public AddRecordsRequest(Integer app, ArrayList<HashMap<String, FieldValue>> records) {
 		this.app = app;

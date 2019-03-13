@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class CreatedTimeField extends AbstractSystemInfoField {
     /**
-     * @param code
+     * @param code code of the CreatedTimeField
      */
     public CreatedTimeField(String code) {
         this.code = code;

@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 
 public class UserSelectionField extends AbstractMemberSelectField {
     /**
-     * @param code
+     * @param code code of the UserSelectionField
      */
     public UserSelectionField(String code) {
         this.code = code;

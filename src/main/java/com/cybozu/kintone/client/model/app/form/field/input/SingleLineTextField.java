@@ -12,13 +12,13 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 public class SingleLineTextField extends AbstractInputField {
     private String expression;
     private Boolean hideExpression;
-    private Integer minLength;
-    private Integer maxLength;
+    private String minLength;
+    private String maxLength;
     private String defaultValue;
     private Boolean unique;
 
     /**
-     * @param code
+     * @param code code of the SingleLineTextField
      */
     public SingleLineTextField(String code) {
         this.code = code;
@@ -28,28 +28,28 @@ public class SingleLineTextField extends AbstractInputField {
     /**
      * @return the minLength
      */
-    public Integer getMinLength() {
+    public String getMinLength() {
         return this.minLength;
     }
 
     /**
      * @param minLength the minLength to set
      */
-    public void setMinLength(Integer minLength) {
+    public void setMinLength(String minLength) {
         this.minLength = minLength;
     }
 
     /**
      * @return the maxLength
      */
-    public Integer getMaxLength() {
+    public String getMaxLength() {
         return this.maxLength;
     }
 
     /**
      * @param maxLength the maxLength to set
      */
-    public void setMaxLength(Integer maxLength) {
+    public void setMaxLength(String maxLength) {
         this.maxLength = maxLength;
     }
 
@@ -96,14 +96,14 @@ public class SingleLineTextField extends AbstractInputField {
     }
 
     /**
-     * @return
+     * @return unique
      */
     public Boolean getUnique() {
         return this.unique;
     }
 
     /**
-     * @param isUnique
+     * @param isUnique the isUnique to set
      */
     public void setUnique(Boolean isUnique) {
         this.unique = isUnique;

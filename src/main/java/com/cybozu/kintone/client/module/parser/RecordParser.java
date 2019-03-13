@@ -28,10 +28,11 @@ public class RecordParser {
 
     /**
      * Convert json to FieldValue class
-     * @param fieldType
-     * @param fieldValue
-     * @return
+     * @param fieldType fieldType of the parseField
+     * @param fieldValue fieldValue of the parseField
+     * @return FieldValue
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public FieldValue parseField(String fieldType, JsonElement fieldValue) throws KintoneAPIException {
         FieldValue field = new FieldValue();
@@ -110,10 +111,11 @@ public class RecordParser {
 
     /**
      * Convert Json to designated class
-     * @param json
-     * @param type
-     * @return
+     * @param json json of the parseJson
+     * @param type type of the parseJson
+     * @return Object
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
         try {
@@ -125,9 +127,10 @@ public class RecordParser {
 
     /**
      * Convert Object to jsonString
-     * @param obj
-     * @return
+     * @param obj obj of the parseObject
+     * @return String
      * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
      */
     public String parseObject(Object obj) throws KintoneAPIException {
         try {
