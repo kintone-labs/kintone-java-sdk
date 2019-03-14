@@ -74,7 +74,7 @@ Get the relatedApp
 
 **Return**
 
-[RelatedApp](.../../../form-fields-related_record/#relatedapp.md)
+[RelatedApp](../../../form-fields-related_record/#relatedapp.md)
 
 #### getRelatedKeyField()
 
