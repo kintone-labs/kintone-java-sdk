@@ -15,9 +15,9 @@ Provide manipulate functions on records: get, update, delete, update the record 
 <details class="tab-container" open>
 <Summary>Init record module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
@@ -31,7 +31,7 @@ Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuth
 
 // Init Record Module
 Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
-```
+</pre>
 
 </details>
 
@@ -58,9 +58,9 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 <details class="tab-container" open>
 <Summary>Get record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
@@ -79,7 +79,7 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 Integer appID = 1;
 Integer recordID = 1;
 GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
-```
+</pre>
 
 </details>
 
@@ -105,9 +105,9 @@ GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 <details class="tab-container" open>
 <Summary>Get records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -125,7 +125,7 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 Integer appID = 1;
 String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
 GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
-```
+</pre>
 
 </details>
 
@@ -149,9 +149,9 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 <details class="tab-container" open>
 <Summary>Add record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -175,7 +175,7 @@ fv.setValue("sample_AddRecord");
 record.put("FieldCode1", fv);
 
 AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
-```
+</pre>
 
 </details>
 
@@ -199,9 +199,9 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 <details class="tab-container" open>
 <Summary>Add multi records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -236,7 +236,7 @@ records.add(record1);
 records.add(record2);
 
 AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
-```
+</pre>
 
 </details>
 
@@ -262,9 +262,9 @@ AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 <details class="tab-container" open>
 <Summary>Update record by ID</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -292,7 +292,7 @@ fv.setValue("sample_updateRecordById");
 record.put("FieldCode1", fv);
 
 UpdateRecordResponse response = kintoneRecordManager.updateRecordByID(appID, recordID, record, revision);
-```
+</pre>
 
 </details>
 
@@ -318,9 +318,9 @@ Updates details of 1 record in an app by unique key.
 <details class="tab-container" open>
 <Summary>Update record by UpdateKey</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -347,7 +347,7 @@ fv.setValue("sample_updateRecordByUpdateKey");
 record.put("FieldCode1", fv);
 
 UpdateRecordResponse response = kintoneRecordManager.updateRecordByUpdateKey(appID, uKey, record, revision);
-```
+</pre>
 
 </details>
 
@@ -371,9 +371,9 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordByUpdateKey(app
 <details class="tab-container" open>
 <Summary>Update multi records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -408,7 +408,7 @@ records.add(new RecordUpdateItem(1, null, null, record1));
 records.add(new RecordUpdateItem(2, null, null, record2));
 
 UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
-```
+</pre>
 
 </details>
 
@@ -432,9 +432,9 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 <details class="tab-container" open>
 <Summary>Delete multi record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -455,7 +455,7 @@ ids.add(1);
 ids.add(2);
 
 kintoneRecordManager.deleteRecords(appID, ids);
-```
+</pre>
 
 </details>
 
@@ -479,9 +479,9 @@ kintoneRecordManager.deleteRecords(appID, ids);
 <details class="tab-container" open>
 <Summary>Delete record with revision</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -504,7 +504,7 @@ idsWithRevision.put(2, null);
 idsWithRevision.put(3, -1);
 
 kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
-```
+</pre>
 
 </details>
 
@@ -530,9 +530,9 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 <details class="tab-container" open>
 <Summary>update record Assignees</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -554,7 +554,7 @@ assignees.add("sample_user");
 Integer revision = 1;
 
 UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID, recordID, assignees, revision);
-```
+</pre>
 
 </details>
 
@@ -581,9 +581,9 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 <details class="tab-container" open>
 <Summary>Update record status</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -605,7 +605,7 @@ String action = "処理開始";
 Integer revision = 1;
 
 UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, recordID, action, assignee, revision);
-```
+</pre>
 
 </details>
 
@@ -629,9 +629,9 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 <details class="tab-container" open>
 <Summary>Update multi record status</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -662,7 +662,7 @@ rusi.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
 rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
 rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
 UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
-```
+</pre>
 
 </details>
 
@@ -687,9 +687,9 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 <details class="tab-container" open>
 <Summary>Get comments</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -711,7 +711,7 @@ Integer offsset = 1;
 Integer limit = 2;
 
 GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
-```
+</pre>
 
 </details>
 
@@ -734,9 +734,9 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 <details class="tab-container" open>
 <Summary>Add comment</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -763,7 +763,7 @@ comment.setText("test comment");
 comment.setMentions(mentionList);
 
 AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
-```
+</pre>
 
 </details>
 
@@ -786,9 +786,9 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 <details class="tab-container" open>
 <Summary>Delete comment</Summary>
 
-** Source code **
+<pre class="inline-code">
 
-```java
+<pre class="inline-code">
 String USERNAME = "cybozu";
 String PASSWORD = "cybozu";
 
@@ -808,7 +808,7 @@ Integer record = 1;
 Integer comment = 1;
 
 kintoneRecordManager.deleteComment(app, record, comment);
-```
+</pre>
 
 </details>
 

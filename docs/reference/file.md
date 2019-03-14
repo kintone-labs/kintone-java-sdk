@@ -16,9 +16,9 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <details class="tab-container" open>
 <Summary>Initial file class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 File fileManagement = new File(connection);
 ```
@@ -46,9 +46,9 @@ File fileManagement = new File(connection);
 <details class="tab-container" open>
 <Summary>Get app sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 
@@ -90,9 +90,9 @@ FileModel fileModel = kintoneFileManager .upload(uploadPath + "test.txt");
 <details class="tab-container" open>
 <Summary>Get apps sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 

@@ -17,9 +17,9 @@
 <details class="tab-container" open>
 <Summary>Init Connection module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 // Define Authentication object
 Auth kintoneAuth = new Auth();
@@ -36,7 +36,7 @@ int guestSpaceID = 1;
 Connection kintoneConnectionWithGuestSpaceDemo =
     new Connection(myDomainName, kintoneAuth, guestSpaceID);
 
-```
+</pre>
 
 </details>
 
@@ -62,9 +62,9 @@ Connection kintoneConnectionWithGuestSpaceDemo =
 <details class="tab-container" open>
 <Summary>Set header of the Connection</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 String key = "X-HTTP-Method-Override";
@@ -77,7 +77,7 @@ kintoneAuth.setPasswordAuth(username, password);
 String myDomainName = "sample.cybozu.com";
 Connection connection = new Connection(myDomainName, kintoneAuth);
 connection.setHeader(key, value);
-```
+</pre>
 
 </details>
 
@@ -96,14 +96,14 @@ connection.setHeader(key, value);
 
 (none)
 
-**Sample code**
+<strong class="tab-name">Source code</strong>
 
 <details class="tab-container" open>
 <Summary>Set the proxy of the request</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 String proxyHost = "xxxx";
@@ -116,6 +116,6 @@ kintoneAuth.setPasswordAuth(username, password);
 String myDomainName = "sample.cybozu.com";
 Connection connection = new Connection(myDomainName, kintoneAuth);
 connection.setProxy(proxyHost, proxyPort);
-```
+</pre>
 
 </details>

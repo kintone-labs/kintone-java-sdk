@@ -11,9 +11,9 @@
 <details class="tab-container" open>
 <Summary>Get record sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 import com.cybozu.kintone.client.authentication.*;
 import com.cybozu.kintone.client.connection.*;
 import com.cybozu.kintone.client.model.record.*;
@@ -41,36 +41,36 @@ try {
 } catch (Exception e) {
   System.out.println(e.getMessage());
 }
-```
+</pre>
 
-** Response success**
+<strong class="tab-name">Response success</strong>
 
-```Java
+<pre class="inline-code">
 {
     "record":{
         // record data should be here
     }
 }
-```
+</pre>
 
-** Response error**
+<strong class="tab-name">Response error</strong>
 
-```Java
+<pre class="inline-code">
 {
     id: '{ID}',
     code: '{CODE}',
     message: '{Message string}',
 }
-```
+</pre>
 
 </details>
 
 <details class="tab-container" open>
 <Summary>Bulk request sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 import java.util.*;
 import com.cybozu.kintone.client.authentication.*;
 import com.cybozu.kintone.client.connection.*;
@@ -136,26 +136,26 @@ try {
 } catch (Exception e) {
   System.out.println(e.getMessage());
 }
-```
+</pre>
 
-** Response success**
+<strong class="tab-name">Response success</strong>
 
-```Java
+<pre class="inline-code">
 {
     "record":{
         // record data should be here
     }
 }
-```
+</pre>
 
-** Response error**
+<strong class="tab-name">Response error</strong>
 
-```Java
+<pre class="inline-code">
 {
     id: '{ID}',
     code: '{CODE}',
     message: '{Message string}',
 }
-```
+</pre>
 
 </details>

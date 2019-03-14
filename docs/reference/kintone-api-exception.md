@@ -19,9 +19,9 @@ int
 <details class="tab-container" open>
 <Summary>Get http error code</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String appId = 1
 Integer id = -1
 try {
@@ -49,9 +49,9 @@ try {
 <details class="tab-container" open>
 <Summary>Get apps with error response</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String appId = 1
 Integer id = -1
 try {
@@ -81,9 +81,9 @@ ArrayList&lt;[ErrorResponse](https://developer.kintone.io/hc/en-us/articles/2124
 <details class="tab-container" open>
 <Summary>Get apps with error responses</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String appId = 1
 Integer id = -1
 

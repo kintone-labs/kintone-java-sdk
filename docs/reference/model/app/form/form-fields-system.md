@@ -41,11 +41,11 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Boolean enabled = categoryField.getEnabled();
     
-```
+</pre>
 
 </details>
 
