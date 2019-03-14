@@ -21,7 +21,7 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <pre class="inline-code">
 
 File fileManagement = new File(connection);
-```
+</pre>
 
 </details>
 
@@ -66,7 +66,7 @@ File kintoneFileManager = new File(kintoneOnDemoDomain);
 // execute upload file API
 String uploadPath = "C:/Users/Administrator/Desktop/upload";
 FileModel fileModel = kintoneFileManager .upload(uploadPath + "test.txt");
-```
+</pre>
 
 </details>
 
@@ -122,6 +122,6 @@ for (int i = 0; i < fileList.size(); i++) {
     FileModel fdata = fileList.get(i);
     kintoneFileManager.download(fdata.getFileKey(), downloadPath + fdata.getName());
 }
-```
+</pre>
 
 </details>

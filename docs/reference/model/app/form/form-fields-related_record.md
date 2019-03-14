@@ -29,7 +29,7 @@ Get the app
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     String app = relatedApp.getApp();
 
@@ -56,7 +56,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     String app = relatedApp.getCode();
 
@@ -87,7 +87,7 @@ Get the condition
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     FieldMapping condition = referenceTable.getCondition();
 
@@ -114,7 +114,7 @@ Get the filterCond
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     String filterCond = referenceTable.getFilterCond();
 
@@ -141,7 +141,7 @@ Get the relatedApp
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     RelatedApp relatedApp = referenceTable.getRelatedApp();
 
@@ -168,7 +168,7 @@ Get the size
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     Integer size = referenceTable.getSize();
 
@@ -195,7 +195,7 @@ Get the displayFields
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     ArrayList<String> displayFields = referenceTable.getDisplayFields();
 
@@ -222,7 +222,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     String sort = referenceTable.getSort();
 
@@ -256,7 +256,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     String label = relatedRecordsField.getLabel();
 
@@ -283,7 +283,7 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     Boolean noLabel = relatedRecordsField.getNoLabel();
 
@@ -310,7 +310,7 @@ Get the referenceTable
 
 <strong class="tab-name">Source code</strong>
 
-</pre>
+<pre class="inline-code">
 
     ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
     

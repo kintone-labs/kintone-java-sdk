@@ -30,7 +30,7 @@ try {
 	int errorCode = ke.getHttpErrorCode();
 }
 
-```
+</pre>
 
 </details>
 
@@ -62,7 +62,7 @@ try {
 	String code = ke.getErrorResponse().getCode();
 }
 
-```
+</pre>
 
 </details>
 
@@ -104,6 +104,6 @@ try {
 	}
 }
 
-```
+</pre>
 
 </details>
