@@ -412,6 +412,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#geterrorresponse" title="getErrorResponse()" class="md-nav__link">
+    getErrorResponse()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#geterrorresponses" title="getErrorResponses()" class="md-nav__link">
     getErrorResponses()
   </a>
@@ -787,6 +794,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#geterrorresponse" title="getErrorResponse()" class="md-nav__link">
+    getErrorResponse()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#geterrorresponses" title="getErrorResponses()" class="md-nav__link">
     getErrorResponses()
   </a>
@@ -840,9 +854,33 @@ try {
     int errorCode = ke.getHttpErrorCode();
 }
 
+</pre>
 
-wzxhzdk:0
+</details>
 
+<h3 id="geterrorresponse">getErrorResponse()</h3>
+<p><strong>Parameter </strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/212495188#responses">ErrorResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>Get apps with error response</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+String appId = 1
+Integer id = -1
+try {
+    GetRecordResponse response = recordManagerment.getRecord(appId, id);
+} catch(kintoneException ke) {
+    String id = ke.getErrorResponse().getId();
+    String message = ke.getErrorResponse().getMessage();
+    String code = ke.getErrorResponse().getCode();
+}
+
+</pre>
 
 </details>
 
@@ -878,7 +916,7 @@ try {
     }
 }
 
-```
+</pre>
 
 </details>
                 

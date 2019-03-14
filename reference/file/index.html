@@ -413,8 +413,22 @@
     Constructor
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uploadfilepath" title="upload(filePath)" class="md-nav__link">
+    upload(filePath)
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#downloadfilekey-outputfilepath" title="download(fileKey, outPutFilePath)" class="md-nav__link">
@@ -769,8 +783,22 @@
     Constructor
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uploadfilepath" title="upload(filePath)" class="md-nav__link">
+    upload(filePath)
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#downloadfilekey-outputfilepath" title="download(fileKey, outPutFilePath)" class="md-nav__link">
@@ -834,9 +862,61 @@
 <pre class="inline-code">
 
 File fileManagement = new File(connection);
+</pre>
 
-wzxhzdk:0
+</details>
 
+<h2 id="methods">Methods</h2>
+<h3 id="uploadfilepath">upload(filePath)</h3>
+<blockquote>
+<p>Upload file kintone via Rest API</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filePath</td>
+<td>String</td>
+<td>yes</td>
+<td>The full path of file on your environment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../file-model">FileModel</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>Get app sample</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+
+// Init authenticationAuth
+Auth kintoneAuth = new Auth();
+kintoneAuth.setPasswordAuth(username, password);
+
+// Init Connection
+String myDomainName = "sample.cybozu.com";
+Connection kintoneOnDemoDomain = new Connection(myDomainName, kintoneAuth);
+
+// Init File Module
+File kintoneFileManager = new File(kintoneOnDemoDomain);
+
+// execute upload file API
+String uploadPath = "C:/Users/Administrator/Desktop/upload";
+FileModel fileModel = kintoneFileManager .upload(uploadPath + "test.txt");
+</pre>
 
 </details>
 
@@ -907,7 +987,7 @@ for (int i = 0; i < fileList.size(); i++) {
     FileModel fdata = fileList.get(i);
     kintoneFileManager.download(fdata.getFileKey(), downloadPath + fdata.getName());
 }
-```
+</pre>
 
 </details>
                 
