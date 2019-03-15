@@ -21,7 +21,7 @@ Gets general information of an App, including the name, description, related Spa
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // Init authentication
     Auth kintoneAuth = new Auth()
@@ -33,7 +33,7 @@ Gets general information of an App, including the name, description, related Spa
     Connection connection = Connection( "your_domain", kintoneAuth )
     App app = new App(connection)
 
-```
+</pre>
 
 </details>
 
@@ -59,13 +59,13 @@ Gets general information of an App, including the name, description, related Spa
 <Summary>get App</Summary>
 
 <strong class="tab-name">Source code</strong>
-```java
+<pre class="inline-code">
 
     Integer appId = {your_app_id};
     App appManagerment = new App(connection);
     AppModel app = appManagerment.getApp(appId);
 
-```
+</pre>
 
 </details>
 
@@ -91,13 +91,13 @@ List<[AppModel](../model/app/app/app-model)>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 Integer offset = 10;
 Integer limit = 50;
 
 App appManagerment = new App(connection);
 List<AppModel> appList = appManagerment.getApps(offset, limit);
-```
+</pre>
 
 </details>
 
@@ -124,7 +124,7 @@ List<[AppModel](../model/app/app/app-model)>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 List<Integer> appIds = new List<Integer>();
 appIds.add({your_app_id});
 appIds.add({your_app_id});
@@ -133,7 +133,7 @@ Integer limit = {your_offset};
 
 App appManagerment = new App(connection);
 List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
-```
+</pre>
 
 </details>
 
@@ -160,7 +160,7 @@ List<[AppModel](../model/app/app/app-model)>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 List<String> appCode = new List<String>();
 appCode.add({your_app_code});
 appCode.add({your_app_code});
@@ -169,7 +169,7 @@ Integer offset = {your_offset};
 
 App appManagerment = new App(connection);
 List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
-```
+</pre>
 
 </details>
 
@@ -196,14 +196,14 @@ List<[AppModel](../model/app/app/app-model)>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String appName = {your_app_name};
 Integer offset = {your_offset};
 Integer limit = {your_limit};
 
 App appManagerment = new App(connection);
 List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
-```
+</pre>
 
 </details>
 
@@ -230,7 +230,7 @@ List<[AppModel](../model/app/app/app-model)>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 List<Integer> spaceIds = new List<Integer>();
 spaseIds.add({your_space_id});
 spaseIds.add({your_space_id});
@@ -239,7 +239,7 @@ Integer limit = {your_litmit};
 
 App appManagerment = new App(connection);
 List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limit);
-```
+</pre>
 
 </details>
 
@@ -266,7 +266,7 @@ Creates a preview App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer spaceId = {your_space_id} // Space will add this app
     Integer threadId = {your_thread_id} // Thread will add this app
@@ -274,7 +274,7 @@ Creates a preview App.
     App appManagerment = new App(connection);
     appManagerment.addPreviewApp(appName, spaceId, threadId);
 
-```
+</pre>
 
 </details>
 
@@ -301,7 +301,7 @@ None
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer appId = {your_app_id}
     Integer revision = {your_revision} // Revision of application to deploy
@@ -311,7 +311,7 @@ None
     App appManagerment = new App(connection);
     appManagerment.deployAppSettings(appPreviewList, false)
 
-```
+</pre>
 
 </details>
 
@@ -336,7 +336,7 @@ Updates the settings of a pre-live App to the live App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     List<Integer> appIds = new List<Integer>();
     appIds.add({your_app_id});
@@ -348,7 +348,7 @@ Updates the settings of a pre-live App to the live App.
         print(res.getApp.get(i));
     }
 
-```
+</pre>
 
 </details>
 
@@ -376,7 +376,7 @@ Get field of the form in the kintone app
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer appId = {your_app_id} // Integer
     LanguageSetting lang = {language_code} // LanguageSetting .Ex: LanguageSetting.JA
@@ -385,7 +385,7 @@ Get field of the form in the kintone app
     App appManagerment = new App(connection);
     FormFields fields appManagerment.getFormFields(appId, lang, isPreview)
 
-```
+</pre>
 
 </details>
 
@@ -412,7 +412,7 @@ Adds fields to a form of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer appId = {your_app_id} // App Id
     String fieldCode = {field_code_string} // Field code of new Field. It must be not as same as any fields in Pre-Live App Setttings
@@ -438,7 +438,7 @@ Adds fields to a form of an App.
     App appManagerment = new App(connection);
     BasicResponse res = appManagerment.addFormFields(appId, properties, revision);
 
-```
+</pre>
 
 </details>
 
@@ -465,7 +465,7 @@ Updates the field settings of fields in a form of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer appId = {your_app_id} // Integer
     String fieldCode = {field_code_string} // String | fieldCode of exist fields in Pre-Live App Setttings
@@ -483,7 +483,7 @@ Updates the field settings of fields in a form of an App.
     App appManagerment = new App(connection);
     BasicResponse res = appManagerment.updateFormFields(appId, properties, revision);
 
-```
+</pre>
 
 </details>
 
@@ -510,7 +510,7 @@ Updates the field settings of fields in a form of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id} // Integer
     ArrayList<String> fieldCodeArray = [{field_code_string}] // Array<String> | Array of fieldCodes of exist fields in Pre-Live App Setttings
@@ -519,7 +519,7 @@ Updates the field settings of fields in a form of an App.
     App appManagerment = new App(connection);
     BasicResponse res = appManagerment.deleteFormFields(appId, fieldCodeArray, revision);
 
-```
+</pre>
 
 </details>
 
@@ -545,7 +545,7 @@ Get the layout of form in kintone app
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id} // Integer
     boolean isPreview = true
@@ -554,7 +554,7 @@ Get the layout of form in kintone app
     App appManagerment = new App(connection);
     FormLayout res = appManagerment.getFormLayout(appId, isPreview)
 
-```
+</pre>
 
 </details>
 
@@ -581,7 +581,7 @@ Updates the field layout info of a form in an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id} // Integer
     ArrayList<ItemLayout> itemLayoutRequest = new ArrayList<ItemLayout>();
@@ -653,7 +653,7 @@ Updates the field layout info of a form in an App.
     App appManagerment = new App(connection);
     BasicResponse res = appManagerment.updateFormLayout(appId, itemLayoutRequest);
 
-```
+</pre>
 
 </details>
 
@@ -680,7 +680,7 @@ Gets the description, name, icon, revision and color theme of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id};
     LanguageSetting lang = {your_language_code} // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
@@ -689,7 +689,7 @@ Gets the description, name, icon, revision and color theme of an App.
     App appManagerment = new App(connection);
     GeneralSettings res = appManagerment.getGeneralSettings(appId, lang, isPreview);
 
-```
+</pre>
 
 </details>
 
@@ -715,7 +715,7 @@ Updates the description, name, icon, revision and color theme of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id};
     
@@ -729,7 +729,7 @@ Updates the description, name, icon, revision and color theme of an App.
     App appManagerment = new App(connection);
     BasicResponse res = appManagerment.updateGeneralSettings(appId, appGeneralSetting);
 
-```
+</pre>
 
 </details>
 
@@ -756,7 +756,7 @@ Gets the View settings of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id}
     LanguageSetting lang = LanguageSetting.EN // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
@@ -765,7 +765,7 @@ Gets the View settings of an App.
     App appManagerment = new App(connection);
     GetViewsResponse res = app.getViews(appId, lang, isPreview);
 
-```
+</pre>
 
 </details>
 
@@ -793,7 +793,7 @@ Updates the View settings of an App.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int appId = {your_app_id)}
     int revision = {your_lastest_revision} //default: revision = -1
@@ -829,7 +829,7 @@ Updates the View settings of an App.
     App appManagerment = new App(connection);
     UpdateViewsResponse res = appManagerment.updateViews(appId, viewEntry, revision);
     
-```
+</pre>
 
 </details>
 

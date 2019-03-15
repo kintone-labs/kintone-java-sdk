@@ -18,11 +18,11 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Init authentication module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 Auth kintoneAuth = new Auth();
-```
+</pre>
 
 </details>
 
@@ -48,13 +48,13 @@ Auth kintoneAuth = new Auth();
 <details class="tab-container" open>
 <Summary>Set password authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 kintoneAuth.setPasswordAuth(username, password);
-```
+</pre>
 
 </details>
 
@@ -77,12 +77,12 @@ kintoneAuth.setPasswordAuth(username, password);
 <details class="tab-container" open>
 <Summary>Set APIToken authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 String apiToken = "123456789abcdefghijklmnopqrstuvwxyz";
 kintoneAuth.setApiToken(apiToken);
-```
+</pre>
 
 </details>
 
@@ -107,13 +107,13 @@ kintoneAuth.setApiToken(apiToken);
 <details class="tab-container" open>
 <Summary>Set basic authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 kintoneAuth.setBasicAuth(username, password);
-```
+</pre>
 
 </details>
 
@@ -135,13 +135,13 @@ Array&lt;HTTPHeader&gt;
 <details class="tab-container" open>
 <Summary>Provide the list of HTTP Headers which use to authentication in</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
 for (HTTPHeader header : kintoneAuth.createHeaderCredentials()) {
 	connection.setRequestProperty(header.getKey(), header.getValue());
 }
-```
+</pre>
 
 </details>
 
@@ -167,7 +167,7 @@ Set certificate by certificate data
 
 <strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
     Auth certAuth = new Auth();
     certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
     String certPassword = "YOUR_CERT_PASSWORD"
@@ -175,7 +175,7 @@ Set certificate by certificate data
     InputStream cert = new FileInputStream(certPath);
     auth.setClientCert(cert, certPassword)
     Connection connection = new Connection("YOUR_DOMAIN", certAuth, -1);
-```
+</pre>
 
 </details>
 
@@ -201,13 +201,13 @@ Set certificate by path
 
 <strong class="tab-name">Source code</strong>
 
-```Java
+<pre class="inline-code">
     Auth certauth = new Auth();
     certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
     String certPassword = "YOUR_CERT_PASSWORD"
     String certPath = "YOUR_CERT_PATH"
     certauth.setClientCertByPath(certPath, certPassword);
     Connection connection = new Connection("YOUR_DOMAIN", certAuth);
-```
+</pre>
 
 </details>

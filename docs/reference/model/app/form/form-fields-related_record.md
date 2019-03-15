@@ -29,11 +29,11 @@ Get the app
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String app = relatedApp.getApp();
 
-```
+</pre>
 
 </details>
 
@@ -56,11 +56,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String app = relatedApp.getCode();
 
-```
+</pre>
 
 </details>
 
@@ -87,11 +87,11 @@ Get the condition
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     FieldMapping condition = referenceTable.getCondition();
 
-```
+</pre>
 
 </details>
 
@@ -114,11 +114,11 @@ Get the filterCond
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String filterCond = referenceTable.getFilterCond();
 
-```
+</pre>
 
 </details>
 
@@ -141,11 +141,11 @@ Get the relatedApp
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     RelatedApp relatedApp = referenceTable.getRelatedApp();
 
-```
+</pre>
 
 </details>
 
@@ -168,11 +168,11 @@ Get the size
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer size = referenceTable.getSize();
 
-```
+</pre>
 
 </details>
 
@@ -195,11 +195,11 @@ Get the displayFields
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     ArrayList<String> displayFields = referenceTable.getDisplayFields();
 
-```
+</pre>
 
 </details>
 
@@ -222,11 +222,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String sort = referenceTable.getSort();
 
-```
+</pre>
 
 </details>
 
@@ -256,11 +256,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String label = relatedRecordsField.getLabel();
 
-```
+</pre>
 
 </details>
 
@@ -283,11 +283,11 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Boolean noLabel = relatedRecordsField.getNoLabel();
 
-```
+</pre>
 
 </details>
 
@@ -310,11 +310,11 @@ Get the referenceTable
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
     
-```
+</pre>
 
 </details>
 

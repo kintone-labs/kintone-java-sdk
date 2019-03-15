@@ -31,7 +31,7 @@ Integer
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     int appID = 1;
@@ -46,7 +46,7 @@ Integer
     Comment comment = resultComments.get(0);
     int commentID = comment.getId();
 
-```
+</pre>
 
 </details>
 
@@ -69,7 +69,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     int appID = 1;
@@ -84,7 +84,7 @@ String
     Comment comment = resultComments.get(0);
     String commentText = comment.getText();
 
-```
+</pre>
 
 </details>
 
@@ -107,7 +107,7 @@ Date
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -122,7 +122,7 @@ Date
     Comment comment = resultComments.get(0);
     Date commentCreatedAt = comment.getCreatedAt();
 
-```
+</pre>
 
 </details>
 
@@ -145,7 +145,7 @@ Get an object including information of the comment creator.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -160,7 +160,7 @@ Get an object including information of the comment creator.
     Comment comment = resultComments.get(0);
     Member commentCreator = comment.getCreator();
 
-```
+</pre>
 
 </details>
 
@@ -183,7 +183,7 @@ List<[CommentMention](#commentmention)\>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -198,7 +198,7 @@ List<[CommentMention](#commentmention)\>
     Comment comment = resultComments.get(0);
     List<CommentMention> commentMentions = comment.getMentions();
 
-```
+</pre>
 
 </details>
 
@@ -233,7 +233,7 @@ List<[CommentMention](#commentmention)\>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute ADD RECORD_COMMENT  API
     Integer app = 1;
@@ -248,7 +248,7 @@ List<[CommentMention](#commentmention)\>
     comment.setMentions(mentionList);
     AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 
-```
+</pre>
 
 </details>
 
@@ -273,7 +273,7 @@ Get an array including information of mentioned users.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute ADD RECORD_COMMENT  API
     Integer app = 1;
@@ -288,7 +288,7 @@ Get an array including information of mentioned users.
     comment.setMentions(mentionList);
     AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 
-```
+</pre>
 
 </details>
 
@@ -321,7 +321,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -338,7 +338,7 @@ String
     CommentMention mention = commentMentions.get(0);
     String mentionUserCode = mention.getCode();
 
-```
+</pre>
 
 </details>
 
@@ -363,7 +363,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute ADD RECORD_COMMENT  API
     Integer app = 1;
@@ -378,7 +378,7 @@ String
     comment.setMentions(mentionList);
     AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 
-```
+</pre>
 
 </details>
 
@@ -401,7 +401,7 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -418,7 +418,7 @@ String
     CommentMention mention = commentMentions.get(0);
     String mentionUserType= mention.getType();
 
-```
+</pre>
 
 </details>
 
@@ -443,7 +443,7 @@ Get an array including information of mentioned users.
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute ADD RECORD_COMMENT  API
     Integer app = 1;
@@ -458,7 +458,7 @@ Get an array including information of mentioned users.
     comment.setMentions(mentionList);
     AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 
-```
+</pre>
 
 </details>
 
@@ -491,7 +491,7 @@ ArrayList<[Comment](#comment)\>
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -504,7 +504,7 @@ ArrayList<[Comment](#comment)\>
 
     ArrayList<Comment> resultComments = response.getComments();
 
-```
+</pre>
 
 </details>
 
@@ -527,7 +527,7 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -540,7 +540,7 @@ Boolean
 
     Boolean resultOlderFlg = response.getOlder();
 
-```
+</pre>
 
 </details>
 
@@ -563,7 +563,7 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute GET RECORD_COMMENTS  API
     Integer appID = 1;
@@ -576,7 +576,7 @@ Boolean
 
     Boolean resultNewerFlg = response.getNewer();
 
-```
+</pre>
 
 </details>
 
@@ -609,7 +609,7 @@ Integer
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     // execute ADD RECORD_COMMENT  API
     Integer app = 1;
@@ -626,6 +626,6 @@ Integer
 
     Integer resultId = response.getId();
     
-```
+</pre>
 
 </details>

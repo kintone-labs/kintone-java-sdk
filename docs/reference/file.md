@@ -16,12 +16,12 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <details class="tab-container" open>
 <Summary>Initial file class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 File fileManagement = new File(connection);
-```
+</pre>
 
 </details>
 
@@ -46,9 +46,9 @@ File fileManagement = new File(connection);
 <details class="tab-container" open>
 <Summary>Get app sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 
@@ -66,7 +66,7 @@ File kintoneFileManager = new File(kintoneOnDemoDomain);
 // execute upload file API
 String uploadPath = "C:/Users/Administrator/Desktop/upload";
 FileModel fileModel = kintoneFileManager .upload(uploadPath + "test.txt");
-```
+</pre>
 
 </details>
 
@@ -90,9 +90,9 @@ FileModel fileModel = kintoneFileManager .upload(uploadPath + "test.txt");
 <details class="tab-container" open>
 <Summary>Get apps sample</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 String username = "cybozu";
 String password = "cybozu";
 
@@ -122,6 +122,6 @@ for (int i = 0; i < fileList.size(); i++) {
     FileModel fdata = fileList.get(i);
     kintoneFileManager.download(fdata.getFileKey(), downloadPath + fdata.getName());
 }
-```
+</pre>
 
 </details>

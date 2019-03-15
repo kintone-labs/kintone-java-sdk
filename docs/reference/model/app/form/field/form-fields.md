@@ -28,11 +28,11 @@ Integer
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Integer app = formfields.getApp();
 
-```
+</pre>
 
 </details>
 
@@ -55,11 +55,11 @@ Integer
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     int revision = formfields.getRevision();
 
-```
+</pre>
 
 </details>
 
@@ -82,11 +82,11 @@ Get the properties
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Map<String, Field> properties = formfields.getProperties();
 
-```
+</pre>
 
 </details>
 
@@ -116,11 +116,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String label = fieldGroup.getLabel();
 
-```
+</pre>
 
 </details>
 
@@ -143,11 +143,11 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Boolean noLabel = fieldGroup.getNoLabel();
 
-```
+</pre>
 
 </details>
 
@@ -170,11 +170,11 @@ Boolean
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Boolean openGroup = fieldGroup.getOpenGroup();
 
-```
+</pre>
 
 </details>
 
@@ -201,11 +201,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String field = fieldMapping.getField();
 
-```
+</pre>
 
 </details>
 
@@ -228,11 +228,11 @@ String
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     String relatedFields = fieldMapping.getRelatedFields();
 
-```
+</pre>
 
 </details>
 
@@ -264,11 +264,11 @@ Get the fields
 
 <strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
     Map<String, AbstractInputField> fields = subTableField.getFields();
     
-```
+</pre>
 
 </details>
 

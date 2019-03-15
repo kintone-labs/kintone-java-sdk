@@ -24,11 +24,11 @@ The Bulk Request API allows multiple API requests to run on multiple kintone app
 <details class="tab-container" open>
 <Summary>Init bulk request module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
-```
+</pre>
 
 </details>
 
@@ -51,9 +51,9 @@ See at [Record - addRecord](../record#addrecordappid-recorddata)
 <details class="tab-container" open>
 <Summary>add Record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
 
@@ -67,7 +67,7 @@ fv.setValue("sample_AddRecord");
 record.put("FieldCode1", fv);
 
 bulkRequestManager.addRecord(appID, record);
-```
+</pre>
 
 </details>
 
@@ -86,9 +86,9 @@ See at [Record - addRecords](../record#addrecordsappid-recordsdata)
 <details class="tab-container" open>
 <Summary>add multiple Records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
@@ -111,7 +111,7 @@ records.add(record1);
 records.add(record2);
 
 bulkRequestManager.addRecords(appID, records);
-```
+</pre>
 
 </details>
 
@@ -130,9 +130,9 @@ See at [Record - updateRecordByID](../record#updaterecordbyidappid-recordid-reco
 <details class="tab-container" open>
 <Summary>update Record By ID</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
 
@@ -147,7 +147,7 @@ fv.setValue("sample_updateRecordById");
 record.put("FieldCode1", fv);
 
 bulkRequestManager.updateRecordByID(appID, recordID, record, revision);
-```
+</pre>
 
 </details>
 
@@ -166,9 +166,9 @@ See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyappid
 <details class="tab-container" open>
 <Summary>update Record By UpdateKey</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
 RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", "unique_value1");
@@ -183,7 +183,7 @@ fv.setValue("sample_updateRecordByUpdateKey");
 record.put("FieldCode1", fv);
 
 bulkRequestManager.updateRecordByUpdateKey(appID, uKey, record, revision);
-```
+</pre>
 
 </details>
 
@@ -202,9 +202,9 @@ See at [Record - updateRecords](../record#updaterecordsappid-recordsdata)
 <details class="tab-container" open>
 <Summary>update multiple Records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
 HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
@@ -230,7 +230,7 @@ records.add(new RecordUpdateItem(recordId1, revision, null, record1));
 records.add(new RecordUpdateItem(recordId2, null, null, record2));
 
 bulkRequestManager.updateRecords(appID, records);
-```
+</pre>
 
 </details>
 
@@ -249,9 +249,9 @@ See at [Record - deleteRecords](../record#deleterecordsappid-recordids)
 <details class="tab-container" open>
 <Summary>Bulk Delete Records</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 
 Integer appID = 1;
@@ -262,7 +262,7 @@ ids.add(2);
 
 
 bulkRequestManager.deleteRecords(appID, ids);
-```
+</pre>
 
 </details>
 
@@ -281,9 +281,9 @@ See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisiona
 <details class="tab-container" open>
 <Summary>delete Records With Revision</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
 
@@ -294,7 +294,7 @@ idsWithRevision.put(2, null);
 idsWithRevision.put(3, -1);
 
 bulkRequestManager.deleteRecordsWithRevision(appID, idsWithRevision);
-```
+</pre>
 
 </details>
 
@@ -313,9 +313,9 @@ See at [Record - updateRecordAssignees](../record#updaterecordassigneesappid-rec
 <details class="tab-container" open>
 <Summary>Update the Assignees for the record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 
 Integer appID = 1;
@@ -326,7 +326,7 @@ ArrayList<String> assignees = new ArrayList<String>();
 assignees.add("sample_user");
 
 bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
-```
+</pre>
 
 </details>
 
@@ -345,9 +345,9 @@ See at [Record - updateRecordStatus](../record#updaterecordstatusappid-recordid-
 <details class="tab-container" open>
 <Summary>Update the status of a single record</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 
 Integer appID = 1;
@@ -357,7 +357,7 @@ String assignee = "sample_user";
 Integer revision = 1;
 
 bulkRequestManager.updateRecordStatus(appID, recordID, action, assignee, revision);
-```
+</pre>
 
 </details>
 
@@ -376,9 +376,9 @@ See at [Record - updateRecordsStatus](../record#updaterecordsstatusappid-records
 <details class="tab-container" open>
 <Summary>Update the status of multiple records in bulk</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
 
@@ -397,7 +397,7 @@ rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
 rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
 
 bulkRequestManager.updateRecordsStatus(appID, rusi);
-```
+</pre>
 
 </details>
 
@@ -418,9 +418,9 @@ bulkRequestManager.updateRecordsStatus(appID, rusi);
 <details class="tab-container" open>
 <Summary>Execute bulk request</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 BulkRequest bulkRequestManager = new BulkRequest(connection);
 bulkRequestManager.addRecord(/*[Args]*/);
 bulkRequestManager.addRecords(/*[Args]*/);
@@ -432,7 +432,7 @@ try {
 } catch (Exception e) {
   System.out.println(e.getMessage());
 }
-```
+</pre>
 
 </details>
 

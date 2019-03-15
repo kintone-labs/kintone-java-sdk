@@ -24,16 +24,16 @@ HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>
 <details class="tab-container" open>
 <Summary>get the Record data response.</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute GET RECORD API
 Integer appID = 1;
 Integer recordID =1;
 GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 
 HashMap<String, FieldValue> resultRecord = response.getRecord();
-```
+</pre>
 
 </details>
 
@@ -58,16 +58,16 @@ ArrayList<HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>\>
 <details class="tab-container" open>
 <Summary>get the Records data response</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute GET RECORDS API
 Integer appID = 1;
 String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
 GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
 
 ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-```
+</pre>
 
 </details>
 
@@ -88,16 +88,16 @@ Integer
 <details class="tab-container" open>
 <Summary>get the number of records response</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute GET RECORDS API
 Integer appID = 1;
 String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
 GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
 
 Integer count =  response.getTotalCount();
-```
+</pre>
 
 </details>
 
@@ -122,9 +122,9 @@ Integer
 <details class="tab-container" open>
 <Summary>get the the ID of record added</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute ADD RECORD API
 Integer appID = 1;
 HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
@@ -137,7 +137,7 @@ record.put("FieldCode1", fv);
 AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 
 Integer resultID = response.getID();
-```
+</pre>
 
 </details>
 
@@ -158,9 +158,9 @@ Integer
 <details class="tab-container" open>
 <Summary>get the revision number of record added</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute ADD RECORD API
 Integer appID = 1;
 HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
@@ -173,7 +173,7 @@ record.put("FieldCode1", fv);
 AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 
 Integer resultRevision = response.getRevision();
-```
+</pre>
 
 </details>
 
@@ -198,9 +198,9 @@ ArrayList<Integer\>
 <details class="tab-container" open>
 <Summary>get the array of added records ID</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute ADD RECORDS API
 Integer appID = 1;
 ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
@@ -224,7 +224,7 @@ records.add(record2);
 AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 
 ArrayList<Integer> resultIDs = response.getIDs();
-```
+</pre>
 
 </details>
 
@@ -245,9 +245,9 @@ ArrayList<Integer\>
 <details class="tab-container" open>
 <Summary>get the array of added records revision number</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute ADD RECORDS API
 Integer appID = 1;
 ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
@@ -271,7 +271,7 @@ records.add(record2);
 AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
 
 ArrayList<Integer> resultRevisions = response.getRevisions();
-```
+</pre>
 
 </details>
 
@@ -296,9 +296,9 @@ Integer
 <details class="tab-container" open>
 <Summary>get the revision number of record updated</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORD API
 Integer appID = 1;
 Integer recordID = 1;
@@ -314,7 +314,7 @@ record.put("FieldCode1", fv);
 UpdateRecordResponse response = kintoneRecordManager.updateRecordByID(appID, recordID, record, revision);
 
 Integer resultRevision = response.getRevision();
-```
+</pre>
 
 </details>
 
@@ -339,9 +339,9 @@ ArrayList<[RecordUpdateResponseItem](#recordupdateresponseitem)\>
 <details class="tab-container" open>
 <Summary>get the array of added records ID with revision</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORDS API
 Integer appID = 1;
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
@@ -368,7 +368,7 @@ records.add(new RecordUpdateItem(recordId2, null, null, record2));
 UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
 
 ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
-```
+</pre>
 
 </details>
 
@@ -393,9 +393,9 @@ Integer
 <details class="tab-container" open>
 <Summary>get the the ID of record updated</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORDS API
 Integer appID = 1;
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
@@ -425,7 +425,7 @@ ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
 RecordUpdateResponseItem resultRusi = resultRuris.get(0);
 
 Integer resultID = resultRusi.getID();
-```
+</pre>
 
 </details>
 
@@ -446,9 +446,9 @@ Integer
 <details class="tab-container" open>
 <Summary>get the revision number of record updated</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORDS API
 Integer appID = 1;
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
@@ -478,7 +478,7 @@ ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
 RecordUpdateResponseItem resultRusi = resultRuris.get(0);
 
 Integer resultRevision = resultRusi.getRevision();
-```
+</pre>
 
 </details>
 
@@ -500,9 +500,9 @@ Integer resultRevision = resultRusi.getRevision();
 <details class="tab-container" open>
 <Summary>init RecordUpdateItem class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORDS API
 Integer appID = 1;
 HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
@@ -530,7 +530,7 @@ records.add(updateItem1);
 records.add(updateItem2);
 
 UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
-```
+</pre>
 
 </details>
 
@@ -554,14 +554,14 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 <details class="tab-container" open>
 <Summary>init RecordUpdateKey class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 
 String field = "field_code";
 String value = "unique_value1";
 RecordUpdateKey uKey = new RecordUpdateKey(field, value);
-```
+</pre>
 
 </details>
 
@@ -587,9 +587,9 @@ RecordUpdateKey uKey = new RecordUpdateKey(field, value);
 <details class="tab-container" open>
 <Summary>init RecordUpdateStatusItem class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-```java
+<pre class="inline-code">
 // execute UPDATE RECORDS API
 Integer appID = 1;
 String action = "処理開始";
@@ -603,7 +603,7 @@ RecordUpdateStatusItem updateStatusItem = new RecordUpdateStatusItem(action, ass
 
 rusi.add(updateStatusItem);
 UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
-```
+</pre>
 
 </details>
 
