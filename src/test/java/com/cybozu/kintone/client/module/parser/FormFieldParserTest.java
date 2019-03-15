@@ -81,7 +81,7 @@ public class FormFieldParserTest {
 
     @BeforeClass
     public static void setup() {
-        validInput = jsonParser.parse(readInput("/form/field/ValidJsonFormFields.txt"));
+        validInput = jsonParser.parse(readInput("/xxx/xxx/xxx.txt"));
     }
 
     private static String readInput(String file) {
@@ -951,7 +951,7 @@ public class FormFieldParserTest {
                 List<MemberSelectEntity> defaultValue = userSelect.getDefaultValue();
                 assertNotNull(defaultValue);
                 assertEquals(2, defaultValue.size());
-                
+
                 assertTrue(defaultValue.contains(new MemberSelectEntity("dinh", MemberSelectEntityType.USER)));
                 assertTrue(defaultValue.contains(new MemberSelectEntity("cuc", MemberSelectEntityType.USER)));
             } catch (ClassCastException e) {
@@ -1009,7 +1009,8 @@ public class FormFieldParserTest {
 
             Map<String, Field> properties = formFields.getProperties();
             try {
-                DepartmentSelectionField departSelect = (DepartmentSelectionField) properties.get("Department_selection");
+                DepartmentSelectionField departSelect = (DepartmentSelectionField) properties
+                        .get("Department_selection");
                 assertNotNull(departSelect);
                 assertEquals(FieldType.ORGANIZATION_SELECT, departSelect.getType());
                 assertEquals("Department_selection", departSelect.getCode());
@@ -1055,7 +1056,7 @@ public class FormFieldParserTest {
 
                 AbstractInputField number = fields.get("Number_row");
                 assertTrue(number instanceof NumberField);
-                NumberField numberField = (NumberField)number;
+                NumberField numberField = (NumberField) number;
                 assertEquals(FieldType.NUMBER, numberField.getType());
                 assertEquals("Number_row", numberField.getCode());
                 assertEquals("Number row", numberField.getLabel());
@@ -1081,7 +1082,7 @@ public class FormFieldParserTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testParseShouldFailWhenGivenNoCode() throws KintoneAPIException {
-        String invalidMaxValue = readInput("/form/field/NonCodeValue.txt");
+        String invalidMaxValue = readInput("/xxx/xxx/xxx.txt");
 
         assertNotNull(invalidMaxValue);
 
@@ -1091,7 +1092,7 @@ public class FormFieldParserTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testParseShouldFailWhenGivenNoField() throws KintoneAPIException {
-        String invalidMaxValue = readInput("/form/field/NonTypeValue.txt");
+        String invalidMaxValue = readInput("/xxx/xxx/xxx.txt");
 
         assertNotNull(invalidMaxValue);
 

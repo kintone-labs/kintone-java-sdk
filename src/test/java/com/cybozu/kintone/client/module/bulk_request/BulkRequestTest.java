@@ -27,17 +27,17 @@ import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.record.Record;
 
 public class BulkRequestTest {
-    private static int APP_ID = 1618;
-    private static int INVALID_APP_ID = -1;
-	private static String API_TOKEN = "Pfh1IMfXkkvr7GbLuDFBNYIEHedF5rP3k4x6AbG8";
-	
+    private static int APP_ID;
+    private static int INVALID_APP_ID;
+    private static String API_TOKEN = "xxx";
+
     private BulkRequest bulkRequest;
     private BulkRequest bulkRequestCert;
     private BulkRequest bulktokenRequest;
     private Connection connection;
     private Connection tokenConnection;
     private Connection certConnection;
-    
+
     @Before
     public void setup() throws KintoneAPIException {
         Auth auth = new Auth();
@@ -45,13 +45,13 @@ public class BulkRequestTest {
         this.connection = new Connection(TestConstants.DOMAIN, auth);
         this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.bulkRequest = new BulkRequest(this.connection);
-        
+
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
         this.tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
         this.tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
-        
+
         Auth certAuth = new Auth();
         certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
@@ -70,12 +70,12 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record);
 
         BulkRequestResponse responses = this.bulkRequest.execute();
-        
+
         ArrayList<Object> results = responses.getResults();
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
@@ -94,11 +94,11 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
-    
+
     @Test
     public void testAddRecordSuccessCert() throws KintoneAPIException {
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
@@ -113,7 +113,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
@@ -126,7 +126,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
@@ -139,11 +139,11 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
-    
+
     @Test
     public void testAddRecordSuccessWhenRecordNullCert() throws KintoneAPIException {
         this.bulkRequestCert.addRecord(APP_ID, null);
@@ -152,7 +152,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordResponse);
-        AddRecordResponse result1 = (AddRecordResponse)results.get(0);
+        AddRecordResponse result1 = (AddRecordResponse) results.get(0);
         assertTrue(result1.getID() instanceof Integer);
         assertSame(1, result1.getRevision());
     }
@@ -169,14 +169,12 @@ public class BulkRequestTest {
         this.bulktokenRequest.execute();
     }
 
-    
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailWhenAppIDisNullCert() throws KintoneAPIException {
         this.bulkRequestCert.addRecord(null, null);
         this.bulkRequestCert.execute();
     }
 
-    
     @Test(expected = KintoneAPIException.class)
     public void testShouldFailWhenRequestListisNull() throws KintoneAPIException {
         this.bulkRequest.execute();
@@ -186,7 +184,7 @@ public class BulkRequestTest {
     public void testShouldFailWhenRequestListisNullToken() throws KintoneAPIException {
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testShouldFailWhenRequestListisNullCert() throws KintoneAPIException {
         this.bulkRequestCert.execute();
@@ -194,28 +192,27 @@ public class BulkRequestTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailWhenRequestNumbersAreOverflow() throws KintoneAPIException {
-    	for (int i = 0; i <= 20; i++) {
-    		this.bulkRequest.addRecord(APP_ID, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.addRecord(APP_ID, null);
+        }
         this.bulkRequest.execute();
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailWhenRequestNumbersAreOverflowToken() throws KintoneAPIException {
-    	for (int i = 0; i <= 20; i++) {
-    		this.bulktokenRequest.addRecord(APP_ID, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.addRecord(APP_ID, null);
+        }
         this.bulktokenRequest.execute();
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
-    	for (int i = 0; i <= 20; i++) {
-    		this.bulkRequestCert.addRecord(APP_ID, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.addRecord(APP_ID, null);
+        }
         this.bulkRequestCert.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailForInvalidAppId() throws KintoneAPIException {
@@ -228,7 +225,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(INVALID_APP_ID, null);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordShouldFailForInvalidAppIdCert() throws KintoneAPIException {
@@ -297,7 +293,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordsResponse);
-        AddRecordsResponse result1 = (AddRecordsResponse)results.get(0);
+        AddRecordsResponse result1 = (AddRecordsResponse) results.get(0);
 
         assertSame(3, result1.getIDs().size());
         assertTrue(result1.getIDs().get(0) instanceof Integer);
@@ -334,7 +330,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordsResponse);
-        AddRecordsResponse result1 = (AddRecordsResponse)results.get(0);
+        AddRecordsResponse result1 = (AddRecordsResponse) results.get(0);
 
         assertSame(3, result1.getIDs().size());
         assertTrue(result1.getIDs().get(0) instanceof Integer);
@@ -345,7 +341,6 @@ public class BulkRequestTest {
         assertSame(1, result1.getRevisions().get(1));
         assertSame(1, result1.getRevisions().get(2));
     }
-    
 
     @Test
     public void testAddRecordsSuccessCert() throws KintoneAPIException {
@@ -372,7 +367,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof AddRecordsResponse);
-        AddRecordsResponse result1 = (AddRecordsResponse)results.get(0);
+        AddRecordsResponse result1 = (AddRecordsResponse) results.get(0);
 
         assertSame(3, result1.getIDs().size());
         assertTrue(result1.getIDs().get(0) instanceof Integer);
@@ -383,7 +378,6 @@ public class BulkRequestTest {
         assertSame(1, result1.getRevisions().get(1));
         assertSame(1, result1.getRevisions().get(2));
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordsShouldFailWhenAppIDisNull() throws KintoneAPIException {
@@ -405,7 +399,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(null, records);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordsShouldFailForInvalidAppId() throws KintoneAPIException {
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
@@ -430,27 +424,27 @@ public class BulkRequestTest {
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordsShouldFailWhenRequestNumbersAreOverflow() throws KintoneAPIException {
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.addRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.addRecords(APP_ID, records);
+        }
         this.bulkRequest.execute();
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordsShouldFailWhenRequestNumbersAreOverflowToken() throws KintoneAPIException {
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.addRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.addRecords(APP_ID, records);
+        }
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testAddRecordsShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.addRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.addRecords(APP_ID, records);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -537,7 +531,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -554,7 +548,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -569,7 +563,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -586,7 +580,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -601,7 +595,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -618,7 +612,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -633,7 +627,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -644,7 +638,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -659,7 +653,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -670,7 +664,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -685,7 +679,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -696,7 +690,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -712,7 +706,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -730,7 +724,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -746,7 +740,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -764,7 +758,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -780,7 +774,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -798,11 +792,10 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
-    
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByIdShouldFailWhenAppIdNull() throws KintoneAPIException {
         this.bulkRequest = new BulkRequest(this.connection);
@@ -828,7 +821,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordByID(null, 1887, record, 1);
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByIdShouldFailWhenAppIdNullCert() throws KintoneAPIException {
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -931,9 +924,9 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordById");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.updateRecordByID(APP_ID, 1887, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.updateRecordByID(APP_ID, 1887, record, 1);
+        }
         this.bulkRequest.execute();
     }
 
@@ -945,9 +938,9 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordById");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.updateRecordByID(APP_ID, 1887, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.updateRecordByID(APP_ID, 1887, record, 1);
+        }
         this.bulktokenRequest.execute();
     }
 
@@ -959,9 +952,9 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordById");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.updateRecordByID(APP_ID, 1887, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.updateRecordByID(APP_ID, 1887, record, 1);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -998,7 +991,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1035,7 +1028,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1072,10 +1065,10 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
-    
+
     @Test
     public void testUpdateRecordByUpdateKeySuccessWhenRecordNull() throws KintoneAPIException {
         // Preprocessing
@@ -1102,7 +1095,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1132,7 +1125,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1162,9 +1155,10 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
+
     @Test
     public void testUpdateRecordByUpdateKeySuccessWhenRevisionNull() throws KintoneAPIException {
         // Preprocessing
@@ -1196,7 +1190,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1231,7 +1225,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -1266,11 +1260,10 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
-    
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailWhenAppIdNull() throws KintoneAPIException {
         // Preprocessing
@@ -1432,7 +1425,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecordByUpdateKey(INVALID_APP_ID, uKey, record, 1);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailWhenSecondRequestIsWrong() throws KintoneAPIException {
         // Preprocessing
@@ -1488,7 +1481,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordByUpdateKey(INVALID_APP_ID, uKey, record, 1);
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailWhenSecondRequestIsWrongCert() throws KintoneAPIException {
         // Preprocessing
@@ -1516,7 +1509,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecordByUpdateKey(INVALID_APP_ID, uKey, record, 1);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailForInvalidUpdateKey() throws KintoneAPIException {
         // Preprocessing
@@ -1532,7 +1525,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         this.bulkRequest.execute();
         // Main Test processing
-    	this.bulkRequest = new BulkRequest(this.connection);
+        this.bulkRequest = new BulkRequest(this.connection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("Error Field", unique_value);
 
@@ -1559,7 +1552,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         this.bulktokenRequest.execute();
         // Main Test processing
-    	this.bulktokenRequest = new BulkRequest(this.tokenConnection);
+        this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("Error Field", unique_value);
 
@@ -1570,7 +1563,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailForInvalidUpdateKeyCert() throws KintoneAPIException {
@@ -1587,7 +1579,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         this.bulkRequestCert.execute();
         // Main Test processing
-    	this.bulkRequestCert = new BulkRequest(this.certConnection);
+        this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("Error Field", unique_value);
 
@@ -1597,7 +1589,8 @@ public class BulkRequestTest {
         record.put("FieldCode1", fv);
         this.bulkRequestCert.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
         this.bulkRequestCert.execute();
-    }   
+    }
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailWhenRequestNumbersAreOverflow() throws KintoneAPIException {
         // Preprocessing
@@ -1613,7 +1606,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         this.bulkRequest.execute();
         // Main Test processing
-    	this.bulkRequest = new BulkRequest(this.connection);
+        this.bulkRequest = new BulkRequest(this.connection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", unique_value);
 
@@ -1621,9 +1614,9 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordByUpdateKey");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
+        }
         this.bulkRequest.execute();
     }
 
@@ -1642,7 +1635,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         this.bulktokenRequest.execute();
         // Main Test processing
-    	this.bulktokenRequest = new BulkRequest(this.tokenConnection);
+        this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", unique_value);
 
@@ -1650,12 +1643,11 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordByUpdateKey");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
+        }
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordByUpdateKeyShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
@@ -1672,7 +1664,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         this.bulkRequestCert.execute();
         // Main Test processing
-    	this.bulkRequestCert = new BulkRequest(this.certConnection);
+        this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
         RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", unique_value);
 
@@ -1680,9 +1672,9 @@ public class BulkRequestTest {
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_updateRecordByUpdateKey");
         record.put("FieldCode1", fv);
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.updateRecordByUpdateKey(APP_ID, uKey, record, 1);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -1775,7 +1767,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecordByUpdateKey(APP_ID, uKey, record, 1000);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test
     public void testUpdateRecordsSuccess() throws KintoneAPIException {
         // Preprocessing
@@ -1837,7 +1829,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         Integer preId2 = result1_pre.getIDs().get(1);
@@ -1888,7 +1880,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(6, result1.getRecords().size());
         assertEquals(preId1, result1.getRecords().get(0).getID());
@@ -1966,7 +1958,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         Integer preId2 = result1_pre.getIDs().get(1);
@@ -2017,7 +2009,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(6, result1.getRecords().size());
         assertEquals(preId1, result1.getRecords().get(0).getID());
@@ -2095,7 +2087,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         Integer preId2 = result1_pre.getIDs().get(1);
@@ -2146,7 +2138,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(6, result1.getRecords().size());
         assertEquals(preId1, result1.getRecords().get(0).getID());
@@ -2178,7 +2170,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequest = new BulkRequest(this.connection);
@@ -2210,7 +2202,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -2242,7 +2234,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -2258,7 +2250,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecords(null, records);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordsShouldFailWhenSecondRequestIsWrong() throws KintoneAPIException {
         // Preprocessing
@@ -2275,7 +2267,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequest = new BulkRequest(this.connection);
@@ -2309,7 +2301,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -2343,7 +2335,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -2376,7 +2368,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequest = new BulkRequest(this.connection);
@@ -2408,7 +2400,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -2440,7 +2432,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -2473,7 +2465,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequest = new BulkRequest(this.connection);
@@ -2506,7 +2498,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -2539,7 +2531,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -2572,7 +2564,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequest = new BulkRequest(this.connection);
@@ -2584,9 +2576,9 @@ public class BulkRequestTest {
         record1.put("FieldCode1", fv1);
         ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
         records.add(new RecordUpdateItem(preId1, 1, null, record1));
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.updateRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.updateRecords(APP_ID, records);
+        }
         this.bulkRequest.execute();
     }
 
@@ -2606,7 +2598,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -2618,12 +2610,11 @@ public class BulkRequestTest {
         record1.put("FieldCode1", fv1);
         ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
         records.add(new RecordUpdateItem(preId1, 1, null, record1));
-    	for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.updateRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.updateRecords(APP_ID, records);
+        }
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordsShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
@@ -2641,7 +2632,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         Integer preId1 = result1_pre.getIDs().get(0);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -2653,9 +2644,9 @@ public class BulkRequestTest {
         record1.put("FieldCode1", fv1);
         ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
         records.add(new RecordUpdateItem(preId1, 1, null, record1));
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.updateRecords(APP_ID, records);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.updateRecords(APP_ID, records);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -2682,7 +2673,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2696,7 +2687,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
 
     @Test
@@ -2722,7 +2713,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2736,7 +2727,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
 
     @Test
@@ -2762,7 +2753,7 @@ public class BulkRequestTest {
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
 
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2776,7 +2767,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -2793,7 +2784,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2816,7 +2807,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2839,7 +2830,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2870,7 +2861,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<Integer> id1 = new ArrayList<Integer>();
@@ -2905,7 +2896,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<Integer> id1 = new ArrayList<Integer>();
@@ -2940,7 +2931,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<Integer> id1 = new ArrayList<Integer>();
@@ -2953,7 +2944,6 @@ public class BulkRequestTest {
         this.bulkRequestCert.execute();
     }
 
-  
     @Test(expected = KintoneAPIException.class)
     public void testDeleteRecordsShouldFailForInvalidAppId() throws KintoneAPIException {
         // Preprocessing
@@ -2968,7 +2958,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2991,7 +2981,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -3014,7 +3004,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -3034,15 +3024,15 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
 
-    	for (int i = 0; i <= 20; i++) {
-    		ArrayList<Integer> ids = new ArrayList<Integer>();
-    		ids.add(addRecords.getIDs().get(i));
-    		this.bulkRequest.deleteRecords(APP_ID, ids);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            ArrayList<Integer> ids = new ArrayList<Integer>();
+            ids.add(addRecords.getIDs().get(i));
+            this.bulkRequest.deleteRecords(APP_ID, ids);
+        }
         this.bulkRequest.execute();
     }
 
@@ -3057,15 +3047,15 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
 
-    	for (int i = 0; i <= 20; i++) {
-    		ArrayList<Integer> ids = new ArrayList<Integer>();
-    		ids.add(addRecords.getIDs().get(i));
-    		this.bulktokenRequest.deleteRecords(APP_ID, ids);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            ArrayList<Integer> ids = new ArrayList<Integer>();
+            ids.add(addRecords.getIDs().get(i));
+            this.bulktokenRequest.deleteRecords(APP_ID, ids);
+        }
         this.bulktokenRequest.execute();
     }
 
@@ -3080,15 +3070,15 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
 
-    	for (int i = 0; i <= 20; i++) {
-    		ArrayList<Integer> ids = new ArrayList<Integer>();
-    		ids.add(addRecords.getIDs().get(i));
-    		this.bulkRequestCert.deleteRecords(APP_ID, ids);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            ArrayList<Integer> ids = new ArrayList<Integer>();
+            ids.add(addRecords.getIDs().get(i));
+            this.bulkRequestCert.deleteRecords(APP_ID, ids);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -3119,7 +3109,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3134,7 +3124,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
 
     @Test
@@ -3164,7 +3154,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3179,9 +3169,8 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
-
 
     @Test
     public void testDeleteRecordsWithRevisionSuccessCert() throws KintoneAPIException {
@@ -3210,7 +3199,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3225,7 +3214,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof HashMap);
-        assertTrue(((HashMap)results.get(0)).isEmpty());
+        assertTrue(((HashMap) results.get(0)).isEmpty());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -3242,7 +3231,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3266,7 +3255,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3290,7 +3279,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3299,7 +3288,6 @@ public class BulkRequestTest {
         this.bulkRequestCert.deleteRecordsWithRevision(null, idsWithRevision);
         this.bulkRequestCert.execute();
     }
-     
 
     @Test(expected = KintoneAPIException.class)
     public void testDeleteRecordsWithRevisionShouldFailForInvalidAppIDs() throws KintoneAPIException {
@@ -3315,7 +3303,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3339,7 +3327,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3348,7 +3336,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.deleteRecordsWithRevision(INVALID_APP_ID, idsWithRevision);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testDeleteRecordsWithRevisionShouldFailForInvalidAppIDsCert() throws KintoneAPIException {
@@ -3364,7 +3351,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3395,7 +3382,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         HashMap<Integer, Integer> idsWithRevision1 = new HashMap<Integer, Integer>();
@@ -3429,7 +3416,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<Integer, Integer> idsWithRevision1 = new HashMap<Integer, Integer>();
@@ -3463,7 +3450,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<Integer, Integer> idsWithRevision1 = new HashMap<Integer, Integer>();
@@ -3490,7 +3477,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3514,7 +3501,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3523,7 +3510,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.deleteRecordsWithRevision(APP_ID, idsWithRevision);
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testDeleteRecordsWithRevisionShouldFailForInvalidRevisionCert() throws KintoneAPIException {
         // Preprocessing
@@ -3538,7 +3525,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
@@ -3559,14 +3546,14 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
-    		idsWithRevision.put(addRecords.getIDs().get(i), 1);
-    		this.bulkRequest.deleteRecordsWithRevision(APP_ID, idsWithRevision);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
+            idsWithRevision.put(addRecords.getIDs().get(i), 1);
+            this.bulkRequest.deleteRecordsWithRevision(APP_ID, idsWithRevision);
+        }
         this.bulkRequest.execute();
     }
 
@@ -3581,14 +3568,14 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
-    		idsWithRevision.put(addRecords.getIDs().get(i), 1);
-    		this.bulktokenRequest.deleteRecordsWithRevision(APP_ID, idsWithRevision);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
+            idsWithRevision.put(addRecords.getIDs().get(i), 1);
+            this.bulktokenRequest.deleteRecordsWithRevision(APP_ID, idsWithRevision);
+        }
         this.bulktokenRequest.execute();
     }
 
@@ -3603,14 +3590,14 @@ public class BulkRequestTest {
             fv_pre.setValue("test_value1");
             record1_pre.put("FieldCode1", fv_pre);
             records_pre.add(record1_pre);
-		}
+        }
         Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
-    		idsWithRevision.put(addRecords.getIDs().get(i), 1);
-    		this.bulkRequestCert.deleteRecordsWithRevision(APP_ID, idsWithRevision);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
+            idsWithRevision.put(addRecords.getIDs().get(i), 1);
+            this.bulkRequestCert.deleteRecordsWithRevision(APP_ID, idsWithRevision);
+        }
         this.bulkRequestCert.execute();
     }
 
@@ -3626,7 +3613,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -3640,7 +3627,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3656,7 +3643,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -3670,7 +3657,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3686,7 +3673,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -3700,7 +3687,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3717,7 +3704,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -3730,7 +3717,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3747,7 +3734,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -3760,7 +3747,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3777,7 +3764,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -3790,7 +3777,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3807,7 +3794,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -3819,7 +3806,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3836,7 +3823,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -3848,7 +3835,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3865,7 +3852,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -3877,7 +3864,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(2, result1.getRevision());
     }
 
@@ -3893,7 +3880,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -3916,7 +3903,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -3926,7 +3913,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordAssignees(null, preId, assignees, 1);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateAssigneesRecordShouldFailWhenAppIdNullCert() throws KintoneAPIException {
@@ -3940,7 +3926,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -3963,15 +3949,15 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<String> assignees = new ArrayList<String>();
         assignees.add("yfang");
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.updateRecordAssignees(APP_ID, preId, assignees, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequest.updateRecordAssignees(APP_ID, preId, assignees, null);
+        }
         this.bulkRequest.execute();
     }
 
@@ -3987,18 +3973,17 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<String> assignees = new ArrayList<String>();
         assignees.add("yfang");
-    	for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.updateRecordAssignees(APP_ID, preId, assignees, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulktokenRequest.updateRecordAssignees(APP_ID, preId, assignees, null);
+        }
         this.bulktokenRequest.execute();
     }
-    
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateAssigneesRecordShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
@@ -4012,18 +3997,17 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<String> assignees = new ArrayList<String>();
         assignees.add("yfang");
-    	for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.updateRecordAssignees(APP_ID, preId, assignees, null);
-    	}
+        for (int i = 0; i <= 20; i++) {
+            this.bulkRequestCert.updateRecordAssignees(APP_ID, preId, assignees, null);
+        }
         this.bulkRequestCert.execute();
     }
-    
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateAssigneesRecordShouldFailWhenSecondRequestIsWrong() throws KintoneAPIException {
@@ -4037,7 +4021,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4062,7 +4046,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4087,7 +4071,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4100,7 +4084,6 @@ public class BulkRequestTest {
         this.bulkRequestCert.execute();
     }
 
-    
     @Test(expected = KintoneAPIException.class)
     public void testUpdateAssigneesRecordShouldFailForInvalidAppId() throws KintoneAPIException {
         // Preprocessing
@@ -4113,7 +4096,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4136,7 +4119,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4159,7 +4142,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4182,7 +4165,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4205,7 +4188,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4228,7 +4211,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4251,7 +4234,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4274,7 +4257,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4284,7 +4267,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordAssignees(APP_ID, preId, assignees, 100);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateAssigneesRecordShouldFailForInvalidRevisionCert() throws KintoneAPIException {
@@ -4298,7 +4280,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecord(APP_ID, record_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4322,7 +4304,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4334,7 +4316,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
 
@@ -4351,7 +4333,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4363,7 +4345,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
 
@@ -4380,7 +4362,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4392,7 +4374,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
 
@@ -4409,7 +4391,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4421,7 +4403,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
 
@@ -4438,7 +4420,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4450,9 +4432,10 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
+
     @Test
     public void testUpdateRecordStatusSuccessWhenRevisionNullCert() throws KintoneAPIException {
         // Preprocessing
@@ -4466,7 +4449,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4478,7 +4461,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(3, result1.getRevision());
     }
 
@@ -4494,7 +4477,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
 
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4509,7 +4492,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(5, result1.getRevision());
     }
 
@@ -4525,7 +4508,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
 
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -4540,7 +4523,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(5, result1.getRevision());
     }
 
@@ -4556,7 +4539,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
 
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4571,7 +4554,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordResponse);
-        UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+        UpdateRecordResponse result1 = (UpdateRecordResponse) results.get(0);
         assertSame(5, result1.getRevision());
     }
 
@@ -4588,7 +4571,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4609,14 +4592,14 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         this.bulktokenRequest.updateRecordStatus(null, preId, "処理開始", "Administrator", 1);
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenAppIdNullCert() throws KintoneAPIException {
         // Preprocessing
@@ -4630,7 +4613,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4638,23 +4621,23 @@ public class BulkRequestTest {
         this.bulkRequestCert.execute();
     }
 
-
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenRequestNumbersAreOverflow() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.connection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 20; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang", addRecords.getRevisions().get(i));
+            this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang",
+                    addRecords.getRevisions().get(i));
         }
         this.bulkRequest.execute();
     }
@@ -4662,40 +4645,41 @@ public class BulkRequestTest {
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenRequestNumbersAreOverflowToken() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.tokenConnection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 20; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang", addRecords.getRevisions().get(i));
+            this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang",
+                    addRecords.getRevisions().get(i));
         }
         this.bulktokenRequest.execute();
     }
 
-
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 20; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.certConnection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 20; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang", addRecords.getRevisions().get(i));
+            this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(i), "処理開始", "yfang",
+                    addRecords.getRevisions().get(i));
         }
         this.bulkRequestCert.execute();
     }
@@ -4703,58 +4687,63 @@ public class BulkRequestTest {
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenSecondRequestIsWrong() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 1; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.connection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 1; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-        this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang", addRecords.getRevisions().get(0));
-        this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang", addRecords.getRevisions().get(1));
+        this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang",
+                addRecords.getRevisions().get(0));
+        this.bulkRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang",
+                addRecords.getRevisions().get(1));
         this.bulkRequest.execute();
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenSecondRequestIsWrongToken() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 1; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.tokenConnection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 1; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-        this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang", addRecords.getRevisions().get(0));
-        this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang", addRecords.getRevisions().get(1));
+        this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang",
+                addRecords.getRevisions().get(0));
+        this.bulktokenRequest.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang",
+                addRecords.getRevisions().get(1));
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailWhenSecondRequestIsWrongCert() throws KintoneAPIException {
         // Preprocessing
-    	ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
-    	for (int i = 0; i <= 1; i++) {
-    		HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-    		FieldValue fv_pre = new FieldValue();
-    		fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-    		fv_pre.setValue("test_updateRecordStatus");
-    		record1_pre.put("FieldCode1", fv_pre);
-    		records_pre.add(record1_pre);
-    	}
-    	Record record = new Record(this.certConnection);
+        ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
+        for (int i = 0; i <= 1; i++) {
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordStatus");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
+        }
+        Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
-        this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang", addRecords.getRevisions().get(0));
-        this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang", addRecords.getRevisions().get(1));
+        this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(0), "処理開始", "yfang",
+                addRecords.getRevisions().get(0));
+        this.bulkRequestCert.updateRecordStatus(APP_ID, addRecords.getIDs().get(1), "処理開始1", "yfang",
+                addRecords.getRevisions().get(1));
         this.bulkRequestCert.execute();
     }
 
@@ -4771,7 +4760,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4792,14 +4781,13 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         this.bulktokenRequest.updateRecordStatus(INVALID_APP_ID, preId, "処理開始", "xxxxxxxxxx", 1);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailForInvalidAppIdCert() throws KintoneAPIException {
@@ -4814,7 +4802,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4835,7 +4823,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4856,14 +4844,13 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         this.bulktokenRequest.updateRecordStatus(APP_ID, preId, "処理開始", "yfang123", 1);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailForInvalidAssigneeCert() throws KintoneAPIException {
@@ -4878,7 +4865,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -4899,7 +4886,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4920,14 +4907,13 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         this.bulktokenRequest.updateRecordStatus(APP_ID, preId, "処理開始", "xxxxxxxxxx", 100);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailForInvalidRevisionCert() throws KintoneAPIException {
@@ -4942,14 +4928,14 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         this.bulkRequestCert.updateRecordStatus(APP_ID, preId, "処理開始", "yfang", 100);
         this.bulkRequestCert.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateRecordStatusShouldFailForInvalidStatus() throws KintoneAPIException {
         // Preprocessing
@@ -4963,7 +4949,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -4984,7 +4970,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -5005,7 +4991,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -5041,7 +5027,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5056,7 +5042,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(3, result1.getRecords().size());
         assertEquals(result1_pre.getIDs().get(0), result1.getRecords().get(0).getID());
@@ -5095,7 +5081,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5110,7 +5096,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(3, result1.getRecords().size());
         assertEquals(result1_pre.getIDs().get(0), result1.getRecords().get(0).getID());
@@ -5149,7 +5135,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5164,7 +5150,7 @@ public class BulkRequestTest {
         assertNotNull(results);
         assertSame(1, results.size());
         assertTrue(results.get(0) instanceof UpdateRecordsResponse);
-        UpdateRecordsResponse result1 = (UpdateRecordsResponse)results.get(0);
+        UpdateRecordsResponse result1 = (UpdateRecordsResponse) results.get(0);
 
         assertSame(3, result1.getRecords().size());
         assertEquals(result1_pre.getIDs().get(0), result1.getRecords().get(0).getID());
@@ -5190,7 +5176,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5214,7 +5200,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5222,7 +5208,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordsStatus(null, rusi);
         this.bulktokenRequest.execute();
     }
-    
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailWhenAppIdNullCert() throws KintoneAPIException {
@@ -5239,7 +5224,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5247,7 +5232,6 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecordsStatus(null, rusi);
         this.bulkRequestCert.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailForInvalidAppId() throws KintoneAPIException {
@@ -5264,7 +5248,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5288,7 +5272,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5296,7 +5280,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordsStatus(INVALID_APP_ID, rusi);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailForInvalidAppIdCert() throws KintoneAPIException {
@@ -5313,7 +5296,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5337,7 +5320,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5361,7 +5344,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5369,7 +5352,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordsStatus(APP_ID, rusi);
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailForInvalidAssigneeCert() throws KintoneAPIException {
         // Preprocessing
@@ -5385,7 +5368,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5409,7 +5392,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5433,7 +5416,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5441,7 +5424,6 @@ public class BulkRequestTest {
         this.bulktokenRequest.updateRecordsStatus(APP_ID, rusi);
         this.bulktokenRequest.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailForInvalidRecordCert() throws KintoneAPIException {
@@ -5458,7 +5440,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5472,12 +5454,12 @@ public class BulkRequestTest {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 1; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
@@ -5496,12 +5478,12 @@ public class BulkRequestTest {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 1; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
@@ -5520,12 +5502,12 @@ public class BulkRequestTest {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 1; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
@@ -5544,19 +5526,19 @@ public class BulkRequestTest {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 20; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.connection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        	ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
-        	rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
-        	this.bulkRequest.updateRecordsStatus(APP_ID, rusi);
+            ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+            rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
+            this.bulkRequest.updateRecordsStatus(APP_ID, rusi);
         }
         this.bulkRequest.execute();
     }
@@ -5566,41 +5548,41 @@ public class BulkRequestTest {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 20; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.tokenConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        	ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
-        	rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
-        	this.bulktokenRequest.updateRecordsStatus(APP_ID, rusi);
+            ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+            rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
+            this.bulktokenRequest.updateRecordsStatus(APP_ID, rusi);
         }
         this.bulktokenRequest.execute();
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailWhenRequestNumbersAreOverflowCert() throws KintoneAPIException {
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records_pre = new ArrayList<HashMap<String, FieldValue>>();
         for (int i = 0; i <= 20; i++) {
-        	HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
-        	FieldValue fv_pre = new FieldValue();
-        	fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
-        	fv_pre.setValue("test_updateRecordsStatus1");
-        	record1_pre.put("FieldCode1", fv_pre);
-        	records_pre.add(record1_pre);
+            HashMap<String, FieldValue> record1_pre = new HashMap<String, FieldValue>();
+            FieldValue fv_pre = new FieldValue();
+            fv_pre.setType(FieldType.SINGLE_LINE_TEXT);
+            fv_pre.setValue("test_updateRecordsStatus1");
+            record1_pre.put("FieldCode1", fv_pre);
+            records_pre.add(record1_pre);
         }
         Record record = new Record(this.certConnection);
         AddRecordsResponse addRecords = record.addRecords(APP_ID, records_pre);
         for (int i = 0; i <= 20; i++) {
-        	ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
-        	rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
-        	this.bulkRequestCert.updateRecordsStatus(APP_ID, rusi);
+            ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+            rusi.add(new RecordUpdateStatusItem("処理開始", "yfang", addRecords.getIDs().get(i), null));
+            this.bulkRequestCert.updateRecordsStatus(APP_ID, rusi);
         }
         this.bulkRequestCert.execute();
     }
@@ -5620,7 +5602,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5645,7 +5627,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5670,7 +5652,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5679,7 +5661,6 @@ public class BulkRequestTest {
         this.bulkRequestCert.updateRecordsStatus(APP_ID, rusi);
         this.bulkRequestCert.execute();
     }
-
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateStatusRecordsShouldFailForInvlalidRevision() throws KintoneAPIException {
@@ -5696,7 +5677,7 @@ public class BulkRequestTest {
         this.bulkRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequest = new BulkRequest(this.connection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5720,7 +5701,7 @@ public class BulkRequestTest {
         this.bulktokenRequest.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5744,7 +5725,7 @@ public class BulkRequestTest {
         this.bulkRequestCert.addRecords(APP_ID, records_pre);
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordsResponse result1_pre = (AddRecordsResponse)results_pre.get(0);
+        AddRecordsResponse result1_pre = (AddRecordsResponse) results_pre.get(0);
         // Main Test processing
         this.bulkRequestCert = new BulkRequest(this.certConnection);
         ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
@@ -5766,7 +5747,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequest = new BulkRequest(this.connection);
@@ -5797,7 +5778,7 @@ public class BulkRequestTest {
 
         try {
             this.bulkRequest.execute();
-        } catch(KintoneAPIException ex) {
+        } catch (KintoneAPIException ex) {
             String[] exinfo = ex.toString().split(", ", 0);
             assertEquals("api_no: 2", exinfo[0]);
             assertEquals("method: PUT", exinfo[1]);
@@ -5809,7 +5790,7 @@ public class BulkRequestTest {
     }
 
     @Test
-    public void testUpdateRecordByIdShouldFailForInvalidRevisionToken() throws KintoneAPIException{
+    public void testUpdateRecordByIdShouldFailForInvalidRevisionToken() throws KintoneAPIException {
         // Preprocessing
         HashMap<String, FieldValue> record_pre = new HashMap<String, FieldValue>();
 
@@ -5821,7 +5802,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulktokenRequest.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
@@ -5852,7 +5833,7 @@ public class BulkRequestTest {
 
         try {
             this.bulktokenRequest.execute();
-        } catch(KintoneAPIException ex) {
+        } catch (KintoneAPIException ex) {
             String[] exinfo = ex.toString().split(", ", 0);
             assertEquals("api_no: 2", exinfo[0]);
             assertEquals("method: PUT", exinfo[1]);
@@ -5862,7 +5843,7 @@ public class BulkRequestTest {
             assertEquals("status: 409", exinfo[7]);
         }
     }
-    
+
     @Test
     public void testUpdateRecordByIdShouldFailForInvalidRevisionCert() throws KintoneAPIException {
         // Preprocessing
@@ -5876,7 +5857,7 @@ public class BulkRequestTest {
 
         BulkRequestResponse responses_pre = this.bulkRequestCert.execute();
         ArrayList<Object> results_pre = responses_pre.getResults();
-        AddRecordResponse result_pre = (AddRecordResponse)results_pre.get(0);
+        AddRecordResponse result_pre = (AddRecordResponse) results_pre.get(0);
         // Main Test processing
         Integer preId = result_pre.getID();
         this.bulkRequestCert = new BulkRequest(this.certConnection);
@@ -5907,7 +5888,7 @@ public class BulkRequestTest {
 
         try {
             this.bulkRequestCert.execute();
-        } catch(KintoneAPIException ex) {
+        } catch (KintoneAPIException ex) {
             String[] exinfo = ex.toString().split(", ", 0);
             assertEquals("api_no: 2", exinfo[0]);
             assertEquals("method: PUT", exinfo[1]);
@@ -5918,4 +5899,3 @@ public class BulkRequestTest {
         }
     }
 }
-
