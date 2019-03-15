@@ -22,10 +22,10 @@ import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.record.Record;
 
 public class FileTest {
-	private static int APP_ID = 1651;
-	private static int RESTRICT_APP_ID = 1654;
-	private static String API_TOKEN = "pxrmW36BFVoSo2vrd5dVRlJThKVOMuO8hQN9b1jP";
-	private static String NO_DOWNLOAD_PERMISSION_API_TOKEN = "PuyVmAC5t2c8n7WzIoxhw1dN1ups2uwk5yeC385A";
+    private static int APP_ID;
+    private static int RESTRICT_APP_ID;
+    private static String API_TOKEN = "xxx";
+    private static String NO_DOWNLOAD_PERMISSION_API_TOKEN = "xxx";
 
     private Connection connection;
     private Connection tokenConnection;
@@ -43,19 +43,19 @@ public class FileTest {
         this.connection = new Connection(TestConstants.DOMAIN, auth);
         this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.file = new File(this.connection);
-        
+
         Auth tokenauth = new Auth();
         tokenauth.setApiToken(API_TOKEN);
-		this.tokenConnection = new Connection(TestConstants.DOMAIN, tokenauth);
-        this.tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT); 
+        this.tokenConnection = new Connection(TestConstants.DOMAIN, tokenauth);
+        this.tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.tokenFile = new File(this.tokenConnection);
-        
+
         Auth noPermissiontokenauth = new Auth();
         noPermissiontokenauth.setApiToken(NO_DOWNLOAD_PERMISSION_API_TOKEN);
-		this.noPermissionTokenConnection = new Connection(TestConstants.DOMAIN, noPermissiontokenauth);
-        this.noPermissionTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT); 
+        this.noPermissionTokenConnection = new Connection(TestConstants.DOMAIN, noPermissiontokenauth);
+        this.noPermissionTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noDownloadPermissionTokenFile = new File(this.noPermissionTokenConnection);
-        
+
         Auth certAuth = new Auth();
         certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
@@ -66,14 +66,14 @@ public class FileTest {
 
     @Test
     public void testUploadSuccessForSingleFile() throws KintoneAPIException {
-    	HashMap<String, FieldValue> addRecord = new HashMap<>();
-    	Record recordManagement = new Record(connection);
-    	AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
-    	Integer id = addResponse.getID();
+        HashMap<String, FieldValue> addRecord = new HashMap<>();
+        Record recordManagement = new Record(connection);
+        AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
+        Integer id = addResponse.getID();
 
-    	FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
 
-    	HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
+        HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
 
@@ -87,25 +87,25 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
     @Test
     public void testUploadSuccessForSingleFileToken() throws KintoneAPIException {
-    	HashMap<String, FieldValue> addRecord = new HashMap<>();
-    	Record recordManagement = new Record(tokenConnection);
-    	AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
-    	Integer id = addResponse.getID();
+        HashMap<String, FieldValue> addRecord = new HashMap<>();
+        Record recordManagement = new Record(tokenConnection);
+        AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
+        Integer id = addResponse.getID();
 
-    	FileModel fileModel = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
 
-    	HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
+        HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
 
@@ -119,25 +119,25 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
     @Test
     public void testUploadSuccessForSingleFileCert() throws KintoneAPIException {
-    	HashMap<String, FieldValue> addRecord = new HashMap<>();
-    	Record recordManagement = new Record(certConnection);
-    	AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
-    	Integer id = addResponse.getID();
+        HashMap<String, FieldValue> addRecord = new HashMap<>();
+        Record recordManagement = new Record(certConnection);
+        AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
+        Integer id = addResponse.getID();
 
-    	FileModel fileModel = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
 
-    	HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
+        HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
 
@@ -151,16 +151,16 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}		
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
-    //Java Memory Error
+    // Java Memory Error
     @Ignore
     @Test
     public void testUploadSuccessForSingleOver1GBFile() throws KintoneAPIException {
@@ -193,7 +193,7 @@ public class FileTest {
         Record recordManagement = new Record(connection);
         recordManagement.updateRecordByID(APP_ID, 1, testRecord, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testUploadFailForNonExistPathToken() throws KintoneAPIException {
         FileModel fileModel = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "1");
@@ -261,13 +261,13 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
     @Test
@@ -305,13 +305,13 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
     @Test
@@ -349,13 +349,13 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(1, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(1, alf.size());
+            }
+        }
     }
 
     @Test
@@ -382,13 +382,13 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(3, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(3, alf.size());
+            }
+        }
     }
 
     @Test
@@ -416,13 +416,13 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(3, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(3, alf.size());
+            }
+        }
     }
 
     @Test
@@ -450,21 +450,21 @@ public class FileTest {
 
         GetRecordResponse recordResponse = recordManagement.getRecord(APP_ID, id);
         HashMap<String, FieldValue> record = recordResponse.getRecord();
-		for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
-			assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
-			if (FieldType.FILE == record.get(entry.getKey()).getType()) {
-				ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
-				assertEquals(3, alf.size());
-			}
-		}
+        for (Entry<String, FieldValue> entry : testRecord.entrySet()) {
+            assertEquals(entry.getValue().getType(), record.get(entry.getKey()).getType());
+            if (FieldType.FILE == record.get(entry.getKey()).getType()) {
+                ArrayList<FileModel> alf = (ArrayList<FileModel>) record.get(entry.getKey()).getValue();
+                assertEquals(3, alf.size());
+            }
+        }
     }
-    
+
     @Test
     public void testUploadFailForUnexistFileKey() throws KintoneAPIException {
         try {
             // ファイルのアップロード
             this.file.upload("xxxxxxxxxxxxxxxxxxxxxxxxx");
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("cannot open file", ke.getMessage());
         }
     }
@@ -474,7 +474,7 @@ public class FileTest {
         try {
             // ファイルのアップロード
             this.tokenFile.upload("xxxxxxxxxxxxxxxxxxxxxxxxx");
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("cannot open file", ke.getMessage());
         }
     }
@@ -484,12 +484,12 @@ public class FileTest {
         try {
             // ファイルのアップロード
             this.certFile.upload("xxxxxxxxxxxxxxxxxxxxxxxxx");
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("cannot open file", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadSuccessForSingleFile() throws KintoneAPIException {
         // レコード取得
         Record record = new Record(connection);
@@ -502,7 +502,7 @@ public class FileTest {
         this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
-	@Test
+    @Test
     public void testDownloadSuccessForSingleFileToken() throws KintoneAPIException {
         // レコード取得
         Record record = new Record(tokenConnection);
@@ -515,7 +515,7 @@ public class FileTest {
         this.tokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
-	@Test
+    @Test
     public void testDownloadSuccessForSingleFileCert() throws KintoneAPIException {
         // レコード取得
         Record record = new Record(certConnection);
@@ -539,7 +539,7 @@ public class FileTest {
         FileModel fdata = fileList.get(0);
         this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testDownloadFailForNoPermissionToken() throws KintoneAPIException {
         Record record = new Record(noPermissionTokenConnection);
@@ -549,7 +549,8 @@ public class FileTest {
         ArrayList<FileModel> fileList = (ArrayList<FileModel>) fileVal.getValue();
 
         FileModel fdata = fileList.get(0);
-        noDownloadPermissionTokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        noDownloadPermissionTokenFile.download(fdata.getFileKey(),
+                TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -612,7 +613,7 @@ public class FileTest {
 
     @Test
     public void testDownloadFailForUnexistFileKey() throws KintoneAPIException {
-    	Record record = new Record(connection);
+        Record record = new Record(connection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 3);
         HashMap<String, FieldValue> recordVal = recordJson.getRecord();
         FieldValue fileVal = recordVal.get("attachment1");
@@ -621,15 +622,16 @@ public class FileTest {
         try {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
-            this.file.download("12345678910abcdefghijklmnopqrstuvwxyz", TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+            this.file.download("12345678910abcdefghijklmnopqrstuvwxyz",
+                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
     }
 
     @Test
     public void testDownloadFailForUnexistFileKeyToken() throws KintoneAPIException {
-    	Record record = new Record(tokenConnection);
+        Record record = new Record(tokenConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 3);
         HashMap<String, FieldValue> recordVal = recordJson.getRecord();
         FieldValue fileVal = recordVal.get("attachment1");
@@ -638,8 +640,9 @@ public class FileTest {
         try {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
-            this.tokenFile.download("12345678910abcdefghijklmnopqrstuvwxyz", TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+            this.tokenFile.download("12345678910abcdefghijklmnopqrstuvwxyz",
+                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
     }
@@ -647,7 +650,7 @@ public class FileTest {
     @Test
     public void testDownloadFailForUnexistFileKeyCert() throws KintoneAPIException {
 
-    	Record record = new Record(certConnection);
+        Record record = new Record(certConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 3);
         HashMap<String, FieldValue> recordVal = recordJson.getRecord();
         FieldValue fileVal = recordVal.get("attachment1");
@@ -656,13 +659,14 @@ public class FileTest {
         try {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
-            this.certFile.download("12345678910abcdefghijklmnopqrstuvwxyz", TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+            this.certFile.download("12345678910abcdefghijklmnopqrstuvwxyz",
+                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadFailForNoFileKey() throws KintoneAPIException {
         Record record = new Record(connection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -673,12 +677,12 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             this.file.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadFailForNoFileKeyToken() throws KintoneAPIException {
         Record record = new Record(tokenConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -689,12 +693,12 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             tokenFile.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadFailForNoFileKeyCert() throws KintoneAPIException {
         Record record = new Record(certConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -705,12 +709,12 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             this.certFile.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadFailForNonExistPath() throws KintoneAPIException {
         Record record = new Record(connection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -721,12 +725,12 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }
     }
 
-	@Test
+    @Test
     public void testDownloadFailForNonExistPathToken() throws KintoneAPIException {
         Record record = new Record(tokenConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -737,12 +741,12 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             this.tokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }
     }
-	
-	@Test
+
+    @Test
     public void testDownloadFailForNonExistPathCert() throws KintoneAPIException {
         Record record = new Record(certConnection);
         GetRecordResponse recordJson = record.getRecord(APP_ID, 1);
@@ -753,7 +757,7 @@ public class FileTest {
         try {
             FileModel fdata = fileList.get(0);
             this.certFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
-        } catch(KintoneAPIException ke) {
+        } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }
     }
