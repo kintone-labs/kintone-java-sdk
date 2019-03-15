@@ -31,11 +31,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class BulkRequestParserTest {
-    private static int APP_ID = 1660;
+    private static int APP_ID;
 
     private BulkRequest bulkRequest;
     private Connection connection;
-	private Record passwordAuthRecordManagerment;
+    private Record passwordAuthRecordManagerment;
 
     @Before
     public void setup() {
@@ -48,14 +48,14 @@ public class BulkRequestParserTest {
         this.passwordAuthRecordManagerment = new Record(connection);
     }
 
-	public HashMap<String, FieldValue> createTestRecord() {
-        HashMap<String, FieldValue> testRecord= new HashMap<String, FieldValue>();
+    public HashMap<String, FieldValue> createTestRecord() {
+        HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_AddRecord");
         testRecord.put("FieldCode1", fv);
-		return testRecord;
-	}
+        return testRecord;
+    }
 
     @Test
     public void testParseObjectReturnAddRecordResponseSuccess() throws KintoneAPIException {
@@ -73,10 +73,10 @@ public class BulkRequestParserTest {
 
     @Test
     public void testParseObjectReturnAddRecordsResponseSuccess() throws KintoneAPIException {
-    	HashMap<String, FieldValue> records1 = new HashMap<String, FieldValue>();
-    	HashMap<String, FieldValue> records2 = new HashMap<String, FieldValue>();
-		ArrayList<HashMap<String, FieldValue>> al = new ArrayList<HashMap<String, FieldValue>>();
-    	FieldValue fv = new FieldValue();
+        HashMap<String, FieldValue> records1 = new HashMap<String, FieldValue>();
+        HashMap<String, FieldValue> records2 = new HashMap<String, FieldValue>();
+        ArrayList<HashMap<String, FieldValue>> al = new ArrayList<HashMap<String, FieldValue>>();
+        FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_AddRecord1");
         records1.put("FieldCode1", fv);
@@ -94,22 +94,22 @@ public class BulkRequestParserTest {
         assertTrue(parseObject.contains("ids"));
     }
 
-	@Test
-	public void testParseObjectReturnUpdateRecordResponseSuccess() throws KintoneAPIException {
-		// Preprocessing
-		HashMap<String, FieldValue> testRecord = createTestRecord();
-		AddRecordResponse addResponse = this.passwordAuthRecordManagerment.addRecord(APP_ID, testRecord);
-		// Main Test processing
-		Integer id = addResponse.getID();
-		Integer revision = addResponse.getRevision();
+    @Test
+    public void testParseObjectReturnUpdateRecordResponseSuccess() throws KintoneAPIException {
+        // Preprocessing
+        HashMap<String, FieldValue> testRecord = createTestRecord();
+        AddRecordResponse addResponse = this.passwordAuthRecordManagerment.addRecord(APP_ID, testRecord);
+        // Main Test processing
+        Integer id = addResponse.getID();
+        Integer revision = addResponse.getRevision();
 
-		HashMap<String, FieldValue> updateRecord = new HashMap<>();
+        HashMap<String, FieldValue> updateRecord = new HashMap<>();
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_AddRecord111");
         updateRecord.put("FieldCode1", fv);
 
-		this.bulkRequest.updateRecordByID(APP_ID, id, updateRecord,revision);
+        this.bulkRequest.updateRecordByID(APP_ID, id, updateRecord, revision);
         BulkRequestResponse responses = this.bulkRequest.execute();
         ArrayList<Object> results = responses.getResults();
 
@@ -117,19 +117,19 @@ public class BulkRequestParserTest {
         BulkRequestParser brp = new BulkRequestParser();
         String parseObject = brp.parseObject(object);
         assertTrue(parseObject.contains("revision"));
-	}
+    }
 
-	@Test
-	public void testParseObjectReturnUpdateRecordsResponseSuccess() throws KintoneAPIException {
-		// Preprocessing
-		ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
-		HashMap<String, FieldValue> testRecord1 = createTestRecord();
-		HashMap<String, FieldValue> testRecord2 = createTestRecord();
-		records.add(testRecord1);
-		records.add(testRecord2);
-		AddRecordsResponse addRecordsResponse = this.passwordAuthRecordManagerment.addRecords(APP_ID, records);
+    @Test
+    public void testParseObjectReturnUpdateRecordsResponseSuccess() throws KintoneAPIException {
+        // Preprocessing
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+        HashMap<String, FieldValue> testRecord1 = createTestRecord();
+        HashMap<String, FieldValue> testRecord2 = createTestRecord();
+        records.add(testRecord1);
+        records.add(testRecord2);
+        AddRecordsResponse addRecordsResponse = this.passwordAuthRecordManagerment.addRecords(APP_ID, records);
 
-		HashMap<String, FieldValue> updateRecord1 = new HashMap<>();
+        HashMap<String, FieldValue> updateRecord1 = new HashMap<>();
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("test_AddRecord111");
@@ -144,7 +144,7 @@ public class BulkRequestParserTest {
         updateRecords.add(item1);
         updateRecords.add(item2);
 
-		this.bulkRequest.updateRecords(APP_ID, updateRecords);
+        this.bulkRequest.updateRecords(APP_ID, updateRecords);
         BulkRequestResponse responses = this.bulkRequest.execute();
         ArrayList<Object> results = responses.getResults();
 
@@ -152,7 +152,7 @@ public class BulkRequestParserTest {
         Object object1 = results.get(0);
         String parseObject1 = brp.parseObject(object1);
         assertTrue(parseObject1.contains("records"));
-	}
+    }
 
     @Test
     public void testParseJsonReturnAddRecordResponseSuccess() throws KintoneAPIException {
@@ -160,18 +160,19 @@ public class BulkRequestParserTest {
         postBody.addProperty("app", APP_ID);
         JsonObject value = new JsonObject();
         value.addProperty("value", "123456");
-        JsonObject textField= new JsonObject();
+        JsonObject textField = new JsonObject();
         textField.add("text", value);
         postBody.add("record", textField);
 
-        JsonElement je = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORD, postBody.toString());
+        JsonElement je = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORD,
+                postBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je, AddRecordResponse.class);
         assertTrue(parseJson instanceof AddRecordResponse);
         String parseObject = brp.parseObject(parseJson);
         assertTrue(parseObject.contains("id"));
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testParseJsonReturnAddRecordResponseShouldFailWithInvalidJson() throws KintoneAPIException {
         JsonObject postBody = new JsonObject();
@@ -180,7 +181,7 @@ public class BulkRequestParserTest {
         BulkRequestParser brp = new BulkRequestParser();
         brp.parseJson(postBody, AddRecordRequest.class);
     }
-    
+
     @Test
     public void testParseJsonReturnAddRecordsResponseSuccess() throws KintoneAPIException {
         JsonObject postBody = new JsonObject();
@@ -199,7 +200,8 @@ public class BulkRequestParserTest {
         ja.add(textField2.getAsJsonObject());
         postBody.add("records", ja);
 
-        JsonElement je = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS, postBody.toString());
+        JsonElement je = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS,
+                postBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je, AddRecordsResponse.class);
         assertTrue(parseJson instanceof AddRecordsResponse);
@@ -214,11 +216,12 @@ public class BulkRequestParserTest {
         putBody.addProperty("id", 57);
         JsonObject value = new JsonObject();
         value.addProperty("value", "test111");
-        JsonObject textField= new JsonObject();
+        JsonObject textField = new JsonObject();
         textField.add("text", value);
         putBody.add("record", textField);
 
-        JsonElement je1 = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD, putBody.toString());
+        JsonElement je1 = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD,
+                putBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je1, UpdateRecordResponse.class);
         assertTrue(parseJson instanceof UpdateRecordResponse);
@@ -253,7 +256,8 @@ public class BulkRequestParserTest {
         ja.add(textField2.getAsJsonObject());
         putBody.add("records", ja);
 
-        JsonElement je1 = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORDS, putBody.toString());
+        JsonElement je1 = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORDS,
+                putBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je1, UpdateRecordsResponse.class);
         assertTrue(parseJson instanceof UpdateRecordsResponse);
@@ -267,7 +271,8 @@ public class BulkRequestParserTest {
         getBody.addProperty("app", APP_ID);
         getBody.addProperty("id", 57);
 
-        JsonElement je = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORD, getBody.toString());
+        JsonElement je = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORD,
+                getBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je, GetRecordResponse.class);
         assertTrue(parseJson instanceof GetRecordResponse);
@@ -280,7 +285,8 @@ public class BulkRequestParserTest {
         JsonObject getBody = new JsonObject();
         getBody.addProperty("app", APP_ID);
 
-        JsonElement je = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORDS, getBody.toString());
+        JsonElement je = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORDS,
+                getBody.toString());
         BulkRequestParser brp = new BulkRequestParser();
         Object parseJson = brp.parseJson(je, GetRecordsResponse.class);
         assertTrue(parseJson instanceof GetRecordsResponse);
