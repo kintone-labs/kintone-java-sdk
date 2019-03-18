@@ -18,7 +18,7 @@ $ mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -Dgro
 
 $    <dependency>
 $      <groupId>com.cybozu.kintone</groupId>
-$      <artifactId>Kintone-java-sdk</artifactId>
+$      <artifactId>Kintone-sdk</artifactId>
 $      <version>0.2.0</version>
 $    </dependency>
 ```
