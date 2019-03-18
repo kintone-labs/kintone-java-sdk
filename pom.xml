@@ -10,6 +10,7 @@
 
 	<name>kintone-sdk</name>
 	<url>http://maven.apache.org</url>
+	<description>kintone Java SDK for REST API</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
