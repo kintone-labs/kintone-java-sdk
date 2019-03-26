@@ -957,11 +957,14 @@
 <details class="tab-container" open>
 <Summary>Initial member class</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+String code = "usercode";
+String name = "username";
 
-wzxhzdk:0
-
+Member member = new Member(code, name);
+</pre>
 
 </details>
 
@@ -978,11 +981,19 @@
 <details class="tab-container" open>
 <Summary>Get the code of the user/group/organization</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
 
-wzxhzdk:1
+Record recordManagement = new Record(connection);
 
+GetRecordResponse response = recordManagement.getRecord(APP_ID, id);
+HashMap<String, FieldValue> resultRecord = response.getRecord();
+Object fv = resultRecord.get("fieldCode").getValue();
+Member member = (Member)fv;
+String userCode = member.getCode();
+String userName = member.getName();
+</pre>
 
 </details>
 
@@ -1013,11 +1024,24 @@
 <details class="tab-container" open>
 <Summary>Set the code of the user/group/organization</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Member member = new Member
+member.setCode("usercode");
+member.setName("username");
 
-wzxhzdk:2
+Record recordManagement = new Record(connection);
 
+Integer appID = 1;
+HashMap<String, FieldValue> addRecord = new HashMap<String, FieldValue>();
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.USER_SELECT);
+fv.setValue(member);
+addRecord.put("user", fv);
+
+AddRecordResponse response = recordManagerment.addRecord(appID, addRecord);
+</pre>
 
 </details>
 
@@ -1033,11 +1057,19 @@
 <details class="tab-container" open>
 <Summary>Get the name of the user/group/organization</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
 
-wzxhzdk:3
+Record recordManagement = new Record(connection);
 
+GetRecordResponse response = recordManagement.getRecord(APP_ID, id);
+HashMap<String, com.cybozu.kintone.client.model.record.field.FieldValue> resultRecord = response.getRecord();
+Object fv = resultRecord.get("fieldCode").getValue();
+Member member = (Member)fv;
+String userCode = member.getCode();
+String userName = member.getName();
+</pre>
 
 </details>
 
@@ -1068,11 +1100,23 @@
 <details class="tab-container" open>
 <Summary>Set the name of the user/group/organization</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Member member = new Member
+member.setCode("usercode");
+member.setName("username");
 
-wzxhzdk:4
+Record recordManagement = new Record(connection);
+Integer appID = 1;
+HashMap<String, FieldValue> addRecord = new HashMap<String, FieldValue>();
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.USER_SELECT);
+fv.setValue(member);
+addRecord.put("user", fv);
 
+AddRecordResponse response = recordManagerment.addRecord(appID, addRecord);
+</pre>
 
 </details>
                 

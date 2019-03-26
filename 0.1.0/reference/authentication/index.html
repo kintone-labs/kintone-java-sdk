@@ -944,11 +944,11 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Init authentication module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:0
-
+<pre class="inline-code">
+Auth kintoneAuth = new Auth();
+</pre>
 
 </details>
 
@@ -988,11 +988,13 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Set password authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:1
-
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+kintoneAuth.setPasswordAuth(username, password);
+</pre>
 
 </details>
 
@@ -1024,11 +1026,12 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Set APIToken authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:2
-
+<pre class="inline-code">
+String apiToken = "123456789abcdefghijklmnopqrstuvwxyz";
+kintoneAuth.setApiToken(apiToken);
+</pre>
 
 </details>
 
@@ -1067,11 +1070,13 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Set basic authentication</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:3
-
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+kintoneAuth.setBasicAuth(username, password);
+</pre>
 
 </details>
 
@@ -1087,11 +1092,13 @@ This module allow we authenticate with kintone app by password authenticator or 
 <details class="tab-container" open>
 <Summary>Provide the list of HTTP Headers which use to authentication in</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:4
-
+<pre class="inline-code">
+for (HTTPHeader header : kintoneAuth.createHeaderCredentials()) {
+    connection.setRequestProperty(header.getKey(), header.getValue());
+}
+</pre>
 
 </details>
                 

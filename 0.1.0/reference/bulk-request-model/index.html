@@ -1065,11 +1065,24 @@
 <details class="tab-container" open>
 <Summary>add Request</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+BulkRequestModel bulkRequestModel = new BulkRequestModel();
 
-wzxhzdk:0
+Integer appID = 1;
 
+HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+FieldValue fv = new FieldValue();
+fv.setType("SINGLE_LINE_TEXT");
+fv.setValue("test_value");
+record.put("sample_FieldCode", fv);
+
+AddRecordRequest addRecordRequest = new AddRecordRequest(appID, record);
+BulkRequestItem bulkRequestItem = new BulkRequestItem("POST", "/k/v1/record.json", addRecordRequest);
+
+bulkRequestModel.addRequest(bulkRequestItem);
+</pre>
 
 </details>
 
@@ -1106,11 +1119,21 @@
 <details class="tab-container" open>
 <Summary>Init Bulk Request Item</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
 
-wzxhzdk:1
+Integer appID = 1;
 
+HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+FieldValue fv = new FieldValue();
+fv.setType("SINGLE_LINE_TEXT");
+fv.setValue("test_value");
+record.put("sample_FieldCode", fv);
+
+AddRecordRequest addRecordRequest = new AddRecordRequest(appID, record);
+BulkRequestItem bulkRequestItem = new BulkRequestItem("POST", "/k/v1/record.json", addRecordRequest);
+</pre>
 
 </details>
 
@@ -1128,11 +1151,25 @@
 <details class="tab-container" open>
 <Summary>get Results</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
 
-wzxhzdk:2
+Integer appID = 1;
+Integer recordID =1;
+Integer revision = 1;
 
+ArrayList<String> assignees = new ArrayList<String>();
+assignees.add("sample_user");
+
+bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
+BulkRequestResponse responses = bulkRequestManager.execute();
+
+// get results
+ArrayList<Object> results = responses.getResults();
+UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
+</pre>
 
 </details>
                 

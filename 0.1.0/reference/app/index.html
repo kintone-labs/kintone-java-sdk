@@ -1098,11 +1098,11 @@
 <details class="tab-container" open>
 <Summary>Init app module</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
-
-wzxhzdk:0
-
+<pre class="inline-code">
+App appManagerment = new App(connection);
+</pre>
 
 </details>
 
@@ -1136,11 +1136,14 @@
 <details class="tab-container" open>
 <Summary>get App</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer appID = 1;
 
-wzxhzdk:1
-
+App appManagerment = new App(connection);
+AppModel app = appManagerment.getApp(appID);
+</pre>
 
 </details>
 
@@ -1179,11 +1182,15 @@
 <details class="tab-container" open>
 <Summary>Get Apps</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer offset = 10;
+Integer limit = 50;
 
-wzxhzdk:2
-
+App appManagerment = new App(connection);
+List<AppModel> app_list = appManagerment.getApps(offset, limit);
+</pre>
 
 </details>
 
@@ -1228,11 +1235,20 @@
 <details class="tab-container" open>
 <Summary>get Apps By IDs</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer offset = 1;
+Integer limit = 10;
+List<Integer> ids = new List<Integer>();
 
-wzxhzdk:3
+ids.add(1);
+ids.add(2);
+ids.add(3);
 
+App appManagerment = new App(connection);
+List<AppModel> app_list = appManagerment.getAppsByIDs(ids, offset, limit);
+</pre>
 
 </details>
 
@@ -1277,11 +1293,19 @@
 <details class="tab-container" open>
 <Summary>get Apps By Codes</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer offset = 1;
+Integer limit = 10;
+List<String> codes = new List<String>();
 
-wzxhzdk:4
+codes.add('APP_CODE_1');
+codes.add('APP_CODE_2');
 
+App appManagerment = new App(connection);
+List<AppModel> app_list = appManagerment.getAppsByCodes(codes, offset, limit);
+</pre>
 
 </details>
 
@@ -1326,11 +1350,16 @@
 <details class="tab-container" open>
 <Summary>get Apps By Name</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+String name = "sample_app_name";
+Integer offset = 1;
+Integer limit = 10;
 
-wzxhzdk:5
-
+App appManagerment = new App(connection);
+List<AppModel> app_list = appManagerment.getAppsByName(name, offset, limit);
+</pre>
 
 </details>
 
@@ -1375,11 +1404,16 @@
 <details class="tab-container" open>
 <Summary>get Apps By Space IDs</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer offset = 1;
+Integer limit = 10;
+List<Integer> spaceIds = new List<Integer>();
 
-wzxhzdk:6
-
+App appManagerment = new App(connection);
+List<AppModel> app_list = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limit);
+</pre>
 
 </details>
 
@@ -1424,11 +1458,16 @@
 <details class="tab-container" open>
 <Summary>get FormFields</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer appID = 1;
+LanguageSetting lang = LanguageSetting.JA;
+Boolean isPreview = true;
 
-wzxhzdk:7
-
+App appManagerment = new App(connection);
+FormFields fields = appManagerment.getFormFields(appID, lang, isPreview);
+</pre>
 
 </details>
 
@@ -1467,11 +1506,15 @@
 <details class="tab-container" open>
 <Summary>get FormLayout</Summary>
 
-** Source code **
+<strong class="tab-name">Source code</strong>
 
+<pre class="inline-code">
+Integer appID = 1;
+Boolean isPreview = true;
 
-wzxhzdk:8
-
+App appManagerment = new App(connection);
+FormFields fields = appManagerment.getFormLayout(appID, isPreview);
+</pre>
 
 </details>
 
