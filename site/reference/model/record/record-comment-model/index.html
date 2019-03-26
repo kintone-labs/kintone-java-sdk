@@ -1,0 +1,1633 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="The SDK of kintone REST API client on Java">
+      
+      
+        <link rel="canonical" href="https://kintone.github.io/kintone-java-sdk/reference/model/record/record-comment-model/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Comment Model - kintone Java SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../../asset/style/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#comment-model" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+  Copyright (c) 2016-2019 Martin Donath <martin.donath@squidfunk.com>
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Application header -->
+<header class="md-header" data-md-component="header">
+  <!-- Top-level navigation -->
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+ 
+      <!-- Link to home -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://kintone.github.io/kintone-java-sdk/"
+            title="kintone Java SDK"
+            class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">cloud</i>
+          
+        </a>
+      </div>
+ 
+      <!-- Button to toggle drawer -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
+      </div>
+ 
+      <!-- Header title -->
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="https://kintone.github.io/kintone-java-sdk/">kintone Java SDK</a> <a style="text-decoration: underline;" href="https://kintone.github.io/kintone-java-sdk/latest/versions">v0.2.0</a>
+        </div>
+      </div>
+ 
+      <!-- Button to open search dialogue -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+ 
+          <!-- Search interface -->
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+ 
+      <!-- Repository containing source -->
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/kintone/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://kintone.github.io/kintone-java-sdk/" title="kintone Java SDK" class="md-nav__button md-logo">
+      
+        <i class="md-icon">cloud</i>
+      
+    </a>
+    kintone Java SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/kintone/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../getting-started/quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../record/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../bulk-request/" title="Bulk Request" class="md-nav__link">
+      Bulk Request
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../kintone-api-exception/" title="Kintone APIException" class="md-nav__link">
+      Kintone APIException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+    
+    <label class="md-nav__link" for="nav-3-8">
+      Model
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-8">
+        Model
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8-1" type="checkbox" id="nav-3-8-1">
+    
+    <label class="md-nav__link" for="nav-3-8-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-8-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8-1-1" type="checkbox" id="nav-3-8-1-1">
+    
+    <label class="md-nav__link" for="nav-3-8-1-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-8-1-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/app/app-model/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/app/app-deploy-status/" title="AppDeployStatus" class="md-nav__link">
+      AppDeployStatus
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8-1-2" type="checkbox" id="nav-3-8-1-2">
+    
+    <label class="md-nav__link" for="nav-3-8-1-2">
+      Form
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-8-1-2">
+        Form
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8-1-2-1" type="checkbox" id="nav-3-8-1-2-1">
+    
+    <label class="md-nav__link" for="nav-3-8-1-2-1">
+      Field
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-3-8-1-2-1">
+        Field
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8-1-2-1-1" type="checkbox" id="nav-3-8-1-2-1-1">
+    
+    <label class="md-nav__link" for="nav-3-8-1-2-1-1">
+      Input
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-3-8-1-2-1-1">
+        Input
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/field/input/form-fields-input-lookup/" title="Lookup" class="md-nav__link">
+      Lookup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/field/input/form-fields-input/" title="Input" class="md-nav__link">
+      Input
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/field/input/form-fields-input-member/" title="Member" class="md-nav__link">
+      Member
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/field/input/form-fields-input-selection/" title="Selection" class="md-nav__link">
+      Selection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/field/input/form-fields-input-time/" title="Time" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/form/layout/form-layout/" title="Layout" class="md-nav__link">
+      Layout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/general/general-settings/" title="General" class="md-nav__link">
+      General
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../app/view/view-model/" title="View" class="md-nav__link">
+      View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../record-model/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../file/file-model/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bulk-request/bulk-request-model/" title="Bulk Request" class="md-nav__link">
+      Bulk Request
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#comment" title="Comment" class="md-nav__link">
+    Comment
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getid" title="getId()" class="md-nav__link">
+    getId()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettext" title="getText()" class="md-nav__link">
+    getText()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcreatedat" title="getCreatedAt()" class="md-nav__link">
+    getCreatedAt()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcreator" title="getCreator()" class="md-nav__link">
+    getCreator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmentions" title="getMentions()" class="md-nav__link">
+    getMentions()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commentcontent" title="CommentContent" class="md-nav__link">
+    CommentContent
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_1" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settextstring-text" title="setText(String text)" class="md-nav__link">
+    setText(String text)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setmentionslistcommentmention62-mentions" title="setMentions(List&lt;CommentMention> mentions)" class="md-nav__link">
+    setMentions(List&lt;CommentMention> mentions)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commentmention" title="CommentMention" class="md-nav__link">
+    CommentMention
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_2" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_2" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcode" title="getCode()" class="md-nav__link">
+    getCode()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setcodestring-code" title="setCode(String code)" class="md-nav__link">
+    setCode(String code)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettype" title="getType()" class="md-nav__link">
+    getType()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settypestring-type" title="setType(String type)" class="md-nav__link">
+    setType(String type)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getcommentsresponse" title="GetCommentsResponse" class="md-nav__link">
+    GetCommentsResponse
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_3" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_3" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcomments" title="getComments()" class="md-nav__link">
+    getComments()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getolder" title="getOlder()" class="md-nav__link">
+    getOlder()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getnewer" title="getNewer()" class="md-nav__link">
+    getNewer()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#addcommentresponse" title="AddCommentResponse" class="md-nav__link">
+    AddCommentResponse
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_4" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_4" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getid_1" title="getId()" class="md-nav__link">
+    getId()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kintone/kintone-java-sdk/edit/master/docs/reference/model/record/record-comment-model.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="comment-model">Comment Model</h1>
+<p>General comment structure of the record on kintone restAPI</p>
+<h2 id="comment">Comment</h2>
+<h3 id="constructor">Constructor</h3>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<h3 id="methods">Methods</h3>
+<h4 id="getid">getId()</h4>
+<p>Get the Comment ID.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Integer</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the Comment ID.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    int appID = 1;
+    int recordID = 1;
+    String order = "asc";
+    int offsset = 1;
+    int limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, offsset);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    int commentID = comment.getId();
+
+</pre>
+
+</details>
+
+<h4 id="gettext">getText()</h4>
+<p>Get the comment including the line feed codes.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>String</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the comment including the line feed codes.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    int appID = 1;
+    int recordID = 1;
+    int order = "asc";
+    int offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    String commentText = comment.getText();
+
+</pre>
+
+</details>
+
+<h4 id="getcreatedat">getCreatedAt()</h4>
+<p>Get the created date and time of the comment.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Date</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the created date and time of the comment.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    Date commentCreatedAt = comment.getCreatedAt();
+
+</pre>
+
+</details>
+
+<h4 id="getcreator">getCreator()</h4>
+<p>Get an object including information of the comment creator.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p><a href="../member/#member">Member</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get an object including information of the comment creator.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    Member commentCreator = comment.getCreator();
+
+</pre>
+
+</details>
+
+<h4 id="getmentions">getMentions()</h4>
+<p>Get an array including information of mentioned users.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="#commentmention">CommentMention</a>></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get an array including information of mentioned users.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    List<CommentMention> commentMentions = comment.getMentions();
+
+</pre>
+
+</details>
+
+<h2 id="commentcontent">CommentContent</h2>
+<h3 id="constructor_1">Constructor</h3>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<h3 id="methods_1">Methods</h3>
+<h4 id="settextstring-text">setText(String text)</h4>
+<blockquote>
+<p>set the comment including the line feed codes.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>The comment including the line feed codes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>set the comment including the line feed codes.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute ADD RECORD_COMMENT  API
+    Integer app = 1;
+    Integer record = 1;
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<CommentMention>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("sample_user");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("test comment");
+    comment.setMentions(mentionList);
+    AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+
+</pre>
+
+</details>
+
+<h4 id="setmentionslistcommentmention62-mentions">setMentions(List&lt;<a href="#commentmention">CommentMention</a>> mentions)</h4>
+<p>Get an array including information of mentioned users.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mentions</td>
+<td>List&lt;<a href="#commentmention">CommentMention</a>></td>
+<td>An array including information of mentioned users.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get an array including information of mentioned users.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute ADD RECORD_COMMENT  API
+    Integer app = 1;
+    Integer record = 1;
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<CommentMention>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("sample_user");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("test comment");
+    comment.setMentions(mentionList);
+    AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+
+</pre>
+
+</details>
+
+<h2 id="commentmention">CommentMention</h2>
+<h3 id="constructor_2">Constructor</h3>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<h3 id="methods_2">Methods</h3>
+<h4 id="getcode">getCode()</h4>
+<p>Get the code of the mentioned user, group or organization.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>String</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the code of the mentioned user, group or organization.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    List<CommentMention> commentMentions = comment.getMentions();
+    CommentMention mention = commentMentions.get(0);
+    String mentionUserCode = mention.getCode();
+
+</pre>
+
+</details>
+
+<h4 id="setcodestring-code">setCode(String code)</h4>
+<blockquote>
+<p>set the comment including the line feed codes.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>The code of the mentioned user, group or organization.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>set the comment including the line feed codes.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute ADD RECORD_COMMENT  API
+    Integer app = 1;
+    Integer record = 1;
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<CommentMention>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("sample_user");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("test comment");
+    comment.setMentions(mentionList);
+    AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+
+</pre>
+
+</details>
+
+<h4 id="gettype">getType()</h4>
+<p>Get the type of the mentioned user, group or organization.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>String</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the type of the mentioned user, group or organization.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, offsset);
+
+    ArrayList<Comment> resultComments = response.getComments();
+    Comment comment = resultComments.get(0);
+    List<CommentMention> commentMentions = comment.getMentions();
+    CommentMention mention = commentMentions.get(0);
+    String mentionUserType= mention.getType();
+
+</pre>
+
+</details>
+
+<h4 id="settypestring-type">setType(String type)</h4>
+<p>Get an array including information of mentioned users.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>The type of the mentioned user, group or organization.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get an array including information of mentioned users.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute ADD RECORD_COMMENT  API
+    Integer app = 1;
+    Integer record = 1;
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<CommentMention>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("sample_user");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("test comment");
+    comment.setMentions(mentionList);
+    AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+
+</pre>
+
+</details>
+
+<h2 id="getcommentsresponse">GetCommentsResponse</h2>
+<h3 id="constructor_3">Constructor</h3>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<h3 id="methods_3">Methods</h3>
+<h4 id="getcomments">getComments()</h4>
+<p>Get the comments List on a record.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>ArrayList&lt;<a href="#comment">Comment</a>></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the comments List on a record.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    ArrayList<Comment> resultComments = response.getComments();
+
+</pre>
+
+</details>
+
+<h4 id="getolder">getOlder()</h4>
+<p>Get information of older comments.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Boolean</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get information of older comments.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    Boolean resultOlderFlg = response.getOlder();
+
+</pre>
+
+</details>
+
+<h4 id="getnewer">getNewer()</h4>
+<p>Get information of newer comments.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Boolean</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get information of newer comments.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute GET RECORD_COMMENTS  API
+    Integer appID = 1;
+    Integer recordID = 1;
+    String order = "asc";
+    Integer offsset = 1;
+    Integer limit = 2;
+
+    GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+
+    Boolean resultNewerFlg = response.getNewer();
+
+</pre>
+
+</details>
+
+<h2 id="addcommentresponse">AddCommentResponse</h2>
+<h3 id="constructor_4">Constructor</h3>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<h3 id="methods_4">Methods</h3>
+<h4 id="getid_1">getId()</h4>
+<p>Get the ID of comment which have just created.</p>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Integer</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get the ID of comment which have just created.</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // execute ADD RECORD_COMMENT  API
+    Integer app = 1;
+    Integer record = 1;
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<CommentMention>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("sample_user");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("test comment");
+    comment.setMentions(mentionList);
+    AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+
+    Integer resultId = response.getId();
+
+</pre>
+
+</details>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../asset/js/extra.js"></script>
+      
+    
+  </body>
+</html>
