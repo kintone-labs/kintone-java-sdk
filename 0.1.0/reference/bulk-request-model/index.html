@@ -1167,7 +1167,7 @@ bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
 BulkRequestResponse responses = bulkRequestManager.execute();
 
 // get results
-ArrayList<Object> results = responses.getResults();
+ArrayList&lt;Object&gt; results = responses.getResults();
 UpdateRecordResponse result1 = (UpdateRecordResponse)results.get(0);
 </pre>
 
