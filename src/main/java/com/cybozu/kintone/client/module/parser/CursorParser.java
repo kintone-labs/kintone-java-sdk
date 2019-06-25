@@ -12,7 +12,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class CursorParser {
+public class CursorParser extends Parser{
 	private static final RecordParser parser = new RecordParser();
 	
 	public HashMap<String, FieldValue> parseRecordJson(JsonElement jsonElement) throws KintoneAPIException {
