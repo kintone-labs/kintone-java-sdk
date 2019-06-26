@@ -1596,8 +1596,6 @@ public class RecordTest {
                 } else {
                     expectedValue = String.valueOf(entry.getValue().getValue());
                 }
-                System.out.println(entry.getKey() + "-----" + expectedValue);
-                System.out.println(entry.getKey() + "-----" + resultRecords.get(index).get(entry.getKey()).getValue());
                 assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
             }
         	index ++;
