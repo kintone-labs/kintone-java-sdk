@@ -6,10 +6,7 @@ import java.util.HashMap;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.cursor.CreateRecordCursorRequest;
-import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
-import com.cybozu.kintone.client.model.cursor.GetRecordCursorRequest;
-import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
+import com.cybozu.kintone.client.model.cursor.*;
 import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.parser.CursorParser;
@@ -23,6 +20,15 @@ public class RecordCursor {
         this.connection = connection;
     }
 	
+	/**
+	 * Create cursor for record module
+	 * @param app
+	 * @param fields
+	 * @param query
+	 * @param size
+	 * @return
+	 * @throws KintoneAPIException
+	 */
 	public CreateRecordCursorResponse createCursor(Integer app, ArrayList<String> fields, String query, Integer size) throws KintoneAPIException {
 		CreateRecordCursorRequest createRecordCursorRequest = new CreateRecordCursorRequest(app, fields, query, size);
 		String requestBody = (String) parser.parseObject(createRecordCursorRequest);
@@ -32,6 +38,12 @@ public class RecordCursor {
 		return (CreateRecordCursorResponse) parser.parseJson(response, CreateRecordCursorResponse.class);
 	}
 	
+	/**
+	 * Get the records by cursor
+	 * @param cursorID
+	 * @return
+	 * @throws KintoneAPIException
+	 */
 	public GetRecordCursorResponse getRecords(String cursorID) throws KintoneAPIException {
 		GetRecordCursorRequest recordCursorRequest = new GetRecordCursorRequest(cursorID);
 		String requestBody = (String) parser.parseObject(recordCursorRequest);
@@ -40,6 +52,12 @@ public class RecordCursor {
 		return parser.parseForGetRecordCursorResponse(response);
 	}
 	
+	/**
+	 * Get all records by cursor
+	 * @param cursorID
+	 * @return
+	 * @throws KintoneAPIException
+	 */
 	public GetRecordsResponse getAllRecords(String cursorID) throws KintoneAPIException {
 		GetRecordCursorRequest recordCursorRequest = new GetRecordCursorRequest(cursorID);
 		String requestBody = (String) parser.parseObject(recordCursorRequest);
@@ -60,6 +78,11 @@ public class RecordCursor {
 		return getRecordsResponse;
 	}
 	
+	/**
+	 * Delete the cursor
+	 * @param cursorID
+	 * @throws KintoneAPIException
+	 */
 	public void deleteCursor(String cursorID) throws KintoneAPIException {
 		GetRecordCursorRequest recordCursorRequest = new GetRecordCursorRequest(cursorID);
 		String requestBody = (String) parser.parseObject(recordCursorRequest);
