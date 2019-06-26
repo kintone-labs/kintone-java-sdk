@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
