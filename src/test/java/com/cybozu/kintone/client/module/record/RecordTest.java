@@ -1561,13 +1561,14 @@ public class RecordTest {
     @Test
     public void testGetAllRecordsByCursor() throws KintoneAPIException {
         // Before processing
+    	int totalRecordToAdd = 600;
+		int limitRecordToAddPerResquest = 100;
     	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         int i = 0;
-        
-        while (i < 6) {
+        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
         	int j = 0;
         	ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
-        	while (j < 100) {
+        	while (j < limitRecordToAddPerResquest) {
             	HashMap<String, FieldValue> testRecord = createTestRecord();
             	records.add(testRecord);
             	recordsToAdd.add(testRecord);
