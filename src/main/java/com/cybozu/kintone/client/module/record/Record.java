@@ -51,6 +51,7 @@ public class Record {
 
     private static final RecordParser parser = new RecordParser();
     private Connection connection;
+    private int GET_RECORD_LIMIT = 500;
 
     /**
      * Constractor
@@ -146,7 +147,7 @@ public class Record {
     public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields)
             throws KintoneAPIException {
     	RecordCursor recordCursor = new RecordCursor(this.connection);
-    	CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, 500);
+    	CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, GET_RECORD_LIMIT);
         
         return recordCursor.getAllRecords(cursor.getId());
     }
