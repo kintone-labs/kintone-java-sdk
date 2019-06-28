@@ -129,6 +129,51 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 
 </details>
 
+### getAllRecordsByCursor(Integer app, String query, Array<String\> fields)
+
+> Retrieves details of all records from an app using a query string.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+| app | Integer | yes | The kintone app ID
+| query | String | (optional) | [The query string](https://developer.kintone.io/hc/en-us/articles/213149287#getrecords) that will specify what records will be responded.
+| fields | ArrayList<String\>| (optional) | List of field codes you want in the response.
+
+**Return**
+
+[GetRecordsResponse](../record-model/#getrecordsresponse)
+
+**Sample code**
+
+<details class="tab-container" open>
+<Summary>Get all records by cursor</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+    String USERNAME = "cybozu";
+    String PASSWORD = "cybozu";
+
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+
+    // Init Connection without "guest space ID"
+    Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+
+    // Init Record Module
+    Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+
+    // execute GET RECORDS API
+    Integer appID = 1;
+    String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
+    GetRecordsResponse response = kintoneRecordManager.getAllRecordsByCursor(appID, query, null);
+</pre>
+
+</details>
+
 ### addRecord(app, record)
 
 >Add one record to an app.
