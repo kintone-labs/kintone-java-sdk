@@ -32,6 +32,8 @@
         - [General](./reference/model/app/general/general-settings.md)
         - [View](./reference/model/app/view/view-model.md)
     - [Record](./reference/model/record/record-model.md)
+    - Cursor
+        - [RecordCursor](reference/model/cursor/record-cursor.md)
     - [File](./reference/model/file/file-model.md)
     - [Bulk Request](./reference/model/bulk-request/bulk-request-model.md)
 
