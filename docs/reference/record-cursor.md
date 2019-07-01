@@ -26,7 +26,7 @@ The user or API Token must have permission to view the records.
     Auth kintoneAuth = new Auth()
     
     // Password Authentication
-    String username = "your_usernamr"
+    String username = "your_username"
     String password = "your_password"
     kintoneAuth = kintoneAuth.setPasswordAuth(username, password)
     Connection connection = Connection( "your_domain", kintoneAuth )
@@ -77,7 +77,7 @@ The user or API Token must have permission to view the records.
     
     /*
     output:
-    cursorID: "dc24fc1f-4195-41b3-a55d-7e4547d45de1"
+    cursorID: "your_cursor_id"
     totalRecord: 50
     */
 
