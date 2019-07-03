@@ -1,18 +1,18 @@
 package com.cybozu.kintone.client;
 
 public class TestConstants {
-    public static final String DOMAIN = "https://xxx.cybozu.com";
+    public static final String DOMAIN = "https://nhat-nguyen.cybozu-dev.com";
     public static final String HADOMAIN = "https://xxx.cybozu-dev.com";
     public static final String BASIC_DOMAIN = "https://xxx.cybozu-dev.com";
     public static final String WRONG_DOMAIN = "https://xxx.cybozu";
     public static final String SECURE_DOMAIN = "https://xxx.s.cybozu.com";
     public static final String HASECURE_DOMAIN = "https://xxx.s.cybozu-dev.com";
-    public static final String ADMIN_USERNAME = "xxx";
-    public static final String ADMIN_PASSWORD = "xxx";
+    public static final String ADMIN_USERNAME = "cybozu";
+    public static final String ADMIN_PASSWORD = "cybozu";
     public static final String BASIC_USERNAME = "xxxx";
     public static final String BASIC_PASSWORD = "xxxx";
-    public static final String USERNAME = "xxx";
-    public static final String PASSWORD = "xxx";
+    public static final String USERNAME = "cybozu";
+    public static final String PASSWORD = "cybozu";
     public static int SPACE_ID;
     public static int SPACE_APP_ID;
     public static int SPACE_THREAD_ID;
