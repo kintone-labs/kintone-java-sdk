@@ -24,6 +24,14 @@ public class RecordsUpsertItem {
 	public RecordsUpsertItem(RecordUpdateKey updateKey, HashMap<String, FieldValue> record) {
 		this.updateKey = updateKey;
 		this.record = record;
+	}
+	
+	/**
+	 * Constructor
+	 * @param record record of the RecordUpsertItem
+	 */
+	public RecordsUpsertItem(HashMap<String, FieldValue> record) {
+		this.record = record;
     }
     
     /**
