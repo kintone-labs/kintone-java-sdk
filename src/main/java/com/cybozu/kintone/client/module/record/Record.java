@@ -15,6 +15,7 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.exception.ErrorResponse;
+import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
 import com.cybozu.kintone.client.model.comment.AddCommentRecordRequest;
 import com.cybozu.kintone.client.model.comment.AddCommentResponse;
 import com.cybozu.kintone.client.model.comment.CommentContent;
@@ -33,6 +34,7 @@ import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.RecordUpdateItem;
 import com.cybozu.kintone.client.model.record.RecordUpdateKey;
 import com.cybozu.kintone.client.model.record.RecordUpdateStatusItem;
+import com.cybozu.kintone.client.model.record.RecordsUpsertItem;
 import com.cybozu.kintone.client.model.record.UpdateRecordAssigneesRequest;
 import com.cybozu.kintone.client.model.record.UpdateRecordRequest;
 import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
@@ -41,6 +43,7 @@ import com.cybozu.kintone.client.model.record.UpdateRecordsRequest;
 import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
 import com.cybozu.kintone.client.model.record.UpdateRecordsStatusRequest;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.parser.RecordParser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -51,6 +54,9 @@ public class Record {
     private static final RecordParser parser = new RecordParser();
     private Connection connection;
     private static final Integer LIMIT_RECORD = 500;
+    private static final Integer LIMIT_POST_RECORD = 100;
+    private static final Integer LIMIT_UPDATE_RECORD = 100;
+    private static final Integer LIMIT_UPSERT_RECORD = 1500;
 
     /**
      * Constractor
@@ -137,12 +143,12 @@ public class Record {
 
     /**
      * Fetch 1 block of records from kintone APP by query
-     * @param app
-     * @param query
-     * @param fields
-     * @param totalCount
-     * @param offset
-     * @param records
+     * @param app app to fetch records
+     * @param query query condition
+     * @param fields fields to get
+     * @param totalCount return totalCount or not
+     * @param offset offset
+     * @param records initial list of records
      * @return
      * @throws KintoneAPIException
      */
@@ -281,6 +287,81 @@ public class Record {
             AddRecordResponse addRecordResponse = this.addRecord(app, record);
             return addRecordResponse;
         }
+    }
+
+    private Boolean doesExistSameFieldValue(ArrayList<HashMap<String, FieldValue>> allRecords, RecordsUpsertItem comparedRecord) throws KintoneAPIException {
+        if (comparedRecord.getUpdateKey() == null) {
+            return false;
+        }
+        if (comparedRecord.getUpdateKey().getValue().length() == 0) {
+            return false;
+        }
+        String fieldKey = comparedRecord.getUpdateKey().getField();
+        for (int i = 0; i < allRecords.size(); i++) {
+            if (allRecords.get(i).get(fieldKey).getValue() == comparedRecord.getUpdateKey().getValue()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private BulkRequest makePUTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<RecordUpdateItem> records) {
+        int length = records.size();
+        int loopTimes = (int) Math.ceil(length / Record.LIMIT_UPDATE_RECORD);
+
+        for (int i = 0; i < loopTimes; i++) {
+            int begin = i * Record.LIMIT_UPDATE_RECORD;
+            int end = length;
+            if (length - begin >= Record.LIMIT_UPDATE_RECORD) {
+                end = begin + Record.LIMIT_UPDATE_RECORD;
+            }
+            ArrayList<RecordUpdateItem> recordsPerRequest = (ArrayList<RecordUpdateItem>) records.subList(begin, end);
+            bulkRequest.updateRecords(app, recordsPerRequest);
+        }
+        return bulkRequest;
+    }
+    
+    private BulkRequest makePOSTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<HashMap<String, FieldValue>> records) {
+        int length = records.size();
+        int loopTimes = (int) Math.ceil(length / Record.LIMIT_POST_RECORD);
+
+        for (int i = 0; i < loopTimes; i++) {
+            int begin = i * Record.LIMIT_POST_RECORD;
+            int end = length;
+            if (length - begin >= Record.LIMIT_POST_RECORD) {
+                end = begin + Record.LIMIT_POST_RECORD;
+            }
+            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<HashMap<String, FieldValue>>(records.subList(begin, end));
+            bulkRequest.addRecords(app, recordsPerRequest);
+        }
+        return bulkRequest;
+    }
+
+    private BulkRequestResponse executeUpsertBulkRequest(Integer app, ArrayList<HashMap<String, FieldValue>> recordsForPost, ArrayList<RecordUpdateItem> recordsForPut) throws KintoneAPIException {
+        BulkRequest bulkRequest = new BulkRequest(this.connection);
+        bulkRequest = this.makePOSTBulkReq(app, bulkRequest, recordsForPost);
+        bulkRequest = this.makePUTBulkReq(app, bulkRequest, recordsForPut);
+        return bulkRequest.execute();
+    }
+
+    public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertItem> records) throws KintoneAPIException {
+        if (records.size() > Record.LIMIT_UPSERT_RECORD) {
+            throw new Error("upsertRecords can't handle over " + Record.LIMIT_UPSERT_RECORD + " records.");
+        }
+        ArrayList<HashMap<String, FieldValue>> allRecords = this.getAllRecordsByQuery(app, "", new ArrayList<>(), false).getRecords();
+        ArrayList<HashMap<String, FieldValue>> recordsForPost = new ArrayList<HashMap<String, FieldValue>>();
+        ArrayList<RecordUpdateItem> recordsForPut = new ArrayList<RecordUpdateItem>();
+
+        for (int i = 0; i < records.size(); i++) {
+            if (doesExistSameFieldValue(allRecords, records.get(i))) {
+                recordsForPut.add(new RecordUpdateItem(records.get(i).getUpdateKey(), records.get(i).getRecord()));
+            }
+            else {
+                recordsForPost.add(records.get(i).getRecord());
+            }
+        }
+        return executeUpsertBulkRequest(app, recordsForPost, recordsForPut);
     }
 
     /**
