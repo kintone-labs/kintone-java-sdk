@@ -14,6 +14,7 @@ import java.util.Map.Entry;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.model.comment.AddCommentRecordRequest;
 import com.cybozu.kintone.client.model.comment.AddCommentResponse;
 import com.cybozu.kintone.client.model.comment.CommentContent;
@@ -210,6 +211,32 @@ public class Record {
                 requestBody);
         // return response as UpdateRecordResponse class
         return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+    }
+
+    /**
+     * Upsert record on kintone APP
+     * @param app app of the updateRecords
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param record record of the updateRecordByUpdateKey
+     * @param revision revision of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse or AddRecordResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public Object upsertRecord(Integer app, RecordUpdateKey updateKey,
+    HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
+        try {
+            UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, revision);
+            return updateRecordResponse;
+        } catch (KintoneAPIException e) {
+            String NO_RECORD_FOUND = "GAIA_RE20";
+            ErrorResponse error = e.getErrorResponse();
+            if (!error.getCode().equals(NO_RECORD_FOUND)) {
+                throw e;
+            }
+            AddRecordResponse addRecordResponse = this.addRecord(app, record);
+            return addRecordResponse;
+        }
     }
 
     /**
