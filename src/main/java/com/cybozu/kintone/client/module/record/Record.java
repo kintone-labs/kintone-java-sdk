@@ -50,6 +50,7 @@ public class Record {
 
     private static final RecordParser parser = new RecordParser();
     private Connection connection;
+    private static final Integer LIMIT_RECORD = 500;
 
     /**
      * Constractor
@@ -132,6 +133,49 @@ public class Record {
         getRecordsResponse.setRecords(records);
         getRecordsResponse.setTotalCount((Integer) parser.parseJson(recordsCount, Integer.class));
         return getRecordsResponse;
+    }
+
+    /**
+     * Fetch 1 block of records from kintone APP by query
+     * @param app
+     * @param query
+     * @param fields
+     * @param totalCount
+     * @param offset
+     * @param records
+     * @return
+     * @throws KintoneAPIException
+     */
+
+    private GetRecordsResponse fetchRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount, Integer offset, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+        String validQuery;
+        if (query.length() == 0) {
+            validQuery = query + " limit " + LIMIT_RECORD + " offset " + offset;
+        }
+        else {
+            validQuery = "limit " + LIMIT_RECORD + " offset " + offset;
+        }
+        GetRecordsResponse fetchBlock = this.getRecords(app, validQuery, fields, totalCount);
+        records.addAll(fetchBlock.getRecords());
+        if (fetchBlock.getRecords().size() < LIMIT_RECORD) {
+            fetchBlock.setRecords(records);
+            return fetchBlock;
+        }
+        return this.fetchRecords(app, query, fields, totalCount, offset, records);
+    }
+
+    /**
+     * Get all records from kintone APP by query
+     * @param app app of the getRecords
+     * @param query query of the getRecords
+     * @param fields fields of the getRecords
+     * @param totalCount totalCount of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException {
+        return this.fetchRecords(app, query, fields, totalCount, 0, new ArrayList<HashMap<String, FieldValue>>());
     }
 
     /**
