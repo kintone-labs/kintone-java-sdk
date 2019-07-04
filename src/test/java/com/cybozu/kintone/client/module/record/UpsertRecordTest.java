@@ -94,6 +94,21 @@ public class UpsertRecordTest {
         assertThat(upsertRecordsResponse, instanceOf(UpdateRecordResponse.class));
     }
 
+    @Test(expected = KintoneAPIException.class)
+    public void testUpsertRecordInsertFailWrongAppID() throws KintoneAPIException {
+        // Preprocessing
+        HashMap<String, FieldValue> testUniqueRecord1 = createTestRecord( String.valueOf(System.currentTimeMillis()) );
+
+        AddRecordResponse addResponse = this.passwordAuthRecordManagerment.addRecord(APP_ID, testUniqueRecord1);
+        this.recordsToDelete.add(addResponse.getID());
+        Integer revision = addResponse.getRevision();
+        // Test 
+        String uniqueValue = String.valueOf(System.currentTimeMillis() + 1);
+        HashMap<String, FieldValue> testNewRecord = createUpsertRecord();
+        RecordUpdateKey updateKey = new RecordUpdateKey("title", uniqueValue);
+        this.passwordAuthRecordManagerment.upsertRecord(-1, updateKey, testNewRecord, revision);
+    }
+
     @After
     public void cleanData() throws KintoneAPIException {
         this.passwordAuthRecordManagerment.deleteRecords(APP_ID, this.recordsToDelete);

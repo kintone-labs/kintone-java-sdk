@@ -79,6 +79,11 @@ public class GetAllRecordsByQueryTest {
         assertEquals(NUMBER_OF_RECORD.intValue(), getAllRecords.getRecords().size());
     }
 
+    @Test(expected = KintoneAPIException.class)
+    public void getAllRecordsFailWrongAppID() throws KintoneAPIException {
+        this.passwordAuthRecordManagerment.getAllRecordsByQuery(-1, "", new ArrayList<String>(), true);
+    }
+
     @After
     public void cleanData() throws KintoneAPIException {
         this.passwordAuthRecordManagerment.deleteRecords(APP_ID, this.recordsToDelete);
