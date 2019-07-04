@@ -47,7 +47,7 @@ public class UpdateAllRecordsTest {
     }
 	
 	@Test
-	public void testUpdateAppRecordsSouldSuccess() throws BulksException, KintoneAPIException {
+	public void testUpdateAppRecordsShouldSuccess() throws BulksException, KintoneAPIException {
 		int numberRecordToUpdate = 2010;
 		int numBulkRequest = 2;
 		ArrayList<HashMap<String, FieldValue>> recordsToUpdate = new ArrayList<HashMap<String, FieldValue>>();
