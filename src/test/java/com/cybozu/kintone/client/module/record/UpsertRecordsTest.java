@@ -20,11 +20,10 @@ import com.cybozu.kintone.client.model.record.RecordUpdateKey;
 import com.cybozu.kintone.client.model.record.RecordsUpsertItem;
 
 public class UpsertRecordsTest {
-    private static Integer APP_ID = 1;
-    private static Integer RECORDS_DATA_LENGTH = 200;
+    private static Integer APP_ID = 3;
+    private static Integer RECORDS_DATA_LENGTH = 20;
 
     private Record passwordAuthRecordManagerment;
-    private ArrayList<Integer> recordsToDelete = new ArrayList<Integer>();
 
     @Before
     public void setup() throws KintoneAPIException {
@@ -53,20 +52,14 @@ public class UpsertRecordsTest {
 
     @Test
     public void testUpsertRecordsAllInsert() throws KintoneAPIException {
-        // ArrayList<RecordUpdateItem> recordsForPut = new ArrayList<RecordUpdateItem>();
-        // ArrayList<HashMap<String, FieldValue>> recordsForPost = new ArrayList<HashMap<String, FieldValue>>();
-
         ArrayList<RecordsUpsertItem> upsertRecords = new ArrayList<RecordsUpsertItem>();
 
         // Build data
         for (int i = 0; i < RECORDS_DATA_LENGTH; i++) {
             RecordUpdateKey updateKey = new RecordUpdateKey("title", "update " + i);
             HashMap<String, FieldValue> record = this.createTestRecord("update " + i);
-            // RecordUpdateItem recordForPut = new RecordUpdateItem(updateKey, record);
-            // recordsForPut.add(recordForPut);
 
             HashMap<String, FieldValue> recordForPost = this.createTestRecord("add " + i);
-            // recordsForPost.add(recordForPost);
 
             upsertRecords.add(new RecordsUpsertItem(updateKey, record));
             upsertRecords.add(new RecordsUpsertItem(recordForPost));
@@ -87,11 +80,11 @@ public class UpsertRecordsTest {
             upsertRecords.add(new RecordsUpsertItem(updateKey, record));
         }
 
-        this.passwordAuthRecordManagerment.upsertRecords(APP_ID, upsertRecords);
+        this.passwordAuthRecordManagerment.upsertRecords(-1, upsertRecords);
     }
 
     @After
     public void cleanData() throws KintoneAPIException {
-        // this.passwordAuthRecordManagerment.deleteRecords(APP_ID, this.recordsToDelete);
+        
     }
 }
