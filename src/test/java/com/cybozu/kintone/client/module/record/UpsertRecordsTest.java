@@ -9,24 +9,15 @@ import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertThat;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.cybozu.kintone.client.model.record.AddRecordResponse;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
 import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.RecordUpdateItem;
 import com.cybozu.kintone.client.model.record.RecordUpdateKey;
-import com.cybozu.kintone.client.model.record.RecordUpdateResponseItem;
 import com.cybozu.kintone.client.model.record.RecordsUpsertItem;
-import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
 
 public class UpsertRecordsTest {
     private static Integer APP_ID = 1;
