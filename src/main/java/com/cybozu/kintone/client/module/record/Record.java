@@ -20,6 +20,7 @@ import com.cybozu.kintone.client.model.comment.CommentContent;
 import com.cybozu.kintone.client.model.comment.DeleteCommentRecordRequest;
 import com.cybozu.kintone.client.model.comment.GetCommentsRecordRequest;
 import com.cybozu.kintone.client.model.comment.GetCommentsResponse;
+import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
 import com.cybozu.kintone.client.model.record.AddRecordRequest;
 import com.cybozu.kintone.client.model.record.AddRecordResponse;
 import com.cybozu.kintone.client.model.record.AddRecordsRequest;
@@ -41,6 +42,7 @@ import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
 import com.cybozu.kintone.client.model.record.UpdateRecordsStatusRequest;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.parser.RecordParser;
+import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -49,6 +51,7 @@ public class Record {
 
     private static final RecordParser parser = new RecordParser();
     private Connection connection;
+    private int GET_RECORD_LIMIT = 500;
 
     /**
      * Constractor
@@ -131,6 +134,22 @@ public class Record {
         getRecordsResponse.setRecords(records);
         getRecordsResponse.setTotalCount((Integer) parser.parseJson(recordsCount, Integer.class));
         return getRecordsResponse;
+    }
+    
+    /**
+     * Get all records by cursor
+     * @param app
+     * @param query
+     * @param fields
+     * @return
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields)
+            throws KintoneAPIException {
+    	RecordCursor recordCursor = new RecordCursor(this.connection);
+    	CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, GET_RECORD_LIMIT);
+        
+        return recordCursor.getAllRecords(cursor.getId());
     }
 
     /**
