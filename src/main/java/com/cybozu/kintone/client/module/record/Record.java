@@ -308,7 +308,7 @@ public class Record {
 
     private BulkRequest makePUTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<RecordUpdateItem> records) {
         int length = records.size();
-        int loopTimes = (int) Math.ceil(length / Record.LIMIT_UPDATE_RECORD);
+        int loopTimes = (int) Math.ceil( (double) length / (double) Record.LIMIT_UPDATE_RECORD);
 
         for (int i = 0; i < loopTimes; i++) {
             int begin = i * Record.LIMIT_UPDATE_RECORD;
@@ -324,7 +324,7 @@ public class Record {
     
     private BulkRequest makePOSTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<HashMap<String, FieldValue>> records) {
         int length = records.size();
-        int loopTimes = (int) Math.ceil(length / Record.LIMIT_POST_RECORD);
+        int loopTimes = (int) Math.ceil( (double) length / (double) Record.LIMIT_POST_RECORD);
 
         for (int i = 0; i < loopTimes; i++) {
             int begin = i * Record.LIMIT_POST_RECORD;
