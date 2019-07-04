@@ -78,7 +78,7 @@ public class UpsertRecordsTest {
         assertEquals(allRecords.getTotalCount().intValue(), upsertRecords.size());
     }
 
-    @Test
+    @Test(expected = KintoneAPIException.class)
     public void testUpsertRecordsFail() throws KintoneAPIException {
         ArrayList<RecordsUpsertItem> upsertRecords = new ArrayList<RecordsUpsertItem>();
         for (int i = 0; i < RECORDS_DATA_LENGTH + 1; i++) {
