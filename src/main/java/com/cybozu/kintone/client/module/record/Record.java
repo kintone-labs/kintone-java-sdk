@@ -149,7 +149,7 @@ public class Record {
      * @param totalCount return totalCount or not
      * @param offset offset
      * @param records initial list of records
-     * @return
+     * @return GetRecordsResponse
      * @throws KintoneAPIException
      */
 
@@ -171,7 +171,7 @@ public class Record {
     }
 
     /**
-     * Get all records from kintone APP by query
+     * Get all records from kintone APP
      * @param app app of the getRecords
      * @param query query of the getRecords
      * @param fields fields of the getRecords
@@ -182,6 +182,85 @@ public class Record {
      */
     public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException {
         return this.fetchRecords(app, query, fields, totalCount, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param fields fields of the getRecords
+     * @param totalCount totalCount of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException {
+        return this.fetchRecords(app, "", fields, totalCount, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param query query of the getRecords
+     * @param totalCount totalCount of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, Boolean totalCount) throws KintoneAPIException {
+        return this.fetchRecords(app, query, new ArrayList<String>(), totalCount, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param query query of the getRecords
+     * @param fields fields of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException {
+        return this.fetchRecords(app, query, fields, false, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param query query of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query) throws KintoneAPIException {
+        return this.fetchRecords(app, query, new ArrayList<String>(), false, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param fields fields of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, ArrayList<String> fields) throws KintoneAPIException {
+        return this.fetchRecords(app, "", fields, false, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @param totalCount totalCount of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, Boolean totalCount) throws KintoneAPIException {
+        return this.fetchRecords(app, "", new ArrayList<String>(), totalCount, 0, new ArrayList<HashMap<String, FieldValue>>());
+    }
+
+    /**
+     * Get all records from kintone APP
+     * @param app app of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByQuery(Integer app) throws KintoneAPIException {
+        return this.fetchRecords(app, "", new ArrayList<String>(), false, 0, new ArrayList<HashMap<String, FieldValue>>());
     }
 
     /**
@@ -277,6 +356,31 @@ public class Record {
     HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
         try {
             UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, revision);
+            return updateRecordResponse;
+        } catch (KintoneAPIException e) {
+            String NO_RECORD_FOUND = "GAIA_RE20";
+            ErrorResponse error = e.getErrorResponse();
+            if (!error.getCode().equals(NO_RECORD_FOUND)) {
+                throw e;
+            }
+            AddRecordResponse addRecordResponse = this.addRecord(app, record);
+            return addRecordResponse;
+        }
+    }
+
+    /**
+     * Upsert record on kintone APP
+     * @param app app of the updateRecords
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param record record of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse or AddRecordResponse
+     * @throws KintoneAPIException
+     *           the KintoneAPIException to throw
+     */
+    public Object upsertRecord(Integer app, RecordUpdateKey updateKey,
+    HashMap<String, FieldValue> record) throws KintoneAPIException {
+        try {
+            UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, -1);
             return updateRecordResponse;
         } catch (KintoneAPIException e) {
             String NO_RECORD_FOUND = "GAIA_RE20";
