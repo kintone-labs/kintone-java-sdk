@@ -34,4 +34,9 @@ public class BulkRequestResponse {
 	public void addResponse(Object responseObject) {
 		results.add(responseObject);
 	}
+	
+	public ArrayList<Object> addResponses(ArrayList<Object> responseObject) {
+		results.addAll(responseObject);
+		return results;
+	}
 }
