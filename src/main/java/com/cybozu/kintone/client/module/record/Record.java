@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
+import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
@@ -22,6 +23,7 @@ import com.cybozu.kintone.client.model.comment.CommentContent;
 import com.cybozu.kintone.client.model.comment.DeleteCommentRecordRequest;
 import com.cybozu.kintone.client.model.comment.GetCommentsRecordRequest;
 import com.cybozu.kintone.client.model.comment.GetCommentsResponse;
+import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
 import com.cybozu.kintone.client.model.record.AddRecordRequest;
 import com.cybozu.kintone.client.model.record.AddRecordResponse;
 import com.cybozu.kintone.client.model.record.AddRecordsRequest;
@@ -45,6 +47,7 @@ import com.cybozu.kintone.client.model.record.UpdateRecordsStatusRequest;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.parser.RecordParser;
+import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -53,10 +56,11 @@ public class Record {
 
     private static final RecordParser parser = new RecordParser();
     private Connection connection;
-    private static final Integer LIMIT_RECORD = 500;
+    private static final Integer LIMIT_GET_RECORD = 500;
     private static final Integer LIMIT_POST_RECORD = 100;
     private static final Integer LIMIT_UPDATE_RECORD = 100;
     private static final Integer LIMIT_UPSERT_RECORD = 1500;
+    private static final Integer NUM_BULK_REQUEST = 20;
 
     /**
      * Constractor
@@ -140,6 +144,22 @@ public class Record {
         getRecordsResponse.setTotalCount((Integer) parser.parseJson(recordsCount, Integer.class));
         return getRecordsResponse;
     }
+    
+    /**
+     * Get all records by cursor
+     * @param app
+     * @param query
+     * @param fields
+     * @return
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields)
+            throws KintoneAPIException {
+    	RecordCursor recordCursor = new RecordCursor(this.connection);
+    	CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, LIMIT_GET_RECORD);
+        
+        return recordCursor.getAllRecords(cursor.getId());
+    }
 
     /**
      * Fetch 1 block of records from kintone APP by query
@@ -156,14 +176,14 @@ public class Record {
     private GetRecordsResponse fetchRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount, Integer offset, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
         String validQuery;
         if (query.length() == 0) {
-            validQuery = query + " limit " + LIMIT_RECORD + " offset " + offset;
+            validQuery = query + " limit " + LIMIT_GET_RECORD + " offset " + offset;
         }
         else {
-            validQuery = "limit " + LIMIT_RECORD + " offset " + offset;
+            validQuery = "limit " + LIMIT_GET_RECORD + " offset " + offset;
         }
         GetRecordsResponse fetchBlock = this.getRecords(app, validQuery, fields, totalCount);
         records.addAll(fetchBlock.getRecords());
-        if (fetchBlock.getRecords().size() < LIMIT_RECORD) {
+        if (fetchBlock.getRecords().size() < LIMIT_GET_RECORD) {
             fetchBlock.setRecords(records);
             return fetchBlock;
         }
@@ -653,5 +673,102 @@ public class Record {
         this.connection.request(ConnectionConstants.DELETE_REQUEST, ConnectionConstants.RECORD_COMMENT, requestBody);
         ;
     }
+    
+    private BulkRequestResponse updateBulkRecord(int app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
+    	BulkRequest bulkRequest = new BulkRequest(this.connection);
+        int length = records.size();
+        int loopTimes = (int) length / LIMIT_UPDATE_RECORD;
+        if ((length%LIMIT_UPDATE_RECORD) > 0) {
+        	loopTimes ++;
+    	}
+        if (records.size() > 0 && records.size() < LIMIT_UPDATE_RECORD) {
+        	loopTimes = 1;
+    	}
+        for (int index = 0; index < loopTimes; index++) {
+          int begin = index * LIMIT_UPDATE_RECORD;
+          int end = (length - begin) < LIMIT_UPDATE_RECORD ? length : begin + LIMIT_UPDATE_RECORD;
+          ArrayList<RecordUpdateItem> recordsPerRequest = new ArrayList<RecordUpdateItem> (records.subList(begin, end));
+          bulkRequest.updateRecords(app, recordsPerRequest);
+        }
+        return bulkRequest.execute();
+      }
+    
+    private BulkRequestResponse addBulkRecord(int app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+    	BulkRequest bulkRequest = new BulkRequest(this.connection);
+        int length = records.size();
+        int loopTimes = (int) length / LIMIT_POST_RECORD;
+        if ((length%LIMIT_POST_RECORD) > 0) {
+        	loopTimes ++;
+    	}
+        if (length > 0 && length < LIMIT_POST_RECORD) {
+        	loopTimes = 1;
+    	}
+        for (int index = 0; index < loopTimes; index++) {
+          int begin = index * LIMIT_POST_RECORD;
+          int end = (length - begin) < LIMIT_POST_RECORD ? length : begin + LIMIT_POST_RECORD;
+          ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<HashMap<String, FieldValue>> (records.subList(begin, end));
+          bulkRequest.addRecords(app, recordsPerRequest);
+        }
+        return bulkRequest.execute();
+      }
+    
+    
+    
+    public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
+    	int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
+    	int numBulkRequest = (int) (records.size()/numRecordsPerBulk);
+    	if ((records.size()%numRecordsPerBulk) > 0) {
+    		numBulkRequest ++;
+    	}
+    	if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+    		numBulkRequest = 1;
+    	}
+    	int offset = 0;
+    	BulkRequestResponse requestResponse = new BulkRequestResponse();
+    	for (int i = 0; i < numBulkRequest; i++) {
+          int length = records.size();
+          int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
+          ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<HashMap<String, FieldValue>> (records.subList(offset, end));
+          try {
+        	  BulkRequestResponse requestResponsePerBulk = this.addBulkRecord(app,recordsPerBulk);
+        	  requestResponse.addResponses(requestResponsePerBulk.getResults());
+			} catch (KintoneAPIException e) {
+				requestResponse.addResponse(e);
+				throw new BulksException(requestResponse.getResults());
+			}
+          
+          offset += numRecordsPerBulk;
+		}
+    	return requestResponse;
+    }
 
+    public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+    	int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_UPDATE_RECORD;
+    	int numBulkRequest = (int) records.size() /numRecordsPerBulk;
+    	if ((records.size()%numRecordsPerBulk) > 0) {
+    		numBulkRequest ++;
+    	}
+    	if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+    		numBulkRequest = 1;
+    	}
+    	int offset = 0;
+
+    	BulkRequestResponse requestResponse = new BulkRequestResponse();
+    	for (int i = 0; i < numBulkRequest; i++) {
+          int length = records.size();
+          int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
+        
+          ArrayList<RecordUpdateItem> recordsPerBulk = new ArrayList<RecordUpdateItem> (records.subList(offset, end));
+          try {
+        	  BulkRequestResponse requestResponsePerBulk = this.updateBulkRecord(app,recordsPerBulk);
+              requestResponse.addResponses(requestResponsePerBulk.getResults());
+			} catch (KintoneAPIException e) {
+				requestResponse.addResponse(e);
+				throw new BulksException(requestResponse.getResults());
+			}
+          
+          offset += numRecordsPerBulk;
+		}
+    	return requestResponse;
+    }
 }
