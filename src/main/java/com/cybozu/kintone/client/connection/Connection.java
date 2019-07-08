@@ -86,9 +86,6 @@ public class Connection {
      */
     private String proxyHost = null;
     private Integer proxyPort = null;
-    private String proxyUsername = null;
-    private String proxyPassword = null;
-    private Authenticator authenticator = null;
 
     /**
      * Constructor for init a connection object to connect to guest space.
@@ -666,24 +663,16 @@ public class Connection {
     public void setProxy(String host, Integer port, String username, String password) {
         this.proxyHost = host;
         this.proxyPort = port;
-        this.proxyUsername = username;
-        this.proxyPassword = password;
-
-        Authenticator.setDefault(null);
-
-        this.authenticator = new Authenticator() {
-            public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password.toCharArray());
-            }
-        };
-
-        Authenticator.setDefault(this.authenticator);
 
         //allowAuthenticationForHttps. This is required only for jdk > 8u11
         System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
 
-        System.setProperty("http.proxyUser", this.proxyUsername);
-        System.setProperty("http.proxyPassword", this.proxyPassword);
+        Authenticator.setDefault(
+                new Authenticator() {
+                    public PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password.toCharArray());
+                    }
+                });
     }
 
     /**
