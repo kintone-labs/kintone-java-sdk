@@ -856,16 +856,22 @@ kintoneRecordManager.deleteComment(app, record, comment);
 </details>
 
 ### getAllRecordsByQuery(app, query, fields, totalCount)
+
 **Parameter**
+
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
 | query | String | (optional) | The query string that will specify what records will be responded.
 | fields | ArrayList&lt;String&gt; | (optional) | List of field codes you want in the response.
 | totalCount | Boolean | (optional) | If "true", the request will retrieve total count of records match with query conditions.
+
 **Return**
+
 [GetRecordsResponse](../model/record/record-model/#getrecordsresponse)
+
 **Sample code**
+
 <details class="tab-container" open>
 <Summary>Get all records by query</Summary>
 <pre class="inline-code">
@@ -876,17 +882,24 @@ kintoneRecordManager.deleteComment(app, record, comment);
     GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
 </pre>
 </details>
+
 ### upsertRecord(app, updateKey, record, revision)
+
 **Parameter**
+
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
 | updateKey | [RecordUpdateKey](../model/record/record-model/#recordupdatekey) | yes | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| record | HashMap<String, [FieldValue](../model/record/record-field-model#fieldvalue)\>  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| record | HashMap&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)&gt;  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 | revision | Integer | (optional) | The revision number of record
+
 **Return**
+
 [AddRecordResponse](../model/record/record-model/#addrecordresponse) or [UpdateRecordResponse](../model/record/record-model/#updaterecordresponse)
+
 **Sample code**
+
 <details class="tab-container" open>
 <Summary>Upsert record</Summary>
 <pre class="inline-code">
@@ -903,15 +916,22 @@ kintoneRecordManager.deleteComment(app, record, comment);
     kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
 </pre>
 </details>
+
 ### upsertRecords(app, updateKey, record, revision)
+
 **Parameter**
+
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | app | Integer | yes | The kintone app ID
 | records | ArrayList<[RecordUpdateItem](../model/record/record-model/#recordupdateitem)\> | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+
 **Return**
+
 [BulkRequestResponse](../model/bulk-request/bulk-request-response)
+
 **Sample code**
+
 <details class="tab-container" open>
 <Summary>Upsert records</Summary>
 <pre class="inline-code">
