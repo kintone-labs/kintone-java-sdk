@@ -32,4 +32,13 @@ public class RecordUpdateItem {
 		this.record = record;
 	}
 
+	/**
+	 * Constructor
+	 * @param updateKey updateKey of the RecordUpdateItem
+	 * @param record record of the RecordUpdateItem
+	 */
+	public RecordUpdateItem(RecordUpdateKey updateKey, HashMap<String, FieldValue> record) {
+		this.updateKey = updateKey;
+		this.record = record;
+	}
 }
