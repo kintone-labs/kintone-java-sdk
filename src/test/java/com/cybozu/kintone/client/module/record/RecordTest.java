@@ -1557,6 +1557,56 @@ public class RecordTest {
         String query = "ユーザー選択 in (\" USER\", \"xxx xxx\")";
         this.certRecordManagerment.getRecords(APP_ID, query, null, null);
     }
+    
+    @Test
+    public void testGetAllRecordsByCursor() throws KintoneAPIException {
+        // Before processing
+    	int totalRecordToAdd = 600;
+		int limitRecordToAddPerResquest = 100;
+    	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+        int i = 0;
+        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
+        	int j = 0;
+        	ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
+        	while (j < limitRecordToAddPerResquest) {
+            	HashMap<String, FieldValue> testRecord = createTestRecord();
+            	records.add(testRecord);
+            	recordsToAdd.add(testRecord);
+    			j ++;
+    		}
+        	j = 0;
+        	this.passwordAuthRecordManagerment.addRecords(APP_ID, recordsToAdd);
+        	i ++;
+        }
+        
+        // Main Test processing
+        Integer lowerLimit = (Integer) records.get(0).get("数値").getValue();
+        Integer upperLimit = (Integer) records.get(records.size() - 1).get("数値").getValue();
+        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
+        GetRecordsResponse response = this.passwordAuthRecordManagerment.getAllRecordsByCursor(APP_ID, query, null);
+        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
+        assertEquals((Integer) records.size(), response.getTotalCount());
+        assertEquals(records.size(), resultRecords.size());
+        int index = 0;
+        for (HashMap<String, FieldValue> record : records) {
+        	for (Entry<String, FieldValue> entry : record.entrySet()) {
+                assertEquals(entry.getValue().getType(), resultRecords.get(index).get(entry.getKey()).getType());
+                Object expectedValue;
+                if (entry.getValue().getValue() instanceof ArrayList || entry.getValue().getValue() instanceof Member) {
+                    expectedValue = entry.getValue().getValue();
+                } else {
+                    expectedValue = String.valueOf(entry.getValue().getValue());
+                }
+                assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
+            }
+        	index ++;
+		}
+    }
+    
+    @Test(expected = KintoneAPIException.class)
+    public void testGetAllRecordsByCursorShowFailGivenInvalidAppID() throws KintoneAPIException {
+        this.passwordAuthRecordManagerment.getAllRecordsByCursor(-1, null, null);
+    }
 
     @Test
     public void testAddRecord() throws KintoneAPIException {
