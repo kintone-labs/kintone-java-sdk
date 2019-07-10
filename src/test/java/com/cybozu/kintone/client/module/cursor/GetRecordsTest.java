@@ -46,7 +46,7 @@ public class GetRecordsTest {
     HashMap<String, FieldValue> testRecord1;
     HashMap<String, FieldValue> testRecord2;
     HashMap<String, FieldValue> testRecord3;
-    FieldValue denyField = new FieldValue();
+    String denyField = "更新者";
 
     public HashMap<String, FieldValue> addField(HashMap<String, FieldValue> record, String code, FieldType type,
             Object value) {
@@ -103,7 +103,6 @@ public class GetRecordsTest {
         this.testRecord1 = createTestRecord();
         this.testRecord2 = createTestRecord();
         this.testRecord3 = createTestRecord();
-        this.denyField.setType(FieldType.CREATOR);
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         records.add(testRecord1);
         records.add(testRecord2);
@@ -118,7 +117,7 @@ public class GetRecordsTest {
     }
 
     @Test
-    // フィールドの権限チェック
+    // 閲覧権限がないフィールドは返されない
     public void testGetRecordsShouldSuccess() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -139,11 +138,11 @@ public class GetRecordsTest {
             expectedValue = String.valueOf(entry.getValue().getValue());
             assertEquals(expectedValue, value);
         }
-        assertEquals(null, resultRecords.get(0).get("更新者"));
+        assertEquals(null, resultRecords.get(0).get(denyField));
     }
 
     @Test
-    // フィールドの権限チェック
+    // 閲覧権限がないフィールドは返されない
     public void testGetRecordsShouldSuccessCert() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -164,11 +163,11 @@ public class GetRecordsTest {
             expectedValue = String.valueOf(entry.getValue().getValue());
             assertEquals(expectedValue, value);
         }
-        assertEquals(null, resultRecords.get(0).get("更新者"));
+        assertEquals(null, resultRecords.get(0).get(denyField));
     }
 
     @Test
-    // レコードの権限チェック
+    // 閲覧権限がないレコードは返されない
     public void testGetRecordsShouldSuccessWithOneRecord() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
@@ -187,7 +186,7 @@ public class GetRecordsTest {
     }
 
     @Test
-    // レコードの権限チェック
+    // 閲覧権限がないレコードは返されない
     public void testGetRecordsShouldSuccessWithOneRecordCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
@@ -207,7 +206,7 @@ public class GetRecordsTest {
     }
 
     @Test
-    // レコードの権限チェック
+    // 閲覧権限がないレコードは返されない
     public void testGetRecordsShouldSuccessWithOneRecordToken() throws KintoneAPIException {
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
         Integer upperLimit = (Integer) this.testRecord3.get("数値").getValue();
@@ -221,7 +220,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // アプリの権限チェック
+    // アプリのアクセス権のレコード閲覧権限がない
     public void testGetRecordsShouldFailWithInvalidUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
@@ -237,7 +236,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // アプリの権限チェック
+    // アプリのアクセス権のレコード閲覧権限がない
     public void testGetRecordsShouldFailWithInvalidUserCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
@@ -254,7 +253,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // アプリの権限チェック
+    // アプリのアクセス権のレコード閲覧権限がない
     public void testGetRecordsShouldFailWithInvalidToken() throws KintoneAPIException {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenHasNoPermission);
@@ -270,7 +269,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testGetRecordsShouldFailWithEmptyCursor() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -283,7 +282,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testGetRecordsShouldFailWithEmptyCursorCert() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -296,7 +295,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testGetRecordsShouldFailWithEmptyCursorToken() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -309,7 +308,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // カーソルIDの権限チェック
+    // カーソルの作成者が実行ユーザーではない
     public void testGetRecordsShouldFailWithStrangeUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
@@ -325,7 +324,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // カーソルIDの権限チェック
+    // カーソルの作成者が実行ユーザーではない
     public void testGetRecordsShouldFailWithStrangeUserCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
@@ -342,7 +341,7 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // カーソルIDの権限チェック
+    // カーソルの作成者が実行ユーザーではない
     public void testGetRecordsShouldFailWithStrangeUserToken() throws KintoneAPIException {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenCanReadRec);
@@ -358,19 +357,19 @@ public class GetRecordsTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testGetRecordsShouldFailWithInvalidCursorId() throws KintoneAPIException {
         this.passwordAuthRecordCursor.getRecords("6");
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testGetRecordsShouldFailWithInvalidCursorIdCert() throws KintoneAPIException {
         this.passwordAuthRecordCursorCert.getRecords("6");
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testGetRecordsShouldFailWithInvalidCursorIdToken() throws KintoneAPIException {
         this.apiTokenAuthRecordCursor.getRecords("6");
     }

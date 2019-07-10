@@ -149,9 +149,8 @@ public class DeleteCursorTest {
         this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
     }
 
-
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testDeleteCurcorShouldFailWithEmptyCursor() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -164,7 +163,7 @@ public class DeleteCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testDeleteCurcorShouldFailWithEmptyCursorCert() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -177,7 +176,7 @@ public class DeleteCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 終端まで到達したカーソル
+    // カーソルが既に終端まで到達している
     public void testDeleteCurcorShouldFailWithEmptyCursorToken() throws KintoneAPIException {
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -239,19 +238,19 @@ public class DeleteCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testDeleteCurcorShouldFailWithInvalidCursorId() throws KintoneAPIException {
         this.passwordAuthRecordCursor.deleteCursor("6");
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testDeleteCurcorShouldFailWithInvalidCursorIdCert() throws KintoneAPIException {
         this.passwordAuthRecordCursorCert.deleteCursor("6");
     }
 
     @Test(expected = KintoneAPIException.class)
-    // 不正なカーソルIDの指定
+    // カーソルが存在しない
     public void testDeleteCurcorShouldFailWithInvalidCursorIdToken() throws KintoneAPIException {
         this.apiTokenAuthRecordCursor.deleteCursor("6");
     }
