@@ -24,18 +24,18 @@ import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 public class GetRecordsTest {
     private static Integer APP_ID = 5;
 
-    String apiTokenCanReadRec = "xxxxxxxxx";
-    String apiTokenHasNoPermission = "xxxxxxxxx";
+    String apiTokenCanReadRec = TestConstants.API_TOKEN;
+    String apiTokenHasNoPermission = TestConstants.HAAPI_TOKEN;
 
-    String nameOfUserCantReadRec = "xxxxxxxxx";
-    String passOfUserCantReadRec = "xxxxxxxxx";
-    String certPathOfUserCantReadRec = "src/test/resources/certificates/test/xxxxxxxxx.pfx";
-    String certPassOfUserCantReadRec = "xxxxxxxxxj";
+    String nameOfUserHasLimitedPermission = TestConstants.ADMIN_USERNAME;
+    String passOfUserHasLimitedPermission = TestConstants.ADMIN_PASSWORD;
+    String certPathOfUserHasLimitedPermission = TestConstants.CLIENT_CERT_PATH;
+    String certPassOfUserHasLimitedPermission = TestConstants.CLIENT_CERT_PASSWORD;
 
-    String nameOfInvalidUser = "xxxxxxxxx";
-    String passOfInvalidUser = "xxxxxxxxx";
-    String certPathOfInvalidUser = "src/test/resources/certificates/test/xxxxxxxxx.pfx";
-    String certPassOfInvalidUser = "xxxxxxxxx";
+    String nameOfUserHasNoPermission = TestConstants.BASIC_USERNAME;
+    String passOfUserHasNoPermission = TestConstants.BASIC_PASSWORD;
+    String certPathOfUserHasNoPermission = TestConstants.HACLIENT_CERT_PATH;
+    String certPassOfUserHasNoPermission = TestConstants.HACLIENT_CERT_PASSWORD;
 
     private RecordCursor passwordAuthRecordCursor;
     private RecordCursor passwordAuthRecordCursorCert;
@@ -168,35 +168,10 @@ public class GetRecordsTest {
     }
 
     @Test
-    // フィールドの権限チェック
-    public void testGetRecordsShouldSuccessToken() throws KintoneAPIException {
-
-        Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
-        Integer upperLimit = (Integer) this.testRecord3.get("数値").getValue();
-        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
-
-        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, query, 100);
-        GetRecordCursorResponse response = this.apiTokenAuthRecordCursor.getRecords(cursor.getId());
-
-        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(3, resultRecords.size());
-        for (Entry<String, FieldValue> entry : testRecord1.entrySet()) {
-            FieldType type = entry.getValue().getType();
-            FieldType expectedType = resultRecords.get(0).get(entry.getKey()).getType();
-            assertEquals(type, expectedType);
-            Object value = String.valueOf(resultRecords.get(0).get(entry.getKey()).getValue());
-            Object expectedValue;
-            expectedValue = String.valueOf(entry.getValue().getValue());
-            assertEquals(expectedValue, value);
-        }
-        assertEquals(null, resultRecords.get(0).get("更新者"));
-    }
-
-    @Test
     // レコードの権限チェック
-    public void testGetRecordsShouldSuccessWithNoRecords() throws KintoneAPIException {
+    public void testGetRecordsShouldSuccessWithOneRecord() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(nameOfUserCantReadRec, passOfUserCantReadRec);
+        passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
 
@@ -208,15 +183,15 @@ public class GetRecordsTest {
         GetRecordCursorResponse response = this.passwordAuthRecordCursor.getRecords(cursor.getId());
 
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(0, resultRecords.size());
+        assertEquals(1, resultRecords.size());
     }
 
     @Test
     // レコードの権限チェック
-    public void testGetRecordsShouldSuccessWithNoRecordsCert() throws KintoneAPIException {
+    public void testGetRecordsShouldSuccessWithOneRecordCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
-        passwordAuthCert.setPasswordAuth(nameOfUserCantReadRec, passOfUserCantReadRec);
-        passwordAuthCert.setClientCertByPath(certPathOfUserCantReadRec, certPassOfUserCantReadRec);
+        passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
+        passwordAuthCert.setClientCertByPath(certPathOfUserHasLimitedPermission, certPassOfUserHasLimitedPermission);
         Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
@@ -228,14 +203,28 @@ public class GetRecordsTest {
         GetRecordCursorResponse response = passwordAuthRecordCursorCert.getRecords(cursor.getId());
 
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(0, resultRecords.size());
+        assertEquals(1, resultRecords.size());
+    }
+
+    @Test
+    // レコードの権限チェック
+    public void testGetRecordsShouldSuccessWithOneRecordToken() throws KintoneAPIException {
+        Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
+        Integer upperLimit = (Integer) this.testRecord3.get("数値").getValue();
+        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
+
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, query, 100);
+        GetRecordCursorResponse response = this.apiTokenAuthRecordCursor.getRecords(cursor.getId());
+
+        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
+        assertEquals(1, resultRecords.size());
     }
 
     @Test(expected = KintoneAPIException.class)
     // アプリの権限チェック
     public void testGetRecordsShouldFailWithInvalidUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(nameOfInvalidUser, passOfInvalidUser);
+        passwordAuth.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
 
@@ -251,8 +240,8 @@ public class GetRecordsTest {
     // アプリの権限チェック
     public void testGetRecordsShouldFailWithInvalidUserCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
-        passwordAuthCert.setPasswordAuth(nameOfInvalidUser, passOfInvalidUser);
-        passwordAuthCert.setClientCertByPath(certPathOfInvalidUser, certPassOfInvalidUser);
+        passwordAuthCert.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
+        passwordAuthCert.setClientCertByPath(certPathOfUserHasNoPermission, certPassOfUserHasNoPermission);
         Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
@@ -266,7 +255,7 @@ public class GetRecordsTest {
 
     @Test(expected = KintoneAPIException.class)
     // アプリの権限チェック
-    public void testGetRecordsShouldFailWithInvalidUserToken() throws KintoneAPIException {
+    public void testGetRecordsShouldFailWithInvalidToken() throws KintoneAPIException {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenHasNoPermission);
         Connection tokenAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
@@ -277,7 +266,7 @@ public class GetRecordsTest {
         String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
 
         CreateRecordCursorResponse cursor = tokenAuthRecordCursor.createCursor(APP_ID, null, query, 100);
-        this.passwordAuthRecordCursor.getRecords(cursor.getId());
+        tokenAuthRecordCursor.getRecords(cursor.getId());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -323,7 +312,7 @@ public class GetRecordsTest {
     // カーソルIDの権限チェック
     public void testGetRecordsShouldFailWithStrangeUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(nameOfUserCantReadRec, passOfUserCantReadRec);
+        passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
         RecordCursor recordCursor = new RecordCursor(passwordAuthConnection);
 
@@ -339,8 +328,8 @@ public class GetRecordsTest {
     // カーソルIDの権限チェック
     public void testGetRecordsShouldFailWithStrangeUserCert() throws KintoneAPIException {
         Auth passwordAuthCert = new Auth();
-        passwordAuthCert.setPasswordAuth(nameOfUserCantReadRec, passOfUserCantReadRec);
-        passwordAuthCert.setClientCertByPath(certPassOfUserCantReadRec, certPassOfUserCantReadRec);
+        passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
+        passwordAuthCert.setClientCertByPath(certPassOfUserHasLimitedPermission, certPassOfUserHasLimitedPermission);
         Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
