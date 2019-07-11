@@ -27,15 +27,15 @@ import com.cybozu.kintone.client.module.record.Record;
 import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 
 public class RecordCursorTest {
-	private static Integer APP_ID = 13;
-	private static String API_TOKEN = "7vaIstX8BZXZtx4gpMOsPAre0MRMMT27EmXU7xRe";
-	private static String API_TOKEN2 = "ejr6E9N1bMdjxE6mfPUrcoyF18G7uiib6Gx4SYLh";
-    private static String API_TOKEN3 = "0hmF5U7hdUYJ5v9TRsYsrTFd1O6RScNb8mWe4ds3";
+	private static Integer APP_ID;
+	private static String API_TOKEN = "xxx";
+	private static String API_TOKEN2 = "xxx";
+    private static String API_TOKEN3 = "xxx";
 	
-	private static Member testman1 = new Member("testman1", "testman1");
-    private static Member testman2 = new Member("testman2", "testman2");
-    private static Member testgroup1 = new Member("testgroup1", "testgroup1");
-    private static Member testgroup2 = new Member("testgroup2", "testgroup2");
+	private static Member testman1 = new Member("xxx", "xxx");
+    private static Member testman2 = new Member("xxx", "xxx");
+    private static Member testgroup1 = new Member("xxx", "xxx");
+    private static Member testgroup2 = new Member("xxx", "xxx");
 	    
 	private RecordCursor passwordAuthRecordCursor;
     private RecordCursor restrictedPasswordAuthRecordCursor;
@@ -56,16 +56,17 @@ public class RecordCursorTest {
 		Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
         this.recordManagerment = new Record(passwordAuthConnection);
         
         Auth restrictedPasswordAuth = new Auth();
-        restrictedPasswordAuth.setPasswordAuth("testman1", "cybozu");
+        restrictedPasswordAuth.setPasswordAuth("xxx", "xxx");
         Connection restrictedPasswordAuthConnection = new Connection(TestConstants.DOMAIN, restrictedPasswordAuth);
         this.restrictedPasswordAuthRecordCursor = new RecordCursor(restrictedPasswordAuthConnection);
         
         Auth restrictedPasswordAuth2 = new Auth();
-        restrictedPasswordAuth2.setPasswordAuth("testman2", "cybozu");
+        restrictedPasswordAuth2.setPasswordAuth("xxx", "xxx");
         Connection restrictedPasswordAuthConnection2 = new Connection(TestConstants.DOMAIN, restrictedPasswordAuth2);
         this.noViewPasswordAuthRecordCursor = new RecordCursor(restrictedPasswordAuthConnection2);
         
@@ -93,14 +94,14 @@ public class RecordCursorTest {
         this.certRecordManagerment = new Record(certConnection);
         
         Auth certauth2 = new Auth();
-        certauth2.setPasswordAuth("testman2", "cybozu");
-        certauth2.setClientCertByPath("src/test/resources/certificates/testUser/testman2.pfx", "jvnunx0x");
+        certauth2.setPasswordAuth("xxx", "xxx");
+        certauth2.setClientCertByPath("xxx", "xxx");
         Connection certConnection2 = new Connection(TestConstants.SECURE_DOMAIN, certauth2);
         this.noViewCertAuthRecordCursor = new RecordCursor(certConnection2);
         
         Auth certauth3 = new Auth();
-        certauth3.setPasswordAuth("testman1", "cybozu");
-        certauth3.setClientCertByPath("src/test/resources/certificates/testUser/testman1.pfx", "p9fohnyy");
+        certauth3.setPasswordAuth("xxx", "xxx");
+        certauth3.setClientCertByPath("xxx", "xxx");
         Connection certConnection3 = new Connection(TestConstants.SECURE_DOMAIN, certauth3);
         this.noViewFieldCertAuthRecordCursor = new RecordCursor(certConnection3);
 
