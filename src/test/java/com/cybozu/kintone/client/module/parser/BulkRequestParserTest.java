@@ -43,7 +43,6 @@ public class BulkRequestParserTest {
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         this.connection = new Connection(TestConstants.DOMAIN, auth);
         this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
-        
         this.bulkRequest = new BulkRequest(this.connection);
         this.passwordAuthRecordManagerment = new Record(connection);
     }

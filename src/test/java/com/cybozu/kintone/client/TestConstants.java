@@ -20,6 +20,8 @@ public class TestConstants {
     public static int GUEST_SPACE_APP_ID;
     public static int GUEST_SPACE_THREAD_ID;
     public static int MAX_VALUE;
+    public static final String PROXY_HOST = "xxx";
+    public static int PROXY_PORT;
     public static String CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String HACLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String WRONG_CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
