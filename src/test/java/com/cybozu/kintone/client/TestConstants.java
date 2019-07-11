@@ -1,8 +1,7 @@
 package com.cybozu.kintone.client;
 
 public class TestConstants {
-    public static final String DOMAIN = "https://test1-1.cybozu-dev.com";
-
+    public static final String DOMAIN = "https://xxx.cybozu.com";
     public static final String HADOMAIN = "https://xxx.cybozu-dev.com";
     public static final String BASIC_DOMAIN = "https://xxx.cybozu-dev.com";
     public static final String WRONG_DOMAIN = "https://xxx.cybozu";
@@ -12,10 +11,8 @@ public class TestConstants {
     public static final String ADMIN_PASSWORD = "xxx";
     public static final String BASIC_USERNAME = "xxxx";
     public static final String BASIC_PASSWORD = "xxxx";
-
-    public static final String USERNAME = "cybozu";
-    public static final String PASSWORD = "cybozu";
-
+    public static final String USERNAME = "xxx";
+    public static final String PASSWORD = "xxx";
     public static int SPACE_ID;
     public static int SPACE_APP_ID;
     public static int SPACE_THREAD_ID;
@@ -23,19 +20,12 @@ public class TestConstants {
     public static int GUEST_SPACE_APP_ID;
     public static int GUEST_SPACE_THREAD_ID;
     public static int MAX_VALUE;
-
-//    public static final String PROXY_HOST = "dc-ty3-squid-1.cb.local";
-//    public static int PROXY_PORT = 3128;
-
-    public static final String PROXY_HOST_HTTP = "10.224.152.148";
-    public static int PROXY_PORT_HTTP = 8081;
-
-    public static final String PROXY_HOST = "10.224.152.147";
-    public static int PROXY_PORT = 8082;
-    public static final String PROXY_USERNAME = "qasd";
-    public static final String PROXY_PASSWORD = "Cybozu@123";
-
-
+    public static final String PROXY_HOST = "xxx";
+    public static final String PROXY_HOST_HTTP = "xxx";
+    public static int PROXY_PORT_HTTP;
+    public static int PROXY_PORT;
+    public static final String PROXY_USERNAME = "xxx";
+    public static final String PROXY_PASSWORD = "xxx";
     public static String CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String HACLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String WRONG_CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";

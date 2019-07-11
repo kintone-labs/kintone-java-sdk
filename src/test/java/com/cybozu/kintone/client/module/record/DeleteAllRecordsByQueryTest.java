@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class DeleteAllRecordsByQueryTest {
-    private int APP_ID = 2;
+    private int APP_ID;
     private Connection connection;
 
     @Before
@@ -29,13 +29,12 @@ public class DeleteAllRecordsByQueryTest {
     @Test
     public void deleteAllRecordsWithQuery() throws BulksException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(APP_ID, "rb_status in (\"Done\")");
+        record.deleteAllRecordsByQuery(APP_ID, "xxx");
     }
 
     @Test(expected = BulksException.class)
     public void deleteAllRecordsWithoutApp() throws BulksException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(null, "rb_status in (\"Todo\")");
+        record.deleteAllRecordsByQuery(null, "xxx");
     }
-
 }

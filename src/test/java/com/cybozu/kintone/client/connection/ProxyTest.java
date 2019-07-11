@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 
 public class ProxyTest {
 
-    private int APP_ID = 2;
+    private int APP_ID;
     private Auth auth;
 
     public static void clearAuthCache() {
@@ -41,7 +41,7 @@ public class ProxyTest {
     @Test(expected = KintoneAPIException.class)
     public void checkAppWithWrongAccount() throws KintoneAPIException {
         Connection connection2 = new Connection(TestConstants.DOMAIN, auth);
-        connection2.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, "hello", "bye");
+        connection2.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, "xxx", "xxx");
 
         App app2 = new App(connection2);
         app2.getApp(APP_ID).getAppId();
