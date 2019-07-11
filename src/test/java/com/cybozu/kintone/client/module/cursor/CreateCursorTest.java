@@ -24,14 +24,10 @@ public class CreateCursorTest {
     private static Integer APP_ID2 = 8;
     private static Integer APP_ID3 = 9;
     private static Integer APP_ID4 = 10;
-    private static String apiTokenCanReadRec = "X6pbAeoJ7QadGFEboF5jq69fnjzOlTtEFxOoGozd";
-    private static String apiTokenCanReadRec2="ThfpOyj3gRSRX63eXfVtWDdWPZPy5tR8CqiKZfY0";
-    private static String LOCALUSERNAME = "LOCALUSER";
-    private static String LOCALPASSWORD ="cybozu123";
-//    private static String apiTokenCanReadRec = TestConstants.API_TOKEN;
-//    private static String apiTokenCanReadRec2 = TestConstants.HAAPI_TOKEN;
-//    private static String LOCALUSERNAME = TestConstants.BASIC_USERNAME;
-//    private static String LOCALPASSWORD = TestConstants.BASIC_PASSWORD;
+    private static String apiTokenCanReadRec = TestConstants.API_TOKEN;
+    private static String apiTokenCanReadRec2 = TestConstants.HAAPI_TOKEN;
+    private static String LOCALUSERNAME = TestConstants.BASIC_USERNAME;
+    private static String LOCALPASSWORD = TestConstants.BASIC_PASSWORD;
 
     private RecordCursor passwordAuthRecordCursor;
     private RecordCursor passwordAuthRecordCursor2;
