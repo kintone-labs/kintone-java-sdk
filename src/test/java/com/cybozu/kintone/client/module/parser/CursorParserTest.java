@@ -31,18 +31,17 @@ import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResp
 import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
 import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 public class CursorParserTest {
     private static final JsonParser jsonParser = new JsonParser();
-    private static JsonElement validCursorRecordInput;
-    private static JsonElement validAppsDataInput;
 
     @BeforeClass
     public static void setup() {
-        validCursorRecordInput = jsonParser.parse(readInput("/src/test/resources/ValidCursorValue.txt"));
-        validAppsDataInput = jsonParser.parse(readInput("/xxx/xxx.txt"));
     }
 
     private static String readInput(String file) {
@@ -78,454 +77,66 @@ public class CursorParserTest {
     }
     
     @Test
-    public void testParseRecordShouldSuccess() {
-        assertNotNull(validCursorRecordInput);
+    public void testParseRecordShouldSuccess() throws KintoneAPIException {
+        String invalidValue = readInput("/cursor/ValidCursorRecord.txt");
         CursorParser parser = new CursorParser();
-
-        try {
-            HashMap<String, FieldValue> parseRecordJson = parser.parseRecordJson(validCursorRecordInput);
-            assertEquals(1, parseRecordJson.get("レコード番号"));
-
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
+        JsonElement parse = jsonParser.parse(invalidValue);
+        JsonElement jsonElement = parse.getAsJsonObject().get("record");
+        HashMap<String, FieldValue> parseRecordsJson = parser.parseRecordJson(jsonElement);
+        FieldValue fieldValue = parseRecordsJson.get("レコード番号");
+        assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
+        assertEquals("1", fieldValue.getValue());
     }
-
-    @Test
-    public void testParseAppIdShouldSuccess() {
-        assertNotNull(validCursorRecordInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validCursorRecordInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getAppId());
-            if (appModel.getAppId() <= 0) {
-                fail("Invalid appId value");
-            }
-            assertEquals(Integer.valueOf(1), appModel.getAppId());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppCodeShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getCode());
-            assertEquals("test", appModel.getCode());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppNameShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getName());
-            assertEquals("app_name", appModel.getName());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppDescriptionShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getName());
-            assertEquals("jdk test app", appModel.getDescription());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppSpaceIDShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getSpaceId());
-            if (appModel.getSpaceId() <= 0) {
-                fail("Invalid spaceId value");
-            }
-            assertEquals(Integer.valueOf(3), appModel.getSpaceId());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppSpaceIDIsNullShouldSuccess() {
-        String alidAppValueWithOutSpace = readInput("/xxx/xxx.txt");
-        assertNotNull(alidAppValueWithOutSpace);
-
-        try {
-            AppParser parser = new AppParser();
-            AppModel appModel = parser.parseApp(jsonParser.parse(alidAppValueWithOutSpace));
-            assertNotNull(appModel);
-            assertNull(appModel.getSpaceId());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppThreadIDShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getThreadId());
-            if (appModel.getThreadId() <= 0) {
-                fail("Invalid spaceId value");
-            }
-            assertEquals(Integer.valueOf(3), appModel.getThreadId());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppThreadIDIsNullShouldSuccess() {
-        String alidAppValueWithOutSpace = readInput("/xxx/xxx.txt");
-        assertNotNull(alidAppValueWithOutSpace);
-
-        try {
-            AppParser parser = new AppParser();
-            AppModel appModel = parser.parseApp(jsonParser.parse(alidAppValueWithOutSpace));
-            assertNotNull(appModel);
-            assertNull(appModel.getThreadId());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppCreatedAtShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getCreatedAt());
-            Date createdAt = appModel.getCreatedAt();
-            SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            isoDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2018-08-17T05:14:05.000Z", isoDateFormat.format(createdAt));
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppCreatorShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getCreator());
-            assertEquals(new Member("test", "test"), appModel.getCreator());
-            assertEquals("test", appModel.getCreator().getCode());
-            assertEquals("test", appModel.getCreator().getName());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppModifiedAtShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getModifiedAt());
-            Date modifiedAt = appModel.getModifiedAt();
-            SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            isoDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2018-08-17T05:14:05.000Z", isoDateFormat.format(modifiedAt));
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppModifierShouldSuccess() {
-        assertNotNull(validAppDataInput);
-        AppParser parser = new AppParser();
-
-        try {
-            AppModel appModel = parser.parseApp(validAppDataInput);
-            assertNotNull(appModel);
-            assertNotNull(appModel.getModifier());
-            assertEquals(new Member("test", "test"), appModel.getModifier());
-            assertEquals("test", appModel.getModifier().getCode());
-            assertEquals("test", appModel.getModifier().getName());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppShouldFailWhenGivenInvalidAppIdIsInt() throws KintoneAPIException {
-        String invalidAppIdIsInt = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseApp(jsonParser.parse(invalidAppIdIsInt));
-        } catch (KintoneAPIException e) {
-            assertEquals("Invalid data type", e.getMessage());
-        }
-    }
-
+    
     @Test(expected = KintoneAPIException.class)
-    public void testParseAppShouldFailWhenGivenInvalidCreatedTime() throws KintoneAPIException {
-        String invalidCreatedTime = readInput("/xxx/xxx.txt");
-        AppParser parser = new AppParser();
-        parser.parseApp(jsonParser.parse(invalidCreatedTime));
+    public void testParseRecordShouldFailWithInvalidData( ) throws KintoneAPIException  {
+        
+        String invalidValue = readInput("/cursor/InvalidCursorRecord.txt");
+        CursorParser parser = new CursorParser();
+        parser.parseRecordJson(jsonParser.parse(invalidValue));
     }
-
+    
     @Test
-    public void testParseAppShouldFailWhenGivenInvalidAppSpaceId() throws KintoneAPIException {
-        String invalidAppSpaceId = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseApp(jsonParser.parse(invalidAppSpaceId));
-        } catch (KintoneAPIException e) {
-            assertEquals("Invalid data type", e.getMessage());
-        }
+    public void testParseRecordsShouldSuccess() throws KintoneAPIException  {
+        String invalidValue = readInput("/cursor/ValidCursorRecords.txt");
+        CursorParser parser = new CursorParser();
+        JsonElement parse = jsonParser.parse(invalidValue);
+        JsonArray asJsonArray = parse.getAsJsonObject().get("records").getAsJsonArray();
+        ArrayList<HashMap<String, FieldValue>> parseRecordsJson = parser.parseRecordsJson(asJsonArray);
+        HashMap<String, FieldValue> hashMap = parseRecordsJson.get(0);
+        FieldValue fieldValue = hashMap.get("レコード番号");
+        assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
+        assertEquals("1", fieldValue.getValue());
     }
-
-    @Test
-    public void testParseAppShouldFailWhenGivenInvalidAppThreadId() throws KintoneAPIException {
-        String invalidAppSpaceId = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseApp(jsonParser.parse(invalidAppSpaceId));
-        } catch (KintoneAPIException e) {
-            assertEquals("Invalid data type", e.getMessage());
-        }
+    
+    @Test(expected = KintoneAPIException.class)
+    public void testParseRecordsShouldFailWithInvalidData( ) throws KintoneAPIException  {
+        String invalidValue = readInput("/cursor/InvalidCursorRecords.txt");
+        CursorParser parser = new CursorParser();
+        JsonElement parse = jsonParser.parse(invalidValue);
+        JsonArray asJsonArray = parse.getAsJsonObject().get("records").getAsJsonArray();
+        parser.parseRecordsJson(asJsonArray);
     }
-
+    
     @Test
-    public void testParseAppsShouldSuccess() {
-        assertNotNull(validAppsDataInput);
-        AppParser parser = new AppParser();
-        try {
-            assertTrue(validAppsDataInput.getAsJsonObject().has("apps"));
-            List<AppModel> apps = parser.parseApps(validAppsDataInput);
-            assertNotNull(apps);
-            assertEquals(2, apps.size());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
+    public void testParseForGetRecordCursorResponseShouldSuccess() throws KintoneAPIException {
+        String validValue = readInput("/cursor/ValidCursorGetRecord.txt");
+        CursorParser parser = new CursorParser();
+        JsonElement parse = jsonParser.parse(validValue);
+        GetRecordCursorResponse parseForGetRecordCursorResponse = parser.parseForGetRecordCursorResponse(parse);
+        assertEquals(false, parseForGetRecordCursorResponse.getNext());
+        
+        ArrayList<HashMap<String, FieldValue>> records = parseForGetRecordCursorResponse.getRecords();
+        HashMap<String, FieldValue> hashMap = records.get(0);
+        FieldValue fieldValue = hashMap.get("レコード番号");
+        assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
+        assertEquals("1", fieldValue.getValue());
     }
-
-    @Test
-    public void testParseAppsOfPropertiesShouldSuccess() {
-        assertNotNull(validAppsDataInput);
-        AppParser parser = new AppParser();
-        try {
-            assertTrue(validAppsDataInput.getAsJsonObject().has("apps"));
-            ;
-            List<AppModel> apps = parser.parseApps(validAppsDataInput);
-            assertNotNull(apps);
-            // apps[0]
-            assertEquals(Integer.valueOf(1), apps.get(0).getAppId());
-            assertEquals("BAR", apps.get(0).getCode());
-            assertEquals("MyTestApp", apps.get(0).getName());
-            assertEquals("", apps.get(0).getDescription());
-            assertNull(apps.get(0).getSpaceId());
-            assertNull(apps.get(0).getThreadId());
-
-            Date createdAt = apps.get(0).getCreatedAt();
-            SimpleDateFormat cDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            cDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2018-08-17T05:14:05.000Z", cDateFormat.format(createdAt));
-
-            assertNotNull(apps.get(0).getCreator());
-            assertEquals(new Member("user1", "user1"), apps.get(0).getCreator());
-            assertEquals("user1", apps.get(0).getCreator().getCode());
-            assertEquals("user1", apps.get(0).getCreator().getName());
-
-            Date modifiedAt = apps.get(0).getModifiedAt();
-            SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            mDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2018-08-17T05:14:05.000Z", mDateFormat.format(modifiedAt));
-
-            assertEquals(new Member("user1", "user1"), apps.get(0).getModifier());
-            assertEquals("user1", apps.get(0).getModifier().getCode());
-            assertEquals("user1", apps.get(0).getModifier().getName());
-
-            // apps[1]
-            assertEquals(Integer.valueOf(2), apps.get(1).getAppId());
-            assertEquals("FOO", apps.get(1).getCode());
-            assertEquals("TEST", apps.get(1).getName());
-            assertEquals("", apps.get(1).getDescription());
-            assertEquals(Integer.valueOf(123), apps.get(1).getSpaceId());
-            assertEquals(Integer.valueOf(456), apps.get(1).getThreadId());
-
-            Date createdAtTwo = apps.get(1).getCreatedAt();
-            SimpleDateFormat cDateFormatTwo = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            cDateFormatTwo.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2014-06-03T05:14:05.000Z", cDateFormatTwo.format(createdAtTwo));
-
-            assertNotNull(apps.get(1).getCreator());
-            assertEquals(new Member("user2", "user2"), apps.get(1).getCreator());
-            assertEquals("user2", apps.get(1).getCreator().getCode());
-            assertEquals("user2", apps.get(1).getCreator().getName());
-
-            Date modifiedAtTwo = apps.get(1).getModifiedAt();
-            SimpleDateFormat mDateFormatTwo = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            mDateFormatTwo.setTimeZone(TimeZone.getTimeZone("UTC"));
-            assertEquals("2014-06-03T05:14:05.000Z", mDateFormatTwo.format(modifiedAtTwo));
-
-            assertEquals(new Member("user2", "user2"), apps.get(1).getModifier());
-            assertEquals("user2", apps.get(1).getModifier().getCode());
-            assertEquals("user2", apps.get(1).getModifier().getName());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAddPreviewAppResponseShouldSuccess() {
-        String validPreviewApp = readInput("/xxx/xxx.txt");
-        assertNotNull(jsonParser.parse(validPreviewApp));
-        AppParser parser = new AppParser();
-        try {
-            AddPreviewAppResponse parseAddPreviewAppResponse = parser
-                    .parseAddPreviewAppResponse(jsonParser.parse(validPreviewApp));
-            assertNotNull(parseAddPreviewAppResponse.getApp());
-            assertNotNull(parseAddPreviewAppResponse.getRevision());
-            assertEquals(Integer.valueOf(123), parseAddPreviewAppResponse.getApp());
-            assertEquals(Integer.valueOf(12), parseAddPreviewAppResponse.getRevision());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    // KCB-660
-    @Test
-    public void testParseAddPreviewAppResponseShouldFailWithInvalidData() throws KintoneAPIException {
-        String invalidPreviewApp = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseAddPreviewAppResponse(jsonParser.parse(invalidPreviewApp));
-        } catch (KintoneAPIException e) {
-            assertEquals(e.getMessage(), "Invalid data type");
-        }
-    }
-
-    @Test
-    public void testParseAddPreviewAppResponseShouldFailWithParseError() throws KintoneAPIException {
-        String invalidParse = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseAddPreviewAppResponse(jsonParser.parse(invalidParse).getAsJsonObject().get("app"));
-        } catch (KintoneAPIException e) {
-            assertEquals(e.getMessage(), "Parse error");
-        }
-    }
-
-    @Test
-    public void testParseBasicResponseShouldSuccess() {
-        String validBasic = readInput("/xxx/xxx.txt");
-        assertNotNull(jsonParser.parse(validBasic));
-        AppParser parser = new AppParser();
-        try {
-            BasicResponse parseBasicResponse = parser.parseBasicResponse(jsonParser.parse(validBasic));
-            assertEquals(Integer.valueOf(123), parseBasicResponse.getRevision());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    // KCB-660
-    @Test
-    public void testParseBasicResponseShouldFailWithInvalidData() throws KintoneAPIException {
-        String invalidBasic = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseBasicResponse(jsonParser.parse(invalidBasic));
-        } catch (KintoneAPIException e) {
-            assertEquals("Invalid data type", e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseBasicResponseShouldFailWithParseError() throws KintoneAPIException {
-        String invalidParse = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseBasicResponse(jsonParser.parse(invalidParse).getAsJsonObject().get("revision"));
-        } catch (KintoneAPIException e) {
-            assertEquals("Parse error", e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppDeployStatusResponseShouldSuccess() {
-        String validParse = readInput("/xxx/xxx.txt");
-        assertNotNull(jsonParser.parse(validParse));
-        AppParser parser = new AppParser();
-        try {
-            GetAppDeployStatusResponse parseAppDeployStatusResponse = parser
-                    .parseAppDeployStatusResponse(jsonParser.parse(validParse));
-            ArrayList<AppDeployStatus> apps = parseAppDeployStatusResponse.getApps();
-            assertEquals(Integer.valueOf(20), apps.get(0).getApp());
-            assertEquals(Status.valueOf("PROCESSING"), apps.get(0).getStatus());
-            assertEquals(Integer.valueOf(21), apps.get(1).getApp());
-            assertEquals(Status.valueOf("SUCCESS"), apps.get(1).getStatus());
-            assertEquals(Integer.valueOf(22), apps.get(2).getApp());
-            assertEquals(Status.valueOf("FAIL"), apps.get(2).getStatus());
-        } catch (KintoneAPIException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppDeployStatusResponseShouldFailWithInvalidData() throws KintoneAPIException {
-        String invalidDeployStatus = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseAppDeployStatusResponse(jsonParser.parse(invalidDeployStatus));
-        } catch (KintoneAPIException e) {
-            assertEquals("Invalid data type", e.getMessage());
-        }
-    }
-
-    @Test
-    public void testParseAppDeployStatusResponseShouldFailWithParseError() throws KintoneAPIException {
-        String invalidDeployStatus = readInput("/xxx/xxx.txt");
-        try {
-            AppParser parser = new AppParser();
-            parser.parseAppDeployStatusResponse(jsonParser.parse(invalidDeployStatus).getAsJsonObject().get("apps"));
-        } catch (KintoneAPIException e) {
-            assertEquals("Parse error", e.getMessage());
-        }
+    
+    @Test(expected = KintoneAPIException.class)
+    public void testParseForGetRecordCursorResponseShouldFailWithInvalidData( ) throws KintoneAPIException  {
+        String invalidValue = readInput("/cursor/InvalidCursorGetRecord.txt");
+        CursorParser parser = new CursorParser();
+        parser.parseForGetRecordCursorResponse(jsonParser.parse(invalidValue));
     }
 }
