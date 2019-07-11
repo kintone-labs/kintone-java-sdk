@@ -38,7 +38,7 @@ import com.cybozu.kintone.client.module.file.File;
 import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 
 public class RecordTest {
-    private static Integer APP_ID = 13;
+    private static Integer APP_ID;
     private static String API_TOKEN = "xxx";
     private static String HA_API_TOKEN = "xxx";
     private static String NO_VIEW_PERMISSION_API_TOKEN = "xxx";
