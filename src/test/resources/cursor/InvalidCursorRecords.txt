@@ -1,0 +1,18 @@
+{
+    "records": [
+        {
+            "レコード番号": {
+                "type": "RECORD_NUMBER",
+                "value": "1"
+            },
+            "作成日時": {
+                "type": "CREATED_AT",
+                "value": "2012-02-03T08:50:46Z"
+            },
+            "ドロップダウン": {
+                "type": "SINGLE_SELECT",
+                "value": null
+            }
+        }
+    ]
+}
