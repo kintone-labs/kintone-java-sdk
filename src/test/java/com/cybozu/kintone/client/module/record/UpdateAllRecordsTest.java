@@ -47,7 +47,7 @@ public class UpdateAllRecordsTest {
     }
 	
 	@Test
-	public void testUpdateAppRecordsShouldSuccess() throws BulksException, KintoneAPIException {
+	public void testUpdateAllRecordsShouldSuccess() throws BulksException, KintoneAPIException {
 		int numberRecordToUpdate = 2010;
 		int numBulkRequest = 2;
 		ArrayList<HashMap<String, FieldValue>> recordsToUpdate = new ArrayList<HashMap<String, FieldValue>>();
@@ -89,7 +89,7 @@ public class UpdateAllRecordsTest {
 	}
 	
 	@Test(expected = BulksException.class)
-    public void testUpdateAppRecordsShouldFailWrongRevision() throws BulksException, KintoneAPIException {
+    public void testUpdateAllRecordsShouldFailWrongRevision() throws BulksException, KintoneAPIException {
         // Preprocessing
         HashMap<String, FieldValue> testRecord1 = createTestRecord();
         HashMap<String, FieldValue> testRecord2 = createTestRecord();
