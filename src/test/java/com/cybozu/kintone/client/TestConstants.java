@@ -21,9 +21,13 @@ public class TestConstants {
     public static int GUEST_SPACE_THREAD_ID;
     public static int MAX_VALUE;
     public static final String PROXY_HOST = "xxx";
+    public static final String PROXY_HOST_HTTP = "xxx";
+    public static int PROXY_PORT_HTTP;
     public static int PROXY_PORT;
     public static String API_TOKEN = "xxxxxxxxxxxxxxxxxxxx";
     public static String HAAPI_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxx";
+    public static final String PROXY_USERNAME = "xxx";
+    public static final String PROXY_PASSWORD = "xxx";
     public static String CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String HACLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
     public static String WRONG_CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
