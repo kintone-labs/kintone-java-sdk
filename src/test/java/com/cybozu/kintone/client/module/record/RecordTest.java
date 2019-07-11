@@ -55,18 +55,18 @@ public class RecordTest {
     private static String LOCAL_LANGUAGE_API_TOKEN = "xxx";
     private static String NO_SET_ASSIGNEE_API_TOKEN = "xxx";
     private static String NO_MANAGE_PERMISSION_API_TOKEN = "xxx";
-    private static String CURSOR_API_TOKEN = "7vaIstX8BZXZtx4gpMOsPAre0MRMMT27EmXU7xRe";
-    private static String CURSOR_API_TOKEN2 = "ejr6E9N1bMdjxE6mfPUrcoyF18G7uiib6Gx4SYLh";
-    private static String CURSOR_API_TOKEN3 = "Bks8u0SBzs5PnxbpWe9Th8RBtfnPNprAfc16ztJZ";
-    private static String CURSOR_API_TOKEN4 = "XnJVb1xNJRyj9EzXaztgRfwbjCnIGYnoCeeDTlZQ";
-    private static String CURSOR_API_TOKEN5 = "p6y25NVbNLAHJPi2j3KqJVTMGtf385LiVJjZ2OIZ";
+    private static String CURSOR_API_TOKEN = "xxx";
+    private static String CURSOR_API_TOKEN2 = "xxx";
+    private static String CURSOR_API_TOKEN3 = "xxx";
+    private static String CURSOR_API_TOKEN4 = "xxx";
+    private static String CURSOR_API_TOKEN5 = "xxx";
 
-    private static Member testman1 = new Member("testman1", "testman1");
-    private static Member testman2 = new Member("testman2", "testman2");
-    private static Member testgroup1 = new Member("testgroup1", "testgroup1");
-    private static Member testgroup2 = new Member("testgroup2", "testgroup2");
-    private static Member testorg1 = new Member("testorg1", "testorg1");
-    private static Member testorg2 = new Member("testorg2", "testorg2");
+    private static Member testman1 = new Member("xxx", "xxx");
+    private static Member testman2 = new Member("xxx", "xxx");
+    private static Member testgroup1 = new Member("xxx", "xxx");
+    private static Member testgroup2 = new Member("xxx", "xxx");
+    private static Member testorg1 = new Member("xxx", "xxx");
+    private static Member testorg2 = new Member("xxx", "xxx");
     private static Member testAdimin = new Member("xxx", "xxx");
     private static Member testTokenAdimin = new Member("xxx", "xxx");
     private static Member testCertAdimin = new Member("xxx", "xxx");
@@ -105,6 +105,7 @@ public class RecordTest {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
         
         Auth passwordAuth2 = new Auth();
