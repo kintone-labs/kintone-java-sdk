@@ -47,7 +47,7 @@ public class AddAllRecordsTest {
     }
 	
 	@Test
-	public void testUpdateAppRecordsSouldSuccess() throws BulksException, KintoneAPIException {
+	public void testUpdateAppRecordsShouldSuccess() throws BulksException, KintoneAPIException {
 		int totalRecordToAdd = 6000;
 		int numBulkRequest = 3;
 		int numRequestPerBulk = 20;
