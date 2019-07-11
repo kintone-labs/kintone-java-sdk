@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -14,11 +14,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.Proxy;
-import java.net.URL;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -94,8 +90,8 @@ public class Connection {
     /**
      * Constructor for init a connection object to connect to guest space.
      *
-     * @param domain Kintone domain url
-     * @param auth Credential information
+     * @param domain       Kintone domain url
+     * @param auth         Credential information
      * @param guestSpaceId Guest space number in kintone domain.
      */
     public Connection(String domain, Auth auth, int guestSpaceId) {
@@ -109,7 +105,7 @@ public class Connection {
      * Constructor for init a connection object to connect to normal space.
      *
      * @param domain Kintone domain url
-     * @param auth Credential information
+     * @param auth   Credential information
      */
     public Connection(String domain, Auth auth) {
         this(domain, auth, -1);
@@ -119,12 +115,11 @@ public class Connection {
      * Rest http request.
      * This method is low level api, use the correspondence methods in module package instead.
      *
-     * @param method rest http method. Only accept "GET", "POST", "PUT", "DELETE" value.
+     * @param method  rest http method. Only accept "GET", "POST", "PUT", "DELETE" value.
      * @param apiName api name
-     * @param body body of http request. In case "GET" method, the parameters.
+     * @param body    body of http request. In case "GET" method, the parameters.
      * @return json object
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public JsonElement request(String method, String apiName, String body) throws KintoneAPIException {
         HttpsURLConnection connection = null;
@@ -196,9 +191,10 @@ public class Connection {
             } finally {
                 is.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new KintoneAPIException("an error occurred while receiving data");
         }
+
 
         return jsonParser.parse(response);
     }
@@ -209,8 +205,7 @@ public class Connection {
      *
      * @param body the body of the downloadfile
      * @return inputstream
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public InputStream downloadFile(String body) throws KintoneAPIException {
         HttpsURLConnection connection = null;
@@ -240,6 +235,7 @@ public class Connection {
         } catch (IOException e) {
             throw new KintoneAPIException("can not open connection");
         }
+
         connection.setDoOutput(true);
         connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
         connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
@@ -261,7 +257,7 @@ public class Connection {
             OutputStreamWriter writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
             writer.write(body);
             writer.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new KintoneAPIException("socket error");
         }
 
@@ -280,10 +276,9 @@ public class Connection {
      * This method is execute file upload.
      *
      * @param fileName upload file name
-     * @param fis file inputstream
+     * @param fis      file inputstream
      * @return json object
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public JsonElement uploadFile(String fileName, InputStream fis) throws KintoneAPIException {
 
@@ -302,6 +297,7 @@ public class Connection {
                 connection = (HttpsURLConnection) url.openConnection();
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
+
                 connection = (HttpsURLConnection) url.openConnection(proxy);
             }
 
@@ -389,7 +385,7 @@ public class Connection {
         if (!this.domain.contains(ConnectionConstants.HTTPS_PREFIX)) {
             sb.append(ConnectionConstants.HTTPS_PREFIX);
         }
-        if(this.domain.contains(ConnectionConstants.SECURE_ACCESS_SYMBOL) && this.auth.getClientCert() == null) {
+        if (this.domain.contains(ConnectionConstants.SECURE_ACCESS_SYMBOL) && this.auth.getClientCert() == null) {
             throw new KintoneAPIException("client-cert is not set");
         }
         sb.append(this.domain);
@@ -427,10 +423,10 @@ public class Connection {
     /**
      * Set addition header when connect.
      *
-     * @param key the key to set
+     * @param key   the key to set
      * @param value the value to set
      * @return connection
-     *            Connection object.
+     * Connection object.
      */
     public Connection setHeader(String key, String value) {
         this.headers.add(new HTTPHeader(key, value));
@@ -442,7 +438,7 @@ public class Connection {
      *
      * @param auth the auth to set
      * @return connection
-     *            Connection object.
+     * Connection object.
      */
     public Connection setAuth(Auth auth) {
         this.auth = auth;
@@ -452,10 +448,9 @@ public class Connection {
     /**
      * Parse input stream to string.
      *
-     * @param is
-     *          InputStream
+     * @param is InputStream
      * @return result
-     *          String data
+     * String data
      */
     private String readStream(InputStream is) {
         StringBuilder sb = new StringBuilder();
@@ -528,8 +523,7 @@ public class Connection {
     /**
      * Checks the status code of the response.
      *
-     * @param conn
-     *             a connection object
+     * @param conn a connection object
      * @param body
      */
     private void checkStatus(HttpURLConnection conn, String body) throws IOException, KintoneAPIException {
@@ -657,14 +651,28 @@ public class Connection {
     /**
      * Sets the proxy host.
      *
-     * @param host
-     *            proxy host
-     * @param port
-     *            proxy port
+     * @param host proxy host
+     * @param port proxy port
      */
     public void setProxy(String host, Integer port) {
         this.proxyHost = host;
         this.proxyPort = port;
+
+    }
+
+    public void setProxy(String host, Integer port, String username, String password) {
+        this.proxyHost = host;
+        this.proxyPort = port;
+
+        //allowAuthenticationForHttps. This is required only for jdk > 8u11
+        System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
+
+        Authenticator.setDefault(
+                new Authenticator() {
+                    public PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password.toCharArray());
+                    }
+                });
     }
 
     /**
