@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,27 +14,36 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
-import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
-import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.record.Record;
 import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 
 public class CreateCursorTest {
-    private static Integer APP_ID = 6;
-    private static Integer APP_ID2 = 7;
-    private static String API_TOKEN = "xxx";
+    private static Integer APP_ID = 7;
+    private static Integer APP_ID2 = 8;
+    private static Integer APP_ID3 = 9;
+    private static Integer APP_ID4 = 10;
+    private static String apiTokenCanReadRec = "X6pbAeoJ7QadGFEboF5jq69fnjzOlTtEFxOoGozd";
+    private static String apiTokenCanReadRec2="ThfpOyj3gRSRX63eXfVtWDdWPZPy5tR8CqiKZfY0";
+    private static String LOCALUSERNAME = "LOCALUSER";
+    private static String LOCALPASSWORD ="cybozu123";
+//    private static String apiTokenCanReadRec = TestConstants.API_TOKEN;
+//    private static String apiTokenCanReadRec2 = TestConstants.HAAPI_TOKEN;
+//    private static String LOCALUSERNAME = TestConstants.BASIC_USERNAME;
+//    private static String LOCALPASSWORD = TestConstants.BASIC_PASSWORD;
 
     private RecordCursor passwordAuthRecordCursor;
-    private Record tokenRecordManagerment;
+    private RecordCursor passwordAuthRecordCursor2;
+    private RecordCursor passwordAuthRecordCursorCert;
+    private RecordCursor apiTokenAuthRecordCursor;
+    private RecordCursor apiTokenAuthRecordCursor2;
     private Record recordManagerment;
     private Integer uniqueKey = 1;
 
     HashMap<String, FieldValue> testRecord1;
     HashMap<String, FieldValue> testRecord2;
     HashMap<String, FieldValue> testRecord3;
-    FieldValue denyField = new FieldValue();
 
     public HashMap<String, FieldValue> addField(HashMap<String, FieldValue> record, String code, FieldType type,
             Object value) {
@@ -60,7 +68,7 @@ public class CreateCursorTest {
         selectedItemList.add("sample2");
         testRecord = addField(testRecord, "チェックボックス", FieldType.CHECK_BOX, selectedItemList);
         testRecord = addField(testRecord, "ラジオボタン", FieldType.RADIO_BUTTON, "sample2");
-        testRecord = addField(testRecord, "ドロップダウン", FieldType.DROP_DOWN, "sample3");
+        testRecord = addField(testRecord, "ドロップダウン", FieldType.DROP_DOWN, "sample2");
         testRecord = addField(testRecord, "複数選択", FieldType.MULTI_SELECT, selectedItemList);
         testRecord = addField(testRecord, "リンク", FieldType.LINK, "http://cybozu.co.jp/");
         testRecord = addField(testRecord, "日付", FieldType.DATE, "2018-01-01");
@@ -72,23 +80,37 @@ public class CreateCursorTest {
 
     @Before
     public void setup() throws KintoneAPIException {
+
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
         this.recordManagerment = new Record(passwordAuthConnection);
 
+        Auth passwordAuth2 = new Auth();
+        passwordAuth2.setPasswordAuth(LOCALUSERNAME, LOCALPASSWORD);
+        Connection passwordAuthConnection2 = new Connection(TestConstants.DOMAIN, passwordAuth2);
+        this.passwordAuthRecordCursor2 = new RecordCursor(passwordAuthConnection2);
+
         Auth tokenAuth = new Auth();
-        tokenAuth.setApiToken(API_TOKEN);
-        Connection tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
-        tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
-        this.tokenRecordManagerment = new Record(tokenConnection);
+        tokenAuth.setApiToken(apiTokenCanReadRec);
+        Connection apiAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        this.apiTokenAuthRecordCursor = new RecordCursor(apiAuthConnection);
+
+        Auth tokenAuth2 = new Auth();
+        tokenAuth2.setApiToken(apiTokenCanReadRec2);
+        Connection apiAuthConnection2 = new Connection(TestConstants.DOMAIN, tokenAuth2);
+        this.apiTokenAuthRecordCursor2 = new RecordCursor(apiAuthConnection2);
+
+        Auth passwordAuthCert = new Auth();
+        passwordAuthCert.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
+        passwordAuthCert.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
+        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        this.passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         this.testRecord1 = createTestRecord();
         this.testRecord2 = createTestRecord();
         this.testRecord3 = createTestRecord();
-        this.denyField.setType(FieldType.CREATOR);
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         records.add(testRecord1);
         records.add(testRecord2);
@@ -96,18 +118,41 @@ public class CreateCursorTest {
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
         Integer upperLimit = (Integer) this.testRecord3.get("数値").getValue();
         String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
-        GetRecordsResponse result =  this.recordManagerment.getRecords(APP_ID, query, null, true);
+        GetRecordsResponse result = this.recordManagerment.getRecords(APP_ID, query, null, true);
         if (result.getRecords().size() == 0) {
             this.recordManagerment.addRecords(APP_ID, records);
+        }
+        GetRecordsResponse result2 = this.recordManagerment.getRecords(APP_ID2, query, null, true);
+        if (result2.getRecords().size() == 0) {
+            this.recordManagerment.addRecords(APP_ID2, records);
         }
     }
 
     @Test
     public void testCreateCursolShouldSuccessWhenFileldCodeUnincludeInApp() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
-        fields.add("Test");
+        fields.add("dummy");
         CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, fields, null, null);
         assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessWhenFileldCodeUnincludeInAppToken() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("dummy");
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessWhenFileldCodeUnincludeInAppCert() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("dummy");
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursorCert.deleteCursor(cursor.getId());
     }
 
     @Test
@@ -117,6 +162,54 @@ public class CreateCursorTest {
         String query = "order by 数値 desc";
         CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, fields, query, null);
         assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessOnlySpecifiedFieldToken() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        String query = "order by 数値 desc";
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, fields, query, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessOnlySpecifiedFieldCert() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        String query = "order by 数値 desc";
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, fields, query, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursorCert.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessDontSpecifyQuery() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessDontSpecifyQueryToken() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessDontSpecifyQueryCert() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursorCert.deleteCursor(cursor.getId());
     }
 
     @Test
@@ -126,12 +219,48 @@ public class CreateCursorTest {
         fields.add("Test");
         CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, fields, null, null);
         assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessIgnoreFieldCodeToken() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        fields.add("Test");
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursolShouldSuccessIgnoreFieldCodeCert() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        fields.add("数値");
+        fields.add("Test");
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, fields, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursorCert.deleteCursor(cursor.getId());
     }
 
     @Test
     public void testCreateCursorShouldSuccess() throws KintoneAPIException {
         CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, null, null);
         assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursorShouldSuccessToken() throws KintoneAPIException {
+        CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.apiTokenAuthRecordCursor.deleteCursor(cursor.getId());
+    }
+
+    @Test
+    public void testCreateCursorShouldSuccessCert() throws KintoneAPIException {
+        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, null, null, null);
+        assertTrue(!cursor.getId().isEmpty());
+        this.passwordAuthRecordCursorCert.deleteCursor(cursor.getId());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -141,9 +270,33 @@ public class CreateCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenLimitSizeAndDefaultValToken() throws KintoneAPIException {
+        Integer size = 0;
+        this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, null, size);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenLimitSizeAndDefaultValCert() throws KintoneAPIException {
+        Integer size = 0;
+        this.passwordAuthRecordCursorCert.createCursor(APP_ID, null, null, size);
+    }
+
+    @Test(expected = KintoneAPIException.class)
     public void testCreateCursolShouldFailWhenLimitOrDffsetInQuery() throws KintoneAPIException {
         String query = "limit 0, 100 order by 数値 desc";
         this.passwordAuthRecordCursor.createCursor(APP_ID, null, query, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenLimitOrDffsetInQueryToken() throws KintoneAPIException {
+        String query = "limit 0, 100 order by 数値 desc";
+        this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, query, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenLimitOrDffsetInQueryCert() throws KintoneAPIException {
+        String query = "limit 0, 100 order by 数値 desc";
+        this.passwordAuthRecordCursorCert.createCursor(APP_ID, null, query, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -151,12 +304,36 @@ public class CreateCursorTest {
         ArrayList<String> fields = new ArrayList<String>();
         Integer i = 0;
         Integer totalcount = 1002;
-        while ( i < totalcount ){
-        	fields.add("数値" + i );
-        	 i++ ;
+        while (i < totalcount) {
+            fields.add("数値_" + i);
+            i++;
         }
         this.passwordAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenOverThousandFieldsToken() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        Integer i = 0;
+        Integer totalcount = 1002;
+        while (i < totalcount) {
+            fields.add("数値_" + i);
+            i++;
         }
+        this.apiTokenAuthRecordCursor.createCursor(APP_ID, fields, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenOverThousandFieldsCert() throws KintoneAPIException {
+        ArrayList<String> fields = new ArrayList<String>();
+        Integer i = 0;
+        Integer totalcount = 1002;
+        while (i < totalcount) {
+            fields.add("数値_" + i);
+            i++;
+        }
+        this.passwordAuthRecordCursorCert.createCursor(APP_ID3, fields, null, null);
+    }
 
     @Test(expected = KintoneAPIException.class)
     public void testCreateCursolShouldFailWhenUnspecifiedApp() throws KintoneAPIException {
@@ -164,13 +341,28 @@ public class CreateCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    public void testCreateCursolShouldFailAuthByAPI() throws KintoneAPIException {
-        this.tokenRecordManagerment.createCursor(APP_ID, null, null, null);
+    public void testCreateCursolShouldFailWhenUnspecifiedAppToken() throws KintoneAPIException {
+        this.apiTokenAuthRecordCursor.createCursor(null, null, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenUnspecifiedAppCert() throws KintoneAPIException {
+        this.passwordAuthRecordCursorCert.createCursor(null, null, null, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testCreateCursolShouldFailWhenDontBrowsingAuth() throws KintoneAPIException {
-        this.passwordAuthRecordCursor.createCursor(APP_ID2, null, null, null);
+        this.passwordAuthRecordCursor2.createCursor(APP_ID2, null, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenDontBrowsingAuthToken() throws KintoneAPIException {
+        this.apiTokenAuthRecordCursor2.createCursor(APP_ID2, null, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailWhenDontBrowsingAuthCert() throws KintoneAPIException {
+        this.passwordAuthRecordCursorCert.createCursor(APP_ID4, null, null, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -179,44 +371,73 @@ public class CreateCursorTest {
     }
 
     @Test(expected = KintoneAPIException.class)
+    public void testCreateCursorShowFailGivenInvalidAppIDToken() throws KintoneAPIException {
+        this.apiTokenAuthRecordCursor.createCursor(-1, null, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursorShowFailGivenInvalidAppIDCert() throws KintoneAPIException {
+        this.passwordAuthRecordCursorCert.createCursor(-1, null, null, null);
+    }
+
+    @Test(expected = KintoneAPIException.class)
     public void testCreateCursolShouldFailDontCreateOver11CursolInSameTime() throws KintoneAPIException {
         Integer i = 0;
         Integer totalcount = 11;
-        while ( i < totalcount ){
-            this.passwordAuthRecordCursor.createCursor( APP_ID, null, null, null);
-             i++ ;
-        }
-    }
-
-    @Test
-    public void testGetRecordsShouldSuccess() throws KintoneAPIException {
-        HashMap<String, FieldValue> testRecord1 = createTestRecord();
-        HashMap<String, FieldValue> testRecord2 = createTestRecord();
-        HashMap<String, FieldValue> testRecord3 = createTestRecord();
-        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        records.add(testRecord1);
-        records.add(testRecord2);
-        records.add(testRecord3);
-        this.recordManagerment.addRecords(APP_ID, records);
-
-        Integer lowerLimit = (Integer) testRecord1.get("数値").getValue();
-        Integer upperLimit = (Integer) testRecord3.get("数値").getValue();
-        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
-
-        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, query, 100);
-        GetRecordCursorResponse response = this.passwordAuthRecordCursor.getRecords(cursor.getId());
-
-        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(3, response.getRecords().size());
-        for (Entry<String, FieldValue> entry : testRecord1.entrySet()) {
-            assertEquals(entry.getValue().getType(), resultRecords.get(0).get(entry.getKey()).getType());
-            Object expectedValue;
-            if (entry.getValue().getValue() instanceof ArrayList || entry.getValue().getValue() instanceof Member) {
-                expectedValue = entry.getValue().getValue();
-            } else {
-                expectedValue = String.valueOf(entry.getValue().getValue());
+        ArrayList<String> cursorIDs = new ArrayList<String>();
+        try {
+            while (i < totalcount) {
+                CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, null,
+                        null);
+                cursorIDs.add(cursor.getId());
+                i++;
             }
-            assertEquals(expectedValue, resultRecords.get(0).get(entry.getKey()).getValue());
+        } catch (Exception e) {
+            for (String id : cursorIDs) {
+                this.passwordAuthRecordCursor.deleteCursor(id);
+            }
+            throw e;
         }
     }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailDontCreateOver11CursolInSameTimeToken() throws KintoneAPIException {
+        Integer i = 0;
+        Integer totalcount = 11;
+        ArrayList<String> cursorIDs = new ArrayList<String>();
+        try {
+            while (i < totalcount) {
+                CreateRecordCursorResponse cursor = this.apiTokenAuthRecordCursor.createCursor(APP_ID, null, null,
+                        null);
+                cursorIDs.add(cursor.getId());
+                i++;
+            }
+        } catch (Exception e) {
+            for (String id : cursorIDs) {
+                this.apiTokenAuthRecordCursor.deleteCursor(id);
+            }
+            throw e;
+        }
+    }
+
+    @Test(expected = KintoneAPIException.class)
+    public void testCreateCursolShouldFailDontCreateOver11CursolInSameTimeCert() throws KintoneAPIException {
+        Integer i = 0;
+        Integer totalcount = 11;
+        ArrayList<String> cursorIDs = new ArrayList<String>();
+        try {
+            while (i < totalcount) {
+                CreateRecordCursorResponse cursor = this.passwordAuthRecordCursorCert.createCursor(APP_ID, null, null,
+                        null);
+                cursorIDs.add(cursor.getId());
+                i++;
+            }
+        } catch (Exception e) {
+            for (String id : cursorIDs) {
+                this.passwordAuthRecordCursorCert.deleteCursor(id);
+            }
+            throw e;
+        }
+    }
+
 }
