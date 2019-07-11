@@ -38,8 +38,8 @@ public class AppParserTest {
 
     @BeforeClass
     public static void setup() {
-        validAppDataInput = jsonParser.parse(readInput("/app/ValidAppValue.txt"));
-        //validAppsDataInput = jsonParser.parse(readInput("/xxx/xxx.txt"));
+        validAppDataInput = jsonParser.parse(readInput("/xxx/xxx.txt"));
+        validAppsDataInput = jsonParser.parse(readInput("/xxx/xxx.txt"));
     }
 
     private static String readInput(String file) {
