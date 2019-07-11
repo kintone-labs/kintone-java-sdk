@@ -4,7 +4,7 @@ package com.cybozu.kintone.client.module.record;
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
-import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.exception.BulksException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,20 +20,20 @@ public class DeleteAllRecordsByQueryTest {
         connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
     }
 
-    @Test(expected = KintoneAPIException.class)
-    public void deleteAllRecordsWithoutQuery() throws KintoneAPIException {
+    @Test
+    public void deleteAllRecordsWithoutQuery() throws BulksException {
         Record record = new Record(connection);
         record.deleteAllRecordsByQuery(APP_ID, "");
     }
 
-    @Test(expected = KintoneAPIException.class)
-    public void deleteAllRecordsWithQuery() throws KintoneAPIException {
+    @Test
+    public void deleteAllRecordsWithQuery() throws BulksException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(APP_ID, "rb_status in (\"Todo\")");
+        record.deleteAllRecordsByQuery(APP_ID, "rb_status in (\"Done\")");
     }
 
-    @Test(expected = KintoneAPIException.class)
-    public void deleteAllRecordsWithoutApp() throws KintoneAPIException {
+    @Test(expected = BulksException.class)
+    public void deleteAllRecordsWithoutApp() throws BulksException {
         Record record = new Record(connection);
         record.deleteAllRecordsByQuery(null, "rb_status in (\"Todo\")");
     }
