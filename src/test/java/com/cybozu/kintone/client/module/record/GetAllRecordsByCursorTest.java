@@ -53,7 +53,7 @@ public class GetAllRecordsByCursorTest {
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
 
         Auth passwordAuth2 = new Auth();
-        passwordAuth2.setPasswordAuth("testman2", "cybozu");
+        passwordAuth2.setPasswordAuth("xxx", "xxx");
         Connection passwordAuthConnection2 = new Connection(TestConstants.DOMAIN, passwordAuth2);
         this.cursorPasswordAuthRecordManagerment = new Record(passwordAuthConnection2);
 
@@ -315,7 +315,7 @@ public class GetAllRecordsByCursorTest {
         fields.add("文字列__2行");
         GetRecordsResponse response = this.passwordAuthRecordManagerment.getAllRecordsByCursor(14, null, fields);
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(1, resultRecords.size());
+        assertEquals(2, resultRecords.size());
     }
 
     @Test
@@ -334,7 +334,7 @@ public class GetAllRecordsByCursorTest {
         fields.add("文字列__1行");
         GetRecordsResponse response = this.cursorCertRecordManagerment.getAllRecordsByCursor(14, null, fields);
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(1, resultRecords.size());
+        assertEquals(2, resultRecords.size());
     }
 
     @Test(expected = KintoneAPIException.class)
