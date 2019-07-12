@@ -2,9 +2,6 @@ package com.cybozu.kintone.client.module.cursor;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,14 +16,13 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
-import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
 import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.record.Record;
 import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 
-public class RecordCursorTest {
+public class GetAllRecordsTest {
 	private static Integer APP_ID;
 	private static String API_TOKEN = "xxx";
 	private static String API_TOKEN2 = "xxx";
@@ -116,54 +112,7 @@ public class RecordCursorTest {
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
         this.uniqueKey += Integer.parseInt((String) resultRecords.get(0).get("数値").getValue());
     }
-	
-	@Test
-    public void testCreateCursorShouldSuccess() throws KintoneAPIException {
-        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, null, null);
-        assertTrue(!cursor.getId().isEmpty());
-    }
-	
-	@Test(expected = KintoneAPIException.class)
-    public void testCreateCursorShowFailGivenInvalidAppID() throws KintoneAPIException {
-		this.passwordAuthRecordCursor.createCursor(-1, null, null, null);
-    }
-	
-	@Test
-    public void testGetRecordsShouldSuccess() throws KintoneAPIException {
-		HashMap<String, FieldValue> testRecord1 = createTestRecord();
-        HashMap<String, FieldValue> testRecord2 = createTestRecord();
-        HashMap<String, FieldValue> testRecord3 = createTestRecord();
-		ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        records.add(testRecord1);
-        records.add(testRecord2);
-        records.add(testRecord3);
-		this.recordManagerment.addRecords(APP_ID, records);
-		
-		Integer lowerLimit = (Integer) testRecord1.get("数値").getValue();
-        Integer upperLimit = (Integer) testRecord3.get("数値").getValue();
-        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
-        
-        CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, query, 100);
-        GetRecordCursorResponse response = this.passwordAuthRecordCursor.getRecords(cursor.getId());
-        
-        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals(3, response.getRecords().size());
-        for (Entry<String, FieldValue> entry : testRecord1.entrySet()) {
-            assertEquals(entry.getValue().getType(), resultRecords.get(0).get(entry.getKey()).getType());
-            Object expectedValue;
-            if (entry.getValue().getValue() instanceof ArrayList || entry.getValue().getValue() instanceof Member) {
-                expectedValue = entry.getValue().getValue();
-            } else {
-                expectedValue = String.valueOf(entry.getValue().getValue());
-            }
-            assertEquals(expectedValue, resultRecords.get(0).get(entry.getKey()).getValue());
-        }
-    }
-	@Test (expected = KintoneAPIException.class)
-    public void testGetRecordsShouldFailGivenInvalidCursorID() throws KintoneAPIException {
-        this.passwordAuthRecordCursor.getRecords("invalid cursor id");
-    }
-	
+
 	@Test
     public void testGetAllRecordsCursorShouldSuccess() throws KintoneAPIException {
 		// Before processing
@@ -402,13 +351,6 @@ public class RecordCursorTest {
         this.certAuthRecordCursor.getAllRecords("invalid cursor id");
     }
     
-	@Test (expected = KintoneAPIException.class)
-    public void testDeleteCursorShouldSuccess() throws KintoneAPIException {
-		CreateRecordCursorResponse cursor = this.passwordAuthRecordCursor.createCursor(APP_ID, null, null, null);
-		this.passwordAuthRecordCursor.deleteCursor(cursor.getId());
-        this.passwordAuthRecordCursor.getRecords(cursor.getId());
-    }
-	
 	public HashMap<String, FieldValue> createTestRecord() {
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
@@ -449,5 +391,4 @@ public class RecordCursorTest {
         record.put(code, newField);
         return record;
     }
-	
 }
