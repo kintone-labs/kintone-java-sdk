@@ -1,41 +1,24 @@
 package com.cybozu.kintone.client.module.parser;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.TimeZone;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.AppDeployStatus;
-import com.cybozu.kintone.client.model.app.AppDeployStatus.Status;
-import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
-import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
-import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
-import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
 public class CursorParserTest {
     private static final JsonParser jsonParser = new JsonParser();
@@ -75,7 +58,7 @@ public class CursorParserTest {
         }
         return result;
     }
-    
+
     @Test
     public void testParseRecordShouldSuccess() throws KintoneAPIException {
         String invalidValue = readInput("/cursor/ValidCursorRecord.txt");
@@ -87,17 +70,17 @@ public class CursorParserTest {
         assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
         assertEquals("1", fieldValue.getValue());
     }
-    
+
     @Test(expected = KintoneAPIException.class)
-    public void testParseRecordShouldFailWithInvalidData( ) throws KintoneAPIException  {
-        
+    public void testParseRecordShouldFailWithInvalidData() throws KintoneAPIException {
+
         String invalidValue = readInput("/cursor/InvalidCursorRecord.txt");
         CursorParser parser = new CursorParser();
         parser.parseRecordJson(jsonParser.parse(invalidValue));
     }
-    
+
     @Test
-    public void testParseRecordsShouldSuccess() throws KintoneAPIException  {
+    public void testParseRecordsShouldSuccess() throws KintoneAPIException {
         String invalidValue = readInput("/cursor/ValidCursorRecords.txt");
         CursorParser parser = new CursorParser();
         JsonElement parse = jsonParser.parse(invalidValue);
@@ -108,16 +91,16 @@ public class CursorParserTest {
         assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
         assertEquals("1", fieldValue.getValue());
     }
-    
+
     @Test(expected = KintoneAPIException.class)
-    public void testParseRecordsShouldFailWithInvalidData( ) throws KintoneAPIException  {
+    public void testParseRecordsShouldFailWithInvalidData() throws KintoneAPIException {
         String invalidValue = readInput("/cursor/InvalidCursorRecords.txt");
         CursorParser parser = new CursorParser();
         JsonElement parse = jsonParser.parse(invalidValue);
         JsonArray asJsonArray = parse.getAsJsonObject().get("records").getAsJsonArray();
         parser.parseRecordsJson(asJsonArray);
     }
-    
+
     @Test
     public void testParseForGetRecordCursorResponseShouldSuccess() throws KintoneAPIException {
         String validValue = readInput("/cursor/ValidCursorGetRecord.txt");
@@ -125,16 +108,16 @@ public class CursorParserTest {
         JsonElement parse = jsonParser.parse(validValue);
         GetRecordCursorResponse parseForGetRecordCursorResponse = parser.parseForGetRecordCursorResponse(parse);
         assertEquals(false, parseForGetRecordCursorResponse.getNext());
-        
+
         ArrayList<HashMap<String, FieldValue>> records = parseForGetRecordCursorResponse.getRecords();
         HashMap<String, FieldValue> hashMap = records.get(0);
         FieldValue fieldValue = hashMap.get("レコード番号");
         assertEquals("RECORD_NUMBER", fieldValue.getType().toString());
         assertEquals("1", fieldValue.getValue());
     }
-    
+
     @Test(expected = KintoneAPIException.class)
-    public void testParseForGetRecordCursorResponseShouldFailWithInvalidData( ) throws KintoneAPIException  {
+    public void testParseForGetRecordCursorResponseShouldFailWithInvalidData() throws KintoneAPIException {
         String invalidValue = readInput("/cursor/InvalidCursorGetRecord.txt");
         CursorParser parser = new CursorParser();
         parser.parseForGetRecordCursorResponse(jsonParser.parse(invalidValue));
