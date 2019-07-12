@@ -24,6 +24,8 @@ public class TestConstants {
     public static final String PROXY_HOST_HTTP = "xxx";
     public static int PROXY_PORT_HTTP;
     public static int PROXY_PORT;
+    public static String API_TOKEN = "xxxxxxxxxxxxxxxxxxxx";
+    public static String HAAPI_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxx";
     public static final String PROXY_USERNAME = "xxx";
     public static final String PROXY_PASSWORD = "xxx";
     public static String CLIENT_CERT_PATH = "src/test/resources/certificates/testUser/xxx.pfx";
