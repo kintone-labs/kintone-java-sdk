@@ -51,50 +51,49 @@ public class GetAllRecordsByCursorTest {
         Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
         passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
-        
+
         Auth passwordAuth2 = new Auth();
         passwordAuth2.setPasswordAuth("testman2", "cybozu");
         Connection passwordAuthConnection2 = new Connection(TestConstants.DOMAIN, passwordAuth2);
         this.cursorPasswordAuthRecordManagerment = new Record(passwordAuthConnection2);
-        
+
         Auth tokenAuth13 = new Auth();
         tokenAuth13.setApiToken(CURSOR_API_TOKEN);
         Connection tokenConnection13 = new Connection(TestConstants.DOMAIN, tokenAuth13);
         this.cursorTokenRecordManagerment = new Record(tokenConnection13);
-        
+
         Auth tokenAuth14 = new Auth();
         tokenAuth14.setApiToken(CURSOR_API_TOKEN2);
         Connection tokenConnection14 = new Connection(TestConstants.DOMAIN, tokenAuth14);
         this.cursorRestrictedTokenRecordManagerment = new Record(tokenConnection14);
-        
+
         Auth tokenAuth15 = new Auth();
         tokenAuth15.setApiToken(CURSOR_API_TOKEN3);
         Connection tokenConnection15 = new Connection(TestConstants.DOMAIN, tokenAuth15);
         this.cursorAddOnlyTokenRecordManagerment = new Record(tokenConnection15);
-        
+
         Auth tokenAuth16 = new Auth();
         tokenAuth16.setApiToken(CURSOR_API_TOKEN4);
         Connection tokenConnection16 = new Connection(TestConstants.DOMAIN, tokenAuth16);
         this.cursorReadOnlyTokenRecordManagerment = new Record(tokenConnection16);
-        
+
         Auth tokenAuth17 = new Auth();
         tokenAuth17.setApiToken(CURSOR_API_TOKEN5);
         Connection tokenConnection17 = new Connection(TestConstants.DOMAIN, tokenAuth17);
         this.cursorManageOnlyTokenRecordManagerment = new Record(tokenConnection17);
-        
+
         Auth cursorCertauth = new Auth();
         cursorCertauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         cursorCertauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection cursorCertConnection = new Connection(TestConstants.SECURE_DOMAIN, cursorCertauth);
         this.cursorCertRecordManagerment = new Record(cursorCertConnection);
-        
+
         Auth cursorCertauth2 = new Auth();
         cursorCertauth2.setPasswordAuth("xxx", "xxx");
         cursorCertauth2.setClientCertByPath("src/test/resources/certificates/testUser/xxx.pfx", "xxx");
         Connection cursorCertConnection2 = new Connection(TestConstants.SECURE_DOMAIN, cursorCertauth2);
         this.cursorRestrictedCertRecordManagerment = new Record(cursorCertConnection2);
-        
-        
+
         // get maximum "数値"field value in all records and set it uniqueKey.
         String query = "order by 数値 desc";
         ArrayList<String> fields = new ArrayList<String>();
@@ -148,28 +147,28 @@ public class GetAllRecordsByCursorTest {
         record.put(code, newField);
         return record;
     }
-    
+
     @Test
     public void testGetAllRecordsByCursor() throws KintoneAPIException {
         // Before processing
-    	int totalRecordToAdd = 600;
-		int limitRecordToAddPerResquest = 100;
-    	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+        int totalRecordToAdd = 600;
+        int limitRecordToAddPerResquest = 100;
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         int i = 0;
-        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
-        	int j = 0;
-        	ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
-        	while (j < limitRecordToAddPerResquest) {
-            	HashMap<String, FieldValue> testRecord = createTestRecord();
-            	records.add(testRecord);
-            	recordsToAdd.add(testRecord);
-    			j ++;
-    		}
-        	j = 0;
-        	this.passwordAuthRecordManagerment.addRecords(APP_ID, recordsToAdd);
-        	i ++;
+        while (i < (totalRecordToAdd / limitRecordToAddPerResquest)) {
+            int j = 0;
+            ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
+            while (j < limitRecordToAddPerResquest) {
+                HashMap<String, FieldValue> testRecord = createTestRecord();
+                records.add(testRecord);
+                recordsToAdd.add(testRecord);
+                j++;
+            }
+            j = 0;
+            this.passwordAuthRecordManagerment.addRecords(APP_ID, recordsToAdd);
+            i++;
         }
-        
+
         // Main Test processing
         Integer lowerLimit = (Integer) records.get(0).get("数値").getValue();
         Integer upperLimit = (Integer) records.get(records.size() - 1).get("数値").getValue();
@@ -180,7 +179,7 @@ public class GetAllRecordsByCursorTest {
         assertEquals(records.size(), resultRecords.size());
         int index = 0;
         for (HashMap<String, FieldValue> record : records) {
-        	for (Entry<String, FieldValue> entry : record.entrySet()) {
+            for (Entry<String, FieldValue> entry : record.entrySet()) {
                 assertEquals(entry.getValue().getType(), resultRecords.get(index).get(entry.getKey()).getType());
                 Object expectedValue;
                 if (entry.getValue().getValue() instanceof ArrayList || entry.getValue().getValue() instanceof Member) {
@@ -190,10 +189,10 @@ public class GetAllRecordsByCursorTest {
                 }
                 assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
             }
-        	index ++;
-		}
+            index++;
+        }
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorToken() throws KintoneAPIException {
         // Before processing
@@ -201,20 +200,20 @@ public class GetAllRecordsByCursorTest {
         int limitRecordToAddPerResquest = 100;
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         int i = 0;
-        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
+        while (i < (totalRecordToAdd / limitRecordToAddPerResquest)) {
             int j = 0;
             ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
             while (j < limitRecordToAddPerResquest) {
                 HashMap<String, FieldValue> testRecord = createTestRecord();
                 records.add(testRecord);
                 recordsToAdd.add(testRecord);
-                j ++;
+                j++;
             }
             j = 0;
             this.cursorTokenRecordManagerment.addRecords(APP_ID, recordsToAdd);
-            i ++;
+            i++;
         }
-        
+
         // Main Test processing
         Integer lowerLimit = (Integer) records.get(0).get("数値").getValue();
         Integer upperLimit = (Integer) records.get(records.size() - 1).get("数値").getValue();
@@ -235,10 +234,10 @@ public class GetAllRecordsByCursorTest {
                 }
                 assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
             }
-            index ++;
+            index++;
         }
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorCert() throws KintoneAPIException {
         // Before processing
@@ -246,20 +245,20 @@ public class GetAllRecordsByCursorTest {
         int limitRecordToAddPerResquest = 100;
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         int i = 0;
-        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
+        while (i < (totalRecordToAdd / limitRecordToAddPerResquest)) {
             int j = 0;
             ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
             while (j < limitRecordToAddPerResquest) {
                 HashMap<String, FieldValue> testRecord = createTestRecord();
                 records.add(testRecord);
                 recordsToAdd.add(testRecord);
-                j ++;
+                j++;
             }
             j = 0;
             this.cursorCertRecordManagerment.addRecords(APP_ID, recordsToAdd);
-            i ++;
+            i++;
         }
-        
+
         // Main Test processing
         Integer lowerLimit = (Integer) records.get(0).get("数値").getValue();
         Integer upperLimit = (Integer) records.get(records.size() - 1).get("数値").getValue();
@@ -280,10 +279,10 @@ public class GetAllRecordsByCursorTest {
                 }
                 assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
             }
-            index ++;
+            index++;
         }
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWithSelectedFields() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -296,7 +295,7 @@ public class GetAllRecordsByCursorTest {
         HashMap<String, FieldValue> hashMap = resultRecords.get(0);
         assertTrue(hashMap.containsKey("文字列__1行"));
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWithSelectedFieldsCert() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -309,7 +308,7 @@ public class GetAllRecordsByCursorTest {
         HashMap<String, FieldValue> hashMap = resultRecords.get(0);
         assertTrue(hashMap.containsKey("文字列__1行"));
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWithUnexistedFields() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -318,16 +317,17 @@ public class GetAllRecordsByCursorTest {
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
         assertEquals(1, resultRecords.size());
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWithUnexistedFieldsToken() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
         fields.add("文字列__1行");
-        GetRecordsResponse response = this.cursorRestrictedTokenRecordManagerment.getAllRecordsByCursor(14, null, fields);
+        GetRecordsResponse response = this.cursorRestrictedTokenRecordManagerment.getAllRecordsByCursor(14, null,
+                fields);
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
         assertEquals(0, resultRecords.size());
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWithUnexistedFieldsCert() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -336,28 +336,28 @@ public class GetAllRecordsByCursorTest {
         ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
         assertEquals(1, resultRecords.size());
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithInvalidQuery() throws KintoneAPIException {
         String query = new String();
         query = "offset 0";
         this.passwordAuthRecordManagerment.getAllRecordsByCursor(13, query, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithInvalidQueryToken() throws KintoneAPIException {
         String query = new String();
         query = "offset 0";
         this.cursorTokenRecordManagerment.getAllRecordsByCursor(13, query, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithInvalidQueryCert() throws KintoneAPIException {
         String query = new String();
         query = "offset 0";
         this.cursorCertRecordManagerment.getAllRecordsByCursor(13, query, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppOverThousand() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -366,7 +366,7 @@ public class GetAllRecordsByCursorTest {
         }
         this.passwordAuthRecordManagerment.getAllRecordsByCursor(13, null, fields);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppOverThousandToken() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -375,7 +375,7 @@ public class GetAllRecordsByCursorTest {
         }
         this.cursorTokenRecordManagerment.getAllRecordsByCursor(13, null, fields);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppOverThousandCert() throws KintoneAPIException {
         ArrayList<String> fields = new ArrayList<String>();
@@ -384,72 +384,72 @@ public class GetAllRecordsByCursorTest {
         }
         this.cursorCertRecordManagerment.getAllRecordsByCursor(13, null, fields);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppNull() throws KintoneAPIException {
         this.passwordAuthRecordManagerment.getAllRecordsByCursor(null, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppNullToken() throws KintoneAPIException {
         this.cursorTokenRecordManagerment.getAllRecordsByCursor(null, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenAppNullCert() throws KintoneAPIException {
         this.cursorCertRecordManagerment.getAllRecordsByCursor(null, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenUsingAddToken() throws KintoneAPIException {
         this.cursorAddOnlyTokenRecordManagerment.getAllRecordsByCursor(APP_ID, null, null);
     }
-    
+
     @Test
     public void testGetAllRecordsByCursorShouldSuccessWhenUsingReadToken() throws KintoneAPIException {
         this.cursorReadOnlyTokenRecordManagerment.getAllRecordsByCursor(APP_ID, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWhenUsingManageToken() throws KintoneAPIException {
         this.cursorManageOnlyTokenRecordManagerment.getAllRecordsByCursor(APP_ID, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldSuccessWhenHasNoPermission() throws KintoneAPIException {
         this.cursorPasswordAuthRecordManagerment.getAllRecordsByCursor(14, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldSuccessWhenHasNoPermissionCert() throws KintoneAPIException {
         this.cursorRestrictedCertRecordManagerment.getAllRecordsByCursor(14, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithUnexistedAppID() throws KintoneAPIException {
         this.passwordAuthRecordManagerment.getAllRecordsByCursor(99999, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithUnexistedAppIDToken() throws KintoneAPIException {
         this.cursorTokenRecordManagerment.getAllRecordsByCursor(99999, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailWithUnexistedAppIDCert() throws KintoneAPIException {
         this.cursorCertRecordManagerment.getAllRecordsByCursor(99999, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailGivenInvalidAppID() throws KintoneAPIException {
         this.passwordAuthRecordManagerment.getAllRecordsByCursor(-1, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailGivenInvalidAppIDToken() throws KintoneAPIException {
         this.cursorTokenRecordManagerment.getAllRecordsByCursor(-1, null, null);
     }
-    
+
     @Test(expected = KintoneAPIException.class)
     public void testGetAllRecordsByCursorShouldFailGivenInvalidAppIDCert() throws KintoneAPIException {
         this.cursorCertRecordManagerment.getAllRecordsByCursor(-1, null, null);
