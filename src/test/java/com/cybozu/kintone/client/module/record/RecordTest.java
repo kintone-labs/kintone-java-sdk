@@ -96,107 +96,90 @@ public class RecordTest {
         Auth guestAuth = new Auth();
         guestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection gusetConnection = new Connection(TestConstants.DOMAIN, guestAuth, TestConstants.GUEST_SPACE_ID);
-        gusetConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.guestAuthRecordManagerment = new Record(gusetConnection);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
         Connection tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
-        tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.tokenRecordManagerment = new Record(tokenConnection);
 
         Auth tokenAuth1 = new Auth();
         tokenAuth1.setApiToken(NO_VIEW_PERMISSION_API_TOKEN);
         Connection tokenConnection1 = new Connection(TestConstants.DOMAIN, tokenAuth1);
-        tokenConnection1.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noViewPermissionTokenRecordManagerment = new Record(tokenConnection1);
 
         Auth tokenAuth2 = new Auth();
         tokenAuth2.setApiToken(BLANK_APP_API_TOKEN);
         Connection tokenConnection2 = new Connection(TestConstants.DOMAIN, tokenAuth2);
-        tokenConnection2.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.blankAppApiTokenRecordManagerment = new Record(tokenConnection2);
 
         Auth tokenAuth3 = new Auth();
         tokenAuth3.setApiToken(PROHIBIT_DUPLICATE_API_TOKEN);
         Connection tokenConnection3 = new Connection(TestConstants.DOMAIN, tokenAuth3);
-        tokenConnection3.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.prohibitDuplicateTokenRecordManagerment = new Record(tokenConnection3);
 
         Auth tokenAuth4 = new Auth();
         tokenAuth4.setApiToken(REQUIRED_FIELD_API_TOKEN);
         Connection tokenConnection4 = new Connection(TestConstants.DOMAIN, tokenAuth4);
-        tokenConnection4.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.requiredFieldTokenRecordManagerment = new Record(tokenConnection4);
 
         Auth tokenAuth5 = new Auth();
         tokenAuth5.setApiToken(NO_ADD_PERMISSION_API_TOKEN);
         Connection tokenConnection5 = new Connection(TestConstants.DOMAIN, tokenAuth5);
-        tokenConnection5.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noAddPermissionTokenReocrdManagerment = new Record(tokenConnection5);
 
         Auth tokenAuth6 = new Auth();
         tokenAuth6.setApiToken(ADD_NO_VIEW_API_TOKEN);
         Connection tokenConnection6 = new Connection(TestConstants.DOMAIN, tokenAuth6);
-        tokenConnection6.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.addNoViewTokenRecordManagerment = new Record(tokenConnection6);
 
         Auth tokenAuth7 = new Auth();
         tokenAuth7.setApiToken(NO_ADMIN_PERMISSION_API_TOKEN);
         Connection tokenConnection7 = new Connection(TestConstants.DOMAIN, tokenAuth7);
-        tokenConnection7.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noAdminPermissionRecordManagerment = new Record(tokenConnection7);
 
         Auth tokenAuth8 = new Auth();
         tokenAuth8.setApiToken(NO_DELETE_PERMISSION_API_TOKEN);
         Connection tokenConnection8 = new Connection(TestConstants.DOMAIN, tokenAuth8);
-        tokenConnection8.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noDeletePermissionRecordManagerment = new Record(tokenConnection8);
 
         Auth tokenAuth9 = new Auth();
         tokenAuth9.setApiToken(NO_EDIT_PERMISSION_API_TOKEN);
         Connection tokenConnection9 = new Connection(TestConstants.DOMAIN, tokenAuth9);
-        tokenConnection9.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noEditPermissionRecordManagerment = new Record(tokenConnection9);
 
         Auth tokenAuth10 = new Auth();
         tokenAuth10.setApiToken(LOCAL_LANGUAGE_API_TOKEN);
         Connection tokenConnection10 = new Connection(TestConstants.DOMAIN, tokenAuth10);
-        tokenConnection10.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.localLanguageRecordManagerment = new Record(tokenConnection10);
 
         Auth tokenAuth11 = new Auth();
         tokenAuth11.setApiToken(NO_SET_ASSIGNEE_API_TOKEN);
         Connection tokenConnection11 = new Connection(TestConstants.DOMAIN, tokenAuth11);
-        tokenConnection11.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noSetAssigneeRecordManagerment = new Record(tokenConnection11);
 
         Auth tokenAuth12 = new Auth();
         tokenAuth12.setApiToken(NO_MANAGE_PERMISSION_API_TOKEN);
         Connection tokenConnection12 = new Connection(TestConstants.DOMAIN, tokenAuth12);
-        tokenConnection12.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.noManagePermissionRecordManagerment = new Record(tokenConnection12);
 
         Auth tokenGuestAuth = new Auth();
         tokenGuestAuth.setApiToken(GUEST_SPACE_API_TOKEN);
         Connection tokenGuestConnection = new Connection(TestConstants.DOMAIN, tokenGuestAuth,
                 TestConstants.GUEST_SPACE_ID);
-        tokenGuestConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.tokenGuestRecordManagerment = new Record(tokenGuestConnection);
 
-        Auth certauth = new Auth();
-        certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection CertConnection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        CertConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
-        this.certRecordManagerment = new Record(CertConnection);
+        Auth certAuth = new Auth();
+        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
+        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
+        Connection certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
+        this.certRecordManagerment = new Record(certConnection);
 
         Auth certGuestAuth = new Auth();
         certGuestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certGuestAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection CertGuestConnection = new Connection(TestConstants.SECURE_DOMAIN, certGuestAuth,
                 TestConstants.GUEST_SPACE_ID);
-        CertGuestConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.certGuestRecordManagerment = new Record(CertGuestConnection);
 
         // get maximum "数値"field value in all records and set it uniqueKey.
@@ -1557,56 +1540,6 @@ public class RecordTest {
         String query = "ユーザー選択 in (\" USER\", \"xxx xxx\")";
         this.certRecordManagerment.getRecords(APP_ID, query, null, null);
     }
-    
-    @Test
-    public void testGetAllRecordsByCursor() throws KintoneAPIException {
-        // Before processing
-    	int totalRecordToAdd = 600;
-		int limitRecordToAddPerResquest = 100;
-    	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        int i = 0;
-        while (i < (totalRecordToAdd/limitRecordToAddPerResquest)) {
-        	int j = 0;
-        	ArrayList<HashMap<String, FieldValue>> recordsToAdd = new ArrayList<HashMap<String, FieldValue>>();
-        	while (j < limitRecordToAddPerResquest) {
-            	HashMap<String, FieldValue> testRecord = createTestRecord();
-            	records.add(testRecord);
-            	recordsToAdd.add(testRecord);
-    			j ++;
-    		}
-        	j = 0;
-        	this.passwordAuthRecordManagerment.addRecords(APP_ID, recordsToAdd);
-        	i ++;
-        }
-        
-        // Main Test processing
-        Integer lowerLimit = (Integer) records.get(0).get("数値").getValue();
-        Integer upperLimit = (Integer) records.get(records.size() - 1).get("数値").getValue();
-        String query = "数値 >=" + lowerLimit + "and 数値 <=" + upperLimit + "order by 数値 asc";
-        GetRecordsResponse response = this.passwordAuthRecordManagerment.getAllRecordsByCursor(APP_ID, query, null);
-        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-        assertEquals((Integer) records.size(), response.getTotalCount());
-        assertEquals(records.size(), resultRecords.size());
-        int index = 0;
-        for (HashMap<String, FieldValue> record : records) {
-        	for (Entry<String, FieldValue> entry : record.entrySet()) {
-                assertEquals(entry.getValue().getType(), resultRecords.get(index).get(entry.getKey()).getType());
-                Object expectedValue;
-                if (entry.getValue().getValue() instanceof ArrayList || entry.getValue().getValue() instanceof Member) {
-                    expectedValue = entry.getValue().getValue();
-                } else {
-                    expectedValue = String.valueOf(entry.getValue().getValue());
-                }
-                assertEquals(expectedValue, resultRecords.get(index).get(entry.getKey()).getValue());
-            }
-        	index ++;
-		}
-    }
-    
-    @Test(expected = KintoneAPIException.class)
-    public void testGetAllRecordsByCursorShowFailGivenInvalidAppID() throws KintoneAPIException {
-        this.passwordAuthRecordManagerment.getAllRecordsByCursor(-1, null, null);
-    }
 
     @Test
     public void testAddRecord() throws KintoneAPIException {
@@ -1713,7 +1646,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachment = new File(connection);
 
         FileModel file = attachment.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -1743,7 +1675,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -1774,7 +1705,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -1903,7 +1833,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -1934,7 +1863,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setApiToken(GUEST_SPACE_API_TOKEN);
         Connection connection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -1966,7 +1894,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -2524,7 +2451,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -2576,7 +2502,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -2629,7 +2554,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -2879,7 +2803,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -2933,7 +2856,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setApiToken(GUEST_SPACE_API_TOKEN);
         Connection connection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -2988,7 +2910,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         File attachmet = new File(connection);
@@ -3837,7 +3758,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -3872,7 +3792,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -3907,7 +3826,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -4888,7 +4806,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -4925,7 +4842,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -4963,7 +4879,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -5131,7 +5046,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setApiToken(ANOTHER_GUEST_SPACE_API_TOKEN);
         Connection connection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record guestRecord = new Record(connection);
 
         HashMap<String, FieldValue> testRecord = new HashMap<>();
@@ -6432,7 +6346,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -6485,7 +6398,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -6539,7 +6451,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -8721,7 +8632,6 @@ public class RecordTest {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection passwordAuthConnection = new Connection(TestConstants.HADOMAIN, passwordAuth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         passwordAuthRecordManagerment = new Record(passwordAuthConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -8747,7 +8657,6 @@ public class RecordTest {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(HA_API_TOKEN);
         Connection tokenConnection = new Connection(TestConstants.HADOMAIN, tokenAuth);
-        tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         tokenRecordManagerment = new Record(tokenConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -8773,7 +8682,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.HACLIENT_CERT_PATH, TestConstants.HACLIENT_CERT_PASSWORD);
         Connection CertConnection = new Connection(TestConstants.HASECURE_DOMAIN, certauth);
-        CertConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         certRecordManagerment = new Record(CertConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -8796,7 +8704,6 @@ public class RecordTest {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         Connection passwordAuthConnection = new Connection(TestConstants.HADOMAIN, passwordAuth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         passwordAuthRecordManagerment = new Record(passwordAuthConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -8821,7 +8728,6 @@ public class RecordTest {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(HA_API_TOKEN);
         Connection tokenConnection = new Connection(TestConstants.HADOMAIN, tokenAuth);
-        tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         tokenRecordManagerment = new Record(tokenConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -8846,7 +8752,6 @@ public class RecordTest {
         certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
         certauth.setClientCertByPath(TestConstants.HACLIENT_CERT_PATH, TestConstants.HACLIENT_CERT_PASSWORD);
         Connection CertConnection = new Connection(TestConstants.HASECURE_DOMAIN, certauth);
-        CertConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         certRecordManagerment = new Record(CertConnection);
         // Preprocessing
         HashMap<String, FieldValue> testRecord = createTestRecord();
@@ -9845,7 +9750,6 @@ public class RecordTest {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth("user1", "user1");
         Connection connection = new Connection(TestConstants.DOMAIN, passwordAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record record = new Record(connection);
         String action2 = "完了する";
         UpdateRecordResponse response1 = record.updateRecordStatus(APP_ID, id, action2, null, revision + 2);
@@ -9869,7 +9773,6 @@ public class RecordTest {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth("user1", "user1");
         Connection connection = new Connection(TestConstants.DOMAIN, passwordAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record record = new Record(connection);
         String action2 = "完了する";
         UpdateRecordResponse response1 = record.updateRecordStatus(APP_ID, id, action2, null, revision + 2);
@@ -9894,7 +9797,6 @@ public class RecordTest {
         certauth.setPasswordAuth("user1", "user1");
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         Record record = new Record(connection);
         String action2 = "完了する";
         UpdateRecordResponse response1 = record.updateRecordStatus(APP_ID, id, action2, null, revision + 2);
@@ -14856,7 +14758,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth("cyuan", "cyuan");
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(connection);
         this.passwordAuthRecordManagerment.deleteComment(APP_ID, id, commentId);
     }
@@ -14882,7 +14783,6 @@ public class RecordTest {
         Auth auth = new Auth();
         auth.setPasswordAuth("cyuan", "cyuan");
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.tokenRecordManagerment = new Record(connection);
         this.tokenRecordManagerment.deleteComment(APP_ID, id, commentId);
     }
@@ -14909,7 +14809,6 @@ public class RecordTest {
         certauth.setPasswordAuth("cyuan", "cyuan");
         certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
         Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.certRecordManagerment = new Record(connection);
         this.certRecordManagerment.deleteComment(APP_ID, id, commentId);
     }
