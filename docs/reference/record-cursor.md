@@ -40,7 +40,7 @@ The user or API Token must have permission to view the records.
 
 ### createCursor(Integer app, Array<String\> fields, String query, Integer size)
 
-> Get single app
+> Create a cursor.
 
 **Parameter**
 
@@ -87,7 +87,7 @@ The user or API Token must have permission to view the records.
 
 ### getRecords(String cursorID)
 
-> Get multiple apps
+> Get one block of records.
 
 **Parameter **
 
@@ -132,7 +132,7 @@ The user or API Token must have permission to view the records.
 
 ### getAllRecords(String cursorID)
 
-> Get multiple apps by list of ids
+> Get all records
 
 **Parameter **
 
@@ -178,7 +178,7 @@ The user or API Token must have permission to view the records.
 
 ### deleteCursor(String cursorID)
 
-> Get multiple apps by a list of codes
+> Delete a cursor
 
 **Parameter **
 
@@ -205,25 +205,3 @@ none
 </pre>
 
 </details>
-
-## Reference
-
-- [Get App](https://developer.kintone.io/hc/en-us/articles/212494888)
-- [Get Apps](https://developer.kintone.io/hc/en-us/articles/115005336727)
-- [Get Form fields](https://developer.kintone.io/hc/en-us/articles/115005509288)
-- [Add Form fields](https://developer.kintone.io/hc/en-us/articles/115005506868)
-- [Update Form fields](https://developer.kintone.io/hc/en-us/articles/115005507788)
-- [Delete Form fields](https://developer.kintone.io/hc/en-us/articles/115005341187)
-
-- [Get Form Layout](https://developer.kintone.io/hc/en-us/articles/115005509068)
-- [Update Form Layout](https://developer.kintone.io/hc/en-us/articles/115005341427)
-
-- [Add Preview App](https://developer.kintone.io/hc/en-us/articles/115004712547)
-- [Deploy App Settings](https://developer.kintone.io/hc/en-us/articles/115004881348)
-- [Get App Deploy Status](https://developer.kintone.io/hc/en-us/articles/115004890947)
-- [Get Views](https://developer.kintone.io/hc/en-us/articles/115004401787)
-
-- [Update Views](https://developer.kintone.io/hc/en-us/articles/115004880588)
-
-- [Get General Settings](https://developer.kintone.io/hc/en-us/articles/115004811668)
-- [Update General Settings](https://developer.kintone.io/hc/en-us/articles/115004868628)
