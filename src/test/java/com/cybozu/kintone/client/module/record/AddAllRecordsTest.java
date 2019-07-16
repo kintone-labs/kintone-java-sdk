@@ -47,7 +47,7 @@ public class AddAllRecordsTest {
     }
 	
 	@Test
-	public void testUpdateAppRecordsSouldSuccess() throws BulksException, KintoneAPIException {
+	public void testAddAllRecordsShouldSuccess() throws BulksException, KintoneAPIException {
 		int totalRecordToAdd = 6000;
 		int numBulkRequest = 3;
 		int numRequestPerBulk = 20;
@@ -66,7 +66,7 @@ public class AddAllRecordsTest {
 	}
 	
 	@Test(expected = BulksException.class)
-    public void testUpdateAppRecordsShouldFailWrongAppID() throws BulksException, KintoneAPIException {
+    public void testAddAllRecordsShouldFailWrongAppID() throws BulksException, KintoneAPIException {
         // Preprocessing
 		ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
 		HashMap<String, FieldValue> testRecord = createTestRecord();
