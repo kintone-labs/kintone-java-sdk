@@ -1,0 +1,8 @@
+{
+	"record": {
+		"レコード番号": {
+			"type": "RECORD_NUMBER",
+			"value": "1"
+		}
+	}
+}
