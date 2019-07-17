@@ -1967,6 +1967,7 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>update record Assignees</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2029,7 +2030,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 <td>assignee</td>
 <td>String</td>
 <td>(Conditionally required)</td>
-<td>The next Assignee. Specify the Assignee's log in name.</br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.</td>
+<td>The next Assignee. Specify the Assignee's log in name.<br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.</td>
 </tr>
 <tr>
 <td>revision</td>
@@ -2044,6 +2045,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update record status</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2103,6 +2105,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Update multi record status</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2186,6 +2189,7 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Get comments</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2248,6 +2252,7 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Add comment</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2315,6 +2320,7 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Delete comment</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2380,14 +2386,16 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <p><a href="../model/record/record-model/#getrecordsresponse">GetRecordsResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
-<Summary>Get all records by query</Summary>
+<Summary>Get all records by query</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     String query = {YOUR_QUERY};
     ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
     GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
 </pre>
-</details></p>
+
+<p></details></p>
 <h3 id="upsertrecordapp-updatekey-record-revision">upsertRecord(app, updateKey, record, revision)</h3>
 <p><strong>Parameter</strong></p>
 <table>
@@ -2430,21 +2438,23 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <p><a href="../model/record/record-model/#addrecordresponse">AddRecordResponse</a> or <a href="../model/record/record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
-<Summary>Upsert record</Summary>
+<Summary>Upsert record</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     FieldValue fv = new FieldValue();
     fv.setType(FieldType.SINGLE_LINE_TEXT);
-    fv.setValue( {YOUR_FIELD_VALUE} );</p>
-<pre><code>HashMap&amp;lt;String, FieldValue&amp;gt; record = new HashMap&amp;lt;String, FieldValue&amp;gt;();
-record.put("title", fv);
+    fv.setValue( {YOUR_FIELD_VALUE} );
 
-RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+    record.put("title", fv);
 
-kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
-</code></pre>
-<p></pre>
-</details></p>
+    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+
+    kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
+</pre>
+
+<p></details></p>
 <h3 id="upsertrecordsapp-updatekey-record-revision">upsertRecords(app, updateKey, record, revision)</h3>
 <p><strong>Parameter</strong></p>
 <table>
@@ -2475,26 +2485,28 @@ kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
 <p><a href="../model/bulk-request/bulk-request-response">BulkRequestResponse</a></p>
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
-<Summary>Upsert records</Summary>
+<Summary>Upsert records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
-    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();</p>
-<pre><code>ArrayList&amp;lt;HashMap&amp;lt;String, FieldValue&amp;gt; &amp;gt; records = new ArrayList&amp;lt;HashMap&amp;lt;String, FieldValue&amp;gt; &amp;gt;();
+    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("Title 123");
+    ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt;();
 
-HashMap&amp;lt;String, FieldValue&amp;gt; record = new HashMap&amp;lt;String, FieldValue&amp;gt;();
-record.put("title", fv);
+    FieldValue fv = new FieldValue();
+    fv.setType(FieldType.SINGLE_LINE_TEXT);
+    fv.setValue("Title 123");
 
-RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+    record.put("title", fv);
 
-upsertRecords.add(new RecordsUpsertItem(updateKey, record));
-kintoneRecordManager.upsertRecords(appID, upsertRecords);
-</code></pre>
-<p></pre>
-</details></p>
+    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+
+    upsertRecords.add(new RecordsUpsertItem(updateKey, record));
+    kintoneRecordManager.upsertRecords(appID, upsertRecords);
+</pre>
+
+<p></details></p>
 <h3 id="updateallrecordsinteger-app-arraylistrecordupdateitem62-records">updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)</h3>
 <blockquote>
 <p>Update all records to the kintone app</p>
@@ -2529,6 +2541,7 @@ kintoneRecordManager.upsertRecords(appID, upsertRecords);
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>update all records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 Integer appID = 114;
 HashMap &lt;String, FieldValue&gt; record = new HashMap();
@@ -2621,6 +2634,7 @@ try {
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>update all records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 Integer appID = 114;
 ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt;();
