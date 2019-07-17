@@ -136,7 +136,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone Java SDK</a> <a style="text-decoration: underline;" href="../../versions">v0.3.0</a>
+            <a href="../..">kintone Java SDK</a> <a style="text-decoration: underline;" href="../../versions">v0.4.0</a>
         </div>
       </div>
  
@@ -497,6 +497,41 @@
           <li class="md-nav__item">
   <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
     deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getallrecordsbyqueryapp-query-fields-totalcount" title="getAllRecordsByQuery(app, query, fields, totalCount)" class="md-nav__link">
+    getAllRecordsByQuery(app, query, fields, totalCount)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordapp-updatekey-record-revision" title="upsertRecord(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecord(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordsapp-updatekey-record-revision" title="upsertRecords(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecords(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateallrecordsinteger-app-arraylistrecordupdateitem62-records" title="updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)" class="md-nav__link">
+    updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records" title="addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)" class="md-nav__link">
+    addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)
   </a>
   
 </li>
@@ -1104,6 +1139,41 @@
           <li class="md-nav__item">
   <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
     deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getallrecordsbyqueryapp-query-fields-totalcount" title="getAllRecordsByQuery(app, query, fields, totalCount)" class="md-nav__link">
+    getAllRecordsByQuery(app, query, fields, totalCount)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordapp-updatekey-record-revision" title="upsertRecord(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecord(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordsapp-updatekey-record-revision" title="upsertRecords(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecords(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateallrecordsinteger-app-arraylistrecordupdateitem62-records" title="updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)" class="md-nav__link">
+    updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records" title="addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)" class="md-nav__link">
+    addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)
   </a>
   
 </li>
@@ -2271,6 +2341,355 @@ Integer record = 1;
 Integer comment = 1;
 
 kintoneRecordManager.deleteComment(app, record, comment);
+</pre>
+
+<p></details></p>
+<h3 id="getallrecordsbyqueryapp-query-fields-totalcount">getAllRecordsByQuery(app, query, fields, totalCount)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>query</td>
+<td>String</td>
+<td>(optional)</td>
+<td>The query string that will specify what records will be responded.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>ArrayList&lt;String&gt;</td>
+<td>(optional)</td>
+<td>List of field codes you want in the response.</td>
+</tr>
+<tr>
+<td>totalCount</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>If "true", the request will retrieve total count of records match with query conditions.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/record/record-model/#getrecordsresponse">GetRecordsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Get all records by query</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+    Integer appID = {YOUR_APP_ID};
+    String query = {YOUR_QUERY};
+    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
+    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
+</pre>
+
+<p></details></p>
+<h3 id="upsertrecordapp-updatekey-record-revision">upsertRecord(app, updateKey, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>updateKey</td>
+<td><a href="../model/record/record-model/#recordupdatekey">RecordUpdateKey</a></td>
+<td>yes</td>
+<td>The unique key of the record to be updated. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+<tr>
+<td>record</td>
+<td>HashMap&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>&gt;</td>
+<td>yes</td>
+<td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The revision number of record</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/record/record-model/#addrecordresponse">AddRecordResponse</a> or <a href="../model/record/record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Upsert record</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+    Integer appID = {YOUR_APP_ID};
+    FieldValue fv = new FieldValue();
+    fv.setType(FieldType.SINGLE_LINE_TEXT);
+    fv.setValue( {YOUR_FIELD_VALUE} );
+
+    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+    record.put("title", fv);
+
+    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+
+    kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
+</pre>
+
+<p></details></p>
+<h3 id="upsertrecordsapp-updatekey-record-revision">upsertRecords(app, updateKey, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>ArrayList&lt;<a href="../model/record/record-model/#recordupdateitem">RecordUpdateItem</a>></td>
+<td>yes</td>
+<td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/bulk-request/bulk-request-response">BulkRequestResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Upsert records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+    Integer appID = {YOUR_APP_ID};
+    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();
+
+    ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt;();
+
+    FieldValue fv = new FieldValue();
+    fv.setType(FieldType.SINGLE_LINE_TEXT);
+    fv.setValue("Title 123");
+
+    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+    record.put("title", fv);
+
+    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+
+    upsertRecords.add(new RecordsUpsertItem(updateKey, record));
+    kintoneRecordManager.upsertRecords(appID, upsertRecords);
+</pre>
+
+<p></details></p>
+<h3 id="updateallrecordsinteger-app-arraylistrecordupdateitem62-records">updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)</h3>
+<blockquote>
+<p>Update all records to the kintone app</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>Array&lt;<a href="../model/record/record-model/#recordupdateitem">RecordUpdateItem</a>&gt;</td>
+<td>yes</td>
+<td>The records data which will update to kintone app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>update all records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+Integer appID = 114;
+HashMap &lt;String, FieldValue&gt; record = new HashMap();
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("test_updateRecords3x");
+
+record.put("文字列__1行", fv);
+
+ArrayList&lt;RecordUpdateItem&gt; records = new ArrayList&lt;RecordUpdateItem&gt;();
+records.add(new RecordUpdateItem(58178, null, null, record));
+try {
+    BulkRequestResponse bulkRequestResponse = this.passwordAuthRecordManagerment.updateAllRecords(appID, records);
+    UpdateRecordsResponse updateRecordsResponse =  (UpdateRecordsResponse) bulkRequestResponse.getResults().get(0);
+    System.out.println("record ID: " + updateRecordsResponse.getRecords().get(0).getID());
+    System.out.println("revision: " + updateRecordsResponse.getRecords().get(0).getRevision());
+    /*
+    output:
+        record ID: 58178   // record ID
+        revision: 5  // revision
+    */
+} catch (BulksException e) {
+    System.out.println(e.getResults());
+
+    // Ex: If User update 6000 records:
+    // Case 1: If there error occur in record 0
+    // Err response:
+    // [KintoneAPIException]
+    // Case 2: the error occur in record 4000
+    // err response
+    // [
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    UpdateRecordsResponse,
+    //    KintoneAPIException
+    //  ]
+}
+</pre>
+
+<p></details></p>
+<h3 id="addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records">addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>>> records)</h3>
+<blockquote>
+<p>Add all records to the kintone app</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>Array&lt;HashTable&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>&gt;&gt;</td>
+<td>yes</td>
+<td>The records data which will add to kintone app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>update all records</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+Integer appID = 114;
+ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt;();
+
+HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("test_updateRecords3x");
+
+record.put("文字列__1行", fv);
+records.add(record);
+try {
+    BulkRequestResponse bulkRequestResponse = this.passwordAuthRecordManagerment.addAllRecords(appID, records);
+    AddRecordsResponse addRecordsResponse =  (AddRecordsResponse) bulkRequestResponse.getResults().get(0);
+    System.out.println("record ID: " + addRecordsResponse.getIDs().get(0));
+    System.out.println("revision: " + addRecordsResponse.getRevisions().get(0));
+    /*
+    output:
+        record ID: 58179   // record ID
+        revision: 1  // revision
+    */
+} catch (BulksException e) {
+    System.out.println(e.getResults());
+
+    // Ex: User update 6000 records:
+    // Case 1: If there error occur in record 0
+    // err response:[KintoneAPIException]
+
+    // Case 2: the error occur in record 4000
+    // err response:
+    //  [
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    AddRecordsResponse,
+    //    KintoneAPIException
+    //  ]
+}
 </pre>
 
 <p></details></p>
