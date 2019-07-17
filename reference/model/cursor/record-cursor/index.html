@@ -13,7 +13,7 @@
         <meta name="description" content="The SDK of kintone REST API client on Java">
       
       
-        <link rel="canonical" href="https://kintone.github.io/kintone-java-sdk/reference/model/member/member/">
+        <link rel="canonical" href="https://kintone.github.io/kintone-java-sdk/reference/model/cursor/record-cursor/">
       
       
       
@@ -40,7 +40,7 @@
     
     
       
-        <title>Member - kintone Java SDK</title>
+        <title>RecordCursor - kintone Java SDK</title>
       
     
     
@@ -105,7 +105,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#member" tabindex="1" class="md-skip">
+      <a href="#recordcursor-model" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -321,10 +321,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Reference
@@ -436,10 +438,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9" checked>
     
     <label class="md-nav__link" for="nav-3-9">
       Model
@@ -695,10 +699,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-9-2" type="checkbox" id="nav-3-9-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-9-2" type="checkbox" id="nav-3-9-2" checked>
     
     <label class="md-nav__link" for="nav-3-9-2">
       Cursor
@@ -714,11 +720,122 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../cursor/record-cursor/" title="RecordCursor" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RecordCursor
+      </label>
+    
+    <a href="./" title="RecordCursor" class="md-nav__link md-nav__link--active">
       RecordCursor
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#createrecordcursorresponse" title="CreateRecordCursorResponse" class="md-nav__link">
+    CreateRecordCursorResponse
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getid" title="getId()" class="md-nav__link">
+    getId()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettotalcount" title="getTotalCount()" class="md-nav__link">
+    getTotalCount()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getrecordcursorresponse" title="GetRecordCursorResponse" class="md-nav__link">
+    GetRecordCursorResponse
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getrecords" title="getRecords()" class="md-nav__link">
+    getRecords()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getnext" title="getNext()" class="md-nav__link">
+    getNext()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -830,13 +947,14 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constructor" title="Constructor" class="md-nav__link">
-    Constructor
+  <a href="#createrecordcursorresponse" title="CreateRecordCursorResponse" class="md-nav__link">
+    CreateRecordCursorResponse
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#methods" title="Methods" class="md-nav__link">
     Methods
   </a>
@@ -845,16 +963,61 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#getcode" title="getCode()" class="md-nav__link">
-    getCode()
+  <a href="#getid" title="getId()" class="md-nav__link">
+    getId()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#getname" title="getName()" class="md-nav__link">
-    getName()
+  <a href="#gettotalcount" title="getTotalCount()" class="md-nav__link">
+    getTotalCount()
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getrecordcursorresponse" title="GetRecordCursorResponse" class="md-nav__link">
+    GetRecordCursorResponse
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getrecords" title="getRecords()" class="md-nav__link">
+    getRecords()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getnext" title="getNext()" class="md-nav__link">
+    getNext()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -879,47 +1042,49 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/kintone/kintone-java-sdk/edit/master/docs/reference/model/member/member.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/kintone/kintone-java-sdk/edit/master/docs/reference/model/cursor/record-cursor.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="member">Member</h1>
-<p>General information of the member(user/group/organization) on the kintone application</p>
-<h2 id="constructor">Constructor</h2>
-<p><strong>Parameter</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>String</td>
-<td>The user/group/organization code.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>String</td>
-<td>The user/group/organization name.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="methods">Methods</h2>
-<h3 id="getcode">getCode()</h3>
-<p>Get the code of the user/group/organization</p>
+                <h1 id="recordcursor-model">RecordCursor Model</h1>
+<p>General record cursor response, using for data response from the kintone app</p>
+<h2 id="createrecordcursorresponse">CreateRecordCursorResponse</h2>
+<h3 id="methods">Methods</h3>
+<h4 id="getid">getId()</h4>
+<blockquote>
+<p>get the The cursor ID.</p>
+</blockquote>
 <p><strong>Parameter</strong></p>
 <p>(none)</p>
 <p><strong>Return</strong></p>
 <p>String</p>
-<h3 id="getname">getName()</h3>
-<p>Get the name of the user/group/organization</p>
+<h4 id="gettotalcount">getTotalCount()</h4>
+<blockquote>
+<p>get Total of the records.</p>
+</blockquote>
 <p><strong>Parameter</strong></p>
 <p>(none)</p>
 <p><strong>Return</strong></p>
-<p>String</p>
+<p>Integer</p>
+<h2 id="getrecordcursorresponse">GetRecordCursorResponse</h2>
+<h3 id="methods_1">Methods</h3>
+<h4 id="getrecords">getRecords()</h4>
+<blockquote>
+<p>get the Records data response.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>ArrayList&lt;HashMap&lt;String, <a href="../record-field-model#fieldvalue">FieldValue</a>>></p>
+<h4 id="getnext">getNext()</h4>
+<blockquote>
+<p>States whether there are more records that can be acquired from the cursor. <br>
+<b>true</b>: There are still records to be acquired.<br>
+<b>false</b>: There are no more records to be acquired.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p>Boolean</p>
                 
                   
                 
@@ -936,6 +1101,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../app/view/view-model/" title="View" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                View
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../record/record-model/" title="Record" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Record
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
