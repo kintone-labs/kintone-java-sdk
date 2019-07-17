@@ -467,8 +467,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updaterecordstatusapp-id-action-assignee-revision" title="updateRecordStatus(app, id, action, assignee, revision)" class="md-nav__link">
+    updateRecordStatus(app, id, action, assignee, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcommentsapp-record-order-offset-limit" title="getComments(app, record, order, offset, limit)" class="md-nav__link">
+    getComments(app, record, order, offset, limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addcommentapp-record-comment" title="addComment(app, record, comment)" class="md-nav__link">
+    addComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
+    deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
   
 </li>
       
@@ -1032,8 +1074,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updaterecordstatusapp-id-action-assignee-revision" title="updateRecordStatus(app, id, action, assignee, revision)" class="md-nav__link">
+    updateRecordStatus(app, id, action, assignee, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcommentsapp-record-order-offset-limit" title="getComments(app, record, order, offset, limit)" class="md-nav__link">
+    getComments(app, record, order, offset, limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addcommentapp-record-comment" title="addComment(app, record, comment)" class="md-nav__link">
+    addComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
+    deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
   
 </li>
       
@@ -1814,8 +1898,7 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 <p><strong>Sample code</strong></p>
 <p><details class="tab-container" open>
 <Summary>update record Assignees</Summary></p>
-<pre class="inline-code">
-
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -1840,33 +1923,60 @@ Integer revision = 1;
 UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID, recordID, assignees, revision);
 </pre>
 
-</details>
-
-### updateRecordStatus(app, id, action, assignee, revision)
-
-> Updates the Status of a record of an app.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID.
-| id | Integer | yes | The record ID on kintone app.
-| action | String | yes | The Action name will be run.
-| assignee | String | (Conditionally required) | The next Assignee. Specify the Assignee's log in name.</br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.
-| revision | Integer | (optional) | The revision of record
-
-**Return**
-
-[UpdateRecordResponse](../record-model/#updaterecordresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Update record status</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="updaterecordstatusapp-id-action-assignee-revision">updateRecordStatus(app, id, action, assignee, revision)</h3>
+<blockquote>
+<p>Updates the Status of a record of an app.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The record ID on kintone app.</td>
+</tr>
+<tr>
+<td>action</td>
+<td>String</td>
+<td>yes</td>
+<td>The Action name will be run.</td>
+</tr>
+<tr>
+<td>assignee</td>
+<td>String</td>
+<td>(Conditionally required)</td>
+<td>The next Assignee. Specify the Assignee's log in name.</br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The revision of record</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Update record status</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -1891,30 +2001,42 @@ Integer revision = 1;
 UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, recordID, action, assignee, revision);
 </pre>
 
-</details>
-
-### updateRecordsStatus(app, records)
-
-> Updates the Status of multiple records of an app.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateStatusItem](../record-model/#recordupdatestatusitem)\> | yes | The recod status data. See belowsample codee or [reference](#reference) at the end of this page to know format.
-
-**Return**
-
-[UpdateRecordsResponse](../record-model/#updaterecordsresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Update multi record status</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="updaterecordsstatusapp-records">updateRecordsStatus(app, records)</h3>
+<blockquote>
+<p>Updates the Status of multiple records of an app.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>ArrayList&lt;<a href="../record-model/#recordupdatestatusitem">RecordUpdateStatusItem</a>></td>
+<td>yes</td>
+<td>The recod status data. See belowsample codee or <a href="#reference">reference</a> at the end of this page to know format.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Update multi record status</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -1948,31 +2070,57 @@ rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
 UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
 </pre>
 
-</details>
-
-### getComments(app, record, order, offset, limit)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The kintone app ID
-| order | String | (optional) | The sort order of the Comment ID. Please select **asc** or **desc**
-| offset | Integer | (optional) | The number of first comments will be ignored.
-| limit | Integer | (optional) | The number of records to retrieve.
-
-**Return**
-
-[GetCommentsResponse](../record-comment-model/#getcommentsresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Get comments</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="getcommentsapp-record-order-offset-limit">getComments(app, record, order, offset, limit)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>order</td>
+<td>String</td>
+<td>(optional)</td>
+<td>The sort order of the Comment ID. Please select <strong>asc</strong> or <strong>desc</strong></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The number of first comments will be ignored.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The number of records to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-comment-model/#getcommentsresponse">GetCommentsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Get comments</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -1997,29 +2145,45 @@ Integer limit = 2;
 GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
 </pre>
 
-</details>
-
-### addComment(app, record, comment)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID |
-| record | Integer | yes | The kintone app ID |
-| comment | [CommentContent](../record-comment-model/#commentcontent) | yes | About the format, please look the sample below or [reference](#reference) at the end of this page.|
-
-**Return**
-
-[AddCommentResponse](../record-comment-model/#addcommentresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Add comment</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="addcommentapp-record-comment">addComment(app, record, comment)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>comment</td>
+<td><a href="../record-comment-model/#commentcontent">CommentContent</a></td>
+<td>yes</td>
+<td>About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-comment-model/#addcommentresponse">AddCommentResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Add comment</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2049,27 +2213,45 @@ comment.setMentions(mentionList);
 AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 </pre>
 
-</details>
-
-### deleteComment(app, record, comment)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The record ID on kintone app
-| comment | Integer | yes | The comment ID on kintone record
-
-**Return**
-
-(none)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Delete comment</Summary>
-
+<p></details></p>
+<h3 id="deletecommentapp-record-comment">deleteComment(app, record, comment)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The record ID on kintone app</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The comment ID on kintone record</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Delete comment</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2092,19 +2274,19 @@ Integer comment = 1;
 kintoneRecordManager.deleteComment(app, record, comment);
 </pre>
 
-</details>
-
-## Reference
-
-- [Get Record](https://developer.kintone.io/hc/en-us/articles/213149287/) `on developer network`
-- [Add Record](https://developer.kintone.io/hc/en-us/articles/212494628/)`on developer network`
-- [Update Record](https://developer.kintone.io/hc/en-us/articles/213149027/)`on developer network`
-- [Delete Record](https://developer.kintone.io/hc/en-us/articles/212494558/)`on developer network`
-- [Get Comments](https://developer.kintone.io/hc/en-us/articles/219105188)`on developer network`
-- [Add Comment](https://developer.kintone.io/hc/en-us/articles/219501367)`on developer network`
-- [Delete Comment](https://developer.kintone.io/hc/en-us/articles/219562607)`on developer network`
-- [Update Record Status](https://developer.kintone.io/hc/en-us/articles/213149747)`on developer network`
-- [Update Record Assignees](https://developer.kintone.io/hc/en-us/articles/219563427)`on developer network`
+<p></details></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149287/">Get Record</a> <code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/212494628/">Add Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149027/">Update Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/212494558/">Delete Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219105188">Get Comments</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219501367">Add Comment</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219562607">Delete Comment</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149747">Update Record Status</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219563427">Update Record Assignees</a><code>on developer network</code></li>
+</ul>
                 
                   
                 
