@@ -53,6 +53,7 @@ public class ConnectionConstants {
     public static final String RECORD_PERMISSION = "record/acl";
     public static final String RECORD_STATUS = "record/status";
     public static final String RECORDS = "records";
+    public static final String RECORDS_CURSOR = "records/cursor";
     public static final String RECORDS_STATUS = "records/status";
     public static final String SPACE = "space";
     public static final String SPACE_BODY = "space/body";

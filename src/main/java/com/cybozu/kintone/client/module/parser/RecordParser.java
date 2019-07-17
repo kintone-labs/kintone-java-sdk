@@ -22,7 +22,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class RecordParser {
+public class RecordParser extends Parser{
 
     private static final Gson gson = new Gson();
 
