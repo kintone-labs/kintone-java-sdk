@@ -575,7 +575,7 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 <details class="tab-container" open>
 <Summary>update record Assignees</Summary>
 
-<pre class="inline-code">
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -626,7 +626,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 <details class="tab-container" open>
 <Summary>Update record status</Summary>
 
-<pre class="inline-code">
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -674,7 +674,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 <details class="tab-container" open>
 <Summary>Update multi record status</Summary>
 
-<pre class="inline-code">
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -732,7 +732,7 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 <details class="tab-container" open>
 <Summary>Get comments</Summary>
 
-<pre class="inline-code">
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -779,7 +779,7 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 <details class="tab-container" open>
 <Summary>Add comment</Summary>
 
-<pre class="inline-code">
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -830,6 +830,8 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 
 <details class="tab-container" open>
 <Summary>Delete comment</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
