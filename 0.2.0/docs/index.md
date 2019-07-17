@@ -11,7 +11,6 @@
 - [Authentication](./reference/authentication.md)
 - [Connection](./reference/connection.md)
 - [Record](./reference/record.md)
-- [RecordCursor](./reference/record-cursor.md)
 - [BulkRequest](./reference/bulk-request.md)
 - [App](./reference/app.md)
 - [KintoneAPIException](./reference/kintone-api-exception.md)
@@ -33,8 +32,6 @@
         - [General](./reference/model/app/general/general-settings.md)
         - [View](./reference/model/app/view/view-model.md)
     - [Record](./reference/model/record/record-model.md)
-    - Cursor
-        - [RecordCursor](reference/model/cursor/record-cursor.md)
     - [File](./reference/model/file/file-model.md)
     - [Bulk Request](./reference/model/bulk-request/bulk-request-model.md)
 
