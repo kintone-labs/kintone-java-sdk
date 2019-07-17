@@ -509,6 +509,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#deleteallrecordsbyqueryinteger-app-string-query" title="deleteAllRecordsByQuery(Integer app, String query)" class="md-nav__link">
+    deleteAllRecordsByQuery(Integer app, String query)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#upsertrecordapp-updatekey-record-revision" title="upsertRecord(app, updateKey, record, revision)" class="md-nav__link">
     upsertRecord(app, updateKey, record, revision)
   </a>
@@ -1146,6 +1153,13 @@
           <li class="md-nav__item">
   <a href="#getallrecordsbyqueryapp-query-fields-totalcount" title="getAllRecordsByQuery(app, query, fields, totalCount)" class="md-nav__link">
     getAllRecordsByQuery(app, query, fields, totalCount)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteallrecordsbyqueryinteger-app-string-query" title="deleteAllRecordsByQuery(Integer app, String query)" class="md-nav__link">
+    deleteAllRecordsByQuery(Integer app, String query)
   </a>
   
 </li>
@@ -2393,6 +2407,58 @@ kintoneRecordManager.deleteComment(app, record, comment);
     String query = {YOUR_QUERY};
     ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
     GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
+</pre>
+
+<p></details></p>
+<h3 id="deleteallrecordsbyqueryinteger-app-string-query">deleteAllRecordsByQuery(Integer app, String query)</h3>
+<blockquote>
+<p>Delete all records by indicating query. Can delete over 2000 records, but can't do rollback.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>query</td>
+<td>String</td>
+<td>(optional)</td>
+<td>The query string that will specify what records will be responded. If nothing is specified, fields will be returned from all accessible records. The query detail can't indicate <strong>limit</strong> and <strong>offset</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Delete all records by query</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+
+// Init authenticationAuth
+Auth kintoneAuth = new Auth();
+kintoneAuth.setPasswordAuth(username, password);
+
+String myDomainName = "sample.cybozu.com";
+Connection kintoneConnection = new Connection(myDomainName, kintoneAuth);
+
+// Init Record Module
+Record kintoneRecord = new Record(kintoneConnection);
+kintoneRecord.deleteAllRecordsByQuery(appID, query);
 </pre>
 
 <p></details></p>
