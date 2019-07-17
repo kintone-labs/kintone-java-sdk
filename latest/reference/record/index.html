@@ -2384,10 +2384,9 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     String query = {YOUR_QUERY};
-    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();</p>
-<pre><code>GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
-</code></pre>
-<p></pre>
+    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
+    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
+</pre>
 </details></p>
 <h3 id="upsertrecordapp-updatekey-record-revision">upsertRecord(app, updateKey, record, revision)</h3>
 <p><strong>Parameter</strong></p>
