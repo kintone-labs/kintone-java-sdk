@@ -575,6 +575,8 @@ kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 <details class="tab-container" open>
 <Summary>update record Assignees</Summary>
 
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -612,7 +614,7 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 | app | Integer | yes | The kintone app ID.
 | id | Integer | yes | The record ID on kintone app.
 | action | String | yes | The Action name will be run.
-| assignee | String | (Conditionally required) | The next Assignee. Specify the Assignee's log in name.</br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.
+| assignee | String | (Conditionally required) | The next Assignee. Specify the Assignee's log in name.<br>Required, if the "Assignee List" of the current status is set to "User chooses one assignee from the list to take action", and a selectable assignee exists.
 | revision | Integer | (optional) | The revision of record
 
 **Return**
@@ -623,6 +625,8 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 
 <details class="tab-container" open>
 <Summary>Update record status</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -669,6 +673,8 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 
 <details class="tab-container" open>
 <Summary>Update multi record status</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -726,6 +732,8 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 <details class="tab-container" open>
 <Summary>Get comments</Summary>
 
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -770,6 +778,8 @@ GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID,
 
 <details class="tab-container" open>
 <Summary>Add comment</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
@@ -821,6 +831,8 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 <details class="tab-container" open>
 <Summary>Delete comment</Summary>
 
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -864,11 +876,13 @@ kintoneRecordManager.deleteComment(app, record, comment);
 
 <details class="tab-container" open>
 <Summary>Get all records by query</Summary>
+
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     String query = {YOUR_QUERY};
     ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
-    
     GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
 </pre>
 </details>
@@ -892,6 +906,9 @@ kintoneRecordManager.deleteComment(app, record, comment);
 
 <details class="tab-container" open>
 <Summary>Upsert record</Summary>
+
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     FieldValue fv = new FieldValue();
@@ -924,6 +941,9 @@ kintoneRecordManager.deleteComment(app, record, comment);
 
 <details class="tab-container" open>
 <Summary>Upsert records</Summary>
+
+<strong class="tab-name">Source code</strong>
+
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();
@@ -962,6 +982,8 @@ kintoneRecordManager.deleteComment(app, record, comment);
 
 <details class="tab-container" open>
 <Summary>update all records</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 Integer appID = 114;
@@ -1040,6 +1062,8 @@ try {
 
 <details class="tab-container" open>
 <Summary>update all records</Summary>
+
+<strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
 Integer appID = 114;
