@@ -887,6 +887,46 @@ kintoneRecordManager.deleteComment(app, record, comment);
 </pre>
 </details>
 
+### deleteAllRecordsByQuery(Integer app, String query)
+
+> Delete all records by indicating query. Can delete over 2000 records, but can't do rollback.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+| app | Integer | yes | The kintone app ID
+| query | String | (optional) | The query string that will specify what records will be responded. If nothing is specified, fields will be returned from all accessible records. The query detail can't indicate **limit** and **offset**.
+
+**Return**
+
+(none)
+
+**Sample code**
+
+<details class="tab-container" open>
+<Summary>Delete all records by query</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+String USERNAME = "YOUR_USERNAME";
+String PASSWORD = "YOUR_PASSWORD";
+
+// Init authenticationAuth
+Auth kintoneAuth = new Auth();
+kintoneAuth.setPasswordAuth(USERNAME, PASSWORD);
+
+String myDomainName = "sample.cybozu.com";
+Connection kintoneConnection = new Connection(myDomainName, kintoneAuth);
+
+// Init Record Module
+Record kintoneRecord = new Record(kintoneConnection);
+kintoneRecord.deleteAllRecordsByQuery(appID, query);
+</pre>
+
+</details>
+
 ### upsertRecord(app, updateKey, record, revision)
 
 **Parameter**
