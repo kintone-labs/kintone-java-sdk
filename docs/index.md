@@ -11,6 +11,7 @@
 - [Authentication](./reference/authentication.md)
 - [Connection](./reference/connection.md)
 - [Record](./reference/record.md)
+- [RecordCursor](./reference/record-cursor.md)
 - [BulkRequest](./reference/bulk-request.md)
 - [App](./reference/app.md)
 - [KintoneAPIException](./reference/kintone-api-exception.md)
