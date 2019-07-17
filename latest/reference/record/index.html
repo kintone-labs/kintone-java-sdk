@@ -473,8 +473,78 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcommentsapp-record-order-offset-limit" title="getComments(app, record, order, offset, limit)" class="md-nav__link">
+    getComments(app, record, order, offset, limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addcommentapp-record-comment" title="addComment(app, record, comment)" class="md-nav__link">
+    addComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
+    deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getallrecordsbyqueryapp-query-fields-totalcount" title="getAllRecordsByQuery(app, query, fields, totalCount)" class="md-nav__link">
+    getAllRecordsByQuery(app, query, fields, totalCount)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordapp-updatekey-record-revision" title="upsertRecord(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecord(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordsapp-updatekey-record-revision" title="upsertRecords(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecords(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateallrecordsinteger-app-arraylistrecordupdateitem62-records" title="updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)" class="md-nav__link">
+    updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records" title="addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)" class="md-nav__link">
+    addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
   
 </li>
       
@@ -1045,8 +1115,78 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcommentsapp-record-order-offset-limit" title="getComments(app, record, order, offset, limit)" class="md-nav__link">
+    getComments(app, record, order, offset, limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addcommentapp-record-comment" title="addComment(app, record, comment)" class="md-nav__link">
+    addComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletecommentapp-record-comment" title="deleteComment(app, record, comment)" class="md-nav__link">
+    deleteComment(app, record, comment)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getallrecordsbyqueryapp-query-fields-totalcount" title="getAllRecordsByQuery(app, query, fields, totalCount)" class="md-nav__link">
+    getAllRecordsByQuery(app, query, fields, totalCount)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordapp-updatekey-record-revision" title="upsertRecord(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecord(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsertrecordsapp-updatekey-record-revision" title="upsertRecords(app, updateKey, record, revision)" class="md-nav__link">
+    upsertRecords(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateallrecordsinteger-app-arraylistrecordupdateitem62-records" title="updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)" class="md-nav__link">
+    updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records" title="addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)" class="md-nav__link">
+    addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, FieldValue>> records)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
   
 </li>
       
@@ -1905,8 +2045,6 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordAssignees(appID
 <p><details class="tab-container" open>
 <Summary>Update record status</Summary></p>
 <pre class="inline-code">
-
-<pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
 
@@ -1930,30 +2068,41 @@ Integer revision = 1;
 UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, recordID, action, assignee, revision);
 </pre>
 
-</details>
-
-### updateRecordsStatus(app, records)
-
-> Updates the Status of multiple records of an app.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateStatusItem](../record-model/#recordupdatestatusitem)\> | yes | The recod status data. See belowsample codee or [reference](#reference) at the end of this page to know format.
-
-**Return**
-
-[UpdateRecordsResponse](../record-model/#updaterecordsresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Update multi record status</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="updaterecordsstatusapp-records">updateRecordsStatus(app, records)</h3>
+<blockquote>
+<p>Updates the Status of multiple records of an app.</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>ArrayList&lt;<a href="../record-model/#recordupdatestatusitem">RecordUpdateStatusItem</a>></td>
+<td>yes</td>
+<td>The recod status data. See belowsample codee or <a href="#reference">reference</a> at the end of this page to know format.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-model/#updaterecordsresponse">UpdateRecordsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Update multi record status</Summary></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -1987,31 +2136,56 @@ rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
 UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
 </pre>
 
-</details>
-
-### getComments(app, record, order, offset, limit)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The kintone app ID
-| order | String | (optional) | The sort order of the Comment ID. Please select **asc** or **desc**
-| offset | Integer | (optional) | The number of first comments will be ignored.
-| limit | Integer | (optional) | The number of records to retrieve.
-
-**Return**
-
-[GetCommentsResponse](../record-comment-model/#getcommentsresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Get comments</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="getcommentsapp-record-order-offset-limit">getComments(app, record, order, offset, limit)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>order</td>
+<td>String</td>
+<td>(optional)</td>
+<td>The sort order of the Comment ID. Please select <strong>asc</strong> or <strong>desc</strong></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The number of first comments will be ignored.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The number of records to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-comment-model/#getcommentsresponse">GetCommentsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Get comments</Summary></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2036,29 +2210,44 @@ Integer limit = 2;
 GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
 </pre>
 
-</details>
-
-### addComment(app, record, comment)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID |
-| record | Integer | yes | The kintone app ID |
-| comment | [CommentContent](../record-comment-model/#commentcontent) | yes | About the format, please look the sample below or [reference](#reference) at the end of this page.|
-
-**Return**
-
-[AddCommentResponse](../record-comment-model/#addcommentresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Add comment</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="addcommentapp-record-comment">addComment(app, record, comment)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>comment</td>
+<td><a href="../record-comment-model/#commentcontent">CommentContent</a></td>
+<td>yes</td>
+<td>About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../record-comment-model/#addcommentresponse">AddCommentResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Add comment</Summary></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2088,27 +2277,44 @@ comment.setMentions(mentionList);
 AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
 </pre>
 
-</details>
-
-### deleteComment(app, record, comment)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The record ID on kintone app
-| comment | Integer | yes | The comment ID on kintone record
-
-**Return**
-
-(none)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>Delete comment</Summary>
-
+<p></details></p>
+<h3 id="deletecommentapp-record-comment">deleteComment(app, record, comment)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>record</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The record ID on kintone app</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The comment ID on kintone record</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Delete comment</Summary></p>
 <pre class="inline-code">
 String USERNAME = "YOUR_USERNAME";
 String PASSWORD = "YOUR_PASSWORD";
@@ -2131,126 +2337,199 @@ Integer comment = 1;
 kintoneRecordManager.deleteComment(app, record, comment);
 </pre>
 
-</details>
-
-### getAllRecordsByQuery(app, query, fields, totalCount)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| query | String | (optional) | The query string that will specify what records will be responded.
-| fields | ArrayList&lt;String&gt; | (optional) | List of field codes you want in the response.
-| totalCount | Boolean | (optional) | If "true", the request will retrieve total count of records match with query conditions.
-
-**Return**
-
-[GetRecordsResponse](../model/record/record-model/#getrecordsresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
+<p></details></p>
+<h3 id="getallrecordsbyqueryapp-query-fields-totalcount">getAllRecordsByQuery(app, query, fields, totalCount)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>query</td>
+<td>String</td>
+<td>(optional)</td>
+<td>The query string that will specify what records will be responded.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>ArrayList&lt;String&gt;</td>
+<td>(optional)</td>
+<td>List of field codes you want in the response.</td>
+</tr>
+<tr>
+<td>totalCount</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>If "true", the request will retrieve total count of records match with query conditions.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/record/record-model/#getrecordsresponse">GetRecordsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
 <Summary>Get all records by query</Summary>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     String query = {YOUR_QUERY};
-    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
-
-    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
-</pre>
-</details>
-
-### upsertRecord(app, updateKey, record, revision)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| updateKey | [RecordUpdateKey](../model/record/record-model/#recordupdatekey) | yes | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| record | HashMap&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)&gt;  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| revision | Integer | (optional) | The revision number of record
-
-**Return**
-
-[AddRecordResponse](../model/record/record-model/#addrecordresponse) or [UpdateRecordResponse](../model/record/record-model/#updaterecordresponse)
-
-**Sample code**
-
-<details class="tab-container" open>
+    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();</p>
+<pre><code>GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
+</code></pre>
+<p></pre>
+</details></p>
+<h3 id="upsertrecordapp-updatekey-record-revision">upsertRecord(app, updateKey, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>updateKey</td>
+<td><a href="../model/record/record-model/#recordupdatekey">RecordUpdateKey</a></td>
+<td>yes</td>
+<td>The unique key of the record to be updated. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+<tr>
+<td>record</td>
+<td>HashMap&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>&gt;</td>
+<td>yes</td>
+<td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The revision number of record</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/record/record-model/#addrecordresponse">AddRecordResponse</a> or <a href="../model/record/record-model/#updaterecordresponse">UpdateRecordResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
 <Summary>Upsert record</Summary>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
     FieldValue fv = new FieldValue();
     fv.setType(FieldType.SINGLE_LINE_TEXT);
-    fv.setValue( {YOUR_FIELD_VALUE} );
+    fv.setValue( {YOUR_FIELD_VALUE} );</p>
+<pre><code>HashMap&amp;lt;String, FieldValue&amp;gt; record = new HashMap&amp;lt;String, FieldValue&amp;gt;();
+record.put("title", fv);
 
-    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
-    record.put("title", fv);
+RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
 
-    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
-
-    kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
-</pre>
-</details>
-
-### upsertRecords(app, updateKey, record, revision)
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateItem](../model/record/record-model/#recordupdateitem)\> | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
-
-**Return**
-
-[BulkRequestResponse](../model/bulk-request/bulk-request-response)
-
-**Sample code**
-
-<details class="tab-container" open>
+kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
+</code></pre>
+<p></pre>
+</details></p>
+<h3 id="upsertrecordsapp-updatekey-record-revision">upsertRecords(app, updateKey, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>ArrayList&lt;<a href="../model/record/record-model/#recordupdateitem">RecordUpdateItem</a>></td>
+<td>yes</td>
+<td>The record data will be added to kintone app. About the format, please look the sample below or <a href="#reference">reference</a> at the end of this page.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/bulk-request/bulk-request-response">BulkRequestResponse</a></p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
 <Summary>Upsert records</Summary>
 <pre class="inline-code">
     Integer appID = {YOUR_APP_ID};
-    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();
+    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();</p>
+<pre><code>ArrayList&amp;lt;HashMap&amp;lt;String, FieldValue&amp;gt; &amp;gt; records = new ArrayList&amp;lt;HashMap&amp;lt;String, FieldValue&amp;gt; &amp;gt;();
 
-    ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt;();
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("Title 123");
 
-    FieldValue fv = new FieldValue();
-    fv.setType(FieldType.SINGLE_LINE_TEXT);
-    fv.setValue("Title 123");
+HashMap&amp;lt;String, FieldValue&amp;gt; record = new HashMap&amp;lt;String, FieldValue&amp;gt;();
+record.put("title", fv);
 
-    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
-    record.put("title", fv);
+RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
 
-    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
-
-    upsertRecords.add(new RecordsUpsertItem(updateKey, record));
-    kintoneRecordManager.upsertRecords(appID, upsertRecords);
-</pre>
-</details>
-
-### updateAllRecords(Integer app, ArrayList<RecordUpdateItem\> records)
-> Update all records to the kintone app
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | Array<[RecordUpdateItem](../model/record/record-model/#recordupdateitem)> | yes | The records data which will update to kintone app
-
-**Return**
-
-(none)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>update all records</Summary>
-
+upsertRecords.add(new RecordsUpsertItem(updateKey, record));
+kintoneRecordManager.upsertRecords(appID, upsertRecords);
+</code></pre>
+<p></pre>
+</details></p>
+<h3 id="updateallrecordsinteger-app-arraylistrecordupdateitem62-records">updateAllRecords(Integer app, ArrayList&lt;RecordUpdateItem> records)</h3>
+<blockquote>
+<p>Update all records to the kintone app</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>Array&lt;<a href="../model/record/record-model/#recordupdateitem">RecordUpdateItem</a>&gt;</td>
+<td>yes</td>
+<td>The records data which will update to kintone app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>update all records</Summary></p>
 <pre class="inline-code">
 Integer appID = 114;
 HashMap &lt;String, FieldValue&gt; record = new HashMap();
@@ -2308,29 +2587,41 @@ try {
 }
 </pre>
 
-</details>
-
-### addAllRecords(Integer app, ArrayList<HashMap&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)\>\> records)
-> Add all records to the kintone app
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | Array&lt;HashTable&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)&gt;&gt; | yes | The records data which will add to kintone app
-
-**Return**
-
-(none)
-
-**Sample code**
-
-<details class="tab-container" open>
-<Summary>update all records</Summary>
-
-<pre class="inline-code">
-
+<p></details></p>
+<h3 id="addallrecordsinteger-app-arraylisthashmapstring-fieldvalue6262-records">addAllRecords(Integer app, ArrayList&lt;HashMap&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>>> records)</h3>
+<blockquote>
+<p>Add all records to the kintone app</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+<tr>
+<td>records</td>
+<td>Array&lt;HashTable&lt;String, <a href="../model/record/record-field-model#fieldvalue">FieldValue</a>&gt;&gt;</td>
+<td>yes</td>
+<td>The records data which will add to kintone app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>(none)</p>
+<p><strong>Sample code</strong></p>
+<p><details class="tab-container" open>
+<Summary>update all records</Summary></p>
 <pre class="inline-code">
 Integer appID = 114;
 ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt;();
@@ -2388,19 +2679,19 @@ try {
 }
 </pre>
 
-</details>
-
-## Reference
-
-- [Get Record](https://developer.kintone.io/hc/en-us/articles/213149287/) `on developer network`
-- [Add Record](https://developer.kintone.io/hc/en-us/articles/212494628/)`on developer network`
-- [Update Record](https://developer.kintone.io/hc/en-us/articles/213149027/)`on developer network`
-- [Delete Record](https://developer.kintone.io/hc/en-us/articles/212494558/)`on developer network`
-- [Get Comments](https://developer.kintone.io/hc/en-us/articles/219105188)`on developer network`
-- [Add Comment](https://developer.kintone.io/hc/en-us/articles/219501367)`on developer network`
-- [Delete Comment](https://developer.kintone.io/hc/en-us/articles/219562607)`on developer network`
-- [Update Record Status](https://developer.kintone.io/hc/en-us/articles/213149747)`on developer network`
-- [Update Record Assignees](https://developer.kintone.io/hc/en-us/articles/219563427)`on developer network`
+<p></details></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149287/">Get Record</a> <code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/212494628/">Add Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149027/">Update Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/212494558/">Delete Record</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219105188">Get Comments</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219501367">Add Comment</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219562607">Delete Comment</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149747">Update Record Status</a><code>on developer network</code></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/219563427">Update Record Assignees</a><code>on developer network</code></li>
+</ul>
                 
                   
                 
