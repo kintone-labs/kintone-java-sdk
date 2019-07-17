@@ -26,3 +26,4 @@ target/
 .classpath
 .project
 /bin/
+site
