@@ -703,7 +703,7 @@ public class Record {
         return bulkRequest.execute();
     }
 
-    private BulkRequestResponse addBulkRecord(int app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(this.connection);
         int length = records.size();
         int loopTimes = (int) length / LIMIT_POST_RECORD;
@@ -793,12 +793,15 @@ public class Record {
     }
 
     public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
+    	if (records == null) {
+    		records = new ArrayList<HashMap<String, FieldValue>>();
+    	}
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
         int numBulkRequest = (int) (records.size() / numRecordsPerBulk);
         if ((records.size() % numRecordsPerBulk) > 0) {
             numBulkRequest++;
         }
-        if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
             numBulkRequest = 1;
         }
         int offset = 0;
