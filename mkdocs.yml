@@ -34,6 +34,7 @@ pages:
   - Bulk Request: reference/bulk-request.md
   - App: reference/app.md
   - Kintone APIException: reference/kintone-api-exception.md
+  - Bulks Exception: reference/bulks-exception.md
   - File: reference/file.md
   - Model:
     - App:
