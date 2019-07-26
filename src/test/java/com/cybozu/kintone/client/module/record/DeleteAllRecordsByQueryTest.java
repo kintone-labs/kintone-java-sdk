@@ -12,7 +12,7 @@ import org.junit.Test;
 public class DeleteAllRecordsByQueryTest {
     private int APP_ID;
     private String query = "xxx";
-    private int INVAILD_APP_ID;
+    private int INVALID_APP_ID;
     private Connection connection;
 
     @Before
@@ -36,9 +36,9 @@ public class DeleteAllRecordsByQueryTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    public void deleteAllRecordsWrongAppId() throws BulksException, KintoneAPIException {
+    public void deleteAllRecordsInvalidAppId() throws BulksException, KintoneAPIException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(INVAILD_APP_ID, query);
+        record.deleteAllRecordsByQuery(INVALID_APP_ID, query);
     }
 
 }
