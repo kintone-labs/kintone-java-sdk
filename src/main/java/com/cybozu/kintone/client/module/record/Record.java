@@ -784,6 +784,7 @@ public class Record {
             }
             return requestResponse;
         } catch (KintoneAPIException e) {
+            requestResponse.addResponse(e);
             throw new BulksException(requestResponse.getResults());
         }
     }
