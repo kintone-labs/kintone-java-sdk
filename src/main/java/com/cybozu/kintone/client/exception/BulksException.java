@@ -9,12 +9,13 @@ import java.util.ArrayList;
 public class BulksException extends Exception{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Object> results;
-	public Object getResults() {
-		return results;
-	}
 
 	public BulksException(ArrayList<Object> object) {
 		this.results = object;
+	}
+
+	public ArrayList<Object> getResults() {
+		return results;
 	}
 	
 }
