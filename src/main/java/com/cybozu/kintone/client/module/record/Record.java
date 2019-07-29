@@ -820,12 +820,15 @@ public class Record {
     }
 
     public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+        if (records == null) {
+    		records = new ArrayList<RecordUpdateItem>();
+    	}
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_UPDATE_RECORD;
         int numBulkRequest = (int) records.size() / numRecordsPerBulk;
         if ((records.size() % numRecordsPerBulk) > 0) {
             numBulkRequest++;
         }
-        if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
             numBulkRequest = 1;
         }
         int offset = 0;
