@@ -81,7 +81,7 @@ connection.setHeader(key, value);
 
 </details>
 
-### setProxy(proxyHost, proxyPort)
+### setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
 
 > Set the proxy of the request
 
@@ -91,10 +91,12 @@ connection.setHeader(key, value);
 | --- | --- | --- | --- |
 | proxyHost | String | yes | The proxy host name
 | proxyPort | Integer | yes | The proxy port number
+| proxyUsername | String | (optional) | User name of the proxy
+| proxyPassword | String | (optional) | Password of the proxy
 
 **Return**
 
-(none)
+[Connection](../connection)
 
 <strong class="tab-name">Source code</strong>
 
@@ -115,7 +117,14 @@ kintoneAuth.setPasswordAuth(username, password);
 
 String myDomainName = "sample.cybozu.com";
 Connection connection = new Connection(myDomainName, kintoneAuth);
+
+// Set proxy without proxyUsername & proxyPassword
 connection.setProxy(proxyHost, proxyPort);
+
+// Set proxy with proxyUsername & proxyPassword
+String proxyUsername = "xxxx";
+String proxyPassword = "xxxx";
+connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 </details>
