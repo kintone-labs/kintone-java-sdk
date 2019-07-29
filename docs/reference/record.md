@@ -910,21 +910,41 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
-
-// Init authenticationAuth
-Auth kintoneAuth = new Auth();
-kintoneAuth.setPasswordAuth(USERNAME, PASSWORD);
-
-String myDomainName = "sample.cybozu.com";
-Connection kintoneConnection = new Connection(myDomainName, kintoneAuth);
-
-// Init Record Module
-Record kintoneRecord = new Record(kintoneConnection);
-kintoneRecord.deleteAllRecordsByQuery(appID, query);
+Integer appID = 114;
+String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
+try {
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    BulkRequestResponse bulkRequestResponse = kintoneRecord.deleteAllRecordsByQuery(appID, query);
+} catch (BulksException e) {
+    System.out.println(e.getResults());
+    // Ex: If User delete 6000 records:
+    // Case 1: If there error occur in record 0
+    // Err response:
+    // [KintoneAPIException]
+    // Case 2: the error occur in record 4000
+    // err response
+    // [
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    BulkRequestResponse,
+    //    KintoneAPIException
+    //  ]
+}
 </pre>
-
 </details>
 
 ### upsertRecord(app, updateKey, record, revision)
