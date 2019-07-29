@@ -684,7 +684,7 @@ public class Record {
         this.connection.request(ConnectionConstants.DELETE_REQUEST, ConnectionConstants.RECORD_COMMENT, requestBody);
     }
 
-    private BulkRequestResponse updateBulkRecord(int app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
+    private BulkRequestResponse updateBulkRecord(Integer app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(this.connection);
         int length = records.size();
         int loopTimes = (int) length / LIMIT_UPDATE_RECORD;
