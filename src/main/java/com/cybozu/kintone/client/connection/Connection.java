@@ -86,6 +86,7 @@ public class Connection {
      */
     private String proxyHost = null;
     private Integer proxyPort = null;
+    private Authenticator proxyAuthenticator = null;
 
     /**
      * Constructor for init a connection object to connect to guest space.
@@ -143,6 +144,9 @@ public class Connection {
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
                 connection = (HttpsURLConnection) url.openConnection(proxy);
+                if(this.proxyAuthenticator != null) {
+                    connection.setAuthenticator(this.proxyAuthenticator);
+                }
             }
 
             if (this.auth.getClientCert() != null) {
@@ -223,6 +227,9 @@ public class Connection {
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
                 connection = (HttpsURLConnection) url.openConnection(proxy);
+                if(this.proxyAuthenticator != null) {
+                    connection.setAuthenticator(this.proxyAuthenticator);
+                }
             }
 
             if (this.auth.getClientCert() != null) {
@@ -297,8 +304,10 @@ public class Connection {
                 connection = (HttpsURLConnection) url.openConnection();
             } else {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
-
                 connection = (HttpsURLConnection) url.openConnection(proxy);
+                if(this.proxyAuthenticator != null) {
+                    connection.setAuthenticator(this.proxyAuthenticator);
+                }
             }
 
             if (this.auth.getClientCert() != null) {
@@ -649,7 +658,7 @@ public class Connection {
     }
 
     /**
-     * Sets the proxy host.
+     * Sets the proxy.
      *
      * @param host proxy host
      * @param port proxy port
@@ -660,19 +669,25 @@ public class Connection {
 
     }
 
+    /**
+     * Sets the proxy with authentication.
+     *
+     * @param host proxy host
+     * @param port proxy port
+     * @param username proxy user
+     * @param password proxy password
+     */
     public void setProxy(String host, Integer port, String username, String password) {
         this.proxyHost = host;
         this.proxyPort = port;
 
         //allowAuthenticationForHttps. This is required only for jdk > 8u11
         System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
-
-        Authenticator.setDefault(
-                new Authenticator() {
-                    public PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password.toCharArray());
-                    }
-                });
+        this.proxyAuthenticator = new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password.toCharArray());
+            }
+        };
     }
 
     /**
