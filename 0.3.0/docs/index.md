@@ -15,7 +15,6 @@
 - [BulkRequest](./reference/bulk-request.md)
 - [App](./reference/app.md)
 - [KintoneAPIException](./reference/kintone-api-exception.md)
-- [BulksException](./reference/bulks-exception.md)
 - [File](./reference/file.md)
 - Model
     - App

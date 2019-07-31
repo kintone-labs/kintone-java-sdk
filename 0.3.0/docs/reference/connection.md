@@ -92,7 +92,6 @@ connection.setHeader(key, value);
 | proxyHost | String | yes | The proxy host name
 | proxyPort | Integer | yes | The proxy port number
 
-
 **Return**
 
 (none)

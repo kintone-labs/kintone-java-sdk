@@ -18,7 +18,7 @@ extra_javascript:
 extra_css:
   - 'asset/style/extra.css'
 extra:
-    version: 0.4.0
+    version: 0.3.0
 markdown_extensions:
   - admonition
 
@@ -34,7 +34,6 @@ pages:
   - Bulk Request: reference/bulk-request.md
   - App: reference/app.md
   - Kintone APIException: reference/kintone-api-exception.md
-  - Bulks Exception: reference/bulks-exception.md
   - File: reference/file.md
   - Model:
     - App:
