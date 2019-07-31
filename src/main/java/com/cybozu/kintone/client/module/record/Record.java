@@ -682,10 +682,9 @@ public class Record {
         DeleteCommentRecordRequest deleteCommentRequest = new DeleteCommentRecordRequest(app, record, comment);
         String requestBody = parser.parseObject(deleteCommentRequest);
         this.connection.request(ConnectionConstants.DELETE_REQUEST, ConnectionConstants.RECORD_COMMENT, requestBody);
-        ;
     }
 
-    private BulkRequestResponse updateBulkRecord(int app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
+    private BulkRequestResponse updateBulkRecord(Integer app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(this.connection);
         int length = records.size();
         int loopTimes = (int) length / LIMIT_UPDATE_RECORD;
@@ -704,7 +703,7 @@ public class Record {
         return bulkRequest.execute();
     }
 
-    private BulkRequestResponse addBulkRecord(int app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(this.connection);
         int length = records.size();
         int loopTimes = (int) length / LIMIT_POST_RECORD;
@@ -744,58 +743,61 @@ public class Record {
         return bulkRequest.execute();
     }
 
-    public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException {
+    public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
         BulkRequestResponse requestResponse = new BulkRequestResponse();
-        try {
-            ArrayList<String> fields = new ArrayList<>();
-            fields.add("Record_number");
-            GetRecordsResponse getRecordsRequest = getAllRecordsByQuery(app, query, fields, true);
-            ArrayList<HashMap<String, FieldValue>> recordsArray = getRecordsRequest.getRecords();
-            int totalRecords = getRecordsRequest.getTotalCount();
+        ArrayList<String> fields = new ArrayList<>();
+        fields.add("$id");
+        GetRecordsResponse getRecordsRequest = getAllRecordsByQuery(app, query, fields, true);
+        ArrayList<HashMap<String, FieldValue>> recordsArray = getRecordsRequest.getRecords();
+        int totalRecords = getRecordsRequest.getTotalCount();
 
-            int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_DELETE_RECORD;
-            int numBulkRequest = totalRecords / numRecordsPerBulk;
+        int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_DELETE_RECORD;
+        int numBulkRequest = totalRecords / numRecordsPerBulk;
 
-            if ((totalRecords % numRecordsPerBulk) > 0) {
-                numBulkRequest++;
-            }
-            if (totalRecords > 0 && totalRecords < numRecordsPerBulk) {
-                numBulkRequest = 1;
-            }
-            ArrayList<Integer> ids = new ArrayList<>();
-            recordsArray.forEach(item -> {
-                Integer id = Integer.parseInt(item.get("Record_number").getValue().toString());
-                ids.add(id);
-            });
-
-            int offset = 0;
-            for (int i = 0; i < numBulkRequest; i++) {
-                int end = (totalRecords - offset) < numRecordsPerBulk ? totalRecords : (offset + numRecordsPerBulk);
-                List<Integer> idPerBulk = ids.subList(offset, end);
-                ArrayList<Integer> idPerBulkArray = new ArrayList<>(idPerBulk);
-
-                try {
-                    BulkRequestResponse requestResponsePerBulk = this.deleteBulkRecord(app, idPerBulkArray);
-                    requestResponse.addResponses(requestResponsePerBulk.getResults());
-                } catch (KintoneAPIException e) {
-                    requestResponse.addResponse(e);
-                    throw new BulksException(requestResponse.getResults());
-                }
-                offset += numRecordsPerBulk;
-            }
-            return requestResponse;
-        } catch (KintoneAPIException e) {
-            throw new BulksException(requestResponse.getResults());
+        if ((totalRecords % numRecordsPerBulk) > 0) {
+            numBulkRequest++;
         }
+        if (totalRecords > 0 && totalRecords < numRecordsPerBulk) {
+            numBulkRequest = 1;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        recordsArray.forEach(item -> {
+            Integer id = Integer.parseInt(item.get("$id").getValue().toString());
+            ids.add(id);
+        });
+
+        int offset = 0;
+        for (int i = 0; i < numBulkRequest; i++) {
+            int end = (totalRecords - offset) < numRecordsPerBulk ? totalRecords : (offset + numRecordsPerBulk);
+            List<Integer> idPerBulk = ids.subList(offset, end);
+            ArrayList<Integer> idPerBulkArray = new ArrayList<>(idPerBulk);
+
+            try {
+                BulkRequestResponse requestResponsePerBulk = this.deleteBulkRecord(app, idPerBulkArray);
+                requestResponse.addResponses(requestResponsePerBulk.getResults());
+            } catch (KintoneAPIException e) {
+                requestResponse.addResponse(e);
+                throw new BulksException(requestResponse.getResults());
+            }
+            offset += numRecordsPerBulk;
+        }
+        return requestResponse;
+    }
+
+    public BulkRequestResponse deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
+        return deleteAllRecordsByQuery(app, "");
     }
 
     public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
+    	if (records == null) {
+    		records = new ArrayList<HashMap<String, FieldValue>>();
+    	}
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
         int numBulkRequest = (int) (records.size() / numRecordsPerBulk);
         if ((records.size() % numRecordsPerBulk) > 0) {
             numBulkRequest++;
         }
-        if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
             numBulkRequest = 1;
         }
         int offset = 0;
@@ -818,12 +820,15 @@ public class Record {
     }
 
     public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+        if (records == null) {
+    		records = new ArrayList<RecordUpdateItem>();
+    	}
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_UPDATE_RECORD;
         int numBulkRequest = (int) records.size() / numRecordsPerBulk;
         if ((records.size() % numRecordsPerBulk) > 0) {
             numBulkRequest++;
         }
-        if (records.size() > 0 && records.size() < numRecordsPerBulk) {
+        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
             numBulkRequest = 1;
         }
         int offset = 0;

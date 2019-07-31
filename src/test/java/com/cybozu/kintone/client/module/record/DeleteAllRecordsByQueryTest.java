@@ -5,11 +5,14 @@ import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
+import com.cybozu.kintone.client.exception.KintoneAPIException;
 import org.junit.Before;
 import org.junit.Test;
 
 public class DeleteAllRecordsByQueryTest {
     private int APP_ID;
+    private String query = "xxx";
+    private int INVALID_APP_ID;
     private Connection connection;
 
     @Before
@@ -21,20 +24,21 @@ public class DeleteAllRecordsByQueryTest {
     }
 
     @Test
-    public void deleteAllRecordsWithoutQuery() throws BulksException {
+    public void deleteAllRecordsWithoutQuery() throws BulksException, KintoneAPIException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(APP_ID, "");
+        record.deleteAllRecordsByQuery(APP_ID);
     }
 
     @Test
-    public void deleteAllRecordsWithQuery() throws BulksException {
+    public void deleteAllRecordsWithQuery() throws BulksException, KintoneAPIException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(APP_ID, "xxx");
+        record.deleteAllRecordsByQuery(APP_ID, query);
     }
 
-    @Test(expected = BulksException.class)
-    public void deleteAllRecordsWithoutApp() throws BulksException {
+    @Test(expected = KintoneAPIException.class)
+    public void deleteAllRecordsInvalidAppId() throws BulksException, KintoneAPIException {
         Record record = new Record(connection);
-        record.deleteAllRecordsByQuery(null, "xxx");
+        record.deleteAllRecordsByQuery(INVALID_APP_ID, query);
     }
+
 }
