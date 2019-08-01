@@ -385,8 +385,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setproxyproxyhost-proxyport" title="setProxy(proxyHost, proxyPort)" class="md-nav__link">
-    setProxy(proxyHost, proxyPort)
+  <a href="#setproxyproxyhost-proxyport-proxyusername-proxypassword" title="setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)" class="md-nav__link">
+    setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
   </a>
   
 </li>
@@ -911,8 +911,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setproxyproxyhost-proxyport" title="setProxy(proxyHost, proxyPort)" class="md-nav__link">
-    setProxy(proxyHost, proxyPort)
+  <a href="#setproxyproxyhost-proxyport-proxyusername-proxypassword" title="setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)" class="md-nav__link">
+    setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
   </a>
   
 </li>
@@ -1051,7 +1051,7 @@ connection.setHeader(key, value);
 </pre>
 
 <p></details></p>
-<h3 id="setproxyproxyhost-proxyport">setProxy(proxyHost, proxyPort)</h3>
+<h3 id="setproxyproxyhost-proxyport-proxyusername-proxypassword">setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)</h3>
 <blockquote>
 <p>Set the proxy of the request</p>
 </blockquote>
@@ -1078,10 +1078,22 @@ connection.setHeader(key, value);
 <td>yes</td>
 <td>The proxy port number</td>
 </tr>
+<tr>
+<td>proxyUsername</td>
+<td>String</td>
+<td>(optional)</td>
+<td>User name of the proxy</td>
+</tr>
+<tr>
+<td>proxyPassword</td>
+<td>String</td>
+<td>(optional)</td>
+<td>Password of the proxy</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Return</strong></p>
-<p>(none)</p>
+<p><a href="../connection">Connection</a></p>
 <p><strong class="tab-name">Source code</strong></p>
 <p><details class="tab-container" open>
 <Summary>Set the proxy of the request</Summary></p>
@@ -1098,7 +1110,14 @@ kintoneAuth.setPasswordAuth(username, password);
 
 String myDomainName = "sample.cybozu.com";
 Connection connection = new Connection(myDomainName, kintoneAuth);
+
+// Set proxy without proxyUsername & proxyPassword
 connection.setProxy(proxyHost, proxyPort);
+
+// Set proxy with proxyUsername & proxyPassword
+String proxyUsername = "xxxx";
+String proxyPassword = "xxxx";
+connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 <p></details></p>
