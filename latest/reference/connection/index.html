@@ -391,6 +391,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sethttpsproxyproxyhost-proxyport-proxyusername-proxypassword" title="setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)" class="md-nav__link">
+    setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -917,6 +924,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sethttpsproxyproxyhost-proxyport-proxyusername-proxypassword" title="setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)" class="md-nav__link">
+    setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1118,6 +1132,76 @@ connection.setProxy(proxyHost, proxyPort);
 String proxyUsername = "xxxx";
 String proxyPassword = "xxxx";
 connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
+</pre>
+
+<p></details></p>
+<h3 id="sethttpsproxyproxyhost-proxyport-proxyusername-proxypassword">setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)</h3>
+<blockquote>
+<p>Set the SSL-secured proxy of the request</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proxyHost</td>
+<td>String</td>
+<td>yes</td>
+<td>The proxy host name</td>
+</tr>
+<tr>
+<td>proxyPort</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The proxy port number</td>
+</tr>
+<tr>
+<td>proxyUsername</td>
+<td>String</td>
+<td>(optional)</td>
+<td>User name of the proxy</td>
+</tr>
+<tr>
+<td>proxyPassword</td>
+<td>String</td>
+<td>(optional)</td>
+<td>Password of the proxy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../connection">Connection</a></p>
+<p><strong class="tab-name">Source code</strong></p>
+<p><details class="tab-container" open>
+<Summary>Set the proxy of the request</Summary></p>
+<p><strong class="tab-name">Source code</strong></p>
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+String proxyHost = "xxxx";
+Integer proxyPort = 1234;
+
+// Init authenticationAuth
+Auth kintoneAuth = new Auth();
+kintoneAuth.setPasswordAuth(username, password);
+
+String myDomainName = "sample.cybozu.com";
+Connection connection = new Connection(myDomainName, kintoneAuth);
+
+// Set ssl-secured proxy without proxyUsername & proxyPassword
+connection.setHttpsProxy(proxyHost, proxyPort);
+
+// Set ssl-secured proxy with proxyUsername & proxyPassword
+String proxyUsername = "xxxx";
+String proxyPassword = "xxxx";
+connection.setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 <p></details></p>
