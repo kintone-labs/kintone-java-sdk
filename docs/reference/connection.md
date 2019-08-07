@@ -128,3 +128,51 @@ connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 </details>
+
+### setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
+
+> Set the SSL-secured proxy of the request
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+| proxyHost | String | yes | The proxy host name
+| proxyPort | Integer | yes | The proxy port number
+| proxyUsername | String | (optional) | User name of the proxy
+| proxyPassword | String | (optional) | Password of the proxy
+
+**Return**
+
+[Connection](../connection)
+
+<strong class="tab-name">Source code</strong>
+
+<details class="tab-container" open>
+<Summary>Set the proxy of the request</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+String username = "cybozu";
+String password = "cybozu";
+String proxyHost = "xxxx";
+Integer proxyPort = 1234;
+  
+// Init authenticationAuth
+Auth kintoneAuth = new Auth();
+kintoneAuth.setPasswordAuth(username, password);
+
+String myDomainName = "sample.cybozu.com";
+Connection connection = new Connection(myDomainName, kintoneAuth);
+
+// Set ssl-secured proxy without proxyUsername & proxyPassword
+connection.setHttpsProxy(proxyHost, proxyPort);
+
+// Set ssl-secured proxy with proxyUsername & proxyPassword
+String proxyUsername = "xxxx";
+String proxyPassword = "xxxx";
+connection.setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
+</pre>
+
+</details>
