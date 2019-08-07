@@ -10,6 +10,13 @@ import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 
 public class ProxyTest {
 
@@ -47,7 +54,6 @@ public class ProxyTest {
         app2.getApp(APP_ID).getAppId();
     }
 
-
     @Test(expected = KintoneAPIException.class)
     public void checkAppWithEmptyAccount() throws KintoneAPIException {
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
@@ -67,9 +73,13 @@ public class ProxyTest {
     }
 
     @Test(expected = KintoneAPIException.class)
-    public void checkAppWithHttpServer() throws KintoneAPIException {
+    public void checkAppWithHttpsProxy() throws KintoneAPIException, KeyManagementException, NoSuchAlgorithmException {
+        SSLContext sslcontext = SSLContext.getInstance("SSL");
+        sslcontext.init(new KeyManager[0], new TrustManager[] {new TrustAnyTrustManager()}, new SecureRandom());
+        SSLContext.setDefault(sslcontext);
+        
         Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST_HTTP, TestConstants.PROXY_PORT_HTTP, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
+        connection.setHttpsProxy(TestConstants.PROXY_HOST_HTTPS, TestConstants.PROXY_PORT_HTTPS, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
         App app = new App(connection);
 
         app.getApp(APP_ID).getAppId();
@@ -83,5 +93,4 @@ public class ProxyTest {
 
         Assert.assertNotNull(app.getApp(APP_ID).getAppId());
     }
-
 }
