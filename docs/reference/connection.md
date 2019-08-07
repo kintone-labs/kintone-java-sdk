@@ -81,7 +81,7 @@ connection.setHeader(key, value);
 
 </details>
 
-### setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
+### setProxy(host, port, username, password)
 
 > Set the proxy of the request
 
@@ -89,10 +89,10 @@ connection.setHeader(key, value);
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| proxyHost | String | yes | The proxy host name
-| proxyPort | Integer | yes | The proxy port number
-| proxyUsername | String | (optional) | User name of the proxy
-| proxyPassword | String | (optional) | Password of the proxy
+| host | String | yes | The proxy host name
+| port | Integer | yes | The proxy port number
+| username | String | (optional) | User name of the proxy
+| password | String | (optional) | Password of the proxy
 
 **Return**
 
@@ -129,7 +129,7 @@ connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 
 </details>
 
-### setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword)
+### setHttpsProxy(host, port, username, password)
 
 > Set the SSL-secured proxy of the request
 
@@ -137,10 +137,10 @@ connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| proxyHost | String | yes | The proxy host name
-| proxyPort | Integer | yes | The proxy port number
-| proxyUsername | String | (optional) | User name of the proxy
-| proxyPassword | String | (optional) | Password of the proxy
+| host | String | yes | The proxy host name
+| port | Integer | yes | The proxy port number
+| username | String | (optional) | User name of the proxy
+| password | String | (optional) | Password of the proxy
 
 **Return**
 
