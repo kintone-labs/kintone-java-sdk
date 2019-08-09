@@ -18,7 +18,6 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 
@@ -58,7 +57,7 @@ public class Connection {
     /*
      * User agent http header.
      */
-    private String userAgent = ConnectionConstants.USER_AGENT_VALUE;
+    public static String userAgent = ConnectionConstants.USER_AGENT_VALUE;
 
     /*
      * Object contains user's credential.
@@ -86,6 +85,10 @@ public class Connection {
      */
     private String proxyHost = null;
     private Integer proxyPort = null;
+    private Boolean isHttpsProxy = false;
+    private String proxyUser = null;
+    private String proxyPass = null;
+    private Authenticator proxyAuthenticator = null;
 
     /**
      * Constructor for init a connection object to connect to guest space.
@@ -98,7 +101,7 @@ public class Connection {
         this.domain = domain;
         this.auth = auth;
         this.guestSpaceId = guestSpaceId;
-        this.userAgent += "/" + getProperties().getProperty("version");
+        userAgent += "/" + getProperties().getProperty("version");
     }
 
     /**
@@ -138,21 +141,10 @@ public class Connection {
         }
 
         try {
-            if (this.proxyHost == null && this.proxyPort == null) {
-                connection = (HttpsURLConnection) url.openConnection();
-            } else {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
-                connection = (HttpsURLConnection) url.openConnection(proxy);
-            }
-
-            if (this.auth.getClientCert() != null) {
-                SSLContext sslcontext = this.auth.getClientCert();
-                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
-            }
-
+            connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(method);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new KintoneAPIException("can not open connection");
         }
 
@@ -218,21 +210,10 @@ public class Connection {
         }
 
         try {
-            if (this.proxyHost == null && this.proxyPort == null) {
-                connection = (HttpsURLConnection) url.openConnection();
-            } else {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
-                connection = (HttpsURLConnection) url.openConnection(proxy);
-            }
-
-            if (this.auth.getClientCert() != null) {
-                SSLContext sslcontext = this.auth.getClientCert();
-                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
-            }
-
+            connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.GET_REQUEST);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new KintoneAPIException("can not open connection");
         }
 
@@ -293,22 +274,10 @@ public class Connection {
         }
 
         try {
-            if (this.proxyHost == null && this.proxyPort == null) {
-                connection = (HttpsURLConnection) url.openConnection();
-            } else {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(this.proxyHost, this.proxyPort));
-
-                connection = (HttpsURLConnection) url.openConnection(proxy);
-            }
-
-            if (this.auth.getClientCert() != null) {
-                SSLContext sslcontext = this.auth.getClientCert();
-                connection.setSSLSocketFactory(sslcontext.getSocketFactory());
-            }
-
+            connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new KintoneAPIException("can not open connection");
         }
 
@@ -414,7 +383,7 @@ public class Connection {
             connection.setRequestProperty(header.getKey(), header.getValue());
         }
 
-        connection.setRequestProperty(ConnectionConstants.USER_AGENT_KEY, this.userAgent);
+        connection.setRequestProperty(ConnectionConstants.USER_AGENT_KEY, userAgent);
         for (HTTPHeader header : this.headers) {
             connection.setRequestProperty(header.getKey(), header.getValue());
         }
@@ -649,7 +618,7 @@ public class Connection {
     }
 
     /**
-     * Sets the proxy host.
+     * Sets the proxy.
      *
      * @param host proxy host
      * @param port proxy port
@@ -657,22 +626,59 @@ public class Connection {
     public void setProxy(String host, Integer port) {
         this.proxyHost = host;
         this.proxyPort = port;
-
+        this.isHttpsProxy = false;
     }
 
+    /**
+     * Sets the proxy with authentication.
+     *
+     * @param host proxy host
+     * @param port proxy port
+     * @param username proxy user
+     * @param password proxy password
+     */
     public void setProxy(String host, Integer port, String username, String password) {
         this.proxyHost = host;
         this.proxyPort = port;
+        this.proxyUser = username;
+        this.proxyPass = password;
+        this.isHttpsProxy = false;
 
         //allowAuthenticationForHttps. This is required only for jdk > 8u11
         System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
+        this.proxyAuthenticator = new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(proxyUser, proxyPass.toCharArray());
+            }
+        };
+    }
 
-        Authenticator.setDefault(
-                new Authenticator() {
-                    public PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password.toCharArray());
-                    }
-                });
+    /**
+     * Sets the SSL-secured proxy.
+     *
+     * @param host proxy host
+     * @param port proxy port
+     */
+    public void setHttpsProxy(String host, Integer port) {
+        this.proxyHost = host;
+        this.proxyPort = port;
+        this.isHttpsProxy = true;
+    }
+
+    /**
+     * Sets the SSL-secured proxy with authentication.
+     *
+     * @param host proxy host
+     * @param port proxy port
+     * @param username proxy user
+     * @param password proxy password
+     */
+    public void setHttpsProxy(String host, Integer port, String username, String password) {
+        this.proxyHost = host;
+        this.proxyPort = port;
+        this.proxyUser = username;
+        this.proxyPass = password;
+        this.isHttpsProxy = true;
     }
 
     /**
@@ -692,5 +698,62 @@ public class Connection {
         pathURI = pathURI.replaceAll("\\{API_NAME\\}", apiName);
 
         return pathURI;
+    }
+
+    private HttpsURLConnection openApiConnection(URL apiEndpoint) throws Exception {
+        HttpsURLConnection connection = null;
+        SSLContext sslcontext = null;
+        SSLSocketFactoryForHttpsProxy sslSocketFactory = null;
+        Proxy proxy = null;
+        try {
+            // if there is client certificate get the ssl context
+            if (this.auth.getClientCert() != null) {
+                sslcontext = this.auth.getClientCert();
+            }
+
+            // set proxy if any is present
+            if(proxyHost != null && proxyPort != null) {
+                if(this.isHttpsProxy && sslcontext != null) {
+                    // forward factory from ssl context with client certificate
+                    sslSocketFactory = new SSLSocketFactoryForHttpsProxy(sslcontext.getSocketFactory());
+                } else if( this.isHttpsProxy && sslcontext == null) {
+                    sslSocketFactory = new SSLSocketFactoryForHttpsProxy();
+                } else {
+                    // normal http proxy 
+                    proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+                }
+
+                // if sslSocketFactory exists it means proxy is https and needs to set proxy info
+                if(sslSocketFactory != null) {
+                    sslSocketFactory.setProxyHost(proxyHost);
+                    sslSocketFactory.setProxyPort(proxyPort);
+                    if(proxyUser != null && proxyPass != null) {
+                        sslSocketFactory.setProxyUserName(proxyUser);
+                        sslSocketFactory.setProxyPassword(proxyPass);
+                    }
+                }
+            } else if(sslcontext != null) {
+                // no ssl proxy, but there is client certificate so set factory to factory of ssl context
+
+            }
+        } catch (Exception err) {
+            throw err;
+        }
+
+        // set http proxy for connection
+        if(proxy != null) {
+            connection = (HttpsURLConnection) apiEndpoint.openConnection(proxy);
+            if(this.proxyAuthenticator != null) {
+                connection.setAuthenticator(this.proxyAuthenticator);
+            }
+        } else {
+            connection = (HttpsURLConnection) apiEndpoint.openConnection();
+        }
+
+        // set ssl socket factory for connection to connect to ssl secured proxy
+        if(sslSocketFactory != null) {
+            connection.setSSLSocketFactory(sslSocketFactory);
+        }
+        return connection;
     }
 }
