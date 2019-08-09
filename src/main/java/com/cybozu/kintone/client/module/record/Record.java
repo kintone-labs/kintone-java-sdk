@@ -434,7 +434,7 @@ public class Record {
         }
         String fieldKey = comparedRecord.getUpdateKey().getField();
         for (int i = 0; i < allRecords.size(); i++) {
-            if (allRecords.get(i).get(fieldKey).getValue() == comparedRecord.getUpdateKey().getValue()) {
+            if (allRecords.get(i).get(fieldKey).getValue().equals(comparedRecord.getUpdateKey().getValue())) {
                 return true;
             }
         }
@@ -452,7 +452,7 @@ public class Record {
             if (length - begin >= Record.LIMIT_UPDATE_RECORD) {
                 end = begin + Record.LIMIT_UPDATE_RECORD;
             }
-            ArrayList<RecordUpdateItem> recordsPerRequest = (ArrayList<RecordUpdateItem>) records.subList(begin, end);
+            ArrayList<RecordUpdateItem> recordsPerRequest = new ArrayList<RecordUpdateItem>(records.subList(begin, end));
             bulkRequest.updateRecords(app, recordsPerRequest);
         }
         return bulkRequest;
