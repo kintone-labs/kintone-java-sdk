@@ -184,7 +184,7 @@ public class Connection {
                 is.close();
             }
         } catch (Exception e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+            throw (KintoneAPIException) e;
         }
 
 
