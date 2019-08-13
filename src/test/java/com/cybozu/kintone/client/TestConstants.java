@@ -21,8 +21,8 @@ public class TestConstants {
     public static int GUEST_SPACE_THREAD_ID;
     public static int MAX_VALUE;
     public static final String PROXY_HOST = "xxx";
-    public static final String PROXY_HOST_HTTP = "xxx";
-    public static int PROXY_PORT_HTTP;
+    public static final String PROXY_HOST_HTTPS = "xxx";
+    public static int PROXY_PORT_HTTPS;
     public static int PROXY_PORT;
     public static String API_TOKEN = "xxxxxxxxxxxxxxxxxxxx";
     public static String HAAPI_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxx";
