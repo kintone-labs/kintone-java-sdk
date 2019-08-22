@@ -1139,7 +1139,7 @@ try {
     HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
     record.put("title", fv);
     
-    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
+    RecordUpdateKey updateKey = new RecordUpdateKey("detail", "update 123");
     
     kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
 
