@@ -247,8 +247,8 @@ public class Connection {
             checkStatus(connection, body);
             InputStream is = connection.getInputStream();
             return is;
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+        } catch (Exception e) {
+            throw (KintoneAPIException) e;
         }
     }
 
@@ -324,8 +324,8 @@ public class Connection {
             } finally {
                 is.close();
             }
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+        } catch (Exception e) {
+            throw (KintoneAPIException) e;
         }
 
         return jsonParser.parse(response);
