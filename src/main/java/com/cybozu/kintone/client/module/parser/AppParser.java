@@ -66,7 +66,7 @@ public class AppParser {
                 Date modifiedDate = isoDateFormat.parse(jsonObject.get("modifiedAt").getAsString());
                 app.setModifiedAt(modifiedDate);
             } catch (ParseException e) {
-                throw new KintoneAPIException("Parse data error");
+                throw new KintoneAPIException("Parse data error", e);
             }
 
             app.setCreator(gson.fromJson(jsonObject.get("creator"), Member.class));
@@ -82,7 +82,7 @@ public class AppParser {
                 app.setThreadId(threadId.getAsInt());
             }
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
         return app;
     }
@@ -156,7 +156,7 @@ public class AppParser {
             response = gson.fromJson(input, BasicResponse.class);
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
@@ -177,7 +177,7 @@ public class AppParser {
             response = gson.fromJson(input, AddPreviewAppResponse.class);
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
@@ -205,7 +205,7 @@ public class AppParser {
 
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
@@ -220,7 +220,7 @@ public class AppParser {
         try {
             return gson.toJson(obj);
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 
@@ -236,7 +236,7 @@ public class AppParser {
         try {
             return gson.fromJson(json, type);
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 
