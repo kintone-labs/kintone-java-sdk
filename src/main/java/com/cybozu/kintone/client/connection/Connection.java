@@ -144,6 +144,8 @@ public class Connection {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(method);
+        } catch (ProtocolException e) {
+            throw new KintoneAPIException("can not open connection", e);
         } catch (Exception e) {
             throw new KintoneAPIException("can not open connection", e);
         }
@@ -183,7 +185,9 @@ public class Connection {
             } finally {
                 is.close();
             }
-        } catch (Exception e) {
+        } catch (KintoneAPIException e) {
+            throw new KintoneAPIException("an error occurred while receiving data", e);
+        } catch (IOException e) {
             throw new KintoneAPIException("an error occurred while receiving data", e);
         }
 
@@ -213,6 +217,8 @@ public class Connection {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.GET_REQUEST);
+        } catch (ProtocolException e) {
+            throw new KintoneAPIException("can not open connection", e);
         } catch (Exception e) {
             throw new KintoneAPIException("can not open connection", e);
         }
@@ -277,6 +283,8 @@ public class Connection {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
+        } catch (ProtocolException e) {
+            throw new KintoneAPIException("can not open connection", e);
         } catch (Exception e) {
             throw new KintoneAPIException("can not open connection", e);
         }
@@ -719,7 +727,7 @@ public class Connection {
                 } else if( this.isHttpsProxy && sslcontext == null) {
                     sslSocketFactory = new SSLSocketFactoryForHttpsProxy();
                 } else {
-                    // normal http proxy 
+                    // normal http proxy
                     proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
                 }
 

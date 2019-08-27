@@ -51,6 +51,7 @@ import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 
 public class FormFieldParser {
     private static final Gson gson = new Gson();
@@ -109,8 +110,8 @@ public class FormFieldParser {
         FormFieldParseData data = null;
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
-        } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type",e );
+        } catch (JsonSyntaxException e) {
+            throw new KintoneAPIException("Invalid data type", e);
         }
 
         if (data == null) {
@@ -187,7 +188,7 @@ public class FormFieldParser {
         FormFieldParseData data = null;
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Invalid data type", e);
         }
 

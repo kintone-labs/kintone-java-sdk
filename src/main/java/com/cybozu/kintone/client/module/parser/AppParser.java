@@ -21,12 +21,14 @@ import com.cybozu.kintone.client.model.app.AppModel;
 import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
+import com.cybozu.kintone.client.model.app.form.NumberFormat;
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
 import com.cybozu.kintone.client.model.member.Member;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 public class AppParser {
@@ -81,7 +83,7 @@ public class AppParser {
             if (threadId.isJsonPrimitive()) {
                 app.setThreadId(threadId.getAsInt());
             }
-        } catch (Exception e) {
+        } catch (KintoneAPIException|JsonSyntaxException|NumberFormatException e) {
             throw new KintoneAPIException("Invalid data type", e);
         }
         return app;
@@ -155,7 +157,7 @@ public class AppParser {
             BasicResponse response = new BasicResponse();
             response = gson.fromJson(input, BasicResponse.class);
             return response;
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Invalid data type", e);
         }
     }
@@ -176,7 +178,7 @@ public class AppParser {
             AddPreviewAppResponse response = new AddPreviewAppResponse();
             response = gson.fromJson(input, AddPreviewAppResponse.class);
             return response;
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Invalid data type", e);
         }
     }
@@ -204,7 +206,7 @@ public class AppParser {
             response.setApps(arrayAppDeployStatus);
 
             return response;
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Invalid data type", e);
         }
     }
@@ -235,7 +237,7 @@ public class AppParser {
     public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
         try {
             return gson.fromJson(json, type);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Parse error", e);
         }
     }

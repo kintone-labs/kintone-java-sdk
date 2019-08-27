@@ -8,9 +8,11 @@
 package com.cybozu.kintone.client.authentication;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.SecureRandom;
+import java.security.*;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -136,7 +138,7 @@ public class Auth {
         try {
             InputStream cert = new FileInputStream(filePath);
             return this.setClientCert(cert, password);
-        } catch (Exception e) {
+        } catch (FileNotFoundException|KintoneAPIException e) {
             throw new KintoneAPIException("Certificate error", e);
         }
     }
@@ -163,7 +165,7 @@ public class Auth {
             this.clientCert = SSLContext.getInstance(AuthenticationConstants.SOCKET_PROTOCOL);
             this.clientCert.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
             return this;
-        } catch (Exception e) {
+        } catch (KeyManagementException|KeyStoreException|NoSuchAlgorithmException|UnrecoverableKeyException|CertificateException|IOException e) {
             throw new KintoneAPIException("Certificate error", e);
         }
     }

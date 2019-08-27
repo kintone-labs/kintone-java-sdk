@@ -7,11 +7,7 @@
 
 package com.cybozu.kintone.client.module.file;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -82,7 +78,7 @@ public class File {
             } finally {
                 is.close();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new KintoneAPIException("an error occurred while receiving data", e);
         }
     }

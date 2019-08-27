@@ -10,6 +10,7 @@ package com.cybozu.kintone.client.module.parser;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonSyntaxException;
 
 public class BulkRequestParser {
 
@@ -26,7 +27,7 @@ public class BulkRequestParser {
     public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
         try {
             return gson.fromJson(json, type);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException e) {
             throw new KintoneAPIException("Parse error", e);
         }
     }

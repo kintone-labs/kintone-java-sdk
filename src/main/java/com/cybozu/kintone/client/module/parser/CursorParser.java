@@ -16,7 +16,7 @@ public class CursorParser extends Parser{
 	
 	public HashMap<String, FieldValue> parseRecordJson(JsonElement jsonElement) throws KintoneAPIException {
         try {
-        	HashMap<String, FieldValue> record = new HashMap<>();
+            HashMap<String, FieldValue> record = new HashMap<>();
             JsonObject recordJson = jsonElement.getAsJsonObject();
             for (Entry<String, JsonElement> entry : recordJson.entrySet()) {
                 String fieldType = entry.getValue().getAsJsonObject().get("type").getAsString();
@@ -25,37 +25,37 @@ public class CursorParser extends Parser{
                 record.put(entry.getKey(), field);
             }
             return record;
-            
-        } catch (Exception e) {
+
+        } catch (KintoneAPIException e) {
             throw new KintoneAPIException("Parse error", e);
         }
     }
 	
 	public ArrayList<HashMap<String, FieldValue>> parseRecordsJson(JsonArray jsonArray) throws KintoneAPIException {
         try {
-        	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+            ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
             for (JsonElement jsonElement : jsonArray) {
                 HashMap<String, FieldValue> record = this.parseRecordJson(jsonElement);
                 records.add(record);
             }
             return records;
-            
-        } catch (Exception e) {
+
+        } catch (KintoneAPIException e) {
             throw new KintoneAPIException("Parse error", e);
         }
     }
 	
 	public GetRecordCursorResponse parseForGetRecordCursorResponse(JsonElement jsonElement) throws KintoneAPIException {
         try {
-        	JsonArray recordsJson = jsonElement.getAsJsonObject().getAsJsonArray("records");
+            JsonArray recordsJson = jsonElement.getAsJsonObject().getAsJsonArray("records");
             JsonElement next = jsonElement.getAsJsonObject().get("next");
-            
+
             GetRecordCursorResponse getRecordCursorResponse = new GetRecordCursorResponse();
             getRecordCursorResponse.setRecords(this.parseRecordsJson(recordsJson));
             getRecordCursorResponse.setNext(next.getAsBoolean());
             return getRecordCursorResponse;
-            
-        } catch (Exception e) {
+
+        } catch (KintoneAPIException e) {
             throw new KintoneAPIException("Parse error", e);
         }
     }
