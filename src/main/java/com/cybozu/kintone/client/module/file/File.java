@@ -47,8 +47,8 @@ public class File {
             java.io.File uploadFile = new java.io.File(filePath);
             fileName = uploadFile.getName();
             fis = new FileInputStream(uploadFile.getAbsolutePath());
-        } catch (FileNotFoundException e1) {
-            throw new KintoneAPIException("cannot open file");
+        } catch (FileNotFoundException e) {
+            throw new KintoneAPIException("cannot open file", e);
         }
         JsonElement response = this.connection.uploadFile(fileName, fis);
         return (FileModel) parser.parseJson(response, FileModel.class);
@@ -83,7 +83,7 @@ public class File {
                 is.close();
             }
         } catch (Exception e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+            throw new KintoneAPIException("an error occurred while receiving data", e);
         }
     }
 
