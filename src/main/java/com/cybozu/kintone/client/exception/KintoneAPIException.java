@@ -25,6 +25,17 @@ public class KintoneAPIException extends Exception {
     /**
      * @param httpErrorCode httpErrorCode of the KintoneAPIException
      * @param errorResponse errorResponse of the KintoneAPIException
+     * @param cause cause of the KintoneAPIException
+     */
+    public KintoneAPIException(int httpErrorCode, ErrorResponse errorResponse, Throwable cause) {
+        super(errorResponse.getMessage(), cause);
+        this.httpErrorCode = httpErrorCode;
+        this.errorResponse = errorResponse;
+    }
+
+    /**
+     * @param httpErrorCode httpErrorCode of the KintoneAPIException
+     * @param errorResponse errorResponse of the KintoneAPIException
      */
     public KintoneAPIException(int httpErrorCode, ErrorResponse errorResponse) {
         super(errorResponse.getMessage());
@@ -32,10 +43,33 @@ public class KintoneAPIException extends Exception {
         this.errorResponse = errorResponse;
     }
 
+
+    /**
+     * @param httpErrorCode httpErrorCode of the KintoneAPIException
+     * @param cause cause of the KintoneAPIException
+     */
+    public KintoneAPIException(int httpErrorCode, ArrayList<BulkRequestItem> request, ArrayList<ErrorResponse> errorResponses, Throwable cause) {
+        super(cause);
+        this.httpErrorCode = httpErrorCode;
+        this.errorResponses = errorResponses;
+        this.request = request;
+    }
+
+    /**
+     * @param httpErrorCode httpErrorCode of the KintoneAPIException
+     */
     public KintoneAPIException(int httpErrorCode, ArrayList<BulkRequestItem> request, ArrayList<ErrorResponse> errorResponses) {
         this.httpErrorCode = httpErrorCode;
         this.errorResponses = errorResponses;
         this.request = request;
+    }
+
+    /**
+     * @param error the error of the KintoneAPIException
+     * @param cause cause of the KintoneAPIException
+     */
+    public KintoneAPIException(String error, Throwable cause) {
+        super(error, cause);
     }
 
     /**
