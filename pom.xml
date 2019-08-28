@@ -14,8 +14,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>9</maven.compiler.source>
+		<maven.compiler.target>9</maven.compiler.target>
 		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
@@ -88,9 +88,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.0</version>
 				<configuration>
-					<compilerVersion>1.8</compilerVersion>
-					<source>1.8</source>
-					<target>1.8</target>
+					<compilerVersion>9</compilerVersion>
+					<source>9</source>
+					<target>9</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -121,7 +121,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<source>8</source>
+					<source>9</source>
 				</configuration>
 				<version>2.9.1</version>
 				<executions>
