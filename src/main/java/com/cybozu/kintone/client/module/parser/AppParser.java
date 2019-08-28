@@ -24,13 +24,11 @@ import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResp
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
 import com.cybozu.kintone.client.model.member.Member;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-public class AppParser {
-    private static final Gson gson = new Gson();
+public class AppParser extends Parser {
     private static final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private static final FormLayoutParser formLayoutParser = new FormLayoutParser();
 
@@ -206,37 +204,6 @@ public class AppParser {
             return response;
         } catch (Exception e) {
             throw new KintoneAPIException("Invalid data type");
-        }
-    }
-
-    /**
-     * Convert Object to jsonString
-     * @param obj obj of the parseObject
-     * @return String
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public String parseObject(Object obj) throws KintoneAPIException {
-        try {
-            return gson.toJson(obj);
-        } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
-        }
-    }
-
-    /**
-     * Convert Json to designated class
-     * @param json json of the parseJson
-     * @param type type of the parseJson
-     * @return Object
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
-        try {
-            return gson.fromJson(json, type);
-        } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
         }
     }
 
