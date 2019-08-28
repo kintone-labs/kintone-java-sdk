@@ -150,18 +150,18 @@ public class Connection {
 
             connection.connect();
 
-            OutputStream os;
-            os = connection.getOutputStream();
+            OutputStream outputStream;
+            outputStream = connection.getOutputStream();
 
-            OutputStreamWriter writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
             writer.write(body);
             writer.close();
 
             checkStatus(connection, body);
-            InputStream is = connection.getInputStream();
-            response = readStream(is);
+            InputStream inputStream = connection.getInputStream();
+            response = readStream(inputStream);
 
-            is.close();
+            inputStream.close();
 
             return jsonParser.parse(response);
         } catch (Exception e) {
@@ -194,16 +194,16 @@ public class Connection {
 
             connection.connect();
 
-            OutputStream os;
-            os = connection.getOutputStream();
+            OutputStream outputStream;
+            outputStream = connection.getOutputStream();
 
-            OutputStreamWriter writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
             writer.write(body);
             writer.close();
 
             checkStatus(connection, body);
-            InputStream is = connection.getInputStream();
-            return is;
+            InputStream inputStream = connection.getInputStream();
+            return inputStream;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
@@ -233,9 +233,9 @@ public class Connection {
                     "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
             connection.connect();
 
-            OutputStream os;
-            os = connection.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
+            OutputStream outputStream;
+            outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
             writer.write("--" + ConnectionConstants.BOUNDARY + "\r\n");
             writer.write("Content-Disposition: form-data; name=\"file\"; filename=\""
                     + fileName + "\"\r\n");
@@ -245,18 +245,18 @@ public class Connection {
             byte[] buffer = new byte[8192];
             int n = 0;
             while (-1 != (n = fis.read(buffer))) {
-                os.write(buffer, 0, n);
+                outputStream.write(buffer, 0, n);
             }
-            os.flush();
+            outputStream.flush();
             writer.write("\r\n--" + ConnectionConstants.BOUNDARY + "--\r\n");
-            os.flush();
+            outputStream.flush();
             writer.close();
             fis.close();
 
             checkStatus(connection, null);
-            InputStream is = connection.getInputStream();
-            response = readStream(is);
-            is.close();
+            InputStream inputStream = connection.getInputStream();
+            response = readStream(inputStream);
+            inputStream.close();
             
             return jsonParser.parse(response);
         } catch (Exception e) {
