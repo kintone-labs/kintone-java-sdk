@@ -115,27 +115,6 @@ public class Connection {
     }
 
     /**
-     * Try catch with resource to auto close
-     * @param outputStream Output Stream
-     * @param writer Writer
-     * @param inputStream Input Stream
-     * @return
-     * @throws Exception
-     */
-
-    public String requestWithResource(OutputStream outputStream, OutputStreamWriter writer, InputStream inputStream) throws Exception {
-        try (
-            outputStream;
-            writer;
-            inputStream;
-        ) {
-            return readStream(inputStream);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    /**
      * Rest http request.
      * This method is low level api, use the correspondence methods in module package instead.
      *
@@ -155,7 +134,7 @@ public class Connection {
             if (ConnectionConstants.GET_REQUEST.equals(method)) {
                 isGet = true;
             }
-    
+
             URL url = null;
             url = this.getURL(apiName, null);
 
@@ -168,40 +147,30 @@ public class Connection {
             if (isGet) {
                 connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
             }
-
             connection.connect();
-            
-            OutputStream outputStream = connection.getOutputStream();
-
-            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-            writer.write(body);
-
-            checkStatus(connection, body);
-            InputStream inputStream = connection.getInputStream();
-            response = this.requestWithResource(outputStream, writer, inputStream);
-
-            return jsonParser.parse(response);
         } catch(KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
-    }
-
-    /**
-     * 
-     * @param outputStream Output stream
-     * @param writer Writer
-     * @param connection HTTPS Connection
-     * @return
-     * @throws Exception
-     */
-    public InputStream downloadFileWithResource(OutputStream outputStream, OutputStreamWriter writer, HttpsURLConnection connection) throws Exception {
-        try (outputStream; writer) {
-            return connection.getInputStream();
+        
+        try(
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+        ) {
+            writer.write(body);
+            checkStatus(connection, body);
+            try(
+                InputStream inputStream = connection.getInputStream();
+            ) {
+                response = this.readStream(inputStream);
+            }
+        }  catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
         } catch (Exception e) {
-            throw e;
+            throw new KintoneAPIException(e.getMessage(), e);
         }
+        return jsonParser.parse(response);
     }
 
     /**
@@ -228,37 +197,23 @@ public class Connection {
             connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
 
             connection.connect();
-
-            OutputStream outputStream;
-            outputStream = connection.getOutputStream();
-
-            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-            writer.write(body);
-
-            checkStatus(connection, body);
-            
-            return this.downloadFileWithResource(outputStream, writer, connection);
         } catch(KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
-    }
 
-    /**
-     * 
-     * @param outputStream Output Stream
-     * @param writer Writer
-     * @param inputStream Input Stream
-     * @param fileInputStream File Input Stream
-     * @return
-     * @throws Exception
-     */
-    public String uploadFileWithStream(OutputStream outputStream, OutputStreamWriter writer, InputStream inputStream, InputStream fileInputStream) throws Exception {
-        try (outputStream; writer; inputStream; fileInputStream) {
-            return readStream(inputStream);
+        try (
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+        ) {
+            writer.write(body);
+            checkStatus(connection, body);
+            return connection.getInputStream();
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
         } catch (Exception e) {
-            throw e;
+            throw new KintoneAPIException(e.getMessage(), e);
         }
     }
 
@@ -285,10 +240,16 @@ public class Connection {
             connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
                     "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
             connection.connect();
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
+        }
 
-            OutputStream outputStream;
-            outputStream = connection.getOutputStream();
+        try (
+            OutputStream outputStream = connection.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
+        ) {
             writer.write("--" + ConnectionConstants.BOUNDARY + "\r\n");
             writer.write("Content-Disposition: form-data; name=\"file\"; filename=\""
                     + fileName + "\"\r\n");
@@ -307,7 +268,7 @@ public class Connection {
 
             checkStatus(connection, null);
             InputStream inputStream = connection.getInputStream();
-            response = uploadFileWithStream(outputStream, writer, inputStream, fis);
+            response = readStream(inputStream);
             
             return jsonParser.parse(response);
         } catch(KintoneAPIException kintoneError) {
