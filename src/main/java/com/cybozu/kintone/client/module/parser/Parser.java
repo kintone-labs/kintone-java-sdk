@@ -5,8 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 public class Parser {
-	protected static final Gson gson = new Gson();
-	public Object parseObject(Object obj) throws KintoneAPIException {
+	protected final Gson gson = new Gson();
+	public String parseObject(Object obj) throws KintoneAPIException {
         try {
             return gson.toJson(obj);
         } catch (Exception e) {
