@@ -265,12 +265,12 @@ public class Connection {
             writer.write("\r\n--" + ConnectionConstants.BOUNDARY + "--\r\n");
             outputStream.flush();
             
-
             checkStatus(connection, null);
-            InputStream inputStream = connection.getInputStream();
-            response = readStream(inputStream);
-            
-            return jsonParser.parse(response);
+
+            try (InputStream inputStream = connection.getInputStream();) {
+                response = readStream(inputStream);
+                return jsonParser.parse(response);
+            }
         } catch(KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
