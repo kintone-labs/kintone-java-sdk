@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.TimeZone;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -102,11 +101,10 @@ public class AppParser {
             throw new KintoneAPIException("Parse error");
         }
 
-        ArrayList<AppModel> result = new ArrayList<AppModel>();
+        ArrayList<AppModel> result = new ArrayList<>();
 
-        Iterator<JsonElement> iterator = apps.getAsJsonArray().iterator();
-        while (iterator.hasNext()) {
-            result.add(parseApp(iterator.next()));
+        for (JsonElement jsonElement : apps.getAsJsonArray()) {
+            result.add(parseApp(jsonElement));
         }
 
         return result;
@@ -150,8 +148,7 @@ public class AppParser {
         }
 
         try {
-            BasicResponse response = new BasicResponse();
-            response = gson.fromJson(input, BasicResponse.class);
+            BasicResponse response = gson.fromJson(input, BasicResponse.class);
             return response;
         } catch (Exception e) {
             throw new KintoneAPIException("Invalid data type");
@@ -171,8 +168,7 @@ public class AppParser {
             throw new KintoneAPIException("Parse error");
         }
         try {
-            AddPreviewAppResponse response = new AddPreviewAppResponse();
-            response = gson.fromJson(input, AddPreviewAppResponse.class);
+            AddPreviewAppResponse response = gson.fromJson(input, AddPreviewAppResponse.class);
             return response;
         } catch (Exception e) {
             throw new KintoneAPIException("Invalid data type");
@@ -194,11 +190,10 @@ public class AppParser {
 
         GetAppDeployStatusResponse response = new GetAppDeployStatusResponse();
         JsonObject jsonObject = input.getAsJsonObject();
-        ArrayList<AppDeployStatus> arrayAppDeployStatus = new ArrayList<AppDeployStatus>();
         Type appDeployStatusListType = new TypeToken<ArrayList<AppDeployStatus>>() {
         }.getType();
         try {
-            arrayAppDeployStatus = gson.fromJson(jsonObject.get("apps"), appDeployStatusListType);
+            ArrayList<AppDeployStatus> arrayAppDeployStatus = gson.fromJson(jsonObject.get("apps"), appDeployStatusListType);
             response.setApps(arrayAppDeployStatus);
 
             return response;
