@@ -2,9 +2,9 @@
 
 ## Requirement
 
-* [Java SE](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (Version 8 or later)
+* [Java SE](https://adoptopenjdk.net/) (Version 9 or later)
 * [maven](https://maven.apache.org/download.cgi) (Version 3.5.4 or later)
-* [kintone-java-sdk](https://github.dev.cybozu.co.jp/SC/kintone-java-sdk)
+* [kintone-java-sdk](https://github.com/kintone/kintone-java-sdk)
 
 ## Code example
 
