@@ -10,6 +10,7 @@ package com.cybozu.kintone.client.module.parser;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -31,12 +32,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class AppParser {
     private static final Gson gson = new Gson();
-    private static final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private static final FormLayoutParser formLayoutParser = new FormLayoutParser();
-
-    static {
-        isoDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-    }
 
     /**
      * Convert json to AppModel class
@@ -60,6 +56,8 @@ public class AppParser {
             app.setDescription(jsonObject.get("description").getAsString());
 
             try {
+                SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                isoDateFormat.setTimeZone(TimeZone.getTimeZone(ZoneOffset.UTC));
                 Date createdDate = isoDateFormat.parse(jsonObject.get("createdAt").getAsString());
                 app.setCreatedAt(createdDate);
 
