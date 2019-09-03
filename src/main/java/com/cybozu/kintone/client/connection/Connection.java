@@ -159,6 +159,7 @@ public class Connection {
             OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         ) {
             writer.write(body);
+            writer.close();
             checkStatus(connection, body);
             try(
                 InputStream inputStream = connection.getInputStream();
