@@ -209,6 +209,7 @@ public class Connection {
             OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         ) {
             writer.write(body);
+            writer.close();
             checkStatus(connection, body);
             return connection.getInputStream();
         } catch(KintoneAPIException kintoneError) {
@@ -265,6 +266,9 @@ public class Connection {
             outputStream.flush();
             writer.write("\r\n--" + ConnectionConstants.BOUNDARY + "--\r\n");
             outputStream.flush();
+
+            writer.close();
+            fis.close();
             
             checkStatus(connection, null);
 
