@@ -137,7 +137,7 @@ public class Auth {
             InputStream cert = new FileInputStream(filePath);
             return this.setClientCert(cert, password);
         } catch (Exception e) {
-            throw new KintoneAPIException("Certificate error");
+            throw new KintoneAPIException("Certificate error", e);
         }
     }
 
@@ -164,7 +164,7 @@ public class Auth {
             this.clientCert.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
             return this;
         } catch (Exception e) {
-            throw new KintoneAPIException("Certificate error");
+            throw new KintoneAPIException("Certificate error", e);
         }
     }
 
