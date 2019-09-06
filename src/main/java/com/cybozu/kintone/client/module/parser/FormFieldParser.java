@@ -48,12 +48,10 @@ import com.cybozu.kintone.client.model.app.form.field.system.RecordNumberField;
 import com.cybozu.kintone.client.model.app.form.field.system.StatusField;
 import com.cybozu.kintone.client.model.app.form.field.system.UpdatedTimeField;
 import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class FormFieldParser {
-    private static final Gson gson = new Gson();
+public class FormFieldParser extends Parser {
 
     /**
      * Convert json to FormFields class
