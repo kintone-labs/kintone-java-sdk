@@ -17,14 +17,11 @@ import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.record.SubTableValueItem;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class RecordParser extends Parser{
-
-    private static final Gson gson = new Gson();
 
     /**
      * Convert json to FieldValue class
@@ -104,37 +101,6 @@ public class RecordParser extends Parser{
                 break;
             }
             return field;
-        } catch (Exception e) {
-            throw new KintoneAPIException("Parse error", e);
-        }
-    }
-
-    /**
-     * Convert Json to designated class
-     * @param json json of the parseJson
-     * @param type type of the parseJson
-     * @return Object
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public Object parseJson(JsonElement json, Class<?> type) throws KintoneAPIException {
-        try {
-            return gson.fromJson(json, type);
-        } catch (Exception e) {
-            throw new KintoneAPIException("Parse error", e);
-        }
-    }
-
-    /**
-     * Convert Object to jsonString
-     * @param obj obj of the parseObject
-     * @return String
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public String parseObject(Object obj) throws KintoneAPIException {
-        try {
-            return gson.toJson(obj);
         } catch (Exception e) {
             throw new KintoneAPIException("Parse error", e);
         }
