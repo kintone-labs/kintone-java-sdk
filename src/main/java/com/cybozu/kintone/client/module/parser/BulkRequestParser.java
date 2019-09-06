@@ -27,7 +27,7 @@ public class BulkRequestParser {
         try {
             return gson.fromJson(json, type);
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 
@@ -42,7 +42,7 @@ public class BulkRequestParser {
         try {
             return gson.toJson(obj);
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 
