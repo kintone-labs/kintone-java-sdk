@@ -102,7 +102,7 @@ public class RecordParser extends Parser{
             }
             return field;
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 }

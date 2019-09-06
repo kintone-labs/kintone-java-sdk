@@ -64,7 +64,7 @@ public class AppParser extends Parser {
                 Date modifiedDate = isoDateFormat.parse(jsonObject.get("modifiedAt").getAsString());
                 app.setModifiedAt(modifiedDate);
             } catch (ParseException e) {
-                throw new KintoneAPIException("Parse data error");
+                throw new KintoneAPIException("Parse data error", e);
             }
 
             app.setCreator(gson.fromJson(jsonObject.get("creator"), Member.class));
@@ -80,7 +80,7 @@ public class AppParser extends Parser {
                 app.setThreadId(threadId.getAsInt());
             }
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
         return app;
     }
@@ -154,7 +154,7 @@ public class AppParser extends Parser {
             response = gson.fromJson(input, BasicResponse.class);
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
@@ -175,7 +175,7 @@ public class AppParser extends Parser {
             response = gson.fromJson(input, AddPreviewAppResponse.class);
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
@@ -203,7 +203,7 @@ public class AppParser extends Parser {
 
             return response;
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
     }
 
