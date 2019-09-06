@@ -110,7 +110,7 @@ public class FormFieldParser {
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type",e );
         }
 
         if (data == null) {
@@ -188,7 +188,7 @@ public class FormFieldParser {
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
 
         if (data == null) {
@@ -314,7 +314,7 @@ public class FormFieldParser {
         try {
             result = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
 
         return result;
