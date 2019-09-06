@@ -424,6 +424,10 @@ public class Record {
             if (!error.getCode().equals(NO_RECORD_FOUND)) {
                 throw e;
             }
+            FieldValue fv = new FieldValue();
+            fv.setValue(updateKey.getValue());
+
+            record.put(updateKey.getField(), fv);
             AddRecordResponse addRecordResponse = this.addRecord(app, record);
             return addRecordResponse;
         }
