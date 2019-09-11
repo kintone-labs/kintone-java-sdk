@@ -48,12 +48,10 @@ import com.cybozu.kintone.client.model.app.form.field.system.RecordNumberField;
 import com.cybozu.kintone.client.model.app.form.field.system.StatusField;
 import com.cybozu.kintone.client.model.app.form.field.system.UpdatedTimeField;
 import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class FormFieldParser {
-    private static final Gson gson = new Gson();
+public class FormFieldParser extends Parser {
 
     /**
      * Convert json to FormFields class
@@ -110,7 +108,7 @@ public class FormFieldParser {
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type",e );
         }
 
         if (data == null) {
@@ -188,7 +186,7 @@ public class FormFieldParser {
         try {
             data = gson.fromJson(input, FormFieldParseData.class);
         } catch (Exception e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
 
         if (data == null) {
@@ -314,7 +312,7 @@ public class FormFieldParser {
         try {
             result = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new KintoneAPIException("Invalid data type");
+            throw new KintoneAPIException("Invalid data type", e);
         }
 
         return result;
