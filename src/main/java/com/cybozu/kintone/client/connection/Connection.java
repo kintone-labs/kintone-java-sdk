@@ -128,66 +128,49 @@ public class Connection {
         HttpsURLConnection connection = null;
         String response = null;
 
-        boolean isGet = false;
-        if (ConnectionConstants.GET_REQUEST.equals(method)) {
-            isGet = true;
-        }
-
-        URL url = null;
         try {
+            boolean isGet = false;
+
+            if (ConnectionConstants.GET_REQUEST.equals(method)) {
+                isGet = true;
+            }
+
+            URL url = null;
             url = this.getURL(apiName, null);
-        } catch (MalformedURLException e) {
-            throw new KintoneAPIException("Invalid URL");
-        }
 
-        try {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(method);
-        } catch (Exception e) {
-            throw new KintoneAPIException("can not open connection");
-        }
 
-        connection.setDoOutput(true);
-        connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
-        if (isGet) {
-            connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
-        }
-
-        try {
+            connection.setDoOutput(true);
+            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
+            if (isGet) {
+                connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
+            }
             connection.connect();
-        } catch (IOException e) {
-            throw new KintoneAPIException(" cannot connect to host");
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
         }
-
-        // send request
-        OutputStream os;
-        try {
-            os = connection.getOutputStream();
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while sending data");
-        }
-        try {
-            OutputStreamWriter writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+        
+        try(
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+        ) {
             writer.write(body);
             writer.close();
-        } catch (IOException e) {
-            throw new KintoneAPIException("socket error");
-        }
-
-        try {
             checkStatus(connection, body);
-            InputStream is = connection.getInputStream();
-            try {
-                response = readStream(is);
-            } finally {
-                is.close();
+            try(
+                InputStream inputStream = connection.getInputStream();
+            ) {
+                response = this.readStream(inputStream);
             }
+        }  catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
         } catch (Exception e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+            throw new KintoneAPIException(e.getMessage(), e);
         }
-
-
         return jsonParser.parse(response);
     }
 
@@ -205,50 +188,34 @@ public class Connection {
 
         try {
             url = this.getURL(ConnectionConstants.FILE, null);
-        } catch (MalformedURLException e1) {
-            throw new KintoneAPIException("invalid url");
-        }
 
-        try {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.GET_REQUEST);
-        } catch (Exception e) {
-            throw new KintoneAPIException("can not open connection");
-        }
 
-        connection.setDoOutput(true);
-        connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
-        connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
+            connection.setDoOutput(true);
+            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
+            connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
 
-        try {
             connection.connect();
-        } catch (IOException e) {
-            throw new KintoneAPIException("cannot connect to host");
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
         }
 
-        // send request
-        OutputStream os;
-        try {
-            os = connection.getOutputStream();
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while sending data");
-        }
-        try {
-            OutputStreamWriter writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+        try (
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+        ) {
             writer.write(body);
             writer.close();
-        } catch (IOException e) {
-            throw new KintoneAPIException("socket error");
-        }
-
-        // receive response
-        try {
             checkStatus(connection, body);
-            InputStream is = connection.getInputStream();
-            return is;
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
+            return connection.getInputStream();
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
         }
     }
 
@@ -262,39 +229,29 @@ public class Connection {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public JsonElement uploadFile(String fileName, InputStream fis) throws KintoneAPIException {
-
         HttpsURLConnection connection;
         String response = null;
-
         URL url = null;
         try {
             url = this.getURL(ConnectionConstants.FILE, null);
-        } catch (MalformedURLException e) {
-            throw new KintoneAPIException("Invalid URL");
-        }
 
-        try {
             connection = openApiConnection(url);
             this.setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
-        } catch (Exception e) {
-            throw new KintoneAPIException("can not open connection");
-        }
-
-        connection.setDoOutput(true);
-        connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
-                "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
-
-        try {
+            connection.setDoOutput(true);
+            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
+                    "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
             connection.connect();
-        } catch (IOException e) {
-            throw new KintoneAPIException("cannot connect to host");
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
         }
 
-        OutputStream os;
-        try {
-            os = connection.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
+        try (
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
+        ) {
             writer.write("--" + ConnectionConstants.BOUNDARY + "\r\n");
             writer.write("Content-Disposition: form-data; name=\"file\"; filename=\""
                     + fileName + "\"\r\n");
@@ -304,31 +261,26 @@ public class Connection {
             byte[] buffer = new byte[8192];
             int n = 0;
             while (-1 != (n = fis.read(buffer))) {
-                os.write(buffer, 0, n);
+                outputStream.write(buffer, 0, n);
             }
-            os.flush();
+            outputStream.flush();
             writer.write("\r\n--" + ConnectionConstants.BOUNDARY + "--\r\n");
-            os.flush();
+            outputStream.flush();
+
             writer.close();
             fis.close();
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while sending data");
-        }
-
-        // receive response
-        try {
+            
             checkStatus(connection, null);
-            InputStream is = connection.getInputStream();
-            try {
-                response = readStream(is);
-            } finally {
-                is.close();
-            }
-        } catch (IOException e) {
-            throw new KintoneAPIException("an error occurred while receiving data");
-        }
 
-        return jsonParser.parse(response);
+            try (InputStream inputStream = connection.getInputStream();) {
+                response = readStream(inputStream);
+                return jsonParser.parse(response);
+            }
+        } catch(KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
+        }
     }
 
 

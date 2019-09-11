@@ -395,6 +395,10 @@ public class Record {
             if (!error.getCode().equals(NO_RECORD_FOUND)) {
                 throw e;
             }
+            FieldValue fv = new FieldValue();
+            fv.setValue(updateKey.getValue());
+
+            record.put(updateKey.getField(), fv);
             AddRecordResponse addRecordResponse = this.addRecord(app, record);
             return addRecordResponse;
         }
@@ -420,6 +424,10 @@ public class Record {
             if (!error.getCode().equals(NO_RECORD_FOUND)) {
                 throw e;
             }
+            FieldValue fv = new FieldValue();
+            fv.setValue(updateKey.getValue());
+
+            record.put(updateKey.getField(), fv);
             AddRecordResponse addRecordResponse = this.addRecord(app, record);
             return addRecordResponse;
         }
@@ -434,7 +442,7 @@ public class Record {
         }
         String fieldKey = comparedRecord.getUpdateKey().getField();
         for (int i = 0; i < allRecords.size(); i++) {
-            if (allRecords.get(i).get(fieldKey).getValue() == comparedRecord.getUpdateKey().getValue()) {
+            if (allRecords.get(i).get(fieldKey).getValue().equals(comparedRecord.getUpdateKey().getValue())) {
                 return true;
             }
         }
@@ -452,7 +460,7 @@ public class Record {
             if (length - begin >= Record.LIMIT_UPDATE_RECORD) {
                 end = begin + Record.LIMIT_UPDATE_RECORD;
             }
-            ArrayList<RecordUpdateItem> recordsPerRequest = (ArrayList<RecordUpdateItem>) records.subList(begin, end);
+            ArrayList<RecordUpdateItem> recordsPerRequest = new ArrayList<RecordUpdateItem>(records.subList(begin, end));
             bulkRequest.updateRecords(app, recordsPerRequest);
         }
         return bulkRequest;
@@ -493,7 +501,14 @@ public class Record {
             if (doesExistSameFieldValue(allRecords, records.get(i))) {
                 recordsForPut.add(new RecordUpdateItem(records.get(i).getUpdateKey(), records.get(i).getRecord()));
             } else {
-                recordsForPost.add(records.get(i).getRecord());
+                HashMap<String, FieldValue> recordForPost = records.get(i).getRecord();
+                RecordUpdateKey updateKey = records.get(i).getUpdateKey();
+
+                FieldValue fv = new FieldValue();
+                fv.setValue(updateKey.getValue());
+
+                recordForPost.put(updateKey.getField(), fv);
+                recordsForPost.add(recordForPost);
             }
         }
         return executeUpsertBulkRequest(app, recordsForPost, recordsForPut);
