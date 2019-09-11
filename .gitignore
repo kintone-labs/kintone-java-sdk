@@ -29,3 +29,4 @@ target/
 .classpath
 .project
 /bin/
+.vscode
