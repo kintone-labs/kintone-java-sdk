@@ -148,25 +148,25 @@ public class Connection {
                 connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
             }
             connection.connect();
-        } catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
-        
-        try(
-            OutputStream outputStream = connection.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+
+        try (
+                OutputStream outputStream = connection.getOutputStream();
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         ) {
             writer.write(body);
             writer.close();
             checkStatus(connection, body);
-            try(
-                InputStream inputStream = connection.getInputStream();
+            try (
+                    InputStream inputStream = connection.getInputStream();
             ) {
                 response = this.readStream(inputStream);
             }
-        }  catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
@@ -198,21 +198,21 @@ public class Connection {
             connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
 
             connection.connect();
-        } catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
 
         try (
-            OutputStream outputStream = connection.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+                OutputStream outputStream = connection.getOutputStream();
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         ) {
             writer.write(body);
             writer.close();
             checkStatus(connection, body);
             return connection.getInputStream();
-        } catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
@@ -242,15 +242,15 @@ public class Connection {
             connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
                     "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
             connection.connect();
-        } catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
 
         try (
-            OutputStream outputStream = connection.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
+                OutputStream outputStream = connection.getOutputStream();
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
         ) {
             writer.write("--" + ConnectionConstants.BOUNDARY + "\r\n");
             writer.write("Content-Disposition: form-data; name=\"file\"; filename=\""
@@ -269,14 +269,14 @@ public class Connection {
 
             writer.close();
             fis.close();
-            
+
             checkStatus(connection, null);
 
             try (InputStream inputStream = connection.getInputStream();) {
                 response = readStream(inputStream);
                 return jsonParser.parse(response);
             }
-        } catch(KintoneAPIException kintoneError) {
+        } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
@@ -584,8 +584,8 @@ public class Connection {
     /**
      * Sets the proxy with authentication.
      *
-     * @param host proxy host
-     * @param port proxy port
+     * @param host     proxy host
+     * @param port     proxy port
      * @param username proxy user
      * @param password proxy password
      */
@@ -620,8 +620,8 @@ public class Connection {
     /**
      * Sets the SSL-secured proxy with authentication.
      *
-     * @param host proxy host
-     * @param port proxy port
+     * @param host     proxy host
+     * @param port     proxy port
      * @param username proxy user
      * @param password proxy password
      */
@@ -664,11 +664,11 @@ public class Connection {
             }
 
             // set proxy if any is present
-            if(proxyHost != null && proxyPort != null) {
-                if(this.isHttpsProxy && sslcontext != null) {
+            if (proxyHost != null && proxyPort != null) {
+                if (this.isHttpsProxy && sslcontext != null) {
                     // forward factory from ssl context with client certificate
                     sslSocketFactory = new SSLSocketFactoryForHttpsProxy(sslcontext.getSocketFactory());
-                } else if( this.isHttpsProxy && sslcontext == null) {
+                } else if (this.isHttpsProxy && sslcontext == null) {
                     sslSocketFactory = new SSLSocketFactoryForHttpsProxy();
                 } else {
                     // normal http proxy 
@@ -676,15 +676,15 @@ public class Connection {
                 }
 
                 // if sslSocketFactory exists it means proxy is https and needs to set proxy info
-                if(sslSocketFactory != null) {
+                if (sslSocketFactory != null) {
                     sslSocketFactory.setProxyHost(proxyHost);
                     sslSocketFactory.setProxyPort(proxyPort);
-                    if(proxyUser != null && proxyPass != null) {
+                    if (proxyUser != null && proxyPass != null) {
                         sslSocketFactory.setProxyUserName(proxyUser);
                         sslSocketFactory.setProxyPassword(proxyPass);
                     }
                 }
-            } else if(sslcontext != null) {
+            } else if (sslcontext != null) {
                 // no ssl proxy, but there is client certificate so set factory to factory of ssl context
 
             }
@@ -693,9 +693,9 @@ public class Connection {
         }
 
         // set http proxy for connection
-        if(proxy != null) {
+        if (proxy != null) {
             connection = (HttpsURLConnection) apiEndpoint.openConnection(proxy);
-            if(this.proxyAuthenticator != null) {
+            if (this.proxyAuthenticator != null) {
                 connection.setAuthenticator(this.proxyAuthenticator);
             }
         } else {
@@ -703,7 +703,7 @@ public class Connection {
         }
 
         // set ssl socket factory for connection to connect to ssl secured proxy
-        if(sslSocketFactory != null) {
+        if (sslSocketFactory != null) {
             connection.setSSLSocketFactory(sslSocketFactory);
         }
         return connection;
