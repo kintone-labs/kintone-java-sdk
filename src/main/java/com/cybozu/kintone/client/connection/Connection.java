@@ -73,7 +73,7 @@ public class Connection {
      * Guest space number in kintone domain.
      * User describe it when connect data in guest space.
      */
-    private int guestSpaceId = -1;
+    private int guestSpaceID = -1;
 
     /*
      * Contains addition headers user set.
@@ -95,12 +95,12 @@ public class Connection {
      *
      * @param domain       Kintone domain url
      * @param auth         Credential information
-     * @param guestSpaceId Guest space number in kintone domain.
+     * @param guestSpaceID Guest space number in kintone domain.
      */
-    public Connection(String domain, Auth auth, int guestSpaceId) {
+    public Connection(String domain, Auth auth, int guestSpaceID) {
         this.domain = domain;
         this.auth = auth;
-        this.guestSpaceId = guestSpaceId;
+        this.guestSpaceID = guestSpaceID;
         userAgent += "/" + getProperties().getProperty("version");
     }
 
@@ -312,8 +312,8 @@ public class Connection {
         sb.append(this.domain);
 
         String urlString = ConnectionConstants.BASE_URL;
-        if (this.guestSpaceId >= 0) {
-            urlString = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceId + "");
+        if (this.guestSpaceID >= 0) {
+            urlString = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceID + "");
         }
         urlString = urlString.replaceAll("\\{API_NAME\\}", apiName);
 
@@ -407,8 +407,8 @@ public class Connection {
         return this.domain;
     }
 
-    public int getGuestSpaceId() {
-        return this.guestSpaceId;
+    public int getGuestSpaceID() {
+        return this.guestSpaceID;
     }
 
     public Auth getAuth() {
@@ -642,8 +642,8 @@ public class Connection {
     public String getPathURI(String apiName) {
         String pathURI = "";
 
-        if (this.guestSpaceId >= 0) {
-            pathURI = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceId + "");
+        if (this.guestSpaceID >= 0) {
+            pathURI = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceID + "");
         } else {
             pathURI = ConnectionConstants.BASE_URL;
         }
