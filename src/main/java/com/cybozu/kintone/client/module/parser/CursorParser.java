@@ -27,7 +27,7 @@ public class CursorParser extends Parser{
             return record;
             
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 	
@@ -41,7 +41,7 @@ public class CursorParser extends Parser{
             return records;
             
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 	
@@ -56,7 +56,7 @@ public class CursorParser extends Parser{
             return getRecordCursorResponse;
             
         } catch (Exception e) {
-            throw new KintoneAPIException("Parse error");
+            throw new KintoneAPIException("Parse error", e);
         }
     }
 }
