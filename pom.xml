@@ -5,7 +5,7 @@
 
 	<groupId>com.cybozu.kintone</groupId>
 	<artifactId>kintone-sdk</artifactId>
-	<version>0.5.1</version>
+	<version>0.6.0</version>
 	<packaging>jar</packaging>
 
 	<name>kintone-sdk</name>
