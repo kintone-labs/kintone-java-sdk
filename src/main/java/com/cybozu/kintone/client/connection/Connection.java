@@ -136,10 +136,10 @@ public class Connection {
             }
 
             URL url = null;
-            url = this.getURL(apiName, null);
+            url = getURL(apiName, null);
 
             connection = openApiConnection(url);
-            this.setHTTPHeaders(connection);
+            setHTTPHeaders(connection);
             connection.setRequestMethod(method);
 
             connection.setDoOutput(true);
@@ -164,7 +164,7 @@ public class Connection {
             try (
                     InputStream inputStream = connection.getInputStream();
             ) {
-                response = this.readStream(inputStream);
+                response = readStream(inputStream);
             }
         } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
@@ -187,10 +187,10 @@ public class Connection {
         URL url;
 
         try {
-            url = this.getURL(ConnectionConstants.FILE, null);
+            url = getURL(ConnectionConstants.FILE, null);
 
             connection = openApiConnection(url);
-            this.setHTTPHeaders(connection);
+            setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.GET_REQUEST);
 
             connection.setDoOutput(true);
@@ -233,10 +233,10 @@ public class Connection {
         String response = null;
         URL url = null;
         try {
-            url = this.getURL(ConnectionConstants.FILE, null);
+            url = getURL(ConnectionConstants.FILE, null);
 
             connection = openApiConnection(url);
-            this.setHTTPHeaders(connection);
+            setHTTPHeaders(connection);
             connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
             connection.setDoOutput(true);
             connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
@@ -294,7 +294,7 @@ public class Connection {
      * @throws KintoneAPIException
      */
     private URL getURL(String apiName, String parameters) throws MalformedURLException, KintoneAPIException {
-        if (this.domain == null || this.domain.isEmpty()) {
+        if (domain == null || domain.isEmpty()) {
             throw new NullPointerException("domain is empty");
         }
 
@@ -303,17 +303,17 @@ public class Connection {
         }
 
         StringBuilder sb = new StringBuilder();
-        if (!this.domain.contains(ConnectionConstants.HTTPS_PREFIX)) {
+        if (!domain.contains(ConnectionConstants.HTTPS_PREFIX)) {
             sb.append(ConnectionConstants.HTTPS_PREFIX);
         }
-        if (this.domain.contains(ConnectionConstants.SECURE_ACCESS_SYMBOL) && this.auth.getClientCert() == null) {
+        if (domain.contains(ConnectionConstants.SECURE_ACCESS_SYMBOL) && auth.getClientCert() == null) {
             throw new KintoneAPIException("client-cert is not set");
         }
-        sb.append(this.domain);
+        sb.append(domain);
 
         String urlString = ConnectionConstants.BASE_URL;
-        if (this.guestSpaceID >= 0) {
-            urlString = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceID + "");
+        if (guestSpaceID >= 0) {
+            urlString = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", guestSpaceID + "");
         }
         urlString = urlString.replaceAll("\\{API_NAME\\}", apiName);
 
@@ -331,12 +331,12 @@ public class Connection {
      * @param connection
      */
     private void setHTTPHeaders(HttpURLConnection connection) {
-        for (HTTPHeader header : this.auth.createHeaderCredentials()) {
+        for (HTTPHeader header : auth.createHeaderCredentials()) {
             connection.setRequestProperty(header.getKey(), header.getValue());
         }
 
         connection.setRequestProperty(ConnectionConstants.USER_AGENT_KEY, userAgent);
-        for (HTTPHeader header : this.headers) {
+        for (HTTPHeader header : headers) {
             connection.setRequestProperty(header.getKey(), header.getValue());
         }
     }
@@ -350,7 +350,7 @@ public class Connection {
      * Connection object.
      */
     public Connection setHeader(String key, String value) {
-        this.headers.add(new HTTPHeader(key, value));
+        headers.add(new HTTPHeader(key, value));
         return this;
     }
 
@@ -404,15 +404,15 @@ public class Connection {
      * @return kintone domain
      */
     public String getDomain() {
-        return this.domain;
+        return domain;
     }
 
     public int getGuestSpaceID() {
-        return this.guestSpaceID;
+        return guestSpaceID;
     }
 
     public Auth getAuth() {
-        return this.auth;
+        return auth;
     }
 
     /**
@@ -424,7 +424,7 @@ public class Connection {
         Properties properties = new Properties();
         InputStream inStream = null;
         try {
-            inStream = this.getClass().getResourceAsStream("/pom.properties");
+            inStream = getClass().getResourceAsStream("/pom.properties");
             properties.load(inStream);
         } catch (IOException e) {
             e.printStackTrace();
@@ -463,7 +463,7 @@ public class Connection {
         }
 
         if (statusCode != 200) {
-            if (conn.getURL().getFile().toString().equals(this.getPathURI(ConnectionConstants.BULK_REQUEST))) {
+            if (conn.getURL().getFile().toString().equals(getPathURI(ConnectionConstants.BULK_REQUEST))) {
                 ArrayList<ErrorResponse> responses = getErrorResponses(conn);
                 if (responses == null) {
                     throw new KintoneAPIException("http status error(" + statusCode + ")");
@@ -576,9 +576,9 @@ public class Connection {
      * @param port proxy port
      */
     public void setProxy(String host, Integer port) {
-        this.proxyHost = host;
-        this.proxyPort = port;
-        this.isHttpsProxy = false;
+        proxyHost = host;
+        proxyPort = port;
+        isHttpsProxy = false;
     }
 
     /**
@@ -590,15 +590,15 @@ public class Connection {
      * @param password proxy password
      */
     public void setProxy(String host, Integer port, String username, String password) {
-        this.proxyHost = host;
-        this.proxyPort = port;
-        this.proxyUser = username;
-        this.proxyPass = password;
-        this.isHttpsProxy = false;
+        proxyHost = host;
+        proxyPort = port;
+        proxyUser = username;
+        proxyPass = password;
+        isHttpsProxy = false;
 
         //allowAuthenticationForHttps. This is required only for jdk > 8u11
         System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
-        this.proxyAuthenticator = new Authenticator() {
+        proxyAuthenticator = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(proxyUser, proxyPass.toCharArray());
             }
@@ -612,9 +612,9 @@ public class Connection {
      * @param port proxy port
      */
     public void setHttpsProxy(String host, Integer port) {
-        this.proxyHost = host;
-        this.proxyPort = port;
-        this.isHttpsProxy = true;
+        proxyHost = host;
+        proxyPort = port;
+        isHttpsProxy = true;
     }
 
     /**
@@ -626,11 +626,11 @@ public class Connection {
      * @param password proxy password
      */
     public void setHttpsProxy(String host, Integer port, String username, String password) {
-        this.proxyHost = host;
-        this.proxyPort = port;
-        this.proxyUser = username;
-        this.proxyPass = password;
-        this.isHttpsProxy = true;
+        proxyHost = host;
+        proxyPort = port;
+        proxyUser = username;
+        proxyPass = password;
+        isHttpsProxy = true;
     }
 
     /**
@@ -642,8 +642,8 @@ public class Connection {
     public String getPathURI(String apiName) {
         String pathURI = "";
 
-        if (this.guestSpaceID >= 0) {
-            pathURI = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", this.guestSpaceID + "");
+        if (guestSpaceID >= 0) {
+            pathURI = ConnectionConstants.BASE_GUEST_URL.replaceAll("\\{GUEST_SPACE_ID\\}", guestSpaceID + "");
         } else {
             pathURI = ConnectionConstants.BASE_URL;
         }
@@ -659,16 +659,16 @@ public class Connection {
         Proxy proxy = null;
         try {
             // if there is client certificate get the ssl context
-            if (this.auth.getClientCert() != null) {
-                sslcontext = this.auth.getClientCert();
+            if (auth.getClientCert() != null) {
+                sslcontext = auth.getClientCert();
             }
 
             // set proxy if any is present
             if (proxyHost != null && proxyPort != null) {
-                if (this.isHttpsProxy && sslcontext != null) {
+                if (isHttpsProxy && sslcontext != null) {
                     // forward factory from ssl context with client certificate
                     sslSocketFactory = new SSLSocketFactoryForHttpsProxy(sslcontext.getSocketFactory());
-                } else if (this.isHttpsProxy && sslcontext == null) {
+                } else if (isHttpsProxy && sslcontext == null) {
                     sslSocketFactory = new SSLSocketFactoryForHttpsProxy();
                 } else {
                     // normal http proxy 
@@ -695,8 +695,8 @@ public class Connection {
         // set http proxy for connection
         if (proxy != null) {
             connection = (HttpsURLConnection) apiEndpoint.openConnection(proxy);
-            if (this.proxyAuthenticator != null) {
-                connection.setAuthenticator(this.proxyAuthenticator);
+            if (proxyAuthenticator != null) {
+                connection.setAuthenticator(proxyAuthenticator);
             }
         } else {
             connection = (HttpsURLConnection) apiEndpoint.openConnection();
