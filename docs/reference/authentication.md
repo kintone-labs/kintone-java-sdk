@@ -22,7 +22,7 @@ This module allows we authenticate with kintone app by password authenticator or
 
 <pre class="inline-code">
 
-Auth kintoneAuth = new Auth();
+    Auth kintoneAuth = new Auth();
 
 </pre>
 
@@ -53,9 +53,12 @@ Auth kintoneAuth = new Auth();
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String username = "cybozu";
-String password = "cybozu";
-kintoneAuth.setPasswordAuth(username, password);
+
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
 </pre>
 
 </details>
@@ -82,8 +85,11 @@ kintoneAuth.setPasswordAuth(username, password);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String apiToken = "123456789abcdefghijklmnopqrstuvwxyz";
-kintoneAuth.setApiToken(apiToken);
+
+    String apiToken = "YOUR_API_TOKEN";
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setApiToken(apiToken);
+
 </pre>
 
 </details>
@@ -112,9 +118,12 @@ kintoneAuth.setApiToken(apiToken);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String username = "cybozu";
-String password = "cybozu";
-kintoneAuth.setBasicAuth(username, password);
+
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setBasicAuth(username, password);
+
 </pre>
 
 </details>
@@ -140,9 +149,36 @@ Array&lt;HTTPHeader&gt;
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-for (HTTPHeader header : kintoneAuth.createHeaderCredentials()) {
-	connection.setRequestProperty(header.getKey(), header.getValue());
-}
+    
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    String apiToken = "YOUR_API_TOKEN";
+    kintoneAuth.setApiToken(apiToken);
+
+    kintoneAuth.setBasicAuth(username, password);
+
+    for (HTTPHeader header : kintoneAuth.createHeaderCredentials()) {
+        System.out.println("key: " + header.getKey());
+        System.out.println("value: " + header.getValue());
+    }   
+
+    // Expected Output:
+    /*
+    // For function setPasswordAuth
+    key: X-Cybozu-Authorization
+    value: WU9VUl9VU0VSTkFNRTpZT1VSX1BBU1NXT1JE
+
+    // For function setApiToken
+    key: X-Cybozu-API-Token
+    value: YOUR_API_TOKEN
+
+    // For function setBasicAuth
+    key: Authorization
+    value: Basic WU9VUl9VU0VSTkFNRTpZT1VSX1BBU1NXT1JE
+    */
 </pre>
 
 </details>
@@ -170,13 +206,20 @@ Set certificate by certificate data
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    Auth certAuth = new Auth();
-    certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
-    String certPassword = "YOUR_CERT_PASSWORD"
-    String certPath = "YOUR_CERT_PATH"
-    InputStream cert = new FileInputStream(certPath);
-    auth.setClientCert(cert, certPassword)
-    Connection connection = new Connection("YOUR_DOMAIN", certAuth, -1);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String certPassword = "YOUR_CERT_PASSWORD";
+    String certPath = "YOUR_CERT_PATH";
+    try {
+        Auth certAuth = new Auth();
+        certAuth.setPasswordAuth(username, password);
+        InputStream cert = new FileInputStream(certPath);
+        certAuth.setClientCert(cert, certPassword);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -204,12 +247,17 @@ Set certificate by path
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    Auth certauth = new Auth();
-    certAuth.setPasswordAuth("YOUR_KINTONE_ID", "YOUR_KINTONE_PASSWORD");
-    String certPassword = "YOUR_CERT_PASSWORD"
-    String certPath = "YOUR_CERT_PATH"
-    certauth.setClientCertByPath(certPath, certPassword);
-    Connection connection = new Connection("YOUR_DOMAIN", certAuth);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String certPassword = "YOUR_CERT_PASSWORD";
+    String certPath = "YOUR_CERT_PATH";
+    try {
+        Auth certAuth = new Auth();
+        certAuth.setPasswordAuth(username, password);
+        certAuth.setClientCertByPath(certPath, certPassword);
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
