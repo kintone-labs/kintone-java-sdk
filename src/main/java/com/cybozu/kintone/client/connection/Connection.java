@@ -7,32 +7,22 @@
 
 package com.cybozu.kintone.client.connection;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
+import com.cybozu.kintone.client.authentication.Auth;
+import com.cybozu.kintone.client.exception.ErrorResponse;
+import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.http.HTTPHeader;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-
-import com.cybozu.kintone.client.authentication.Auth;
-import com.cybozu.kintone.client.exception.ErrorResponse;
-import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestItem;
-import com.cybozu.kintone.client.model.http.HTTPHeader;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 /**
  * Connection object to working with rest api.
@@ -78,7 +68,7 @@ public class Connection {
     /*
      * Contains addition headers user set.
      */
-    private ArrayList<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+    private ArrayList<HTTPHeader> headers = new ArrayList<>();
 
     /*
      * Contains information for bypass proxy.
@@ -114,6 +104,28 @@ public class Connection {
         this(domain, auth, -1);
     }
 
+    private HttpsURLConnection setConnectionRequest(String method, String apiName) throws KintoneAPIException {
+        try {
+            HttpsURLConnection connection = openApiConnection(getURL(apiName, null));
+            setHTTPHeaders(connection);
+            connection.setRequestMethod(method);
+            connection.setDoOutput(true);
+            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
+
+            boolean overrideMethod = ConnectionConstants.GET_REQUEST.equals(method);
+            if (overrideMethod) {
+                connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
+            }
+            connection.connect();
+
+            return connection;
+        } catch (KintoneAPIException kintoneError) {
+            throw kintoneError;
+        } catch (Exception e) {
+            throw new KintoneAPIException(e.getMessage(), e);
+        }
+    }
+
     /**
      * Rest http request.
      * This method is low level api, use the correspondence methods in module package instead.
@@ -125,45 +137,16 @@ public class Connection {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public JsonElement request(String method, String apiName, String body) throws KintoneAPIException {
-        HttpsURLConnection connection = null;
+        HttpsURLConnection connection = setConnectionRequest(method, apiName);
         String response = null;
-
-        try {
-            boolean isGet = false;
-
-            if (ConnectionConstants.GET_REQUEST.equals(method)) {
-                isGet = true;
-            }
-
-            URL url = null;
-            url = getURL(apiName, null);
-
-            connection = openApiConnection(url);
-            setHTTPHeaders(connection);
-            connection.setRequestMethod(method);
-
-            connection.setDoOutput(true);
-            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
-            if (isGet) {
-                connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
-            }
-            connection.connect();
-        } catch (KintoneAPIException kintoneError) {
-            throw kintoneError;
-        } catch (Exception e) {
-            throw new KintoneAPIException(e.getMessage(), e);
-        }
-
         try (
                 OutputStream outputStream = connection.getOutputStream();
-                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)
         ) {
             writer.write(body);
             writer.close();
-            checkStatus(connection, body);
-            try (
-                    InputStream inputStream = connection.getInputStream();
-            ) {
+            checkStatus(connection);
+            try (InputStream inputStream = connection.getInputStream()) {
                 response = readStream(inputStream);
             }
         } catch (KintoneAPIException kintoneError) {
@@ -174,6 +157,7 @@ public class Connection {
         return jsonParser.parse(response);
     }
 
+
     /**
      * Rest http request.
      * This method is execute file download
@@ -183,34 +167,15 @@ public class Connection {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public InputStream downloadFile(String body) throws KintoneAPIException {
-        HttpsURLConnection connection = null;
-        URL url;
-
-        try {
-            url = getURL(ConnectionConstants.FILE, null);
-
-            connection = openApiConnection(url);
-            setHTTPHeaders(connection);
-            connection.setRequestMethod(ConnectionConstants.GET_REQUEST);
-
-            connection.setDoOutput(true);
-            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER, JSON_CONTENT);
-            connection.setRequestProperty(ConnectionConstants.METHOD_OVERRIDE_HEADER, ConnectionConstants.GET_REQUEST);
-
-            connection.connect();
-        } catch (KintoneAPIException kintoneError) {
-            throw kintoneError;
-        } catch (Exception e) {
-            throw new KintoneAPIException(e.getMessage(), e);
-        }
+        HttpsURLConnection connection = setConnectionRequest(ConnectionConstants.GET_REQUEST, ConnectionConstants.FILE);
 
         try (
                 OutputStream outputStream = connection.getOutputStream();
-                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)
         ) {
             writer.write(body);
             writer.close();
-            checkStatus(connection, body);
+            checkStatus(connection);
             return connection.getInputStream();
         } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
@@ -229,40 +194,24 @@ public class Connection {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public JsonElement uploadFile(String fileName, InputStream fis) throws KintoneAPIException {
-        HttpsURLConnection connection;
-        String response = null;
-        URL url = null;
-        try {
-            url = getURL(ConnectionConstants.FILE, null);
-
-            connection = openApiConnection(url);
-            setHTTPHeaders(connection);
-            connection.setRequestMethod(ConnectionConstants.POST_REQUEST);
-            connection.setDoOutput(true);
-            connection.setRequestProperty(ConnectionConstants.CONTENT_TYPE_HEADER,
-                    "multipart/form-data; boundary=" + ConnectionConstants.BOUNDARY);
-            connection.connect();
-        } catch (KintoneAPIException kintoneError) {
-            throw kintoneError;
-        } catch (Exception e) {
-            throw new KintoneAPIException(e.getMessage(), e);
-        }
-
+        HttpsURLConnection connection = setConnectionRequest(ConnectionConstants.POST_REQUEST, ConnectionConstants.FILE);
+        String response;
         try (
                 OutputStream outputStream = connection.getOutputStream();
-                OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
+                OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8")
         ) {
             writer.write("--" + ConnectionConstants.BOUNDARY + "\r\n");
-            writer.write("Content-Disposition: form-data; name=\"file\"; filename=\""
-                    + fileName + "\"\r\n");
+            writer.write("Content-Disposition: form-data; name=\"file\"; filename=\"" + fileName + "\"\r\n");
             writer.write(ConnectionConstants.CONTENT_TYPE_HEADER + ": " + ConnectionConstants.DEFAULT_CONTENT_TYPE
                     + "\r\n\r\n");
             writer.flush();
             byte[] buffer = new byte[8192];
             int n = 0;
+
             while (-1 != (n = fis.read(buffer))) {
                 outputStream.write(buffer, 0, n);
             }
+
             outputStream.flush();
             writer.write("\r\n--" + ConnectionConstants.BOUNDARY + "--\r\n");
             outputStream.flush();
@@ -270,17 +219,16 @@ public class Connection {
             writer.close();
             fis.close();
 
-            checkStatus(connection, null);
-
-            try (InputStream inputStream = connection.getInputStream();) {
+            checkStatus(connection);
+            try (InputStream inputStream = connection.getInputStream()) {
                 response = readStream(inputStream);
-                return jsonParser.parse(response);
             }
         } catch (KintoneAPIException kintoneError) {
             throw kintoneError;
         } catch (Exception e) {
             throw new KintoneAPIException(e.getMessage(), e);
         }
+        return jsonParser.parse(response);
     }
 
 
@@ -375,26 +323,14 @@ public class Connection {
      */
     private String readStream(InputStream is) {
         StringBuilder sb = new StringBuilder();
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             char[] buffer = new char[1024];
             int line = -1;
             while ((line = reader.read(buffer)) >= 0) {
                 sb.append(buffer, 0, line);
             }
         } catch (IOException e) {
-
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                }
-            }
         }
-
         return sb.toString();
     }
 
@@ -422,22 +358,11 @@ public class Connection {
      */
     private Properties getProperties() {
         Properties properties = new Properties();
-        InputStream inStream = null;
-        try {
-            inStream = getClass().getResourceAsStream("/pom.properties");
+        try (InputStream inStream = getClass().getResourceAsStream("/pom.properties")) {
             properties.load(inStream);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (inStream != null) {
-                try {
-                    inStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
-
         return properties;
     }
 
@@ -445,46 +370,22 @@ public class Connection {
      * Checks the status code of the response.
      *
      * @param conn a connection object
-     * @param body
      */
-    private void checkStatus(HttpURLConnection conn, String body) throws IOException, KintoneAPIException {
+    private void checkStatus(HttpURLConnection conn) throws IOException, KintoneAPIException {
         int statusCode = conn.getResponseCode();
-        if (statusCode == 404) {
+        if (statusCode != 200) {
             ErrorResponse response = getErrorResponse(conn);
             if (response == null) {
-                throw new KintoneAPIException("not found");
+                switch (statusCode) {
+                    case 401:
+                        throw new KintoneAPIException("401 Unauthorized");
+                    case 404:
+                        throw new KintoneAPIException("404 Not Found");
+                    default:
+                        throw new KintoneAPIException("http status code: " + statusCode);
+                }
             } else {
                 throw new KintoneAPIException(statusCode, response);
-            }
-        }
-
-        if (statusCode == 401) {
-            throw new KintoneAPIException("401 Unauthorized");
-        }
-
-        if (statusCode != 200) {
-            if (conn.getURL().getFile().toString().equals(getPathURI(ConnectionConstants.BULK_REQUEST))) {
-                ArrayList<ErrorResponse> responses = getErrorResponses(conn);
-                if (responses == null) {
-                    throw new KintoneAPIException("http status error(" + statusCode + ")");
-                } else {
-                    JsonObject jobject = new Gson().fromJson(body, JsonObject.class);
-                    JsonArray jarray = jobject.getAsJsonArray("requests");
-
-                    Gson gson = new Gson();
-                    Type listType = new TypeToken<ArrayList<BulkRequestItem>>() {
-                    }.getType();
-                    ArrayList<BulkRequestItem> requestlist = gson.fromJson(jarray, listType);
-
-                    throw new KintoneAPIException(statusCode, requestlist, responses);
-                }
-            } else {
-                ErrorResponse response = getErrorResponse(conn);
-                if (response == null) {
-                    throw new KintoneAPIException("http status error(" + statusCode + ")");
-                } else {
-                    throw new KintoneAPIException(statusCode, response);
-                }
             }
         }
     }
@@ -497,51 +398,16 @@ public class Connection {
      */
     private ErrorResponse getErrorResponse(HttpURLConnection conn) {
         InputStream err = conn.getErrorStream();
-
         String response;
         try {
-            if (err == null) {
-                err = conn.getInputStream();
-            }
+            if (err == null) err = conn.getInputStream();
             response = parseString(err);
+            return gson.fromJson(response, ErrorResponse.class);
         } catch (IOException e) {
             return null;
-        }
-
-        try {
-            return gson.fromJson(response, ErrorResponse.class);
         } catch (JsonSyntaxException e) {
             return null;
         }
-    }
-
-    /**
-     * Creates an error response list object.
-     *
-     * @param conn
-     * @return ErrorResponse list object. return null if any error occurred
-     */
-    private ArrayList<ErrorResponse> getErrorResponses(HttpURLConnection conn) {
-        InputStream err = conn.getErrorStream();
-
-        String response;
-        try {
-            if (err == null) {
-                err = conn.getInputStream();
-            }
-            response = parseString(err);
-        } catch (IOException e) {
-            return null;
-        }
-
-        JsonElement jsonele = jsonParser.parse(response);
-        JsonObject object = jsonele.getAsJsonObject();
-        JsonArray array = object.getAsJsonArray("results");
-
-        Type type = new TypeToken<ArrayList<ErrorResponse>>() {
-        }.getType();
-        ArrayList<ErrorResponse> errorResponseList = gson.fromJson(array, type);
-        return errorResponseList;
     }
 
     /**
@@ -553,17 +419,13 @@ public class Connection {
      */
     private String parseString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             char[] buffer = new char[1024];
             int dataOffset;
-
             while (0 <= (dataOffset = reader.read(buffer))) {
                 sb.append(buffer, 0, dataOffset);
             }
-        } finally {
-            reader.close();
         }
 
         return sb.toString();
@@ -653,16 +515,15 @@ public class Connection {
     }
 
     private HttpsURLConnection openApiConnection(URL apiEndpoint) throws Exception {
-        HttpsURLConnection connection = null;
         SSLContext sslcontext = null;
         SSLSocketFactoryForHttpsProxy sslSocketFactory = null;
         Proxy proxy = null;
+
         try {
             // if there is client certificate get the ssl context
             if (auth.getClientCert() != null) {
                 sslcontext = auth.getClientCert();
             }
-
             // set proxy if any is present
             if (proxyHost != null && proxyPort != null) {
                 if (isHttpsProxy && sslcontext != null) {
@@ -684,24 +545,19 @@ public class Connection {
                         sslSocketFactory.setProxyPassword(proxyPass);
                     }
                 }
-            } else if (sslcontext != null) {
-                // no ssl proxy, but there is client certificate so set factory to factory of ssl context
-
             }
         } catch (Exception err) {
             throw err;
         }
 
+        HttpsURLConnection connection = null;
         // set http proxy for connection
         if (proxy != null) {
             connection = (HttpsURLConnection) apiEndpoint.openConnection(proxy);
-            if (proxyAuthenticator != null) {
-                connection.setAuthenticator(proxyAuthenticator);
-            }
+            if (proxyAuthenticator != null) connection.setAuthenticator(proxyAuthenticator);
         } else {
             connection = (HttpsURLConnection) apiEndpoint.openConnection();
         }
-
         // set ssl socket factory for connection to connect to ssl secured proxy
         if (sslSocketFactory != null) {
             connection.setSSLSocketFactory(sslSocketFactory);
