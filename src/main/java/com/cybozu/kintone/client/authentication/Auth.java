@@ -62,7 +62,7 @@ public class Auth {
      * @return the basicAuth
      */
     public Credential getBasicAuth() {
-        return this.basicAuth;
+        return basicAuth;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Auth {
      * @return auth
      */
     public Auth setBasicAuth(String username, String password) {
-        this.basicAuth = new Credential(username, password);
+        basicAuth = new Credential(username, password);
         return this;
     }
 
@@ -81,7 +81,7 @@ public class Auth {
      * @return the passwordAuth
      */
     public Credential getPasswordAuth() {
-        return this.passwordAuth;
+        return passwordAuth;
     }
 
     /**
@@ -93,7 +93,7 @@ public class Auth {
      *            the Auth object which contains username/password.
      */
     public Auth setPasswordAuth(String username, String password) {
-        this.passwordAuth = new Credential(username, password);
+        passwordAuth = new Credential(username, password);
         return this;
     }
 
@@ -101,7 +101,7 @@ public class Auth {
      * @return the apiToken
      */
     public String getApiToken() {
-        return this.apiToken;
+        return apiToken;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Auth {
      * @return the client certification
      */
     public SSLContext getClientCert() {
-        return this.clientCert;
+        return clientCert;
     }
 
     /**
@@ -135,7 +135,7 @@ public class Auth {
     public Auth setClientCertByPath(String filePath, String password) throws KintoneAPIException {
         try {
             InputStream cert = new FileInputStream(filePath);
-            return this.setClientCert(cert, password);
+            return setClientCert(cert, password);
         } catch (Exception e) {
             throw new KintoneAPIException("Certificate error", e);
         }
@@ -147,7 +147,7 @@ public class Auth {
      *           the cert to set
      * @param password
      *           the password to set
-     * @return auth          
+     * @return auth
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
@@ -160,8 +160,8 @@ public class Auth {
             key_store.load(cert, key_pass);
             KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
             kmf.init(key_store, key_pass);
-            this.clientCert = SSLContext.getInstance(AuthenticationConstants.SOCKET_PROTOCOL);
-            this.clientCert.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
+            clientCert = SSLContext.getInstance(AuthenticationConstants.SOCKET_PROTOCOL);
+            clientCert.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
             return this;
         } catch (Exception e) {
             throw new KintoneAPIException("Certificate error", e);
@@ -174,20 +174,20 @@ public class Auth {
      * @return headers list
      */
     public ArrayList<HTTPHeader> createHeaderCredentials() {
-        ArrayList<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+        ArrayList<HTTPHeader> headers = new ArrayList<>();
 
-        if (this.passwordAuth != null) {
-            String passwordAuthString = this.passwordAuth.getUsername() + ":" + this.passwordAuth.getPassword();
+        if (passwordAuth != null) {
+            String passwordAuthString = passwordAuth.getUsername() + ":" + passwordAuth.getPassword();
             headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_PASSWORD,
                     Base64.getEncoder().encodeToString(passwordAuthString.getBytes())));
         }
 
-        if (this.apiToken != null) {
-            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_APITOKEN, this.apiToken));
+        if (apiToken != null) {
+            headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_APITOKEN, apiToken));
         }
 
-        if (this.basicAuth != null) {
-            String basicAuthString = this.basicAuth.getUsername() + ":" + this.basicAuth.getPassword();
+        if (basicAuth != null) {
+            String basicAuthString = basicAuth.getUsername() + ":" + basicAuth.getPassword();
             headers.add(new HTTPHeader(AuthenticationConstants.HEADER_KEY_AUTH_BASIC,
                     AuthenticationConstants.AUTH_BASIC_PREFIX
                             + Base64.getEncoder().encodeToString(basicAuthString.getBytes())));
