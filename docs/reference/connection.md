@@ -8,9 +8,9 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| domain | String | yes | The Domain name or FQDN
-| auth | [Auth](../authentication) | yes | The authentication object
-| guestSpaceID | Integer | (optional) | The guest space id. Use this parameter to connect to kintone guest space.
+| domain | String | Yes | The Domain name or FQDN
+| auth | [Auth](../authentication) | Yes | The authentication object
+| guestSpaceID | Integer | Optional | The guest space id. This parameter is used for connect to kintone guest space.
 
 **Sample code**
 
@@ -49,8 +49,8 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| key | String | yes | The header's `key` name
-| value | String | yes | The header's value of `key`
+| key | String | Yes | The header's `key` name
+| value | String | Yes | The header's value of `key`
 
 **Return**
 
@@ -84,16 +84,16 @@
 
 ### setProxy(host, port, username, password)
 
-> Set the proxy of the request
+> Set the proxy of the HTTP request
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| host | String | yes | The proxy host name
-| port | Integer | yes | The proxy port number
-| username | String | (optional) | User name of the proxy
-| password | String | (optional) | Password of the proxy
+| host | String | Yes | The proxy host name
+| port | Integer | Yes | The proxy port number
+| username | String | Optional | Username of the proxy
+| password | String | Optional | Password of the proxy
 
 **Return**
 
@@ -132,16 +132,16 @@
 
 ### setHttpsProxy(host, port, username, password)
 
-> Set the SSL-secured proxy of the request
+> Set the SSL-secured proxy of the HTTPS request
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| host | String | yes | The proxy host name
-| port | Integer | yes | The proxy port number
-| username | String | (optional) | User name of the proxy
-| password | String | (optional) | Password of the proxy
+| host | String | Yes | The proxy host name
+| port | Integer | Yes | The proxy port number
+| username | String | Optional | Username of the proxy
+| password | String | Optional | Password of the proxy
 
 **Return**
 
