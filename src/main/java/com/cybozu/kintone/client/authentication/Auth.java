@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -26,15 +26,14 @@ import com.cybozu.kintone.client.model.http.HTTPHeader;
  * Authentication allows you to use kintone REST APIs.
  * The Authentication class is use for {@link com.cybozu.kintone.client.connection.Connection}
  * for authenticate user by username/password or apiToken.
- *
+ * <p>
  * If both the Token and Password Authentication are specified,
  * the Token Authentication will be ignored and the Password authentication will be used.
- *
  */
 public class Auth {
 
     /*
-     * Basic authentication crendential.
+     * Basic authentication credential.
      */
     private Credential basicAuth;
 
@@ -56,7 +55,8 @@ public class Auth {
     /**
      * default constructor
      */
-    public Auth() {}
+    public Auth() {
+    }
 
     /**
      * @return the basicAuth
@@ -66,10 +66,8 @@ public class Auth {
     }
 
     /**
-     * @param username
-     *            the username to set
-     * @param password
-     *            the password to set
+     * @param username the username to set
+     * @param password the password to set
      * @return auth
      */
     public Auth setBasicAuth(String username, String password) {
@@ -85,12 +83,10 @@ public class Auth {
     }
 
     /**
-     * @param username
-     *            the username to set
-     * @param password
-     *            the password to set
+     * @param username the username to set
+     * @param password the password to set
      * @return auth
-     *            the Auth object which contains username/password.
+     * the Auth object which contains username/password.
      */
     public Auth setPasswordAuth(String username, String password) {
         passwordAuth = new Credential(username, password);
@@ -105,10 +101,9 @@ public class Auth {
     }
 
     /**
-     * @param apiToken
-     *            the apiToken to set
+     * @param apiToken the apiToken to set
      * @return auth
-     *            the Auth object which contains api token string.
+     * the Auth object which contains api token string.
      */
     public Auth setApiToken(String apiToken) {
         this.apiToken = apiToken;
@@ -123,14 +118,12 @@ public class Auth {
     }
 
     /**
-     *  set the client certification by file path
-     * @param filePath
-     *           the filePath to set
-     * @param password
-     *           the password to set
+     * set the client certification by file path
+     *
+     * @param filePath the filePath to set
+     * @param password the password to set
      * @return auth
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public Auth setClientCertByPath(String filePath, String password) throws KintoneAPIException {
         try {
@@ -143,13 +136,11 @@ public class Auth {
 
     /**
      * set the client certification by InputStream
-     * @param cert
-     *           the cert to set
-     * @param password
-     *           the password to set
+     *
+     * @param cert     the cert to set
+     * @param password the password to set
      * @return auth
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public Auth setClientCert(InputStream cert, String password) throws KintoneAPIException {
         try {
@@ -171,6 +162,7 @@ public class Auth {
     /**
      * Provide the list of HTTP Headers which use to authentication in
      * {@link com.cybozu.kintone.client.connection.Connection}
+     *
      * @return headers list
      */
     public ArrayList<HTTPHeader> createHeaderCredentials() {
