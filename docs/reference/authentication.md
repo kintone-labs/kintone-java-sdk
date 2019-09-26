@@ -1,7 +1,7 @@
 # Authentication
 
 Authentication module will be used by [Connection](../connection).
-This module allow we authenticate with kintone app by password authenticator or API token authenticator. This module is also support basic authenticator.
+This module allows we authenticate with kintone app by password authenticator or API token authenticator. This module also supports basic authenticator.
 
 !!! warning
 
@@ -21,7 +21,9 @@ This module allow we authenticate with kintone app by password authenticator or 
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
+
 Auth kintoneAuth = new Auth();
+
 </pre>
 
 </details>
@@ -36,8 +38,8 @@ Auth kintoneAuth = new Auth();
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| username | String | yes | The username that is able to authenticate on kintone app
-| password | String | yes | The password that is able to authenticate on kintone app
+| username | String | Yes | The username is able to authenticate on kintone app.
+| password | String | Yes | The password is able to authenticate on kintone app.
 
 **Return**
 
@@ -67,7 +69,7 @@ kintoneAuth.setPasswordAuth(username, password);
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| apiToken | String | yes | The apiToken that is able to authenticate on kintone app
+| apiToken | String | Yes | The API token is able to authenticate on kintone app.
 
 **Return**
 
@@ -95,8 +97,8 @@ kintoneAuth.setApiToken(apiToken);
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| username | String | yes | The username that is able to authenticate on kintone app
-| password | String | yes | The password that is able to authenticate on kintone app
+| username | String | Yes | The username is able to authenticate on kintone app.
+| password | String | Yes | The password is able to authenticate on kintone app.
 
 **Return**
 
@@ -120,7 +122,7 @@ kintoneAuth.setBasicAuth(username, password);
 
 ### createHeaderCredentials()
 
-> Provide the list of HTTP Headers which use to authentication in.
+> Provide the list of HTTP Headers which use to authentication.
 
 **Parameter**
 
@@ -153,8 +155,8 @@ Set certificate by certificate data
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| cert | InputStream | yes | Data read from certificate file received from kintone
-| password | String | yes | The password from kintone to decode the cert file
+| cert | InputStream | Yes | Data read from certificate file and receive from kintone
+| password | String | Yes | The password from kintone to decode the cert file
 
 **Return**
 
@@ -187,8 +189,8 @@ Set certificate by path
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-| filePath | String | yes | Path to kintone certificate file
-| password | String | yes | The password from kintone to decode the cert file
+| filePath | String | Yes | Path to kintone certificate file
+| password | String | Yes | The password from kintone to decode the cert file
 
 **Return**
 
