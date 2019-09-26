@@ -21,20 +21,19 @@
 
 <pre class="inline-code">
 
-// Define Authentication object
-Auth kintoneAuth = new Auth();
-String username = "cybozu";
-String password = "cybozu";
-kintoneAuth.setPasswordAuth(username, password);
+    // Define Authentication object
+    Auth kintoneAuth = new Auth();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    kintoneAuth.setPasswordAuth(username, password);
 
-String myDomainName = "sample.cybozu.com";
-Connection connection = new Connection(myDomainName, kintoneAuth);
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-
-// Define connection that included guest space
-int guestSpaceID = 1;
-Connection kintoneConnectionWithGuestSpaceDemo =
-    new Connection(myDomainName, kintoneAuth, guestSpaceID);
+    // Define connection that included guest space
+    int guestSpaceId = 0; // Input your guest space id number
+    Connection kintoneConnectionWithGuestSpaceDemo =
+                new Connection(kintoneDomain, kintoneAuth, guestSpaceId);
 
 </pre>
 
@@ -65,18 +64,20 @@ Connection kintoneConnectionWithGuestSpaceDemo =
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String username = "cybozu";
-String password = "cybozu";
-String key = "X-HTTP-Method-Override";
-String value = "GET";
+    
+    String key = "X-HTTP-Method-Override";
+    String value = "GET";
 
-// Init authenticationAuth
-Auth kintoneAuth = new Auth();
-kintoneAuth.setPasswordAuth(username, password);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    kintoneAuth.setPasswordAuth(username, password);
 
-String myDomainName = "sample.cybozu.com";
-Connection connection = new Connection(myDomainName, kintoneAuth);
-connection.setHeader(key, value);
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+    kintoneConnection.setHeader(key, value);
+
 </pre>
 
 </details>
@@ -106,25 +107,25 @@ connection.setHeader(key, value);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String username = "cybozu";
-String password = "cybozu";
-String proxyHost = "xxxx";
-Integer proxyPort = 1234;
-  
-// Init authenticationAuth
-Auth kintoneAuth = new Auth();
-kintoneAuth.setPasswordAuth(username, password);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String proxyHost = "YOUR_PROXY_HOST";
+    Integer proxyPort = 1111; // Input your proxy port
 
-String myDomainName = "sample.cybozu.com";
-Connection connection = new Connection(myDomainName, kintoneAuth);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-// Set proxy without proxyUsername & proxyPassword
-connection.setProxy(proxyHost, proxyPort);
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-// Set proxy with proxyUsername & proxyPassword
-String proxyUsername = "xxxx";
-String proxyPassword = "xxxx";
-connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
+    // Set proxy without proxyUsername & proxyPassword
+    kintoneConnection.setProxy(proxyHost, proxyPort);
+
+    // Set proxy with proxyUsername & proxyPassword
+    String proxyUsername = "YOUR_PROXY_USERNAME";
+    String proxyPassword = "YOUR_PROXY_PASSWORD";
+    kintoneConnection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 </details>
@@ -154,25 +155,25 @@ connection.setProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String username = "cybozu";
-String password = "cybozu";
-String proxyHost = "xxxx";
-Integer proxyPort = 1234;
-  
-// Init authenticationAuth
-Auth kintoneAuth = new Auth();
-kintoneAuth.setPasswordAuth(username, password);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String proxyHost = "YOUR_PROXY_HOST";
+    Integer proxyPort = 1111; // Input your proxy port
 
-String myDomainName = "sample.cybozu.com";
-Connection connection = new Connection(myDomainName, kintoneAuth);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-// Set ssl-secured proxy without proxyUsername & proxyPassword
-connection.setHttpsProxy(proxyHost, proxyPort);
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-// Set ssl-secured proxy with proxyUsername & proxyPassword
-String proxyUsername = "xxxx";
-String proxyPassword = "xxxx";
-connection.setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
+    // Set ssl-secured proxy without proxyUsername & proxyPassword
+    kintoneConnection.setHttpsProxy(proxyHost, proxyPort);
+
+    // Set ssl-secured proxy with proxyUsername & proxyPassword
+    String proxyUsername = "YOUR_PROXY_USERNAME";
+    String proxyPassword = "YOUR_PROXY_PASSWORD";
+    kintoneConnection.setHttpsProxy(proxyHost, proxyPort, proxyUsername, proxyPassword);
 </pre>
 
 </details>
