@@ -3,14 +3,18 @@
 [Connection](#) module will used as a connector to connect to kintone Rest API
 
 ## Constructor
-
+**Declaration**
+```
+public Connection(String domain, Auth auth)
+public Connection(String domain, Auth auth, int guestSpaceID)
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| domain | String | Yes | The Domain name or FQDN
-| auth | [Auth](../authentication) | Yes | The authentication object
-| guestSpaceID | Integer | Optional | The guest space id. This parameter is used for connect to kintone guest space.
+| Name| Description |
+| --- | --- |
+| domain |The Domain name or FQDN
+| auth | The authentication object ([Auth](../authentication))
+| guestSpaceID | The guest space id. This parameter is used for connect to kintone guest space.
 
 **Sample code**
 
@@ -45,16 +49,16 @@
 
 > Set new header of the [Connection](../connection)
 
+**Declaration**
+```
+public Connection setHeader(String key, String value)
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| key | String | Yes | The header's `key` name
-| value | String | Yes | The header's value of `key`
-
-**Return**
-
-[Connection](../connection)
+| Name| Description |
+| --- | --- |
+| key | The header's `key` name
+| value | The header's value of `key`
 
 **Sample code**
 
@@ -84,20 +88,21 @@
 
 ### setProxy(host, port, username, password)
 
-> Set the proxy of the HTTP request
+> Set the proxy of the HTTP request  
 
+**Declaration**
+```
+public void setProxy(String host, Integer port)
+public void setProxy(String host, Integer port, String username, String password) 
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| host | String | Yes | The proxy host name
-| port | Integer | Yes | The proxy port number
-| username | String | Optional | Username of the proxy
+| Name| Description |
+| --- | --- |
+| host | The proxy host name
+| port | The proxy port number
+| username | Username of the proxy
 | password | String | Optional | Password of the proxy
-
-**Return**
-
-[Connection](../connection)
 
 <strong class="tab-name">Source code</strong>
 
@@ -132,20 +137,21 @@
 
 ### setHttpsProxy(host, port, username, password)
 
-> Set the SSL-secured proxy of the HTTPS request
+> Set the SSL-secured proxy of the HTTPS request   
 
+**Declaration**
+```
+public void setHttpsProxy(String host, Integer port) 
+public void setHttpsProxy(String host, Integer port, String username, String password)
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| host | String | Yes | The proxy host name
-| port | Integer | Yes | The proxy port number
-| username | String | Optional | Username of the proxy
-| password | String | Optional | Password of the proxy
-
-**Return**
-
-[Connection](../connection)
+| Name| Description |
+| --- | --- |
+| host |The proxy host name
+| port | The proxy port number
+| username | Username of the proxy
+| password | Password of the proxy
 
 <strong class="tab-name">Source code</strong>
 
