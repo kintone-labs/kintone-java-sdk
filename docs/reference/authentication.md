@@ -8,6 +8,10 @@ This module allows we authenticate with kintone app by password authenticator or
     - If both the Token and Password Authentication are specified, the Token Authentication will be ignored and the Password authentication will be used.
 
 ## Constructor
+**Declaration**
+```
+public Auth() {}
+```
 
 **Parameter**
 
@@ -23,7 +27,7 @@ This module allows we authenticate with kintone app by password authenticator or
 <pre class="inline-code">
 
     Auth kintoneAuth = new Auth();
-
+    
 </pre>
 
 </details>
@@ -34,16 +38,17 @@ This module allows we authenticate with kintone app by password authenticator or
 
 > Set password authentication for Authentication module.
 
+**Declaration**
+```
+public Auth setPasswordAuth(String username, String password)
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| username | String | Yes | The username is able to authenticate on kintone app.
-| password | String | Yes | The password is able to authenticate on kintone app.
-
-**Return**
-
-[Auth](../authentication)
+| Name| Description |
+| --- | --- |
+| username | The username is able to authenticate on kintone app.
+| password | The password is able to authenticate on kintone app.
 
 **Sample code**
 
@@ -60,24 +65,21 @@ This module allows we authenticate with kintone app by password authenticator or
     kintoneAuth.setPasswordAuth(username, password);
 
 </pre>
-
 </details>
-
 
 ### setApiToken(apiTokenString)
 
 > Set Api Token for Authentication module.
 
+**Declaration**
+```
+public Auth setApiToken(String apiToken)
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| apiToken | String | Yes | The API token is able to authenticate on kintone app.
-
-**Return**
-
-[Auth](../authentication)
-
+| Name| Description |
+| --- |--- |
+| apiToken | The API token is able to authenticate on kintone app.
 
 <details class="tab-container" open>
 <Summary>Set APIToken authentication</Summary>
@@ -91,24 +93,23 @@ This module allows we authenticate with kintone app by password authenticator or
     kintoneAuth.setApiToken(apiToken);
 
 </pre>
-
 </details>
-
 
 ### setBasicAuth(username, password)
 
 > Set Basic authentication for Authentication module.
 
+**Declaration**
+```
+public Auth setBasicAuth(String username, String password)
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| username | String | Yes | The username is able to authenticate on kintone app.
-| password | String | Yes | The password is able to authenticate on kintone app.
-
-**Return**
-
-[Auth](../authentication)
+| Name| Description |
+| --- | --- |
+| username | The username is able to authenticate on kintone app.
+| password | The password is able to authenticate on kintone app.
 
 **Sample code**
 
@@ -116,7 +117,6 @@ This module allows we authenticate with kintone app by password authenticator or
 <Summary>Set basic authentication</Summary>
 
 <strong class="tab-name">Source code</strong>
-
 <pre class="inline-code">
 
     String username = "YOUR_USERNAME";
@@ -125,21 +125,20 @@ This module allows we authenticate with kintone app by password authenticator or
     kintoneAuth.setBasicAuth(username, password);
 
 </pre>
-
 </details>
-
 
 ### createHeaderCredentials()
 
 > Provide the list of HTTP Headers which use to authentication.
 
+**Declaration**
+```
+public ArrayList<HTTPHeader> createHeaderCredentials() 
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Array&lt;HTTPHeader&gt;
 
 **Sample code**
 
@@ -185,18 +184,18 @@ Array&lt;HTTPHeader&gt;
 
 ### setClientCert(cert, password)
 
-Set certificate by certificate data
+> Set certificate by certificate data
 
+**Declaration**
+```
+public Auth setClientCert(InputStream cert, String password) throws KintoneAPIException 
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| cert | InputStream | Yes | Data read from certificate file and receive from kintone
-| password | String | Yes | The password from kintone to decode the cert file
-
-**Return**
-
-[Auth](../authentication)
+| Name| Description |
+| --- | --- |
+| cert | Data read from certificate file and receive from kintone
+| password | The password from kintone to decode the cert file
 
 **Sample code**
 
@@ -225,19 +224,19 @@ Set certificate by certificate data
 </details>
 
 ### setClientCertByPath(filePath, password)
+> Set certificate by path
 
-Set certificate by path
+**Declaration**
+```
+public Auth setClientCertByPath(String filePath, String password) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| filePath | String | Yes | Path to kintone certificate file
-| password | String | Yes | The password from kintone to decode the cert file
-
-**Return**
-
-[Auth](../authentication)
+| Name| Description |
+| --- | --- | 
+| filePath | Path to kintone certificate file
+| password | The password from kintone to decode the cert file
 
 **Sample code**
 
