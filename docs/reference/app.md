@@ -27,16 +27,18 @@ public App(Connection connection)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    // Init authentication
-    Auth kintoneAuth = new Auth()
-    
-    // Password Authentication
-    String username = "your_usernamr"
-    String password = "your_password"
-    kintoneAuth = kintoneAuth.setPasswordAuth(username, password)
-    Connection connection = Connection( "your_domain", kintoneAuth )
-    App app = new App(connection)
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
 
 </pre>
 
@@ -67,9 +69,21 @@ public AppModel getApp(Integer appId) throws KintoneAPIException
 <strong class="tab-name">Source code</strong>
 <pre class="inline-code">
 
-    Integer appId = {your_app_id};
-    App appManagerment = new App(connection);
-    AppModel app = appManagerment.getApp(appId);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    Integer appId = 0; // Input your app id
+    
+    AppModel app = kintoneApp.getApp(appId);
 
 </pre>
 
@@ -101,11 +115,28 @@ public ArrayList<AppModel> getApps(Integer offset, Integer limit) throws Kintone
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-Integer offset = 10;
-Integer limit = 50;
 
-App appManagerment = new App(connection);
-List<AppModel> appList = appManagerment.getApps(offset, limit);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    
+    // Get all apps 
+    List<AppModel> allApps = kintoneApp.getApps();
+
+    // Get list apps based on offset, limit
+    Integer offset = 0;    // Input your offset number  
+    Integer limit = 5; // Input your limit number 
+    List<AppModel> listApps = kintoneApp.getApps(offset, limit);
+
 </pre>
 
 </details>
@@ -138,14 +169,33 @@ public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, 
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-List<Integer> appIds = new List<Integer>();
-appIds.add({your_app_id});
-appIds.add({your_app_id});
-Integer offset = {your_limit};
-Integer limit = {your_offset};
 
-App appManagerment = new App(connection);
-List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    
+    // Add list ids
+    ArrayList<Integer> ids = new ArrayList();
+    ids.add(0); 
+    ids.add(1);
+    ids.add(2);
+
+    // Get list apps by list ids
+    List<AppModel> listAppsByIds = kintoneApp.getAppsByIDs(ids);
+
+    // Get list apps by ids, offset, limit
+    Integer offset = 0;    // Input your offset number  
+    Integer limit = 5; // Input your limit number 
+    List<AppModel> listApps = kintoneApp.getAppsByIDs(ids, offset, limit);
 </pre>
 
 </details>
@@ -178,14 +228,33 @@ public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offse
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-List<String> appCode = new List<String>();
-appCode.add({your_app_code});
-appCode.add({your_app_code});
-Integer limit = {your_limit};
-Integer offset = {your_offset};
 
-App appManagerment = new App(connection);
-List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    
+    // Add list codes
+    ArrayList<String> codes = new ArrayList();
+    codes.add("YOUR_APP_CODE");
+    codes.add("YOUR_APP_CODE");
+
+    // Get list apps by list code
+    List<AppModel> listAppsByCodes = kintoneApp.getAppsByCodes(codes);
+
+    // Get list apps by code, offset, limit
+    Integer offset = 0;    // Input your offset number  
+    Integer limit = 5; // Input your limit number 
+    List<AppModel> listApps = kintoneApp.getAppsByCodes(codes, offset, limit);
+
 </pre>
 
 </details>
@@ -206,7 +275,7 @@ public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer li
 
 | Name| Description |
 | --- | --- |
-| name | The app name
+| name | The App Name.<br>A partial search will be used, and the search will be case insensitive.<br>The localized name of the App in the user's locale will also be included in the search.
 | offset | The offset off data result
 | limit | The limit number of result
 
@@ -218,12 +287,30 @@ public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer li
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String appName = {your_app_name};
-Integer offset = {your_offset};
-Integer limit = {your_limit};
 
-App appManagerment = new App(connection);
-List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    
+    String name = "YOUR_APP_NAME";
+
+    // Get list apps by list name
+    List<AppModel> listAppsByName = kintoneApp.getAppsByName(name);
+
+    // Get by name, offset, limit
+    Integer offset = 0;    // Input your offset number  
+    Integer limit = 5; // Input your limit number 
+    List<AppModel> listApps = kintoneApp.getAppsByName(name, offset, limit);
+    
 </pre>
 
 </details>
@@ -256,14 +343,29 @@ public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Intege
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-List<Integer> spaceIds = new List<Integer>();
-spaseIds.add({your_space_id});
-spaseIds.add({your_space_id});
-Integer offset = {your_offset};
-Integer limit = {your_litmit};
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-App appManagerment = new App(connection);
-List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limit);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+    
+    ArrayList<Integer> spaceIds = new ArrayList();
+    spaceIds.add(0);    // Input your space id
+
+    // Get list apps by list space id
+    List<AppModel> listAppsBySpaceIds = kintoneApp.getAppsBySpaceIDs(spaceIds);
+
+    // Get by space id, offset, limit
+    Integer offset = 0;    // Input your offset number  
+    Integer limit = 5; // Input your limit number 
+    List<AppModel> listApps = kintoneApp.getAppsBySpaceIDs(spaceIds, offset, limit);
 </pre>
 
 </details>
@@ -296,11 +398,28 @@ public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer t
 
 <pre class="inline-code">
 
-    Integer spaceId = {your_space_id} // Space will add this app
-    Integer threadId = {your_thread_id} // Thread will add this app
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    App appManagerment = new App(connection);
-    appManagerment.addPreviewApp(appName, spaceId, threadId);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    String name = "YOUR_APP_NAME";
+
+    // Add preview app by name
+    AddPreviewAppResponse addPreviewAppByName = kintoneApp.addPreviewApp(name);
+
+    // add preview app
+    Integer spaceId = 0; // Space will add this app
+    Integer threadId = 0; // Thread will add this app
+    AddPreviewAppResponse addPreviewApp = kintoneApp.addPreviewApp(name, spaceId, threadId);
 
 </pre>
 
@@ -333,14 +452,29 @@ public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert)
 
 <pre class="inline-code">
 
-    Integer appId = {your_app_id}
-    Integer revision = {your_revision} // Revision of application to deploy
-    ArrayList<appPreview> appPreviewList = new ArrayList<appPreview>();
-    PreviewApp appPreview = new PreviewApp(appId, revision)
-    
-    App appManagerment = new App(connection);
-    appManagerment.deployAppSettings(appPreviewList, false)
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+    Integer revision = 0;   // Revision of application to deploy
+    ArrayList<PreviewAppRequest> previewAppRequests = new ArrayList<>();
+    PreviewAppRequest appPreview = new PreviewAppRequest(appId, revision);
+    previewAppRequests.add(appPreview);
+
+    kintoneApp.deployAppSettings(previewAppRequests);
+
+    // Deploy with revert option 
+    kintoneApp.deployAppSettings(previewAppRequests, true);
 </pre>
 
 </details>
@@ -369,15 +503,23 @@ public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) th
 
 <pre class="inline-code">
 
-    List<Integer> appIds = new List<Integer>();
-    appIds.add({your_app_id});
-    appIds.add({your_app_id});
-    
-    App appManagerment = new App(connection);
-    GetAppDeployStatusResponse res = appManagerment.getAppDeployStatus(appIds);
-    for (int i = 0; i < res.getApp.length; i++) {
-        print(res.getApp.get(i));
-    }
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    ArrayList<Integer> appIds = new ArrayList<>();
+    appIds.add(0);  // Input list app id
+
+    GetAppDeployStatusResponse res = kintoneApp.getAppDeployStatus(appIds);
 
 </pre>
 
@@ -413,12 +555,26 @@ public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isP
 
 <pre class="inline-code">
 
-    Integer appId = {your_app_id} // Integer
-    LanguageSetting lang = {language_code} // LanguageSetting .Ex: LanguageSetting.JA
-    Boolean isPreview = true;
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    App appManagerment = new App(connection);
-    FormFields fields appManagerment.getFormFields(appId, lang, isPreview)
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+    // get all form fields of app by id
+    FormFields fieldsById = kintoneApp.getFormFields(appId);
+
+    // get all form fields of app by id, lang, isPreview
+    LanguageSetting lang = LanguageSetting.EN; // LanguageSetting .Ex: LanguageSetting.JA
+    FormFields fields = kintoneApp.getFormFields(appId, lang, true);
 
 </pre>
 
@@ -439,7 +595,7 @@ public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields,
 | Name| Description |
 | --- | --- |
 | appId | The app ID
-| fields | The formFields which will add to form of kintone app <br> *Note:* <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
+| fields | The formFields which will add to form of kintone app <br> **Note:** <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
 | revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
@@ -451,29 +607,50 @@ public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields,
 
 <pre class="inline-code">
 
-    Integer appId = {your_app_id} // App Id
-    String fieldCode = {field_code_string} // Field code of new Field. It must be not as same as any fields in Pre-Live App Setttings
-    Integer revision = {latest_revision_of_the_settings} // Integer
-    
-    // Create Radio field instance and set properties
-    RadioButtonField addNewField = new RadioButtonField(fieldCode)
-    HashMap<String, OptionData> optionArray = new HashMap<String, OptionData>()
-    optionArray["1"] = OptionData("1","1")
-    optionArray["2"] = OptionData("2","2")
-    optionArray["3"] = OptionData("3","3")
-    addNewField.setOptions(optionArray)
-    addNewField.setNoLabel(false)
-    addNewField.setRequired(true)
-    addNewField.setLabel("Label Radio")
-    addNewField.setAlign(AlignLayout.VERTICAL)
-    
-    // Add Field object into dictionary with key is Field Code
-    HashMap<String, Field> properties = new HashMap<String, Field>()
-    properties.put(fieldCode, addNewField);
-    // Another add field here
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    App appManagerment = new App(connection);
-    BasicResponse res = appManagerment.addFormFields(appId, properties, revision);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // Field code of new Field. It must be not as same as any fields in Pre-Live App Settings
+    String fieldCode = "YOUR_NEW_FIELD_CODE"; 
+
+    // Create Radio field instance and set properties
+    RadioButtonField addNewField = new RadioButtonField(fieldCode);
+
+    HashMap<String, OptionData> optionArray = new HashMap<>();
+    optionArray.put("1", new OptionData(1, "1"));
+    optionArray.put("2", new OptionData(2, "2"));
+    optionArray.put("3", new OptionData(3, "3"));
+
+    // Setting new radio field
+    addNewField.setOptions(optionArray);
+    addNewField.setNoLabel(false);
+    addNewField.setRequired(true);
+    addNewField.setLabel("Sample code addFormFields");
+    addNewField.setAlign(AlignLayout.VERTICAL);
+
+    // Add Field object into dictionary with key is Field Code
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put(fieldCode, addNewField);
+
+    // Add form field
+    BasicResponse res = kintoneApp.addFormFields(appId, properties);
+
+    // Add form field with revision
+    Integer revision = 0; // Latest revision of the settings
+    BasicResponse responseWithRevision = kintoneApp.addFormFields(appId, properties, revision);
+
 
 </pre>
 
@@ -506,21 +683,42 @@ public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fiel
 
 <pre class="inline-code">
 
-    Integer appId = {your_app_id} // Integer
-    String fieldCode = {field_code_string} // String | fieldCode of exist fields in Pre-Live App Setttings
-    Integer revision = {latest_revision_of_the_settings} // Integer
-    
-    // Create Field Object to Update
-    SingleLineTextField updateField = new SingleLineTextField(fieldCode)
-    updateField.setDefaultValue("Hello Kintone")
-    updateField.setRequired(true)
-    
-    // Add Update Field object into dictionary with key is Field Code
-    HashMap<String, Field> properties = new HashMap<String, Field>()
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // Field code of new Field. It must be not as same as any fields in Pre-Live App Settings
+    String fieldCode = "YOUR_UPDATE_FIELD_CODE"; 
+
+    // Update Radio field instance and set properties
+    RadioButtonField updateField = new RadioButtonField(fieldCode);
+
+    HashMap<String, OptionData> optionArray = new HashMap<>();
+    optionArray.put("1", new OptionData(1, "1"));
+    optionArray.put("B", new OptionData(2, "B"));
+    optionArray.put("C", new OptionData(3, "C"));
+
+    // Update Field object into dictionary with key is Field Code
+    HashMap<String, Field> properties = new HashMap<>();
     properties.put(fieldCode, updateField);
-    
-    App appManagerment = new App(connection);
-    BasicResponse res = appManagerment.updateFormFields(appId, properties, revision);
+
+    // Update field here
+    BasicResponse res = kintoneApp.updateFormFields(appId, properties);
+
+    // Update form field with revision
+    Integer revision = 0; // Latest revision of the settings
+    BasicResponse responseWithRevision = kintoneApp.addFormFields(appId, properties, revision);
 
 </pre>
 
@@ -553,12 +751,27 @@ public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Int
 
 <pre class="inline-code">
 
-    int appId = {your_app_id} // Integer
-    ArrayList<String> fieldCodeArray = [{field_code_string}] // Array<String> | Array of fieldCodes of exist fields in Pre-Live App Setttings
-    int revision = {latest_revision_of_the_settings} // Integer
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    App appManagerment = new App(connection);
-    BasicResponse res = appManagerment.deleteFormFields(appId, fieldCodeArray, revision);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+    ArrayList<String> fieldCodeDelete = new ArrayList<>();
+    fieldCodeDelete.add("YOUR_DELETE_FIELD_CODE");
+
+    BasicResponse res = kintoneApp.deleteFormFields(appId, fieldCodeDelete);
+    // Delete form field with revision
+    Integer revision = 0; // Latest revision of the settings
+    BasicResponse res = kintoneApp.deleteFormFields(appId, fieldCodeDelete, revision);
 
 </pre>
 
@@ -590,12 +803,26 @@ public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws Kintone
 
 <pre class="inline-code">
 
-    int appId = {your_app_id} // Integer
-    boolean isPreview = true
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    // Get a pre-live (preview) form fields
-    App appManagerment = new App(connection);
-    FormLayout res = appManagerment.getFormLayout(appId, isPreview)
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // get form layout by app id
+    FormLayout res = kintoneApp.getFormLayout(appId);
+
+    // get form layout by app id and isPreview
+    FormLayout res = kintoneApp.getFormLayout(appId, true);
 
 </pre>
 
@@ -628,75 +855,53 @@ public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout,
 
 <pre class="inline-code">
 
-    int appId = {your_app_id} // Integer
-    ArrayList<ItemLayout> itemLayoutRequest = new ArrayList<ItemLayout>();
-        
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // List item layout of app
+    ArrayList<ItemLayout> itemLayouts = new ArrayList<>();
+
     // Row Layout
-    RowLayout rowLayout1 = new RowLayout();
-    ArrayList<FieldLayout> fieldsRowLayout1: new ArrayList<FieldLayout>();
+    RowLayout rowLayout = new RowLayout();
+    ArrayList<FieldLayout> fieldLayouts = new ArrayList<>();
+
+    // Field Information
+    FieldLayout fieldLayout = new FieldLayout();
+    fieldLayout.setCode("Record_number");   // Input your field code
+    fieldLayout.setType(FieldType.RECORD_NUMBER.name());    // Input your field code type
+
+    // Set size of field
+    FieldSize fieldSize = new FieldSize();
+    fieldSize.setWidth("200");  // Input width of your field code
+    fieldLayout.setSize(fieldSize);
+
+    // Add field into layout
+    fieldLayouts.add(fieldLayout);
+
+    // Add layout into row
+    rowLayout.setFields(fieldLayouts);
+
+    // Append row into item layout
+    itemLayouts.add(rowLayout);
     
-    FieldLayout singleFieldRowLayout1 = new FieldLayout();
-    singleFieldRowLayout1.setCode("Text");
-    singleFieldRowLayout1.setType(FieldType.SINGLE_LINE_TEXT.rawValue);
-    FieldSize singleFieldSizeRowLayout1 = new FieldSize();
-    singleFieldSizeRowLayout1.setWidth("193");
-    singleFieldRowLayout.setSize(singleFieldSizeRowLayout1);
-    fieldsRowLayout1.add(singleFieldRowLayout1!);
-    
-    FieldLayout richTextFieldRowLayout1 = new FieldLayout();
-    richTextFieldRowLayout1.setCode("Rich_text");
-    richTextFieldRowLayout1.setType(FieldType.RICH_TEXT.rawValue);
-    FieldSize richTextFieldSizeRowLayout1 = new FieldSize();
-    richTextFieldSizeRowLayout1.setWidth("315")
-    richTextFieldSizeRowLayout1.setInnerHeight("125")
-    richTextFieldRowLayout1.setSize(richTextFieldSizeRowLayout1)
-    fieldsRowLayout1.add(richTextFieldRowLayout1!)
-    
-    rowLayout1.setFields(fieldsRowLayout1)
-    
-    // Subtable Layout
-    SubTableLayout subTableLayout = new SubTableLayout();
-    ArrayList<FieldLayout> fieldSubTableLayout = new ArrayList<FieldLayout>();
-    
-    FieldLayout singleFieldSubTableLayout1 = new FieldLayout();
-    singleFieldSubTableLayout1.setCode("Text_0");
-    singleFieldSubTableLayout1.setType(FieldType.SINGLE_LINE_TEXT.rawValue);
-    FieldSize singleFieldSizeSubTableLayout1 = new FieldSize();
-    singleFieldSizeSubTableLayout1.setWidth("193");
-    singleFieldSubTableLayout1.setSize(singleFieldSizeSubTableLayout1);
-    
-    fieldSubTableLayout.add(singleFieldSubTableLayout1!);
-    subTableLayout.setFields(fieldSubTableLayout);
-    subTableLayout.setCode("Table");
-    
-    // GROUP Layout
-    GroupLayout groupLayout = new GroupLayout();
-    ArrayList<RowLayout> rowLayoutInGroup = new ArrayList<RowLayout>();
-    // Row Layout
-    RowLayout firstRowLayoutInGroup = new RowLayout();
-    ArrayList<FieldLayout> fieldsInRowLayoutInGroup = new ArrayList<FieldLayout>()
-    // Numeric Field Layout
-    FieldLayout numericFieldInRowLayoutInGroup = new FieldLayout();
-    numericFieldInRowLayoutInGroup.setCode("Number");
-    numericFieldInRowLayoutInGroup.setType(FieldType.NUMBER.rawValue);
-    // field size
-    FieldSize numericFieldSizeInRowLayoutInGroup = new FieldSize();
-    numericFieldSizeInRowLayoutInGroup.setWidth("200")
-    numericFieldInRowLayoutInGroup.setSize(numericFieldSizeInRowLayoutInGroup)
-    
-    fieldsInRowLayoutInGroup.append(numericFieldInRowLayoutInGroup!)
-    firstRowLayoutInGroup.setFields(fieldsInRowLayoutInGroup)
-    rowLayoutInGroup.append(firstRowLayoutInGroup!)
-    groupLayout.setLayout(rowLayoutInGroup)
-    groupLayout.setCode("Field_group")
-    
-    // Append layout
-    itemLayoutRequest.add(rowLayout1!)
-    itemLayoutRequest.add(subTableLayout!)
-    itemLayoutRequest.add(groupLayout!)
-    
-    App appManagerment = new App(connection);
-    BasicResponse res = appManagerment.updateFormLayout(appId, itemLayoutRequest);
+    // Update form layout
+    BasicResponse res = kintoneApp.updateFormLayout(appId, itemLayouts);
+
+    // Update form layout with revision
+    Integer revision = 0; // Latest revision of the settings
+    BasicResponse res = kintoneApp.updateFormLayout(appId, itemLayouts, revision);
 
 </pre>
 
@@ -731,12 +936,28 @@ public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boo
 
 <pre class="inline-code">
 
-    int appId = {your_app_id};
-    LanguageSetting lang = {your_language_code} // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
-    boolean isPreview = true
-    
-    App appManagerment = new App(connection);
-    GeneralSettings res = appManagerment.getGeneralSettings(appId, lang, isPreview);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // Get general settings by app id
+    GeneralSettings res = kintoneApp.getGeneralSettings(appId);
+
+    // Get general settings by app id, language and isPreivew
+    LanguageSetting lang = LanguageSetting.EN;
+    Boolean isPreview = true;
+    GeneralSettings res = kintoneApp.getGeneralSettings(appId, lang, isPreview);
 
 </pre>
 
@@ -748,7 +969,6 @@ Updates the description, name, icon, revision and color theme of an App.
 
 **Declaration**
 ```
-public BasicResponse updateGeneralSettings(Integer app) throws KintoneAPIException
 public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalSettings) throws KintoneAPIException 
 ```
 
@@ -768,17 +988,27 @@ public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalS
 
 <pre class="inline-code">
 
-    int appId = {your_app_id};
-    
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
     GeneralSettings appGeneralSetting = new GeneralSettings();
-    appGeneralSetting.setName("GetViewsApp_Test");
-    appGeneralSetting.setDescription("<div>A list of great places to go!</div>");
-    Icon iconModel = new Icon("APP39", Icon.IconType.PRESET);
-    appGeneralSetting.setIcon(iconModel);
-    appGeneralSetting.setTheme(GeneralSettings.IconTheme.WHITE);
-    
-    App appManagerment = new App(connection);
-    BasicResponse res = appManagerment.updateGeneralSettings(appId, appGeneralSetting);
+    appGeneralSetting.setName("UpdateGeneralSettings Sample code");
+    appGeneralSetting.setDescription("Sample code of updateGeneralSettings");
+    appGeneralSetting.setTheme(GeneralSettings.IconTheme.BLACK);
+
+    BasicResponse res = kintoneApp.updateGeneralSettings(appId, appGeneralSetting);
 
 </pre>
 
@@ -802,7 +1032,7 @@ public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPr
 | --- | --- |
 | app | The kintone app id
 | lang | The localized language to retrieve the data in language constants
-| isPreview | Default value: **false**.<br> Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.
+| isPreview | Default value: **false**.<br> Get views of the app with a pre-live settings when isPreview param is set **true**.
 
 **Sample code**
 
@@ -813,12 +1043,28 @@ public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPr
 
 <pre class="inline-code">
 
-    int appId = {your_app_id}
-    LanguageSetting lang = LanguageSetting.EN // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
-    boolean isPreview = true
-    
-    App appManagerment = new App(connection);
-    GetViewsResponse res = app.getViews(appId, lang, isPreview);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
+
+    // Get list view by app id
+    GetViewsResponse res = kintoneApp.getViews(appId);
+
+    // Get list view by app id, language and isPreview
+    LanguageSetting lang = LanguageSetting.EN;
+    Boolean isPreview = true;
+    GetViewsResponse res = kintoneApp.getViews(appId, lang, isPreview);
 
 </pre>
 
@@ -851,39 +1097,39 @@ public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> v
 
 <pre class="inline-code">
 
-    int appId = {your_app_id)}
-    int revision = {your_lastest_revision} //default: revision = -1
-    
-    HashMap<String, ViewModel> viewEntry = new HashMap<String: ViewModel>();
-    ViewModel updateViewModel = new ViewModel();
-    updateViewModel.setName("ViewTest")
-    updateViewModel.setSort("Record_number desc")
-    updateViewModel.setType(ViewModel.ViewType.LIST)
-    updateViewModel.setFilterCond("Created_datetime = LAST_WEEK()")
-    updateViewModel.setIndex(1)
-    ArrayList<String> fieldsViews = new ArrayList<String>();
-    fieldsViews.add("Text");
-    fieldsViews.add("Text_Area");
-    fieldsViews.add("Created_datetime");
-    updateViewModel.setFields(fieldsViews);
-    viewEntry.put("ViewTest", updateViewModel);
-    
-    ViewModel updateViewModel2 = new ViewModel();
-    updateViewModel2.setName("ViewTest2")
-    updateViewModel2.setSort("Record_number asc")
-    updateViewModel2.setType(ViewModel.ViewType.LIST)
-    updateViewModel2.setFilterCond("Created_datetime > LAST_WEEK()")
-    updateViewModel2.setIndex(0)
-    
-    ArrayList<String> fieldsInViews2 = new ArrayList<String>();
-    fieldsInViews2.add("Text_Area");
-    fieldsInViews2.add("Created_datetime");
-    updateViewModel2.setFields(fieldsInViews2);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-    viewEntry.put("ViewTest2", updateViewModel2);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init App Module
+    App kintoneApp = new App(kintoneConnection);
+
+    Integer appId = 0;  // Input your app id
     
-    App appManagerment = new App(connection);
-    UpdateViewsResponse res = appManagerment.updateViews(appId, viewEntry, revision);
+    // Create/Update fields of view
+    ArrayList<String> fieldsView = new ArrayList<>();
+    fieldsView.add("YOUR_VIEW_FIELDS");
+
+    // Setting view model
+    ViewModel updateViewModel = new ViewModel();
+    updateViewModel.setFields(fieldsView);
+    updateViewModel.setName("ViewTest");
+    updateViewModel.setSort("Record_number desc");
+    updateViewModel.setType(ViewModel.ViewType.LIST);
+    updateViewModel.setIndex(1);
+
+    HashMap<String, ViewModel> views = new HashMap<>();
+    views.put("ViewTest", updateViewModel);
+
+    // Update views with revision
+    Integer revision = 0; // Latest revision of the settings
+    UpdateViewsResponse updateViews = kintoneApp.updateViews(appId, views, revision);
     
 </pre>
 
