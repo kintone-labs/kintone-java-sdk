@@ -8,11 +8,16 @@ Gets general information of an App, including the name, description, related Spa
 
 ## Constructor
 
+**Declaration**
+```
+public App(Connection connection)
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| connection | [Connection](../connection) | yes | The connection module of this SDK.
+| Name| Description |
+| --- | --- |
+| connection | The connection module of this SDK ([Connection](../connection)).
 
 **Sample code**
 
@@ -43,15 +48,16 @@ Gets general information of an App, including the name, description, related Spa
 
 > Get single app
 
-#**Parameter**
+**Declaration**
+```
+public AppModel getApp(Integer appId) throws KintoneAPIException
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| appId | Integer | yes | The kintone app ID
+**Parameter**
 
-**Return**
-
-[AppModel](../model/app/app/app-model)
+| Name| Description |
+| --- | --- |
+| appId | The kintone app id
 
 **Sample code**
 
@@ -73,16 +79,19 @@ Gets general information of an App, including the name, description, related Spa
 
 > Get multiple apps
 
+**Declaration**
+```
+public ArrayList<AppModel> getApps() throws KintoneAPIException
+public ArrayList<AppModel> getApps(Integer offset) throws KintoneAPIException
+public ArrayList<AppModel> getApps(Integer offset, Integer limit) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| offset | Integer | (optional) | The offset off data result
-| limit | Integer | (optional) | The limit number of result
-
-**Return**
-
-List<[AppModel](../model/app/app/app-model)>
+| Name| Description |
+| --- | --- |
+| offset | The offset off data result
+| limit | The limit number of result
 
 **Sample code**
 
@@ -105,17 +114,21 @@ List<AppModel> appList = appManagerment.getApps(offset, limit);
 
 > Get multiple apps by list of ids
 
+**Declaration**
+```
+public ArrayList<AppModel> getAppsByIDs() throws KintoneAPIException
+public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids) throws KintoneAPIException
+public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset) throws KintoneAPIException
+public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, Integer limit) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| ids | List<Integer\> | yes | The array of app ids
-| offset | Integer | (optional) | The offset off data result
-| limit | Integer | (optional) | The limit number of result
-
-**Return**
-
-List<[AppModel](../model/app/app/app-model)>
+| Name| Description |
+| --- | --- |
+| ids | The array of app ids
+| offset | The offset off data result
+| limit | The limit number of result
 
 **Sample code**
 
@@ -141,17 +154,21 @@ List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
 
 > Get multiple apps by a list of codes
 
+**Declaration**
+```
+public ArrayList<AppModel> getAppsByCodes() throws KintoneAPIException
+public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes) throws KintoneAPIException 
+public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset) throws KintoneAPIException 
+public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset, Integer limit) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| codes | List<String\> | yes | The array of app codes
-| offset | Integer | (optional) | The offset off data result
-| limit | Integer | (optional) | The limit number of result
-
-**Return**
-
-List<[AppModel](../model/app/app/app-model)>
+| Name| Description |
+| --- | --- |
+| codes | The array of app codes
+| offset | The offset off data result
+| limit | The limit number of result
 
 **Sample code**
 
@@ -177,17 +194,21 @@ List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
 
 > Get multiple apps by name
 
+**Declaration**
+```
+public ArrayList<AppModel> getAppsByName() throws KintoneAPIException
+public ArrayList<AppModel> getAppsByName(String name) throws KintoneAPIException
+public ArrayList<AppModel> getAppsByName(String name, Integer offset) throws KintoneAPIException 
+public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer limit) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| name | String | yes | The app name
-| offset | Integer | (optional) | The offset off data result
-| limit | Integer | (optional) | The limit number of result
-
-**Return**
-
-List<[AppModel](../model/app/app/app-model)>
+| Name| Description |
+| --- | --- |
+| name | The app name
+| offset | The offset off data result
+| limit | The limit number of result
 
 **Sample code**
 
@@ -211,17 +232,21 @@ List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
 
 > Get multiple apps by list of space's ids
 
+**Declaration**
+```
+public ArrayList<AppModel> getAppsBySpaceIDs() throws KintoneAPIException
+public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds) throws KintoneAPIException 
+public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset) throws KintoneAPIException
+public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset, Integer limit) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| spaceIds | List<Integer\> | yes | The array of space ids
-| offset | Integer | (optional) | The offset off data result
-| limit | Integer | (optional) | The limit number of result
-
-**Return**
-
-List<[AppModel](../model/app/app/app-model)>
+| Name| Description |
+| --- | --- |
+| spaceIds | The array of space ids
+| offset | The offset off data result
+| limit | The limit number of result
 
 **Sample code**
 
@@ -247,17 +272,20 @@ List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limi
 
 Creates a preview App.
 
+**Declaration**
+```
+public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException 
+public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException 
+public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| name | String | yes | The App name.<br>The maximum length is 64 characters.|
-| space | Integer | (optional) | The Space ID of where the App will be created.|
-| thread | Integer | (optional) | The Thread ID of the thread in the Space where the App will be created.<br>It is recommended to ignore this parameter so that Apps are created in the default thread. <br>There is currently no helpful reason to create Apps in threads other than the default thread, as there are no visual representations in kintone of Apps being related to threads.<br> There are only visual representations of Apps being related to Spaces.|
-
-**Return**
-
-[PreviewApp](../model/app/app/preview-app)
+| Name| Description |
+| --- | --- |
+| name |The App name.<br>The maximum length is 64 characters.|
+| space | The Space ID of where the App will be created.|
+| thread | The Thread ID of the thread in the Space where the App will be created.<br>It is recommended to ignore this parameter so that Apps are created in the default thread. <br>There is currently no helpful reason to create Apps in threads other than the default thread, as there are no visual representations in kintone of Apps being related to threads.<br> There are only visual representations of Apps being related to Spaces.|
 
 **Sample code**
 
@@ -283,16 +311,18 @@ Creates a preview App.
 
 Updates the settings of a pre-live App to the live App.
 
+**Declaration**
+```
+public void deployAppSettings(ArrayList<PreviewAppRequest> apps) throws KintoneAPIException 
+public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| apps | Array<PreviewApp> | yes | The list of Apps to deploy the pre-live settings to the live Apps. The Maximum limit is 300.<br>If Apps are being deployed to Guest Spaces, Apps can only be deployed to the same Guest Space..|
-| revert | Boolean | (optional) | Specify <b>"true"</b> to cancel all changes made to the pre-live settings. The pre-live settings will be reverted back to the current settings of the live app.|
-
-**Return**
-
-None
+| Name| Description |
+| --- | --- |
+| apps | The list of Apps to deploy the pre-live settings to the live Apps. The Maximum limit is 300.<br>If Apps are being deployed to Guest Spaces, Apps can only be deployed to the same Guest Space..|
+| revert | Default value: **false**. Specify **true** to cancel all changes made to the pre-live settings. The pre-live settings will be reverted back to the current settings of the live app.|
 
 **Sample code**
 
@@ -319,15 +349,16 @@ None
 
 Updates the settings of a pre-live App to the live App.
 
+**Declaration**
+```
+public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| apps | List<Integer> | yes | The list of Apps to check the deploy statuses of. The Maximum limit is 300.<br>If Apps in Guest Spaces are specified, all Apps specified in the request must belong to that Guest Space.|
-
-**Return**
-
-[GetAppDeployStatusResponse](../model/app/app/get-app-deploy-status-response)
+| Name| Description |
+| --- | --- |
+| apps | The list of Apps to check the deploy statuses of. The Maximum limit is 300.<br>If Apps in Guest Spaces are specified, all Apps specified in the request must belong to that Guest Space.|
 
 **Sample code**
 
@@ -357,17 +388,21 @@ Updates the settings of a pre-live App to the live App.
 
 Get field of the form in the kintone app
 
+**Declaration**
+```
+public FormFields getFormFields(Integer appId) throws KintoneAPIException 
+public FormFields getFormFields(Integer appId, LanguageSetting lang) throws KintoneAPIException 
+public FormFields getFormFields(Integer appId, Boolean isPreview) throws KintoneAPIException 
+public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| appId | Integer | yes | The app ID
-| lang | LanguageSetting | (optional) | The language code. Support: <ul><li>DEFAULT: Default language setting of system </li><li>JA: Japanese language setting</li><li>ZH: Chinese language setting</li><li>EN: English language setting</li> |
-| isPreview | Boolean | (optional) | Get the app form fields with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
-
-**Return**
-
-[FormFields](../model/app/form/field/form-fields)
+| Name| Description |
+| --- | --- |
+| appId | The app ID
+| lang | The language code. Support: <ul><li>DEFAULT: Default language setting of system </li><li>JA: Japanese language setting</li><li>ZH: Chinese language setting</li><li>EN: English language setting</li> |
+| isPreview | Default value: **false**. Get the app form fields with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -393,17 +428,19 @@ Get field of the form in the kintone app
 
 Adds fields to a form of an App.
 
+**Declaration**
+```
+public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException 
+public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields, Integer revision) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| appId | Integer | yes | The app ID
-| fields | Map | (optional) | The formFields which will add to form of kintone app <br> *Note:* <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
-| revision | Boolean | (optional) | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
-
-**Return**
-
-[BasicResponse](../model/app/basic-response)
+| Name| Description |
+| --- | --- |
+| appId | The app ID
+| fields | The formFields which will add to form of kintone app <br> *Note:* <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
+| revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
 
@@ -446,17 +483,19 @@ Adds fields to a form of an App.
 
 Updates the field settings of fields in a form of an App.
 
+**Declaration**
+```
+public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException 
+public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields, Integer revision) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The app ID
-| fields | Map| (optional) | The formFields which will add to form of kintone app <br> *Note:* <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
-| revision | Boolean | (optional) | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
-
-**Return**
-
-[BasicResponse](../model/app/basic-response)
+| Name| Description |
+| --- | --- |
+| app | The app ID
+| fields | The formFields which will add to form of kintone app <br> *Note:* <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul>|
+| revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
 
@@ -491,17 +530,19 @@ Updates the field settings of fields in a form of an App.
 
 > Deletes fields from a form of an App.
 
+**Declaration**
+```
+public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields) throws KintoneAPIException
+public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Integer revision) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The app ID
-| fields | Array<String\> | yes| The list of field codes of the fields to delete.<br>Up to 100 field codes can be specified.|
-| revision | Integer | (optional) | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
-
-**Return**
-
-[BasicResponse](../model/app/basic-response)
+| Name| Description |
+| --- | --- |
+| app | The app ID
+| fields | The list of field codes of the fields to delete.<br>Up to 100 field codes can be specified.|
+| revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
 
@@ -527,16 +568,18 @@ Updates the field settings of fields in a form of an App.
 
 Get the layout of form in kintone app
 
+**Declaration**
+```
+public FormLayout getFormLayout(Integer appId) throws KintoneAPIException 
+public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app id
-| isPreview | Boolean | (optional) | Get the app form layout with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
-
-**Return**
-
-[FormLayout](../model/app/form/layout/form-layout)
+| Name| Description |
+| --- | --- |
+| app |The kintone app id
+| isPreview | Default value: **false**. Get the app form layout with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -562,17 +605,19 @@ Get the layout of form in kintone app
 
 Updates the field layout info of a form in an App.
 
+**Declaration**
+```
+public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout) throws KintoneAPIException
+public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | | The kintone app id
-| layout | Array<ItemLayout\> | yes | A list of field layouts for each row.
-| revision | Integer | (optional) | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
-
-**Return**
-
-[BasicResponse](../model/app/basic-response)
+| Name| Description |
+| --- | --- |
+| app |  The kintone app id
+| layout | A list of field layouts for each row.
+| revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
 
@@ -661,17 +706,21 @@ Updates the field layout info of a form in an App.
 
 Gets the description, name, icon, revision and color theme of an App.
 
+**Declaration**
+```
+public GeneralSettings getGeneralSettings(Integer app) throws KintoneAPIException 
+public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang) throws KintoneAPIException
+public GeneralSettings getGeneralSettings(Integer app, Boolean isPreview) throws KintoneAPIException 
+public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app id
-| lang | LanguageSetting | (optional) | The localized language to retrieve the data in language constants
-| isPreview | Boolean | (optional) | Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
-
-**Return**
-
-[GeneralSettings](../model/app/general/general-settings)
+| Name| Description |
+| --- | --- |
+| app | The kintone app id
+| lang | The localized language to retrieve the data in language constants
+| isPreview | Default value: **fasle** Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -697,16 +746,18 @@ Gets the description, name, icon, revision and color theme of an App.
 
 Updates the description, name, icon, revision and color theme of an App.
 
+**Declaration**
+```
+public BasicResponse updateGeneralSettings(Integer app) throws KintoneAPIException
+public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalSettings) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app id
-| generalSettings | GeneralSettings | (Conditional) | The description, name, icon, revision and color theme of an App.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if ignored, or -1 is specified.
-
-**Return**
-
-[BasicResponse](../model/app/basic-response)
+| Name| Description |
+| --- | --- |
+| app | The kintone app id
+| generalSettings | The description, name, icon, revision and color theme of an App.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if ignored, or -1 is specified.
 
 **Sample code**
 
@@ -737,17 +788,21 @@ Updates the description, name, icon, revision and color theme of an App.
 
 Gets the View settings of an App.
 
+**Declaration**
+```
+public GetViewsResponse getViews(Integer app) throws KintoneAPIException
+public GetViewsResponse getViews(Integer app, LanguageSetting lang) throws KintoneAPIException
+public GetViewsResponse getViews(Integer app, Boolean isPreview) throws KintoneAPIException
+public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app id
-| lang | LanguageSetting | (optional) | The localized language to retrieve the data in language constants
-| isPreview | Boolean | (optional) | Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.
-
-**Return**
-
-[GetViewsResponse](../model/app/view/get-view-response)
+| Name| Description |
+| --- | --- |
+| app | The kintone app id
+| lang | The localized language to retrieve the data in language constants
+| isPreview | Default value: **false** Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.
 
 **Sample code**
 
@@ -773,18 +828,19 @@ Gets the View settings of an App.
 
 Updates the View settings of an App.
 
+**Declaration**
+```
+public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views) throws KintoneAPIException 
+public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app id
-| views | HashMap<String, View> | yes | An object of data of Views.
-| revision | Integer | (optional) | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
-
-
-**Return**
-
-[UpdateViewsResponse](../model/app/view/update-views-response)
+| Name| Description |
+| --- | --- |
+| app | The kintone app id
+| views | An object of data of Views.
+| revision | Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.
 
 **Sample code**
 
