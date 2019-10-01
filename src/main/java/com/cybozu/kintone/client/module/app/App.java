@@ -72,7 +72,7 @@ public class App {
      * @return AppModel
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
-     * 
+     *
      */
     public AppModel getApp(Integer appId) throws KintoneAPIException {
         GetAppRequest getAppRequest = new GetAppRequest(appId);
@@ -96,7 +96,7 @@ public class App {
      * @throws KintoneAPIException
      */
     private ArrayList<AppModel> getApps(ArrayList<Integer> ids, ArrayList<String> codes, String name, ArrayList<Integer> spaceIds,
-            Integer offset, Integer limit) throws KintoneAPIException {
+                                        Integer offset, Integer limit) throws KintoneAPIException {
         GetAppsRequest getAppsRequest = new GetAppsRequest(ids, codes, name, spaceIds, offset, limit);
         String requestBody = parser.parseObject(getAppsRequest);
 
@@ -119,6 +119,14 @@ public class App {
         return getApps(null, null, null, null, offset, limit);
     }
 
+    public ArrayList<AppModel> getApps() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getApps(Integer offset) throws KintoneAPIException {
+        return getApps(null, null, null, null, offset, null);
+    }
+
     /**
      * Get apps which regardless belongs to space or not.
      * Require the id for retrieve.
@@ -133,6 +141,18 @@ public class App {
      */
     public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, Integer limit) throws KintoneAPIException {
         return getApps(ids, null, null, null, offset, limit);
+    }
+
+    public ArrayList<AppModel> getAppsByIDs() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids) throws KintoneAPIException {
+        return getApps(ids, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset) throws KintoneAPIException {
+        return getApps(ids, null, null, null, offset, null);
     }
 
     /**
@@ -151,6 +171,18 @@ public class App {
         return getApps(null, codes, null, null, offset, limit);
     }
 
+    public ArrayList<AppModel> getAppsByCodes() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes) throws KintoneAPIException {
+        return getApps(null, codes, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset) throws KintoneAPIException {
+        return getApps(null, codes, null, null, offset, null);
+    }
+
     /**
      * Get apps which regardless belongs to space or not.
      * Require the app name for retrieve.
@@ -165,6 +197,18 @@ public class App {
      */
     public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer limit) throws KintoneAPIException {
         return getApps(null, null, name, null, offset, limit);
+    }
+
+    public ArrayList<AppModel> getAppsByName() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByName(String name) throws KintoneAPIException {
+        return getApps(null, null, name, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsByName(String name, Integer offset) throws KintoneAPIException {
+        return getApps(null, null, name, null, offset, null);
     }
 
     /**
@@ -183,6 +227,20 @@ public class App {
         return getApps(null, null, null, spaceIds, offset, limit);
     }
 
+    public ArrayList<AppModel> getAppsBySpaceIDs() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds)
+            throws KintoneAPIException {
+        return getApps(null, null, null, spaceIds, null, null);
+    }
+
+    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset)
+            throws KintoneAPIException {
+        return getApps(null, null, null, spaceIds, offset, null);
+    }
+
     /**
      * Gets the list of fields and field settings of an App.
      * Permission to manage the App is needed when obtaining data of live Apps.
@@ -195,7 +253,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+    private FormFields getFormFieldsApp(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
         if (lang == null) {
             lang = LanguageSetting.DEFAULT;
         }
@@ -208,13 +266,30 @@ public class App {
         GetFormFieldsRequest getFormFieldsRequest = new GetFormFieldsRequest(appId, lang);
         String requestBody = parser.parseObject(getFormFieldsRequest);
 
-        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST, apiRequest.toString(),
+        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST, apiRequest,
                 requestBody);
         FormFields formfields = parser.parseFormFields(response);
         formfields.setApp(appId);
 
         return formfields;
     }
+
+    public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+        return getFormFieldsApp(appId, lang, isPreview);
+    }
+
+    public FormFields getFormFields(Integer appId) throws KintoneAPIException {
+        return getFormFieldsApp(appId, null, false);
+    }
+
+    public FormFields getFormFields(Integer appId, LanguageSetting lang) throws KintoneAPIException {
+        return getFormFieldsApp(appId, lang, false);
+    }
+
+    public FormFields getFormFields(Integer appId, Boolean isPreview) throws KintoneAPIException {
+        return getFormFieldsApp(appId, null, isPreview);
+    }
+
 
     /**
      * Add Form Fields into Application.
@@ -227,7 +302,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+    private BasicResponse addFormFieldsApp(Integer appId, HashMap<String, Field> fields, Integer revision)
             throws KintoneAPIException {
 
         String apiRequest = ConnectionConstants.APP_FIELDS_PREVIEW;
@@ -236,6 +311,15 @@ public class App {
 
         JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST, apiRequest, requestBody);
         return parser.parseBasicResponse(response);
+    }
+
+    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
+        return addFormFieldsApp(appId, fields, null);
+    }
+
+    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+            throws KintoneAPIException {
+        return addFormFieldsApp(appId, fields, revision);
     }
 
     /**
@@ -249,7 +333,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+    private BasicResponse updateFormFieldsApp(Integer appId, HashMap<String, Field> fields, Integer revision)
             throws KintoneAPIException {
 
         String apiRequest = ConnectionConstants.APP_FIELDS_PREVIEW;
@@ -260,7 +344,16 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)
+    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
+        return updateFormFieldsApp(appId, fields, null);
+    }
+
+    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+            throws KintoneAPIException {
+        return updateFormFieldsApp(appId, fields, revision);
+    }
+
+    private BasicResponse deleteFormFieldsApp(Integer app, ArrayList<String> fields, Integer revision)
             throws KintoneAPIException {
 
         String apiRequest = ConnectionConstants.APP_FIELDS_PREVIEW;
@@ -269,6 +362,15 @@ public class App {
 
         JsonElement response = this.connection.request(ConnectionConstants.DELETE_REQUEST, apiRequest, requestBody);
         return parser.parseBasicResponse(response);
+    }
+
+    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields) throws KintoneAPIException {
+        return deleteFormFieldsApp(app, fields, null);
+    }
+
+    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)
+            throws KintoneAPIException {
+        return deleteFormFieldsApp(app, fields, revision);
     }
 
     /**
@@ -283,7 +385,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws KintoneAPIException {
+    private FormLayout getFormLayoutApp(Integer appId, Boolean isPreview) throws KintoneAPIException {
         String apiRequest = ConnectionConstants.APP_LAYOUT;
         if (isPreview != null && isPreview) {
             apiRequest = ConnectionConstants.APP_LAYOUT_PREVIEW;
@@ -295,7 +397,15 @@ public class App {
         return parser.parseFormLayout(response);
     }
 
-    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)
+    public FormLayout getFormLayout(Integer appId) throws KintoneAPIException {
+        return getFormLayoutApp(appId, false);
+    }
+
+    public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws KintoneAPIException {
+        return getFormLayoutApp(appId, isPreview);
+    }
+
+    private BasicResponse updateFormLayoutApp(Integer app, ArrayList<ItemLayout> layout, Integer revision)
             throws KintoneAPIException {
 
         UpdateFormLayoutRequest updateFormLayoutRequest = new UpdateFormLayoutRequest(app, layout, revision);
@@ -307,7 +417,28 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
+    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout) throws KintoneAPIException {
+        return updateFormLayoutApp(app, layout, null);
+    }
+
+    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)
+            throws KintoneAPIException {
+        return updateFormLayoutApp(app, layout, revision);
+    }
+
+    public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException {
+        return addPreviewAppResponse(name, null, null);
+    }
+
+    public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException {
+        return addPreviewAppResponse(name, space, null);
+    }
+
     public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
+        return addPreviewAppResponse(name, space, thread);
+    }
+
+    private AddPreviewAppResponse addPreviewAppResponse(String name, Integer space, Integer thread) throws KintoneAPIException {
         AddPreviewAppRequest addPreviewAppRequest = new AddPreviewAppRequest(name, space, thread);
         String apiRequest = ConnectionConstants.APP_PREVIEW;
         String requestBody = parser.parseObject(addPreviewAppRequest);
@@ -316,12 +447,20 @@ public class App {
         return parser.parseAddPreviewAppResponse(response);
     }
 
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+    private void deployAppSettingResult(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
         String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
         String requestBody = parser.parseObject(deployAppSettingsRequest);
 
         this.connection.request(ConnectionConstants.POST_REQUEST, apiRequest, requestBody);
+    }
+
+    public void deployAppSettings(ArrayList<PreviewAppRequest> apps) throws KintoneAPIException {
+        deployAppSettingResult(apps, false);
+    }
+
+    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+        deployAppSettingResult(apps, revert);
     }
 
     public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) throws KintoneAPIException {
@@ -345,7 +484,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+    private GetViewsResponse getViewsApp(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
 
         String apiRequest = ConnectionConstants.APP_VIEWS;
         if (isPreview != null && isPreview) {
@@ -360,6 +499,22 @@ public class App {
         return (GetViewsResponse) parser.parseJson(response, GetViewsResponse.class);
     }
 
+    public GetViewsResponse getViews(Integer app) throws KintoneAPIException {
+        return getViewsApp(app, null, false);
+    }
+
+    public GetViewsResponse getViews(Integer app, LanguageSetting lang) throws KintoneAPIException {
+        return getViewsApp(app, lang, false);
+    }
+
+    public GetViewsResponse getViews(Integer app, Boolean isPreview) throws KintoneAPIException {
+        return getViewsApp(app, null, isPreview);
+    }
+
+    public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+        return getViewsApp(app, lang, isPreview);
+    }
+
     /**
      * Update the View settings of a an App.
      * Permission to view records are needed when obtaining information of live apps.
@@ -372,7 +527,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
+    private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, ViewModel> views, Integer revision)
             throws KintoneAPIException {
 
         UpdateViewsRequest updateViewsRequest = new UpdateViewsRequest(app, views, revision);
@@ -383,6 +538,15 @@ public class App {
         JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST, apiRequest, requestBody);
 
         return (UpdateViewsResponse) parser.parseJson(response, UpdateViewsResponse.class);
+    }
+
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views) throws KintoneAPIException {
+        return updateViewsApp(app, views, null);
+    }
+
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
+            throws KintoneAPIException {
+        return updateViewsApp(app, views, revision);
     }
 
     /**
@@ -397,7 +561,7 @@ public class App {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+    private GeneralSettings getGeneralSettingsApp(Integer app, LanguageSetting lang, Boolean isPreview)
             throws KintoneAPIException {
         String apiRequest = ConnectionConstants.APP_SETTINGS;
         if (isPreview != null && isPreview) {
@@ -409,6 +573,23 @@ public class App {
         String requestBody = parser.parseObject(getGeneralSettingsRequest);
         JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST, apiRequest, requestBody);
         return (GeneralSettings) parser.parseJson(response, GeneralSettings.class);
+    }
+
+    public GeneralSettings getGeneralSettings(Integer app) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, null, false);
+    }
+
+    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, lang, false);
+    }
+
+    public GeneralSettings getGeneralSettings(Integer app, Boolean isPreview) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, null, isPreview);
+    }
+
+    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+            throws KintoneAPIException {
+        return getGeneralSettingsApp(app, lang, isPreview);
     }
 
     /**
