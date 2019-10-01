@@ -1,7 +1,7 @@
 # Authentication
 
 Authentication module will be used by [Connection](../connection).
-This module allows we authenticate with kintone app by password authenticator or API token authenticator. This module also supports basic authenticator.
+This modules allows authentication with kintone app by password authenticator or API token authenticator. This module also supports basic authenticator.
 
 !!! warning
 
@@ -34,7 +34,7 @@ public Auth() {}
 
 ## Methods
 
-### setPasswordAuth(username, password)
+### setPasswordAuth
 
 > Set password authentication for Authentication module.
 
@@ -47,8 +47,8 @@ public Auth setPasswordAuth(String username, String password)
 
 | Name| Description |
 | --- | --- |
-| username | The username is able to authenticate on kintone app.
-| password | The password is able to authenticate on kintone app.
+| username | The username for authentication with kintone app.
+| password | The password for authentication with kintone app.
 
 **Sample code**
 
@@ -67,7 +67,7 @@ public Auth setPasswordAuth(String username, String password)
 </pre>
 </details>
 
-### setApiToken(apiTokenString)
+### setApiToken
 
 > Set Api Token for Authentication module.
 
@@ -79,7 +79,7 @@ public Auth setApiToken(String apiToken)
 
 | Name| Description |
 | --- |--- |
-| apiToken | The API token is able to authenticate on kintone app.
+| apiToken | The API token used to authenticate with kintone app.
 
 <details class="tab-container" open>
 <Summary>Set APIToken authentication</Summary>
@@ -95,7 +95,7 @@ public Auth setApiToken(String apiToken)
 </pre>
 </details>
 
-### setBasicAuth(username, password)
+### setBasicAuth
 
 > Set Basic authentication for Authentication module.
 
@@ -108,8 +108,8 @@ public Auth setBasicAuth(String username, String password)
 
 | Name| Description |
 | --- | --- |
-| username | The username is able to authenticate on kintone app.
-| password | The password is able to authenticate on kintone app.
+| username | The username used for basic authentication with kintone.
+| password | The password used for basic authentication with kintone.
 
 **Sample code**
 
@@ -127,7 +127,7 @@ public Auth setBasicAuth(String username, String password)
 </pre>
 </details>
 
-### createHeaderCredentials()
+### createHeaderCredentials
 
 > Provide the list of HTTP Headers which use to authentication.
 
@@ -182,7 +182,7 @@ public ArrayList<HTTPHeader> createHeaderCredentials()
 
 </details>
 
-### setClientCert(cert, password)
+### setClientCert
 
 > Set certificate by certificate data
 
@@ -223,7 +223,7 @@ public Auth setClientCert(InputStream cert, String password) throws KintoneAPIEx
 
 </details>
 
-### setClientCertByPath(filePath, password)
+### setClientCertByPath
 > Set certificate by path
 
 **Declaration**
