@@ -14,7 +14,7 @@ public Connection(String domain, Auth auth, int guestSpaceID)
 | --- | --- |
 | domain |The Domain name or FQDN
 | auth | The authentication object ([Auth](../authentication))
-| guestSpaceID | The guest space id. This parameter is used for connect to kintone guest space.
+| guestSpaceID | The guest space id. Use this parameter to connect to kintone guest space.
 
 **Sample code**
 
@@ -45,7 +45,7 @@ public Connection(String domain, Auth auth, int guestSpaceID)
 
 ## Methods
 
-### setHeader(key, value)
+### setHeader
 
 > Set new header of the [Connection](../connection)
 
@@ -86,9 +86,9 @@ public Connection setHeader(String key, String value)
 
 </details>
 
-### setProxy(host, port, username, password)
+### setProxy
 
-> Set the proxy of the HTTP request  
+> Set the proxy for requests
 
 **Declaration**
 ```
@@ -135,9 +135,9 @@ public void setProxy(String host, Integer port, String username, String password
 
 </details>
 
-### setHttpsProxy(host, port, username, password)
+### setHttpsProxy
 
-> Set the SSL-secured proxy of the HTTPS request   
+> Set the SSL-secured proxy for requests
 
 **Declaration**
 ```
