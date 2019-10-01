@@ -7,131 +7,147 @@ Gets the basic information about the app.
 
 ## Constructor
 
-### **Parameter**
-
-(none)
-
-## Methods
-
-### getAppId()
-
-Get the appId
+**Declaration**
+```
+public AppModel()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
+## Methods
 
-Integer
+### getAppId
 
-### getCode()
+Get the appId
+
+**Declaration**
+```
+public Integer getAppId()
+```
+
+**Parameter**
+
+(none)
+
+### getCode
 
 Get the code
 
-**Parameter **
+**Declaration**
+```
+public String getCode()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
 
-String
-
-### getName()
+### getName
 
 Get the name
 
-**Parameter **
+**Declaration**
+```
+public String getName()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getDescription()
+### getDescription
 
 Get the description
 
-**Parameter **
+**Declaration**
+```
+public String getDescription()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getSpaceId()
+### getSpaceId
 
 Get the spaceId
 
-**Parameter **
+**Declaration**
+```
+public String getSpaceId()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-### getThreadId()
+### getThreadId
 
 Get the threadId
 
-**Parameter **
+**Declaration**
+```
+public Integer getThreadId()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-### getCreator()
+### getCreator
 
 Get the creator
 
-**Parameter **
+**Declaration**
+```
+public Member getCreator()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-[Member](../member.md)
-
-### getModifier()
+### getModifier
 
 Get the modifier
 
-**Parameter **
+**Declaration**
+```
+public Member getModifier()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-[Member](../member.md)
-
-### getCreatedAt()
+### getCreatedAt
 
 Get the createdAt
 
-**Parameter **
+**Declaration**
+```
+public Date getCreatedAt()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-Date
-
-### getModifiedAt()
+### getModifiedAt
 
 Get the modifiedAt
 
-**Parameter **
+**Declaration**
+```
+public Date getModifiedAt()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-Date
 
 ## Reference
 
