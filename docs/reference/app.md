@@ -8,13 +8,13 @@ Gets general information of an App, including the name, description, related Spa
 
 ## Constructor
 
-### **Parameter**
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 | connection | [Connection](../connection) | yes | The connection module of this SDK.
 
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Init app module</Summary>
@@ -43,7 +43,7 @@ Gets general information of an App, including the name, description, related Spa
 
 > Get single app
 
-#### **Parameter**
+#**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -73,7 +73,7 @@ Gets general information of an App, including the name, description, related Spa
 
 > Get multiple apps
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -105,7 +105,7 @@ List<AppModel> appList = appManagerment.getApps(offset, limit);
 
 > Get multiple apps by list of ids
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -141,7 +141,7 @@ List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
 
 > Get multiple apps by a list of codes
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -177,7 +177,7 @@ List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
 
 > Get multiple apps by name
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -211,7 +211,7 @@ List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
 
 > Get multiple apps by list of space's ids
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -247,7 +247,7 @@ List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limi
 
 Creates a preview App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -283,7 +283,7 @@ Creates a preview App.
 
 Updates the settings of a pre-live App to the live App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -319,7 +319,7 @@ None
 
 Updates the settings of a pre-live App to the live App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -357,7 +357,7 @@ Updates the settings of a pre-live App to the live App.
 
 Get field of the form in the kintone app
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -393,7 +393,7 @@ Get field of the form in the kintone app
 
 Adds fields to a form of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -446,7 +446,7 @@ Adds fields to a form of an App.
 
 Updates the field settings of fields in a form of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -491,7 +491,7 @@ Updates the field settings of fields in a form of an App.
 
 > Deletes fields from a form of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -527,7 +527,7 @@ Updates the field settings of fields in a form of an App.
 
 Get the layout of form in kintone app
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -562,7 +562,7 @@ Get the layout of form in kintone app
 
 Updates the field layout info of a form in an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -661,7 +661,7 @@ Updates the field layout info of a form in an App.
 
 Gets the description, name, icon, revision and color theme of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -697,7 +697,7 @@ Gets the description, name, icon, revision and color theme of an App.
 
 Updates the description, name, icon, revision and color theme of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -737,7 +737,7 @@ Updates the description, name, icon, revision and color theme of an App.
 
 Gets the View settings of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
@@ -747,7 +747,7 @@ Gets the View settings of an App.
 
 **Return**
 
-[GetViewsResponse](../model/app/view/update-views-response)
+[GetViewsResponse](../model/app/view/get-view-response)
 
 **Sample code**
 
@@ -773,7 +773,7 @@ Gets the View settings of an App.
 
 Updates the View settings of an App.
 
-**Parameter **
+**Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
