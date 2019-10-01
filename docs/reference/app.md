@@ -44,7 +44,7 @@ public App(Connection connection)
 
 ## Methods
 
-### getApp(Integer appId)
+### getApp
 
 > Get single app
 
@@ -75,7 +75,7 @@ public AppModel getApp(Integer appId) throws KintoneAPIException
 
 </details>
 
-### getApps(Integer offset, Integer limit)
+### getApps
 
 > Get multiple apps
 
@@ -110,7 +110,7 @@ List<AppModel> appList = appManagerment.getApps(offset, limit);
 
 </details>
 
-### getAppsByIDs(List<Integer> ids, Integer offset, Integer limit)
+### getAppsByIDs
 
 > Get multiple apps by list of ids
 
@@ -150,7 +150,7 @@ List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
 
 </details>
 
-### getAppsByCodes(List<String> codes, Integer offset, Integer limit)
+### getAppsByCodes
 
 > Get multiple apps by a list of codes
 
@@ -190,7 +190,7 @@ List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
 
 </details>
 
-### getAppsByName(String name, Integer offset, Integer limit)
+### getAppsByName
 
 > Get multiple apps by name
 
@@ -228,7 +228,7 @@ List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
 
 </details>
 
-### getAppsBySpaceIDs(List<Integer> spaceIds, Integer offset, Integer limit)
+### getAppsBySpaceIDs
 
 > Get multiple apps by list of space's ids
 
@@ -268,7 +268,7 @@ List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limi
 
 </details>
 
-### addPreviewApp(String name, Integer space, Integer thread)
+### addPreviewApp
 
 Creates a preview App.
 
@@ -307,7 +307,7 @@ public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer t
 </details>
 
 
-### deployAppSettings(Array<PreviewApp> apps, Boolean revert)
+### deployAppSettings
 
 Updates the settings of a pre-live App to the live App.
 
@@ -322,7 +322,7 @@ public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert)
 | Name| Description |
 | --- | --- |
 | apps | The list of Apps to deploy the pre-live settings to the live Apps. The Maximum limit is 300.<br>If Apps are being deployed to Guest Spaces, Apps can only be deployed to the same Guest Space..|
-| revert | Default value: **false**. Specify **true** to cancel all changes made to the pre-live settings. The pre-live settings will be reverted back to the current settings of the live app.|
+| revert | Default value: **false**.<br> Specify **true** to cancel all changes made to the pre-live settings. The pre-live settings will be reverted back to the current settings of the live app.|
 
 **Sample code**
 
@@ -345,7 +345,7 @@ public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert)
 
 </details>
 
-### getAppDeployStatus(List<Integer> apps)
+### getAppDeployStatus
 
 Updates the settings of a pre-live App to the live App.
 
@@ -384,7 +384,7 @@ public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) th
 </details>
 
 
-### getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)
+### getFormFields
 
 Get field of the form in the kintone app
 
@@ -402,7 +402,7 @@ public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isP
 | --- | --- |
 | appId | The app ID
 | lang | The language code. Support: <ul><li>DEFAULT: Default language setting of system </li><li>JA: Japanese language setting</li><li>ZH: Chinese language setting</li><li>EN: English language setting</li> |
-| isPreview | Default value: **false**. Get the app form fields with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
+| isPreview | Default value: **false**.<br> Get the app form fields with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -424,7 +424,7 @@ public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isP
 
 </details>
 
-### addFormFields(Integer app, HashMap<String, Field> fields, Integer revision)
+### addFormFields
 
 Adds fields to a form of an App.
 
@@ -479,7 +479,7 @@ public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields,
 
 </details>
 
-### updateFormFields(Integer app, HashMap<String, Field> fields, Integer revision)
+### updateFormFields
 
 Updates the field settings of fields in a form of an App.
 
@@ -526,7 +526,7 @@ public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fiel
 
 </details>
 
-### deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)
+### deleteFormFields
 
 > Deletes fields from a form of an App.
 
@@ -564,7 +564,7 @@ public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Int
 
 </details>
 
-### getFormLayout(Integer appId, Boolean isPreview)
+### getFormLayout
 
 Get the layout of form in kintone app
 
@@ -579,7 +579,7 @@ public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws Kintone
 | Name| Description |
 | --- | --- |
 | app |The kintone app id
-| isPreview | Default value: **false**. Get the app form layout with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
+| isPreview | Default value: **false**.<br> Get the app form layout with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -601,7 +601,7 @@ public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws Kintone
 
 </details>
 
-### updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)
+### updateFormLayout
 
 Updates the field layout info of a form in an App.
 
@@ -702,7 +702,7 @@ public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout,
 
 </details>
 
-### getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+### getGeneralSettings
 
 Gets the description, name, icon, revision and color theme of an App.
 
@@ -720,7 +720,7 @@ public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boo
 | --- | --- |
 | app | The kintone app id
 | lang | The localized language to retrieve the data in language constants
-| isPreview | Default value: **fasle** Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
+| isPreview | Default value: **fasle**. <br> Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
@@ -742,7 +742,7 @@ public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boo
 
 </details>
 
-### updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)
+### updateGeneralSettings
 
 Updates the description, name, icon, revision and color theme of an App.
 
@@ -784,7 +784,7 @@ public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalS
 
 </details>
 
-### getViews(Integer app, LanguageSetting lang, Boolean isPreview)
+### getViews
 
 Gets the View settings of an App.
 
@@ -802,7 +802,7 @@ public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPr
 | --- | --- |
 | app | The kintone app id
 | lang | The localized language to retrieve the data in language constants
-| isPreview | Default value: **false** Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.
+| isPreview | Default value: **false**.<br> Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.
 
 **Sample code**
 
@@ -824,7 +824,7 @@ public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPr
 
 </details>
 
-### updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
+### updateViews
 
 Updates the View settings of an App.
 
