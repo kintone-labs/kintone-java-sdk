@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -36,8 +36,7 @@ public abstract class AbstractInputField extends Field {
     }
 
     /**
-     * @param noLabel
-     *            the noLabel to set
+     * @param noLabel the noLabel to set
      */
     public void setNoLabel(Boolean noLabel) {
         this.noLabel = noLabel;

@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -45,7 +45,7 @@ public class SubTableField extends Field {
             return;
         }
         if (this.fields == null) {
-        	this.fields = new HashMap<String, AbstractInputField>();
+            this.fields = new HashMap<>();
         }
         this.fields.put(field.getCode(), field);
     }
