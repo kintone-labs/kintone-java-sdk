@@ -26,7 +26,7 @@ import com.cybozu.kintone.client.model.app.basic.request.DeployAppSettingsReques
 import com.cybozu.kintone.client.model.app.basic.request.GetAppDeployStatusRequest;
 import com.cybozu.kintone.client.model.app.basic.request.GetGeneralSettingsRequest;
 import com.cybozu.kintone.client.model.app.basic.request.GetViewsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.PreviewAppRequest;
+import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.request.UpdateFormLayoutRequest;
 import com.cybozu.kintone.client.model.app.basic.request.UpdateGeneralSettingsRequest;
 import com.cybozu.kintone.client.model.app.basic.request.UpdateViewsRequest;
@@ -316,7 +316,7 @@ public class App {
         return parser.parseAddPreviewAppResponse(response);
     }
 
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+    public void deployAppSettings(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
         String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
         String requestBody = parser.parseObject(deployAppSettingsRequest);
