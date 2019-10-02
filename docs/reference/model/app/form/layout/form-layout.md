@@ -13,133 +13,143 @@ label, space, and border settings.
 
 ### Methods
 
-#### getRevision()
+#### getRevision
 
 Get the revision
+
+**Declaration**
+```
+public String getRevision()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getLayout()
+#### getLayout
 
 Get the layout
 
-**Parameter **
+**Declaration**
+```
+public ArrayList<ItemLayout> getLayout()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-List<[ItemLayout](#itemlayout)\>
 
 ## FieldLayout
 
 ### Methods
 
-#### getType()
+#### getType
 
 Get the type
 
+**Declaration**
+```
+public String getType()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getCode()
+#### getCode
 
 Get the code
 
+**Declaration**
+```
+public String getCode()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getElementId()
+#### getElementId
 
 Get the elementId
 
+**Declaration**
+```
+public String getElementId()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getLabel()
+#### getLabel
 
 Get the label
 
+**Declaration**
+```
+public String getLabel()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getSize()
+#### getSize
 
 Get the size
 
+**Declaration**
+```
+public FieldSize getSize()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-[FieldSize](#fieldsize)
 
 ## FieldSize
 
 ### Methods
 
-#### getWidth()
+#### getWidth
 
 Get the width
 
+**Declaration**
+```
+public String getWidth()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getHeight()
+#### getHeight
 
 Get the height
 
+**Declaration**
+```
+public String getHeight()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getInnerHeight()
+#### getInnerHeight
 
 Get the innerHeight
 
+**Declaration**
+```
+public String getInnerHeight()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## GroupLayout
 
@@ -148,29 +158,31 @@ String
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code
 
+**Declaration**
+```
+public String getCode()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getLayout()
+#### getLayout
 
 Get the layout
 
+**Declaration**
+```
+public ArrayList<RowLayout> getLayout()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-List<[RowLayout](#rowlayout)>
 
 ## RowLayout
 
@@ -179,17 +191,18 @@ List<[RowLayout](#rowlayout)>
 
 ### Methods
 
-#### getFields()
+#### getFields
 
 Get the fields
+
+**Declaration**
+```
+public ArrayList<FieldLayout> getFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-List<[FieldLayout](#fieldlayout)>
 
 ## SubTableLayout
 
@@ -198,17 +211,18 @@ List<[FieldLayout](#fieldlayout)>
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## ItemLayout
 
@@ -217,17 +231,18 @@ String
 
 ### Methods
 
-#### getType()
+#### getType
 
 Get the type
+
+**Declaration**
+```
+public LayoutType getType()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-LayoutType
 
 ## Reference
 
