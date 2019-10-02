@@ -3,36 +3,40 @@ The preview app.
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public PreviewApp() 
+public PreviewApp(Integer app, Integer revision)
+```
+**Parameter**
 
-
-| Name| Type| Description |
-| --- | --- | --- |
-| app | Integer | The appId
+| Name| Description |
+| --- | --- |
+| app | The appId
 | revision | The revision of the preview app
 
 ## Methods
 
-### getApp()
+### getApp
 
 Get the appId
 
+**Declaration**
+```
+public Integer getApp()
+```
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-### getRevision()
+### getRevision
 
 The revision of the preview app.
 
-**Parameter **
+**Declaration**
+```
+public Integer getRevision()
+```
+**Parameter**
 
 (none)
-
-**Return**
-
-Integer
