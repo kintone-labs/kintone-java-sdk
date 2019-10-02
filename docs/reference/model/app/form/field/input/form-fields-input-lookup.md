@@ -12,93 +12,100 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getLookup()
+#### getLookup
 
 Get the lookup
+
+**Declaration**
+```
+public LookupItem getLookup()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[LookupItem](#lookupitem)
 
 ## LookupItem
 
 ### Methods
 
-#### getFieldMapping()
+#### getFieldMapping
 
 Get the fieldMapping
 
+**Declaration**
+```
+public ArrayList<FieldMapping> getFieldMapping()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-List<[FieldMapping](../../form-fields/#fieldmapping.md)\>
-
-#### getFilterCond()
+#### getFilterCond
 
 Get the filterCond
 
+**Declaration**
+```
+public String getFilterCond()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getLookupPickerFields()
+#### getLookupPickerFields
 
 Get the lookupPickerFields
 
+**Declaration**
+```
+public ArrayList<String> getLookupPickerFields()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-List<String\>
-
-#### getRelatedApp()
+#### getRelatedApp
 
 Get the relatedApp
 
+**Declaration**
+```
+public RelatedApp getRelatedApp()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-[RelatedApp](../../../form-fields-related_record/#relatedapp.md)
-
-#### getRelatedKeyField()
+#### getRelatedKeyField
 
 Get the relatedKeyField
 
+**Declaration**
+```
+public String getRelatedKeyField()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getSort()
+#### getSort
 
 Get the sort
 
+**Declaration**
+```
+public String getSort()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## Reference
 
