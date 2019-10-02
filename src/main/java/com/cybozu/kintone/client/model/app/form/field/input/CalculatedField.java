@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -32,8 +32,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param expression
-     *            the expression to set
+     * @param expression the expression to set
      */
     public void setExpression(String expression) {
         this.expression = expression;
@@ -47,8 +46,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param hideExpression
-     *            the hideExpression to set
+     * @param hideExpression the hideExpression to set
      */
     public void setHideExpression(Boolean hideExpression) {
         this.hideExpression = hideExpression;
@@ -62,8 +60,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param displayScale
-     *            the displayScale to set
+     * @param displayScale the displayScale to set
      */
     public void setDisplayScale(String displayScale) {
         this.displayScale = displayScale;
@@ -77,8 +74,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param unit
-     *            the unit to set
+     * @param unit the unit to set
      */
     public void setUnit(String unit) {
         this.unit = unit;
@@ -92,8 +88,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param unitPosition
-     *            the unitPosition to set
+     * @param unitPosition the unitPosition to set
      */
     public void setUnitPosition(UnitPosition unitPosition) {
         this.unitPosition = unitPosition;
@@ -107,8 +102,7 @@ public class CalculatedField extends AbstractInputField {
     }
 
     /**
-     * @param format
-     *            the format to set
+     * @param format the format to set
      */
     public void setFormat(NumberFormat format) {
         this.format = format;
