@@ -11,7 +11,7 @@ public Icon(FileModel file, String key, IconType type)
 **Parameter**
 
 | Name|Description |
-| --- | --- | --- |
+| --- | --- |
 | key | The key of the Icon
 | iconType | The icon type of the Icon ([IconType](#icontype))
 | file | The file of the Icon ([FileModel](/reference/model/file/file-model))
