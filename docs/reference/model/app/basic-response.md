@@ -3,23 +3,29 @@ The  basic response
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public BasicResponse()
+public BasicResponse(Integer revision)
+```
 
+**Parameter**
 
-| Name| Type| Description |
-| --- | --- | --- |
-| revision | Integer | The revision of the app
+| Name| Description |
+| --- | --- |
+| revision | The revision of the app
 
 ## Methods
 
-### getRevision()
+### getRevision
 
 The revision of the app.
 
-**Parameter **
+**Declaration**
+```
+public Integer getRevision()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-Integer
