@@ -10,17 +10,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getApp()
+#### getApp
 
 Get the app
+
+**Declaration**
+```
+public String getApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- String
 
 **Sample code**
 
@@ -37,17 +38,18 @@ Get the app
 
 </details>
 
-#### getCode()
+#### getCode
 
 Get the code
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -68,17 +70,18 @@ String
 
 ### Methods
 
-#### getCondition()
+#### getCondition
 
 Get the condition
+
+**Declaration**
+```
+public FieldMapping getCondition()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[FieldMapping](../form-fields/#fieldmapping)
 
 **Sample code**
 
@@ -95,17 +98,18 @@ Get the condition
 
 </details>
 
-#### getFilterCond()
+#### getFilterCond
 
 Get the filterCond
+
+**Declaration**
+```
+public String getFilterCond()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- String
 
 **Sample code**
 
@@ -122,17 +126,18 @@ Get the filterCond
 
 </details>
 
-#### getRelatedApp()
+#### getRelatedApp
 
 Get the relatedApp
+
+**Declaration**
+```
+public RelatedApp getRelatedApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[RelatedApp](#relatedapp)
 
 **Sample code**
 
@@ -149,17 +154,18 @@ Get the relatedApp
 
 </details>
 
-#### getSize()
+#### getSize
 
 Get the size
+
+**Declaration**
+```
+public Integer getSize()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- Integer
 
 **Sample code**
 
@@ -176,17 +182,18 @@ Get the size
 
 </details>
 
-#### getDisplayFields()
+#### getDisplayFields
 
 Get the displayFields
+
+**Declaration**
+```
+public ArrayList<String> getDisplayFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- List<String\>
 
 **Sample code**
 
@@ -203,17 +210,18 @@ Get the displayFields
 
 </details>
 
-#### getSort()
+#### getSort
 
 Get the sort
+
+**Declaration**
+```
+public String getSort()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -237,17 +245,18 @@ String
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
+
+**Declaration**
+```
+public String getLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -264,17 +273,18 @@ String
 
 </details>
 
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
+
+**Declaration**
+```
+public Boolean getNoLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -291,17 +301,18 @@ Boolean
 
 </details>
 
-#### getReferenceTable()
+#### getReferenceTable
 
 Get the referenceTable
+
+**Declaration**
+```
+public ReferenceTable getReferenceTable()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[ReferenceTable](#referencetable)
 
 **Sample code**
 
