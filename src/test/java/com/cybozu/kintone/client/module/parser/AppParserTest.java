@@ -1,10 +1,17 @@
 package com.cybozu.kintone.client.module.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.app.AppDeployStatus;
+import com.cybozu.kintone.client.model.app.AppDeployStatus.Status;
+import com.cybozu.kintone.client.model.app.AppModel;
+import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
+import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
+import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
+import com.cybozu.kintone.client.model.member.Member;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,19 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.AppDeployStatus;
-import com.cybozu.kintone.client.model.app.AppDeployStatus.Status;
-import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
-import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
-import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
-import com.cybozu.kintone.client.model.member.Member;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import static org.junit.Assert.*;
 
 public class AppParserTest {
     private static final JsonParser jsonParser = new JsonParser();
@@ -400,7 +395,7 @@ public class AppParserTest {
         assertNotNull(jsonParser.parse(validPreviewApp));
         AppParser parser = new AppParser();
         try {
-            AddPreviewAppResponse parseAddPreviewAppResponse = parser
+            PreviewApp parseAddPreviewAppResponse = parser
                     .parseAddPreviewAppResponse(jsonParser.parse(validPreviewApp));
             assertNotNull(parseAddPreviewAppResponse.getApp());
             assertNotNull(parseAddPreviewAppResponse.getRevision());
