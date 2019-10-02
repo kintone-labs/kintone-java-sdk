@@ -7,34 +7,12 @@
 
 package com.cybozu.kintone.client.module.app;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.GetAppRequest;
-import com.cybozu.kintone.client.model.app.GetAppsRequest;
-import com.cybozu.kintone.client.model.app.GetFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.GetFormLayoutRequest;
-import com.cybozu.kintone.client.model.app.LanguageSetting;
-import com.cybozu.kintone.client.model.app.basic.request.AddPreviewAppRequest;
-import com.cybozu.kintone.client.model.app.basic.request.AddUpdateFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.DeleteFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.DeployAppSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetAppDeployStatusRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetGeneralSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetViewsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.PreviewAppRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateFormLayoutRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateGeneralSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateViewsRequest;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
-import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
-import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
-import com.cybozu.kintone.client.model.app.basic.response.GetViewsResponse;
-import com.cybozu.kintone.client.model.app.basic.response.UpdateViewsResponse;
+import com.cybozu.kintone.client.model.app.*;
+import com.cybozu.kintone.client.model.app.basic.request.*;
+import com.cybozu.kintone.client.model.app.basic.response.*;
 import com.cybozu.kintone.client.model.app.form.field.Field;
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
@@ -43,6 +21,9 @@ import com.cybozu.kintone.client.model.app.general.GeneralSettings;
 import com.cybozu.kintone.client.model.app.view.ViewModel;
 import com.cybozu.kintone.client.module.parser.AppParser;
 import com.google.gson.JsonElement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Managing kintone applications such as creating app, setting of form fields, form layout,
@@ -61,35 +42,635 @@ public class App {
     }
 
     /**
-     * Get app with id
-     * Permissions to view the App is needed.
-     * API Tokens cannot be used with this API.
+     * Get app by app id
      *
-     * @param appId appId of the getApp
+     * @param appId id of kintone App
      * @return AppModel
-     * @throws KintoneAPIException the KintoneAPIException to throw
+     * @throws KintoneAPIException
      */
     public AppModel getApp(Integer appId) throws KintoneAPIException {
         GetAppRequest getAppRequest = new GetAppRequest(appId);
-        String requestbody = parser.parseObject(getAppRequest);
-        JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP,
-                requestbody);
+        String requestBody = parser.parseObject(getAppRequest);
+        JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP, requestBody);
         return parser.parseApp(response);
     }
 
+
     /**
-     * Get apps which regardless belongs to space or not.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
+     * Get list app by offset and limit
      *
-     * @param ids
-     * @param codes
-     * @param name
-     * @param spaceIds
-     * @param limit
-     * @param offset
-     * @return
+     * @param offset The offset off data result
+     * @param limit  The limit number of result
+     * @return ArrayList<AppModel>
      * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getApps(Integer offset, Integer limit) throws KintoneAPIException {
+        return getApps(null, null, null, null, offset, limit);
+    }
+
+    /**
+     * Get list app
+     *
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+
+    public ArrayList<AppModel> getApps() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    /**
+     * Get list app by offset
+     *
+     * @param offset The offset off data result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+
+    public ArrayList<AppModel> getApps(Integer offset) throws KintoneAPIException {
+        return getApps(null, null, null, null, offset, null);
+    }
+
+    /**
+     * Get list app by list id, offset and limit
+     *
+     * @param ids    list id of kintone App
+     * @param offset The offset off data result
+     * @param limit  The limit number of result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, Integer limit) throws KintoneAPIException {
+        return getApps(ids, null, null, null, offset, limit);
+    }
+
+    /**
+     * Get list app
+     *
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByIDs() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    /**
+     * Get list app by list id
+     *
+     * @param ids list id of kintone App
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids) throws KintoneAPIException {
+        return getApps(ids, null, null, null, null, null);
+    }
+
+    /**
+     * et list app by list id, offset
+     *
+     * @param ids    list id of kintone App
+     * @param offset The offset off data result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset) throws KintoneAPIException {
+        return getApps(ids, null, null, null, offset, null);
+    }
+
+    /**
+     * Get list app by list codes, offset and limit
+     *
+     * @param codes  list codes of kintone App
+     * @param offset The offset off data result
+     * @param limit  The limit number of result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset, Integer limit)
+            throws KintoneAPIException {
+        return getApps(null, codes, null, null, offset, limit);
+    }
+
+    /**
+     * Get list app by list codes, offset and limit
+     *
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByCodes() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    /**
+     * Get list app by list codes, offset and limit
+     *
+     * @param codes list codes of kintone App
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes) throws KintoneAPIException {
+        return getApps(null, codes, null, null, null, null);
+    }
+
+    /**
+     * Get list app by list codes, offset and limit
+     *
+     * @param codes  list codes of kintone App
+     * @param offset The offset off data result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset) throws KintoneAPIException {
+        return getApps(null, codes, null, null, offset, null);
+    }
+
+    /**
+     * Get list app by LIKE name, offset and limit
+     *
+     * @param name   The name of kintone App
+     * @param offset The offset off data result
+     * @param limit  The limit number of result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer limit) throws KintoneAPIException {
+        return getApps(null, null, name, null, offset, limit);
+    }
+
+    /**
+     * Get list app by LIKE name, offset and limit
+     *
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByName() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    /**
+     * Get list app by LIKE name, offset and limit
+     *
+     * @param name The name of kintone App
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByName(String name) throws KintoneAPIException {
+        return getApps(null, null, name, null, null, null);
+    }
+
+    /**
+     * Get list app by LIKE name, offset and limit
+     *
+     * @param name   The name of kintone App
+     * @param offset The offset off data result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsByName(String name, Integer offset) throws KintoneAPIException {
+        return getApps(null, null, name, null, offset, null);
+    }
+
+    /**
+     * Get list app by list space ids, offset and limit
+     *
+     * @param spaceIds List space ids of kintone App
+     * @param offset   The offset off data result
+     * @param limit    The limit number of result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset, Integer limit)
+            throws KintoneAPIException {
+        return getApps(null, null, null, spaceIds, offset, limit);
+    }
+
+    /**
+     * Get list app by list space ids, offset and limit
+     *
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsBySpaceIDs() throws KintoneAPIException {
+        return getApps(null, null, null, null, null, null);
+    }
+
+    /**
+     * Get list app by list space ids, offset and limit
+     *
+     * @param spaceIds List space ids of kintone App
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds)
+            throws KintoneAPIException {
+        return getApps(null, null, null, spaceIds, null, null);
+    }
+
+    /**
+     * Get list app by list space ids, offset and limit
+     *
+     * @param spaceIds List space ids of kintone App
+     * @param offset   The offset off data result
+     * @return ArrayList<AppModel>
+     * @throws KintoneAPIException
+     */
+    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset)
+            throws KintoneAPIException {
+        return getApps(null, null, null, spaceIds, offset, null);
+    }
+
+    /**
+     * Gets the list of fields and field settings of an App.
+     *
+     * @param appId     appId of kintone App
+     * @param lang      language of LanguageSetting (EN, JP, ZH)
+     * @param isPreview option preview
+     * @return FormFields
+     * @throws KintoneAPIException
+     */
+    public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+        return getFormFieldsApp(appId, lang, isPreview);
+    }
+
+    /**
+     * Gets the list of fields and field settings of an App.
+     *
+     * @param appId appId of kintone App
+     * @return FormFields
+     * @throws KintoneAPIException
+     */
+    public FormFields getFormFields(Integer appId) throws KintoneAPIException {
+        return getFormFieldsApp(appId, null, false);
+    }
+
+    /**
+     * Gets the list of fields and field settings of an App.
+     *
+     * @param appId appId of kintone App
+     * @param lang  language of LanguageSetting (EN, JP, ZH)
+     * @return FormFields
+     * @throws KintoneAPIException
+     */
+    public FormFields getFormFields(Integer appId, LanguageSetting lang) throws KintoneAPIException {
+        return getFormFieldsApp(appId, lang, false);
+    }
+
+    /**
+     * Gets the list of fields and field settings of an App.
+     *
+     * @param appId     appId of kintone App
+     * @param isPreview option preview
+     * @return FormFields
+     * @throws KintoneAPIException
+     */
+    public FormFields getFormFields(Integer appId, Boolean isPreview) throws KintoneAPIException {
+        return getFormFieldsApp(appId, null, isPreview);
+    }
+
+
+    /**
+     * Add Form Fields into Application.
+     *
+     * @param appId  appId of kintone App
+     * @param fields formFields which will add to form of kintone app
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
+        return addFormFieldsApp(appId, fields, null);
+    }
+
+    /**
+     * Add Form Fields into Application.
+     *
+     * @param appId    appId of kintone App
+     * @param fields   formFields which will add to form of kintone app
+     * @param revision specify the revision number of the settings that will be deployed
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+            throws KintoneAPIException {
+        return addFormFieldsApp(appId, fields, revision);
+    }
+
+    /**
+     * Update Form Fields into Application.
+     *
+     * @param appId  appId of kintone App
+     * @param fields formFields which will add to form of kintone app
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
+        return updateFormFieldsApp(appId, fields, null);
+    }
+
+    /**
+     * Update Form Fields into Application.
+     *
+     * @param appId    appId of kintone App
+     * @param fields   formFields which will add to form of kintone app
+     * @param revision specify the revision number of the settings that will be deployed
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
+            throws KintoneAPIException {
+        return updateFormFieldsApp(appId, fields, revision);
+    }
+
+    /**
+     * Deletes fields from a form of an App.
+     *
+     * @param app    appId of kintone App
+     * @param fields formFields which will add to form of kintone app
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields) throws KintoneAPIException {
+        return deleteFormFieldsApp(app, fields, null);
+    }
+
+    /**
+     * Deletes fields from a form of an App.
+     *
+     * @param app      appId of kintone App
+     * @param fields   formFields which will add to form of kintone app
+     * @param revision specify the revision number of the settings that will be deployed
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)
+            throws KintoneAPIException {
+        return deleteFormFieldsApp(app, fields, revision);
+    }
+
+    /**
+     * Gets the field layout info of a form in an App.
+     *
+     * @param appId appId of kintone App
+     * @return FormLayout
+     * @throws KintoneAPIException
+     */
+    public FormLayout getFormLayout(Integer appId) throws KintoneAPIException {
+        return getFormLayoutApp(appId, false);
+    }
+
+    /**
+     * Gets the field layout info of a form in an App.
+     *
+     * @param appId     appId of kintone App
+     * @param isPreview option preview
+     * @return FormLayout
+     * @throws KintoneAPIException
+     */
+    public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws KintoneAPIException {
+        return getFormLayoutApp(appId, isPreview);
+    }
+
+    /**
+     * Updates the field layout info of a form in an App.
+     *
+     * @param app    appId of kintone App
+     * @param layout list item layout of kintone App
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout) throws KintoneAPIException {
+        return updateFormLayoutApp(app, layout, null);
+    }
+
+    /**
+     * Updates the field layout info of a form in an App.
+     *
+     * @param app      appId of kintone App
+     * @param layout   list item layout of kintone App
+     * @param revision specify the revision number of the settings that will be deployed
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)
+            throws KintoneAPIException {
+        return updateFormLayoutApp(app, layout, revision);
+    }
+
+    /**
+     * Creates a preview App.
+     *
+     * @param name name of kintone App
+     * @return AddPreviewAppResponse
+     * @throws KintoneAPIException
+     */
+    public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException {
+        return addPreviewAppResponse(name, null, null);
+    }
+
+    /**
+     * Creates a preview App.
+     *
+     * @param name  name of kintone App
+     * @param space id of kintone App
+     * @return AddPreviewAppResponse
+     * @throws KintoneAPIException
+     */
+    public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException {
+        return addPreviewAppResponse(name, space, null);
+    }
+
+    /**
+     * Creates a preview App.
+     *
+     * @param name   name of kintone App
+     * @param space  id of kintone App
+     * @param thread thread id of kintone App
+     * @return AddPreviewAppResponse
+     * @throws KintoneAPIException
+     */
+    public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
+        return addPreviewAppResponse(name, space, thread);
+    }
+
+    /**
+     * Updates the settings of a pre-live App to the live App.
+     *
+     * @param apps list preview app
+     * @throws KintoneAPIException
+     */
+    public void deployAppSettings(ArrayList<PreviewAppRequest> apps) throws KintoneAPIException {
+        deployAppSettingResult(apps, false);
+    }
+
+    /**
+     * Updates the settings of a pre-live App to the live App.
+     *
+     * @param apps   list preview app
+     * @param revert option revert
+     * @throws KintoneAPIException
+     */
+    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+        deployAppSettingResult(apps, revert);
+    }
+
+    /**
+     * Updates the settings of a pre-live App to the live App.
+     *
+     * @param apps list app i
+     * @return GetAppDeployStatusResponse
+     * @throws KintoneAPIException
+     */
+    public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) throws KintoneAPIException {
+        GetAppDeployStatusRequest deployStatusRequest = new GetAppDeployStatusRequest(apps);
+        String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
+        String requestBody = parser.parseObject(deployStatusRequest);
+
+        JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, apiRequest, requestBody);
+        return parser.parseAppDeployStatusResponse(response);
+    }
+
+    /**
+     * Gets the View settings of a an App.
+     *
+     * @param app app id of kintone App
+     * @return GetViewsResponse
+     * @throws KintoneAPIException
+     */
+    public GetViewsResponse getViews(Integer app) throws KintoneAPIException {
+        return getViewsApp(app, null, false);
+    }
+
+    /**
+     * Gets the View settings of a an App.
+     *
+     * @param app  app id of kintone App
+     * @param lang language of LanguageSetting
+     * @return GetViewsResponse
+     * @throws KintoneAPIException
+     */
+    public GetViewsResponse getViews(Integer app, LanguageSetting lang) throws KintoneAPIException {
+        return getViewsApp(app, lang, false);
+    }
+
+    /**
+     * Gets the View settings of a an App.
+     *
+     * @param app       app id of kintone App
+     * @param isPreview option preview
+     * @return GetViewsResponse
+     * @throws KintoneAPIException
+     */
+    public GetViewsResponse getViews(Integer app, Boolean isPreview) throws KintoneAPIException {
+        return getViewsApp(app, null, isPreview);
+    }
+
+    /**
+     * Gets the View settings of a an App.
+     *
+     * @param app       app id of kintone App
+     * @param lang      language of LanguageSetting
+     * @param isPreview option preview
+     * @return GetViewsResponse
+     * @throws KintoneAPIException
+     */
+    public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+        return getViewsApp(app, lang, isPreview);
+    }
+
+    /**
+     * Update the View settings of a an App.
+     *
+     * @param app   app id of kintone App
+     * @param views list views of kintone App
+     * @return UpdateViewsResponse
+     * @throws KintoneAPIException
+     */
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views) throws KintoneAPIException {
+        return updateViewsApp(app, views, null);
+    }
+
+    /**
+     * Update the View settings of a an App.
+     *
+     * @param app      app id of kintone App
+     * @param views    list views of kintone App
+     * @param revision specify the revision number of the settings that will be deployed.
+     * @return UpdateViewsResponse
+     * @throws KintoneAPIException
+     */
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
+            throws KintoneAPIException {
+        return updateViewsApp(app, views, revision);
+    }
+
+    /**
+     * Gets the description, name, icon, revision and color theme of an App.
+     *
+     * @param app       app id of kintone App
+     * @return GeneralSettings
+     * @throws KintoneAPIException
+     */
+    public GeneralSettings getGeneralSettings(Integer app) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, null, false);
+    }
+
+    /**
+     * Gets the description, name, icon, revision and color theme of an App.
+     *
+     * @param app  app id of kintone App
+     * @param lang language of LanguageSetting
+     * @return GeneralSettings
+     * @throws KintoneAPIException
+     */
+    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, lang, false);
+    }
+
+    /**
+     * Gets the description, name, icon, revision and color theme of an App.
+     *
+     * @param app       app id of kintone App
+     * @param isPreview option preview
+     * @return GeneralSettings
+     * @throws KintoneAPIException
+     */
+    public GeneralSettings getGeneralSettings(Integer app, Boolean isPreview) throws KintoneAPIException {
+        return getGeneralSettingsApp(app, null, isPreview);
+    }
+
+    /**
+     * Gets the description, name, icon, revision and color theme of an App.
+     *
+     * @param app       app id of kintone App
+     * @param lang      language of LanguageSetting
+     * @param isPreview option preview
+     * @return GeneralSettings
+     * @throws KintoneAPIException
+     */
+    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+            throws KintoneAPIException {
+        return getGeneralSettingsApp(app, lang, isPreview);
+    }
+
+    /**
+     * Updates the description, name, icon, revision and color theme of an App.
+     *
+     * @param app             app id of kintone App
+     * @param generalSettings generalSettings of the updateGeneralSettings
+     * @return BasicResponse
+     * @throws KintoneAPIException
+     */
+    public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalSettings) throws KintoneAPIException {
+        String apiRequest = ConnectionConstants.APP_SETTINGS_PREVIEW;
+
+        UpdateGeneralSettingsRequest updateGeneralSettingsRequest = new UpdateGeneralSettingsRequest(app,
+                generalSettings);
+        String requestBody = parser.parseObject(updateGeneralSettingsRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, apiRequest, requestBody);
+        return (BasicResponse) parser.parseJson(response, BasicResponse.class);
+    }
+
+    /**
+     * PRIVATE FUNCTIONS
      */
     private ArrayList<AppModel> getApps(ArrayList<Integer> ids, ArrayList<String> codes, String name, ArrayList<Integer> spaceIds,
                                         Integer offset, Integer limit) throws KintoneAPIException {
@@ -101,155 +682,8 @@ public class App {
         return parser.parseApps(response);
     }
 
-    /**
-     * Get apps which regardless belongs to space or not.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
-     *
-     * @param limit  limit of the getApps
-     * @param offset offset of the getApps
-     * @return ArrayList
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public ArrayList<AppModel> getApps(Integer offset, Integer limit) throws KintoneAPIException {
-        return getApps(null, null, null, null, offset, limit);
-    }
-
-    public ArrayList<AppModel> getApps() throws KintoneAPIException {
-        return getApps(null, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getApps(Integer offset) throws KintoneAPIException {
-        return getApps(null, null, null, null, offset, null);
-    }
-
-    /**
-     * Get apps which regardless belongs to space or not.
-     * Require the id for retrieve.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
-     *
-     * @param ids    ids of the getAppsByIDs
-     * @param offset offset of the getAppsByIDs
-     * @param limit  limit of the getAppsByIDs
-     * @return ArrayList
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, Integer limit) throws KintoneAPIException {
-        return getApps(ids, null, null, null, offset, limit);
-    }
-
-    public ArrayList<AppModel> getAppsByIDs() throws KintoneAPIException {
-        return getApps(null, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids) throws KintoneAPIException {
-        return getApps(ids, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset) throws KintoneAPIException {
-        return getApps(ids, null, null, null, offset, null);
-    }
-
-    /**
-     * Get apps which regardless belongs to space or not.
-     * Require the app code for retrieve.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
-     *
-     * @param codes  codes of the getAppsByCodes
-     * @param offset offset of the getAppsByCodes
-     * @param limit  limit of the getAppsByCodes
-     * @return ArrayList
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset, Integer limit) throws KintoneAPIException {
-        return getApps(null, codes, null, null, offset, limit);
-    }
-
-    public ArrayList<AppModel> getAppsByCodes() throws KintoneAPIException {
-        return getApps(null, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes) throws KintoneAPIException {
-        return getApps(null, codes, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offset) throws KintoneAPIException {
-        return getApps(null, codes, null, null, offset, null);
-    }
-
-    /**
-     * Get apps which regardless belongs to space or not.
-     * Require the app name for retrieve.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
-     *
-     * @param name   name of the getAppsByName
-     * @param offset offset of the getAppsByName
-     * @param limit  limit of the getAppsByName
-     * @return ArrayList
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer limit) throws KintoneAPIException {
-        return getApps(null, null, name, null, offset, limit);
-    }
-
-    public ArrayList<AppModel> getAppsByName() throws KintoneAPIException {
-        return getApps(null, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByName(String name) throws KintoneAPIException {
-        return getApps(null, null, name, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsByName(String name, Integer offset) throws KintoneAPIException {
-        return getApps(null, null, name, null, offset, null);
-    }
-
-    /**
-     * Get apps which belongs to a specific space.
-     * Permissions to view the Apps are needed.
-     * API Tokens cannot be used with this API.
-     *
-     * @param spaceIds spaceIds of the getAppsBySpaceIDs
-     * @param offset   offset of the getAppsBySpaceIDs
-     * @param limit    limit of the getAppsBySpaceIDs
-     * @return ArrayList
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset, Integer limit)
+    private FormFields getFormFieldsApp(Integer appId, LanguageSetting lang, Boolean isPreview)
             throws KintoneAPIException {
-        return getApps(null, null, null, spaceIds, offset, limit);
-    }
-
-    public ArrayList<AppModel> getAppsBySpaceIDs() throws KintoneAPIException {
-        return getApps(null, null, null, null, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds)
-            throws KintoneAPIException {
-        return getApps(null, null, null, spaceIds, null, null);
-    }
-
-    public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Integer offset)
-            throws KintoneAPIException {
-        return getApps(null, null, null, spaceIds, offset, null);
-    }
-
-    /**
-     * Gets the list of fields and field settings of an App.
-     * Permission to manage the App is needed when obtaining data of live Apps.
-     * Permission to manage the App is needed when obtaining data of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param appId     appId of the getFormFields
-     * @param lang      lang of the getFormFields
-     * @param isPreview isPreview of the getFormFields
-     * @return FormFields
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    private FormFields getFormFieldsApp(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
         if (lang == null) {
             lang = LanguageSetting.DEFAULT;
         }
@@ -270,34 +704,6 @@ public class App {
         return formfields;
     }
 
-    public FormFields getFormFields(Integer appId, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
-        return getFormFieldsApp(appId, lang, isPreview);
-    }
-
-    public FormFields getFormFields(Integer appId) throws KintoneAPIException {
-        return getFormFieldsApp(appId, null, false);
-    }
-
-    public FormFields getFormFields(Integer appId, LanguageSetting lang) throws KintoneAPIException {
-        return getFormFieldsApp(appId, lang, false);
-    }
-
-    public FormFields getFormFields(Integer appId, Boolean isPreview) throws KintoneAPIException {
-        return getFormFieldsApp(appId, null, isPreview);
-    }
-
-
-    /**
-     * Add Form Fields into Application.
-     * Permission to manage the App is needed when obtaining data of live Apps.
-     * API Tokens cannot be used with this API.
-     *
-     * @param appId    appId of the addFormFields
-     * @param fields   fields of the addFormFields
-     * @param revision revision of the addFormFields
-     * @return BasicResponse
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
     private BasicResponse addFormFieldsApp(Integer appId, HashMap<String, Field> fields, Integer revision)
             throws KintoneAPIException {
 
@@ -309,25 +715,6 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
-        return addFormFieldsApp(appId, fields, null);
-    }
-
-    public BasicResponse addFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
-            throws KintoneAPIException {
-        return addFormFieldsApp(appId, fields, revision);
-    }
-
-    /**
-     * Update Form Fields into Application. Permission to manage the App is needed
-     * when obtaining data of live Apps. API Tokens cannot be used with this API.
-     *
-     * @param appId    appId of the updateFormFields
-     * @param fields   fields of the updateFormFields
-     * @param revision revision of the updateFormFields
-     * @return BasicResponse
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
     private BasicResponse updateFormFieldsApp(Integer appId, HashMap<String, Field> fields, Integer revision)
             throws KintoneAPIException {
 
@@ -338,25 +725,6 @@ public class App {
         JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, apiRequest, requestBody);
         return parser.parseBasicResponse(response);
     }
-
-    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields) throws KintoneAPIException {
-        return updateFormFieldsApp(appId, fields, null);
-    }
-
-    public BasicResponse updateFormFields(Integer appId, HashMap<String, Field> fields, Integer revision)
-            throws KintoneAPIException {
-        return updateFormFieldsApp(appId, fields, revision);
-    }
-
-    /**
-     * Deletes fields from a form of an App.
-     *
-     * @param app
-     * @param fields
-     * @param revision
-     * @return BasicResponse
-     * @throws KintoneAPIException
-     */
 
     private BasicResponse deleteFormFieldsApp(Integer app, ArrayList<String> fields, Integer revision)
             throws KintoneAPIException {
@@ -369,26 +737,6 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields) throws KintoneAPIException {
-        return deleteFormFieldsApp(app, fields, null);
-    }
-
-    public BasicResponse deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)
-            throws KintoneAPIException {
-        return deleteFormFieldsApp(app, fields, revision);
-    }
-
-    /**
-     * Gets the field layout info of a form in an App.
-     * Perrmission to view records are needed when obtaining information of live Apps.
-     * App Management Permissions are needed when obtaining information of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param appId     appId of the getFormLayout
-     * @param isPreview isPreview of the getFormLayout
-     * @return FormLayout
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
     private FormLayout getFormLayoutApp(Integer appId, Boolean isPreview) throws KintoneAPIException {
         String apiRequest = ConnectionConstants.APP_LAYOUT;
         if (isPreview != null && isPreview) {
@@ -400,24 +748,6 @@ public class App {
         JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, apiRequest, requestBody);
         return parser.parseFormLayout(response);
     }
-
-    public FormLayout getFormLayout(Integer appId) throws KintoneAPIException {
-        return getFormLayoutApp(appId, false);
-    }
-
-    public FormLayout getFormLayout(Integer appId, Boolean isPreview) throws KintoneAPIException {
-        return getFormLayoutApp(appId, isPreview);
-    }
-
-    /**
-     * Updates the field layout info of a form in an App.
-     *
-     * @param app
-     * @param layout
-     * @param revision
-     * @return BasicResponse
-     * @throws KintoneAPIException
-     */
 
     private BasicResponse updateFormLayoutApp(Integer app, ArrayList<ItemLayout> layout, Integer revision)
             throws KintoneAPIException {
@@ -431,26 +761,8 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout) throws KintoneAPIException {
-        return updateFormLayoutApp(app, layout, null);
-    }
-
-    public BasicResponse updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)
+    private AddPreviewAppResponse addPreviewAppResponse(String name, Integer space, Integer thread)
             throws KintoneAPIException {
-        return updateFormLayoutApp(app, layout, revision);
-    }
-
-    /**
-     * Creates a preview App.
-     *
-     * @param name
-     * @param space
-     * @param thread
-     * @return AddPreviewAppResponse
-     * @throws KintoneAPIException
-     */
-
-    private AddPreviewAppResponse addPreviewAppResponse(String name, Integer space, Integer thread) throws KintoneAPIException {
         AddPreviewAppRequest addPreviewAppRequest = new AddPreviewAppRequest(name, space, thread);
         String apiRequest = ConnectionConstants.APP_PREVIEW;
         String requestBody = parser.parseObject(addPreviewAppRequest);
@@ -458,26 +770,6 @@ public class App {
         JsonElement response = connection.request(ConnectionConstants.POST_REQUEST, apiRequest, requestBody);
         return parser.parseAddPreviewAppResponse(response);
     }
-
-    public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException {
-        return addPreviewAppResponse(name, null, null);
-    }
-
-    public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException {
-        return addPreviewAppResponse(name, space, null);
-    }
-
-    public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
-        return addPreviewAppResponse(name, space, thread);
-    }
-
-    /**
-     * Updates the settings of a pre-live App to the live App.
-     *
-     * @param apps
-     * @param revert
-     * @throws KintoneAPIException
-     */
 
     private void deployAppSettingResult(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
@@ -487,43 +779,8 @@ public class App {
         connection.request(ConnectionConstants.POST_REQUEST, apiRequest, requestBody);
     }
 
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps) throws KintoneAPIException {
-        deployAppSettingResult(apps, false);
-    }
-
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
-        deployAppSettingResult(apps, revert);
-    }
-
-    /**
-     * Updates the settings of a pre-live App to the live App.
-     *
-     * @param apps
-     * @return GetAppDeployStatusResponse
-     * @throws KintoneAPIException
-     */
-    public GetAppDeployStatusResponse getAppDeployStatus(ArrayList<Integer> apps) throws KintoneAPIException {
-        GetAppDeployStatusRequest deployStatusRequest = new GetAppDeployStatusRequest(apps);
-        String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
-        String requestBody = parser.parseObject(deployStatusRequest);
-
-        JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, apiRequest, requestBody);
-        return parser.parseAppDeployStatusResponse(response);
-    }
-
-    /**
-     * Gets the View settings of a an App.
-     * Permission to view records are needed when obtaining information of live apps.
-     * App Management Permissions are needed when obtaining information of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param app       app of the getViews
-     * @param lang      lang of the getViews
-     * @param isPreview isPreview of the getViews
-     * @return GetViewsResponse
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    private GetViewsResponse getViewsApp(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
+    private GetViewsResponse getViewsApp(Integer app, LanguageSetting lang, Boolean isPreview)
+            throws KintoneAPIException {
 
         String apiRequest = ConnectionConstants.APP_VIEWS;
         if (isPreview != null && isPreview) {
@@ -538,34 +795,6 @@ public class App {
         return (GetViewsResponse) parser.parseJson(response, GetViewsResponse.class);
     }
 
-    public GetViewsResponse getViews(Integer app) throws KintoneAPIException {
-        return getViewsApp(app, null, false);
-    }
-
-    public GetViewsResponse getViews(Integer app, LanguageSetting lang) throws KintoneAPIException {
-        return getViewsApp(app, lang, false);
-    }
-
-    public GetViewsResponse getViews(Integer app, Boolean isPreview) throws KintoneAPIException {
-        return getViewsApp(app, null, isPreview);
-    }
-
-    public GetViewsResponse getViews(Integer app, LanguageSetting lang, Boolean isPreview) throws KintoneAPIException {
-        return getViewsApp(app, lang, isPreview);
-    }
-
-    /**
-     * Update the View settings of a an App.
-     * Permission to view records are needed when obtaining information of live apps.
-     * App Management Permissions are needed when obtaining information of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param app      app of the updateViews
-     * @param views    views of the updateViews
-     * @param revision revision of the updateViews
-     * @return UpdateViewsResponse
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
     private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, ViewModel> views, Integer revision)
             throws KintoneAPIException {
 
@@ -579,27 +808,6 @@ public class App {
         return (UpdateViewsResponse) parser.parseJson(response, UpdateViewsResponse.class);
     }
 
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views) throws KintoneAPIException {
-        return updateViewsApp(app, views, null);
-    }
-
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
-            throws KintoneAPIException {
-        return updateViewsApp(app, views, revision);
-    }
-
-    /**
-     * Gets the description, name, icon, revision and color theme of an App.
-     * Permission to view records are needed when obtaining data of live apps.
-     * App Management Permissions are needed when obtaining data of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param app       app of the getGeneralSettings
-     * @param lang      lang of the getGeneralSettings
-     * @param isPreview isPreview of the getGeneralSettings
-     * @return GeneralSettings
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
     private GeneralSettings getGeneralSettingsApp(Integer app, LanguageSetting lang, Boolean isPreview)
             throws KintoneAPIException {
         String apiRequest = ConnectionConstants.APP_SETTINGS;
@@ -612,44 +820,5 @@ public class App {
         String requestBody = parser.parseObject(getGeneralSettingsRequest);
         JsonElement response = connection.request(ConnectionConstants.GET_REQUEST, apiRequest, requestBody);
         return (GeneralSettings) parser.parseJson(response, GeneralSettings.class);
-    }
-
-    public GeneralSettings getGeneralSettings(Integer app) throws KintoneAPIException {
-        return getGeneralSettingsApp(app, null, false);
-    }
-
-    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang) throws KintoneAPIException {
-        return getGeneralSettingsApp(app, lang, false);
-    }
-
-    public GeneralSettings getGeneralSettings(Integer app, Boolean isPreview) throws KintoneAPIException {
-        return getGeneralSettingsApp(app, null, isPreview);
-    }
-
-    public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
-            throws KintoneAPIException {
-        return getGeneralSettingsApp(app, lang, isPreview);
-    }
-
-    /**
-     * Updates the description, name, icon, revision and color theme of an App.
-     * Permission to view records are needed when obtaining data of live apps.
-     * App Management Permissions are needed when obtaining data of pre-live settings.
-     * API Tokens cannot be used with this API.
-     *
-     * @param app             app of the updateGeneralSettings
-     * @param generalSettings generalSettings of the updateGeneralSettings
-     * @return BasicResponse
-     * @throws KintoneAPIException the KintoneAPIException to throw
-     */
-    public BasicResponse updateGeneralSettings(Integer app, GeneralSettings generalSettings)
-            throws KintoneAPIException {
-        String apiRequest = ConnectionConstants.APP_SETTINGS_PREVIEW;
-
-        UpdateGeneralSettingsRequest updateGeneralSettingsRequest = new UpdateGeneralSettingsRequest(app,
-                generalSettings);
-        String requestBody = parser.parseObject(updateGeneralSettingsRequest);
-        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, apiRequest, requestBody);
-        return (BasicResponse) parser.parseJson(response, BasicResponse.class);
     }
 }
