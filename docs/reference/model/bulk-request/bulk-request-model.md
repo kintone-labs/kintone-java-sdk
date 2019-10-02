@@ -4,20 +4,25 @@ Store a list of requests and responses for a bulk request.
 
 ## Constructor
 
+**Declaration**
+```
+public BulkRequestModel()
+```
 **Parameter**
 
 (none)
 
 ## Methods
 
-### addRequest(bulkRequestItem)
+### addRequest
 
+**Declaration**
+```
+public void addRequest(BulkRequestItem bulkRequestItem)
+```
 **Parameter**
 
-| Name| Type| Description |
-| --- | --- | --- |
-| bulkRequestItem | [BulkRequestItem](../bulk-request-item) | The BulkRequest Item.
+| Name| Description |
+| --- | --- | 
+| bulkRequestItem | The BulkRequest Item ([BulkRequestItem](../bulk-request-item)).
 
-**Return**
-
-(none)
