@@ -7,11 +7,17 @@ The user or API Token must have permission to view the records.
 
 ## Constructor
 
+**Declaration**
+```
+    public RecordCursor(Connection connection)
+
+```
+
 ### **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| connection | [Connection](../connection) | yes | The connection module of this SDK.
+| Name| Description |
+| --- | --- |
+| connection | The connection module of this SDK. ([Connection](../connection))
 
 ### **Sample code**
 
@@ -22,14 +28,15 @@ The user or API Token must have permission to view the records.
 
 <pre class="inline-code">
 
-    // Init authentication
-    Auth kintoneAuth = new Auth()
-    
-    // Password Authentication
-    String username = "your_username"
-    String password = "your_password"
-    kintoneAuth = kintoneAuth.setPasswordAuth(username, password)
-    Connection connection = Connection( "your_domain", kintoneAuth )
+    Auth kintoneAuth = new Auth();
+    String username = "your_username";
+    String password = "your_password";;
+    kintoneAuth.setPasswordAuth(username, password);
+
+    String myDomainName = "your_domain";
+    Connection connection = new Connection(myDomainName, kintoneAuth);
+    kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
+
     RecordCursor recordCursor = new RecordCursor(connection);
 
 </pre>
@@ -42,18 +49,19 @@ The user or API Token must have permission to view the records.
 
 > Create a cursor.
 
+**Declaration**
+```
+	public CreateRecordCursorResponse createCursor(Integer app, ArrayList<String> fields, String query, Integer size) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| appId | Integer | yes | The kintone app ID
-| fields | Array<String\> | (optional) | Fields of record to return
-| query | String | (optional) | Query condition
-| size | Integer | (optional) | Number of records to retrieve per request. <br> Default: 100. <br>Maximum: 500.
-
-**Return**
-
-[CreateRecordCursorResponse](../model/cursor/record-cursor#CreateRecordCursorResponse)
+| Name| Description |
+| --- | --- |
+| appId | The kintone app ID
+| fields | Fields of record to return
+| query |  Query condition
+| size | Number of records to retrieve per request. <br> Default: 100. <br>Maximum: 500.
 
 **Sample code**
 
@@ -62,24 +70,30 @@ The user or API Token must have permission to view the records.
 
 <strong class="tab-name">Source code</strong>
 <pre class="inline-code">
-
-    RecordCursor recordCursor = new RecordCursor(connection);
- 
-    int appID = 110;
-    int size = 500;
-    String query = "order by 数値 desc";
-    ArrayList<String> fields = new ArrayList<String>();
-    fields.add("数値");
+    try {
+        Auth kintoneAuth = new Auth();
+        String username = "your_username";
+        String password = "your_password";;
+        kintoneAuth.setPasswordAuth(username, password);
+        String myDomainName = "your_domain";
+        Connection connection = new Connection(myDomainName, kintoneAuth);
+        kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
+        RecordCursor recordCursor = new RecordCursor(connection);
         
-    CreateRecordCursorResponse cursor = recordCursor.createCursor(appID, fields, query, size);
-    System.out.println("cursorID: " + cursor.getId());
-    System.out.println("totalRecord: " + cursor.getTotalCount());
-    
-    /*
-    output:
-    cursorID: "your_cursor_id"
-    totalRecord: 50
-    */
+        int appID = 110;
+        int size = 500;
+        String query = "your_query";
+        ArrayList fields = new ArrayList();
+        fields.add("your_field");
+
+        CreateRecordCursorResponse cursor;
+        cursor = recordCursor.createCursor(appID, fields, query, size);
+        System.out.println("cursorID: " + cursor.getId());
+        System.out.println("totalRecord: " + cursor.getTotalCount());
+    } catch (KintoneAPIException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 
 </pre>
 
@@ -87,17 +101,18 @@ The user or API Token must have permission to view the records.
 
 ### getRecords(String cursorID)
 
-> Get one block of records.
+> Get one block of records ([GetRecordCursorResponse](../model/cursor/record-cursor#GetRecordCursorResponse))
 
-**Parameter **
+**Declaration**
+```
+    public GetRecordCursorResponse getRecords(String cursorID) throws KintoneAPIException
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| cursorID | String | (optional) | The cursor ID.
+**Parameter**
 
-**Return**
-
-[GetRecordCursorResponse](../model/cursor/record-cursor#GetRecordCursorResponse)
+| Name| Description |
+| --- | --- |
+| cursorID | The cursor ID.
 
 **Sample code**
 
@@ -107,25 +122,36 @@ The user or API Token must have permission to view the records.
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    RecordCursor recordCursor = new RecordCursor(connection);
-    
-    String cursorId = "dc24fc1f-4195-41b3-a55d-7e4547d45de1";
-    GetRecordCursorResponse response = recordCursor.getRecords(cursorId);
-    
-    ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-    for (HashMap<String, FieldValue> record : resultRecords) {
-        for (Entry<String, FieldValue> entry : record.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue().getValue());
+    try {
+        Auth kintoneAuth = new Auth();
+        String username = "your_username";
+        String password = "your_password";;
+        kintoneAuth.setPasswordAuth(username, password);
+        String myDomainName = "your_domain";
+        Connection connection = new Connection(myDomainName, kintoneAuth);
+        kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
+        RecordCursor recordCursor = new RecordCursor(connection);
+        
+        int appID = 1;
+        int size = 500;
+        String query = "your_query";
+        ArrayList fields = new ArrayList();
+        fields.add("your_field");
+
+        CreateRecordCursorResponse cursor = recordCursor.createCursor(appID, fields, query, size);
+        String cursorId = cursor.getId();
+        GetRecordCursorResponse response = recordCursor.getRecords(cursorId);
+
+        List<HashMap<String,FieldValue>>  listRecords = response.getRecords();
+        for (Object record : listRecords) {
+            for (Entry entry : ((HashMap<String, FieldValue>) record).entrySet()) {
+                System.out.println(entry.getKey() + " " + ((FieldValue) entry.getValue()).getValue());
+            }
         }
+    } catch (KintoneAPIException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
-    /*
-    output:
-    数値 7669
-    数値 7668
-    数値 7667
-    数値 7666
-    数値 7665
-    */
 </pre>
 
 </details>
@@ -134,15 +160,16 @@ The user or API Token must have permission to view the records.
 
 > Get all records
 
-**Parameter **
+**Declaration**
+```
+    public GetRecordsResponse getAllRecords(String cursorID) throws KintoneAPIException
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| cursorID | String | yes | The cursor ID.
+**Parameter**
 
-**Return**
-
-[GetRecordsResponse](../model/record/record-model#GetRecordsResponse)
+| Name | Description |
+| --- | --- |
+| cursorID  | The cursor ID.
 
 **Sample code**
 
@@ -152,26 +179,36 @@ The user or API Token must have permission to view the records.
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    RecordCursor recordCursor = new RecordCursor(connection);
-    
-    String cursorId = "dc24fc1f-4195-41b3-a55d-7e4547d45de1";
-    GetRecordsResponse response = recordCursor.getAllRecords(cursorId);
-    
-    ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
-    for (HashMap<String, FieldValue> record : resultRecords) {
-        for (Entry<String, FieldValue> entry : record.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue().getValue());
+    try {
+        Auth kintoneAuth = new Auth();
+        String username = "your_username";
+        String password = "your_password";;
+        kintoneAuth.setPasswordAuth(username, password);
+        String myDomainName = "your_domain";
+        Connection connection = new Connection(myDomainName, kintoneAuth);
+        kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
+        RecordCursor recordCursor = new RecordCursor(connection);
+        
+        int appID = 1;
+        int size = 500;
+        String query = "your_query";
+        ArrayList fields = new ArrayList();
+        fields.add("your_field");
+
+        CreateRecordCursorResponse cursor = recordCursor.createCursor(appID, fields, query, size);
+        String cursorId = cursor.getId();
+
+        GetRecordsResponse response = recordCursor.getAllRecords(cursorId);
+        List<HashMap<String, FieldValue>> listRecords = response.getRecords();
+        for (Object record : listRecords) {
+            for (Entry entry : ((HashMap<String, FieldValue>) record).entrySet()) {
+                System.out.println(entry.getKey() + " " + ((FieldValue) entry.getValue()).getValue());
+            }
         }
+    } catch (KintoneAPIException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
-    
-    /*
-    output:
-    数値 7669
-    数値 7668
-    数値 7667
-    数値 7666
-    数値 7665
-    */
 </pre>
 
 </details>
@@ -180,15 +217,16 @@ The user or API Token must have permission to view the records.
 
 > Delete a cursor
 
-**Parameter **
+**Declaration**
+```
+    public void deleteCursor(String cursorID) throws KintoneAPIException
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| cursorID | String | yes | The cursor ID.
+**Parameter**
 
-**Return**
-
-none
+| Name | Description |
+| --- | --- |
+| cursorID | The cursor ID.
 
 **Sample code**
 
@@ -198,10 +236,31 @@ none
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    RecordCursor recordCursor = new RecordCursor(connection);
-    
-    String cursorId = "dc24fc1f-4195-41b3-a55d-7e4547d45de1";
-    recordCursor.deleteCursor(cursorId);
+    try {
+        Auth kintoneAuth = new Auth();
+        String username = "your_username";
+        String password = "your_password";
+        ;
+        kintoneAuth.setPasswordAuth(username, password);
+        String myDomainName = "your_domain";
+        Connection connection = new Connection(myDomainName, kintoneAuth);
+        kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
+        RecordCursor recordCursor = new RecordCursor(connection);
+
+        int appID = 1;
+        int size = 500;
+        String query = "your_query";
+        ArrayList fields = new ArrayList();
+        fields.add("your_field");
+
+        CreateRecordCursorResponse cursor = recordCursor.createCursor(appID, fields, query, size);
+
+        String cursorId = cursor.getId();
+        recordCursor.deleteCursor(cursorId);
+    } catch (KintoneAPIException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
