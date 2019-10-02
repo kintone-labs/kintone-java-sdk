@@ -32,6 +32,7 @@ public String getApp()
 
 <pre class="inline-code">
 
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
     String app = relatedApp.getApp();
 
 </pre>
@@ -60,7 +61,8 @@ public String getCode()
 
 <pre class="inline-code">
 
-    String app = relatedApp.getCode();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    String code = relatedApp.getCode();
 
 </pre>
 
@@ -92,7 +94,15 @@ public FieldMapping getCondition()
 
 <pre class="inline-code">
 
-    FieldMapping condition = referenceTable.getCondition();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    FieldMapping referenceTableCondition = referenceTable.getCondition();
 
 </pre>
 
@@ -120,7 +130,15 @@ public String getFilterCond()
 
 <pre class="inline-code">
 
-    String filterCond = referenceTable.getFilterCond();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    String referenceTableFilterCond = referenceTable.getFilterCond();
 
 </pre>
 
@@ -148,7 +166,15 @@ public RelatedApp getRelatedApp()
 
 <pre class="inline-code">
 
-    RelatedApp relatedApp = referenceTable.getRelatedApp();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    RelatedApp referenceTableRelatedApp = referenceTable.getRelatedApp();
 
 </pre>
 
@@ -176,7 +202,15 @@ public Integer getSize()
 
 <pre class="inline-code">
 
-    Integer size = referenceTable.getSize();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    Integer referenceTableSize = referenceTable.getSize();
 
 </pre>
 
@@ -204,7 +238,15 @@ public ArrayList<String> getDisplayFields()
 
 <pre class="inline-code">
 
-    ArrayList<String> displayFields = referenceTable.getDisplayFields();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    ArrayList<String> referenceTableDisplayFields = referenceTable.getDisplayFields();
 
 </pre>
 
@@ -232,7 +274,15 @@ public String getSort()
 
 <pre class="inline-code">
 
-    String sort = referenceTable.getSort();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    String referenceTableSort = referenceTable.getSort();
 
 </pre>
 
@@ -267,7 +317,8 @@ public String getLabel()
 
 <pre class="inline-code">
 
-    String label = relatedRecordsField.getLabel();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    String label = recordsField.getLabel();
 
 </pre>
 
@@ -295,7 +346,8 @@ public Boolean getNoLabel()
 
 <pre class="inline-code">
 
-    Boolean noLabel = relatedRecordsField.getNoLabel();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    Boolean noLabel = recordsField.getNoLabel();
 
 </pre>
 
@@ -323,7 +375,8 @@ public ReferenceTable getReferenceTable()
 
 <pre class="inline-code">
 
-    ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    ReferenceTable referenceTable = recordsField.getReferenceTable();
     
 </pre>
 
