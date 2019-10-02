@@ -16,26 +16,6 @@
 
 package com.cybozu.kintone.client.module.app;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
-import java.util.concurrent.ExecutionException;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
@@ -43,61 +23,28 @@ import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.AppModel;
 import com.cybozu.kintone.client.model.app.LanguageSetting;
 import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetViewsResponse;
 import com.cybozu.kintone.client.model.app.basic.response.UpdateViewsResponse;
-import com.cybozu.kintone.client.model.app.form.AlignLayout;
-import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.app.form.LayoutType;
-import com.cybozu.kintone.client.model.app.form.LinkProtocol;
-import com.cybozu.kintone.client.model.app.form.NumberFormat;
-import com.cybozu.kintone.client.model.app.form.UnitPosition;
-import com.cybozu.kintone.client.model.app.form.field.Field;
-import com.cybozu.kintone.client.model.app.form.field.FieldGroup;
-import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
-import com.cybozu.kintone.client.model.app.form.field.FormFields;
-import com.cybozu.kintone.client.model.app.form.field.SubTableField;
-import com.cybozu.kintone.client.model.app.form.field.input.AttachmentField;
-import com.cybozu.kintone.client.model.app.form.field.input.CalculatedField;
-import com.cybozu.kintone.client.model.app.form.field.input.LinkField;
-import com.cybozu.kintone.client.model.app.form.field.input.MultiLineTextField;
-import com.cybozu.kintone.client.model.app.form.field.input.NumberField;
-import com.cybozu.kintone.client.model.app.form.field.input.RichTextField;
-import com.cybozu.kintone.client.model.app.form.field.input.SingleLineTextField;
+import com.cybozu.kintone.client.model.app.form.*;
+import com.cybozu.kintone.client.model.app.form.field.*;
+import com.cybozu.kintone.client.model.app.form.field.input.*;
 import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupField;
 import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupItem;
 import com.cybozu.kintone.client.model.app.form.field.input.member.DepartmentSelectionField;
 import com.cybozu.kintone.client.model.app.form.field.input.member.GroupSelectionField;
 import com.cybozu.kintone.client.model.app.form.field.input.member.MemberSelectEntity;
 import com.cybozu.kintone.client.model.app.form.field.input.member.UserSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.CheckboxField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.DropDownField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.MultipleSelectField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.OptionData;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.RadioButtonField;
+import com.cybozu.kintone.client.model.app.form.field.input.selection.*;
 import com.cybozu.kintone.client.model.app.form.field.input.time.DateField;
 import com.cybozu.kintone.client.model.app.form.field.input.time.DateTimeField;
 import com.cybozu.kintone.client.model.app.form.field.input.time.TimeField;
 import com.cybozu.kintone.client.model.app.form.field.related_record.ReferenceTable;
 import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedApp;
 import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedRecordsField;
-import com.cybozu.kintone.client.model.app.form.field.system.AssigneeField;
-import com.cybozu.kintone.client.model.app.form.field.system.CategoryField;
-import com.cybozu.kintone.client.model.app.form.field.system.CreatedTimeField;
-import com.cybozu.kintone.client.model.app.form.field.system.CreatorField;
-import com.cybozu.kintone.client.model.app.form.field.system.ModifierField;
-import com.cybozu.kintone.client.model.app.form.field.system.RecordNumberField;
-import com.cybozu.kintone.client.model.app.form.field.system.StatusField;
-import com.cybozu.kintone.client.model.app.form.field.system.UpdatedTimeField;
-import com.cybozu.kintone.client.model.app.form.layout.FieldLayout;
-import com.cybozu.kintone.client.model.app.form.layout.FieldSize;
-import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
-import com.cybozu.kintone.client.model.app.form.layout.GroupLayout;
-import com.cybozu.kintone.client.model.app.form.layout.ItemLayout;
-import com.cybozu.kintone.client.model.app.form.layout.RowLayout;
-import com.cybozu.kintone.client.model.app.form.layout.SubTableLayout;
+import com.cybozu.kintone.client.model.app.form.field.system.*;
+import com.cybozu.kintone.client.model.app.form.layout.*;
 import com.cybozu.kintone.client.model.app.general.GeneralSettings;
 import com.cybozu.kintone.client.model.app.general.GeneralSettings.IconTheme;
 import com.cybozu.kintone.client.model.app.general.Icon;
@@ -109,6 +56,16 @@ import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
 import com.cybozu.kintone.client.module.file.File;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+
+import static org.junit.Assert.*;
 
 public class AppTest {
     private static int APP_ID;
@@ -15376,14 +15333,14 @@ public class AppTest {
 
     @Test
     public void testAddPreviewAppShouldSuccess() throws KintoneAPIException {
-        AddPreviewAppResponse appPreviewResponse = this.appManagerment.addPreviewApp("AddPreviewApp_Test", null, null);
+        PreviewApp appPreviewResponse = this.appManagerment.addPreviewApp("AddPreviewApp_Test", null, null);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
     }
 
     @Test
     public void testAddPreviewAppInSpaceShouldSuccess() throws KintoneAPIException {
-        AddPreviewAppResponse appPreviewResponse = this.appManagerment.addPreviewApp("AddPreviewApp_Test",
+        PreviewApp appPreviewResponse = this.appManagerment.addPreviewApp("AddPreviewApp_Test",
                 TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
@@ -15391,7 +15348,7 @@ public class AppTest {
 
     @Test
     public void testAddPreviewAppInSpaceShouldSuccessCert() throws KintoneAPIException {
-        AddPreviewAppResponse appPreviewResponse = this.certAppManagerment.addPreviewApp("AddPreviewApp_Test",
+        PreviewApp appPreviewResponse = this.certAppManagerment.addPreviewApp("AddPreviewApp_Test",
                 TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
@@ -15399,7 +15356,7 @@ public class AppTest {
 
     @Test
     public void testAddPreviewAppInGuestSpaceShouldSuccess() throws KintoneAPIException {
-        AddPreviewAppResponse appPreviewResponse = this.guestSpaceAppManagerment.addPreviewApp("AddPreviewApp_Test",
+        PreviewApp appPreviewResponse = this.guestSpaceAppManagerment.addPreviewApp("AddPreviewApp_Test",
                 TestConstants.GUEST_SPACE_ID, TestConstants.GUEST_SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
@@ -15407,7 +15364,7 @@ public class AppTest {
 
     @Test
     public void testAddPreviewAppInGuestSpaceShouldSuccessCert() throws KintoneAPIException {
-        AddPreviewAppResponse appPreviewResponse = this.certGuestAppManagerment.addPreviewApp("AddPreviewApp_Test",
+        PreviewApp appPreviewResponse = this.certGuestAppManagerment.addPreviewApp("AddPreviewApp_Test",
                 TestConstants.GUEST_SPACE_ID, TestConstants.GUEST_SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
