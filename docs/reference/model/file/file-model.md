@@ -88,7 +88,7 @@ Get the file key of the file.
   Auth kintoneAuth = new Auth();
   kintoneAuth.setPasswordAuth(username, password);
 
-  String myDomainName = "tgbn0.kintone.com";
+  String myDomainName = "your_domain";
   Connection kintoneOnDemoDomain = new Connection(myDomainName, kintoneAuth);
   // Init File Module
   File kintoneFileManager = new File(kintoneOnDemoDomain);
