@@ -12,41 +12,44 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getUnique()
+#### getUnique
 
 Get the unique
 
+**Declaration**
+```
+public Boolean getUnique()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getDefaultNowValue()
+#### getDefaultNowValue
 
 Get the defaultNowValue
 
+**Declaration**
+```
+public Boolean getDefaultNowValue()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## DateTimeField
 
@@ -55,41 +58,44 @@ Boolean
 
 ### Methods
 
-#### getUnique()
+#### getUnique
 
 Get the unique
 
+**Declaration**
+```
+public Boolean getUnique()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getDefaultNowValue()
+#### getDefaultNowValue
 
 Get the defaultNowValue
 
+**Declaration**
+```
+public Boolean getDefaultNowValue()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## TimeField
 
@@ -98,29 +104,31 @@ Boolean
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getDefaultNowValue()
+#### getDefaultNowValue
 
 Get the defaultNowValue
 
+**Declaration**
+```
+public Boolean getDefaultNowValue()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## Reference
 
