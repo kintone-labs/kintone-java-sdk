@@ -4,11 +4,16 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 ## Constructor
 
+**Declaration**
+```
+    public Record(Connection connection)
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| connection | [Connection](../connection) | yes | The connection module of this SDK.
+| Name | Description |
+| --- | --- |
+| connection | The connection module of this SDK.([Connection](../connection))
 
 **Sample code**
 
@@ -19,18 +24,18 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 <pre class="inline-code">
 
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String USERNAME = "YOUR_USERNAME";
+    String PASSWORD = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 </pre>
 
 </details>
@@ -41,17 +46,17 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
 > Retrieves details of 1 record from an app.
 
+**Declaration**
+```
+    public GetRecordResponse getRecord(Integer app, Integer id) throws KintoneAPIException 
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| id | Integer | yes | The record ID in kintone app
-
-
-**Return**
-
-[GetRecordResponse](../record-model/#getrecordresponse)
+| Name|  Description |
+| --- | --- |
+| app | The kintone app ID
+| id | The record ID in kintone app
 
 **Sample code**
 
@@ -62,23 +67,28 @@ Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
 <pre class="inline-code">
 
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    try {
+        String USERNAME = "YOUR_USERNAME";
+        String PASSWORD = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        // Init authenticationAuth
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID = 1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+        // execute GET RECORD API
+        Integer appID = YOUR_APPID;
+        Integer recordID = YOUR_RECORD_ID;
+        GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+    } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println(e);
+	}
 </pre>
 
 </details>
@@ -87,18 +97,19 @@ GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 
 > Retrieves details of multiple records from an app using a query string.
 
+**Declaration**
+```
+    public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| query | String | (optional) | [The query string](https://developer.kintone.io/hc/en-us/articles/213149287#getrecords) that will specify what records will be responded.
-| fields | ArrayList<String\>| (optional) | List of field codes you want in the response.
-| totalCount | Boolean | (optional) | If "true", the request will retrieve total count of records match with query conditions.
-
-**Return**
-
-[GetRecordsResponse](../record-model/#getrecordsresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| query |  [The query string](https://developer.kintone.io/hc/en-us/articles/213149287#getrecords) that will specify what records will be responded.
+| fields | List of field codes you want in the response.
+| totalCount | If "true", the request will retrieve total count of records match with query conditions.
 
 **Sample code**
 
@@ -108,23 +119,30 @@ GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    try {
+        String USERNAME = "YOUR_USERNAME";
+        String PASSWORD = "YOUR_PASSWORD";
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+        // Init authenticationAuth
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
 
-// execute GET RECORDS API
-Integer appID = 1;
-String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
-GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+
+        // execute GET RECORDS API
+        Integer appID = YOUR_APPID;
+        String query = "YOUR_QUERY";
+        GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
+    } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println(e);
+	}
+   
 </pre>
 
 </details>
@@ -133,17 +151,18 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 
 > Retrieves details of all records from an app using a query string.
 
+**Declaration**
+```
+    public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| query | String | (optional) | [The query string](https://developer.kintone.io/hc/en-us/articles/213149287#getrecords) that will specify what records will be responded.
-| fields | ArrayList<String\>| (optional) | List of field codes you want in the response.
-
-**Return**
-
-[GetRecordsResponse](../record-model/#getrecordsresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| query | [The query string](https://developer.kintone.io/hc/en-us/articles/213149287#getrecords) that will specify what records will be responded.
+| fields | List of field codes you want in the response.
 
 **Sample code**
 
@@ -153,23 +172,29 @@ GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    String USERNAME = "YOUR_USERNAME";
-    String PASSWORD = "YOUR_PASSWORD";
+    try {
+        String USERNAME = "YOUR_USERNAME";
+        String PASSWORD = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
-    Auth kintoneAuthWithPassword = new Auth();
-    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        // Init authenticationAuth
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-    // Init Connection without "guest space ID"
-    Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
 
-    // Init Record Module
-    Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
-    // execute GET RECORDS API
-    Integer appID = 1;
-    String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
-    GetRecordsResponse response = kintoneRecordManager.getAllRecordsByCursor(appID, query, null);
+        // execute GET RECORDS API
+        Integer appID = YOUR_APPID;
+        String query = "YOR_QUERY";
+        GetRecordsResponse response = kintoneRecordManager.getAllRecordsByCursor(appID, query, null);
+    } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println(e);
+	}
+    
 </pre>
 
 </details>
@@ -677,55 +702,62 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    try {
+        String USERNAME = "YOUR_USERNAME";
+        String PASSWORD = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        // Init authenticationAuth
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
-// execute UPDATE RECORDS API
-Integer appID = 1;
-ArrayList&lt;RecordUpdateStatusItem&gt; rusi = new ArrayList&lt;RecordUpdateStatusItem&gt;();
+        // execute UPDATE RECORDS API
+        Integer appID = 1;
+        ArrayList&lt;RecordUpdateStatusItem&gt; rusi = new ArrayList&lt;RecordUpdateStatusItem&gt;();
 
-String action = "処理開始";
-String assignee = "sample_user1";
-Integer recordID1 =1;
-Integer recordID2 =2;
-Integer recordID3 =3;
-Integer revision1 = 1;
-Integer revision2 = null;
-Integer revision3 = -1;
+        String action = "処理開始";
+        String assignee = "sample_user1";
+        Integer recordID1 =1;
+        Integer recordID2 =2;
+        Integer recordID3 =3;
+        Integer revision1 = 1;
+        Integer revision2 = null;
+        Integer revision3 = -1;
 
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
-UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
+        rusi.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
+        rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
+        rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
+        UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
+    } catch(Exception e) {
+	    System.out.println(e);
+    }
 </pre>
 
 </details>
 
 ### getComments(app, record, order, offset, limit)
 
+> Retrieves multiple comments from a record in an app.
+
+**Declaration**
+```
+    public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset, Integer limit) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The kintone app ID
-| order | String | (optional) | The sort order of the Comment ID. Please select **asc** or **desc**
-| offset | Integer | (optional) | The number of first comments will be ignored.
-| limit | Integer | (optional) | The number of records to retrieve.
-
-**Return**
-
-[GetCommentsResponse](../record-comment-model/#getcommentsresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| record | The kintone app ID
+| order | The sort order of the Comment ID. Please select **asc** or **desc**
+| offset | The number of first comments will be ignored.
+| limit | The number of records to retrieve.
 
 **Sample code**
 
@@ -735,27 +767,30 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID,
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    try {
+        String USERNAME = "YOUR_USERNAME";
+        String PASSWORD = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        // Init authenticationAuth
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
 
-// execute GET RECORD_COMMENTS  API
-Integer appID = 1;
-Integer recordID = 1;
-String order = "asc";
-Integer offsset = 1;
-Integer limit = 2;
+        // execute GET RECORD_COMMENTS  API
+        Integer appID = your_appId;
+        Integer recordID = your_recordId;
+        String order = "your_order";
 
-GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, offsset, limit);
+        GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, null, null);
+    } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println(e);
+	}
 </pre>
 
 </details>
@@ -859,18 +894,21 @@ kintoneRecordManager.deleteComment(app, record, comment);
 
 ### getAllRecordsByQuery(app, query, fields, totalCount)
 
+> Retrieves details of multiple records from an App by specifying the App ID and a query string.
+
+**Declaration**
+```
+    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| query | String | (optional) | The query string that will specify what records will be responded.
-| fields | ArrayList&lt;String&gt; | (optional) | List of field codes you want in the response.
-| totalCount | Boolean | (optional) | If "true", the request will retrieve total count of records match with query conditions.
-
-**Return**
-
-[GetRecordsResponse](../model/record/record-model/#getrecordsresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| query | The query string that will specify what records will be responded.
+| fields | List of field codes you want in the response.
+| totalCount | If "true", the request will retrieve total count of records match with query conditions.
 
 **Sample code**
 
@@ -880,10 +918,28 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    Integer appID = {YOUR_APP_ID};
-    String query = {YOUR_QUERY};
-    ArrayList&lt;String&gt; fields = new ArrayList&lt;String&gt;();
-    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, fields);
+    try {
+			String USERNAME = "your_username";
+			String PASSWORD = "your_password";
+
+			// Init authenticationAuth
+			Auth kintoneAuthWithPassword = new Auth();
+			kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+
+			// Init Connection without "guest space ID"
+			Connection kintoneOnDemoDomain = new Connection("your_domain", kintoneAuthWithPassword);
+
+			// Init Record Module
+			Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+			Integer appID = your_appId;
+			Integer recordID = your_recordId;
+			String query = "your_query";
+			ArrayList listField= new ArrayList<String>();
+		    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, listField);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
 </pre>
 </details>
 
