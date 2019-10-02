@@ -42,7 +42,7 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.AppModel;
 import com.cybozu.kintone.client.model.app.LanguageSetting;
-import com.cybozu.kintone.client.model.app.basic.request.PreviewAppRequest;
+import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
@@ -15575,12 +15575,12 @@ public class AppTest {
         properties.put(fieldCode, sltf);
         this.appManagerment.updateFormFields(DEPLOY_APP_ID, properties, null);
 
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(DEPLOY_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(DEPLOY_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
 
         Thread.sleep(3000);
@@ -15602,12 +15602,12 @@ public class AppTest {
         properties.put(fieldCode, sltf);
         this.certAppManagerment.updateFormFields(DEPLOY_APP_ID, properties, null);
 
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(DEPLOY_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(DEPLOY_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
 
         Thread.sleep(3000);
@@ -15621,16 +15621,16 @@ public class AppTest {
         HashMap<String, Field> properties = new HashMap<>();
         String fieldCode = "Text101";
 
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(DEPLOY_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(DEPLOY_APP_ID);
+        previewApp.setRevision(-1);
 
         SingleLineTextField createSingleLineTextField = createSingleLineTextField(fieldCode);
         properties.put(fieldCode, createSingleLineTextField);
         this.appManagerment.addFormFields(DEPLOY_APP_ID, properties, null);
 
-        ArrayList<PreviewAppRequest> deployApps2 = new ArrayList<PreviewAppRequest>();
-        deployApps2.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps2 = new ArrayList<>();
+        deployApps2.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps2, true);
 
         Thread.sleep(3000);
@@ -15645,16 +15645,16 @@ public class AppTest {
         HashMap<String, Field> properties = new HashMap<>();
         String fieldCode = "Text101";
 
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(DEPLOY_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(DEPLOY_APP_ID);
+        previewApp.setRevision(-1);
 
         SingleLineTextField createSingleLineTextField = createSingleLineTextField(fieldCode);
         properties.put(fieldCode, createSingleLineTextField);
         this.certAppManagerment.addFormFields(DEPLOY_APP_ID, properties, null);
 
-        ArrayList<PreviewAppRequest> deployApps2 = new ArrayList<PreviewAppRequest>();
-        deployApps2.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps2 = new ArrayList<PreviewApp>();
+        deployApps2.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps2, true);
 
         Thread.sleep(3000);
@@ -15666,14 +15666,14 @@ public class AppTest {
     // KINTONE-14003
     @Test
     public void testDeployAppSettingsShouldSuccessWhenAppListBlank() throws KintoneAPIException {
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     // KINTONE-14003
     @Test
     public void testDeployAppSettingsShouldSuccessWhenAppListBlankCert() throws KintoneAPIException {
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
@@ -15689,269 +15689,269 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldSuccessWhenRevisionLessThanMinusOne() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-2);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-2);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldSuccessWhenRevisionLessThanMinusOneCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-2);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-2);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppNull() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(null);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(null);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppNullCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(null);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(null);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenUseTokenAPI() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.addFormFieldTokenAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenHasNopermission() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(NO_PERMISSION_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(NO_PERMISSION_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenHasNopermissionCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(NO_PERMISSION_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(NO_PERMISSION_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppDuplicate() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        PreviewAppRequest previewAppRequest1 = new PreviewAppRequest();
+        PreviewApp previewAppRequest1 = new PreviewApp();
         previewAppRequest1.setApp(APP_ID);
         previewAppRequest1.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         deployApps.add(previewAppRequest1);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppDuplicateCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        PreviewAppRequest previewAppRequest1 = new PreviewAppRequest();
+        PreviewApp previewAppRequest1 = new PreviewApp();
         previewAppRequest1.setApp(APP_ID);
         previewAppRequest1.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         deployApps.add(previewAppRequest1);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppZero() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(0);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(0);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppZeroCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(0);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(0);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppUnexisted() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(99999);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(99999);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppUnexistedCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(99999);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(99999);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppOverflow() throws KintoneAPIException {
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
         for (int i = 0; i <= 300; i++) {
-            PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-            previewAppRequest.setApp(i + 1);
-            previewAppRequest.setRevision(-1);
+            PreviewApp previewApp = new PreviewApp();
+            previewApp.setApp(i + 1);
+            previewApp.setRevision(-1);
 
-            deployApps.add(previewAppRequest);
+            deployApps.add(previewApp);
         }
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppOverflowCert() throws KintoneAPIException {
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
         for (int i = 0; i <= 300; i++) {
-            PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-            previewAppRequest.setApp(i + 1);
-            previewAppRequest.setRevision(-1);
+            PreviewApp previewApp = new PreviewApp();
+            previewApp.setApp(i + 1);
+            previewApp.setRevision(-1);
 
-            deployApps.add(previewAppRequest);
+            deployApps.add(previewApp);
         }
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenLinkIsGuestSpace() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.guestSpaceAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenLinkIsGuestSpaceCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certGuestAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppIsGuestSpace() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(TestConstants.GUEST_SPACE_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test
     public void testDeployAppSettingsShouldFailWhenAppIsGuestSpaceCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(TestConstants.GUEST_SPACE_APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certGuestAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldSuccessWhenRevisionUnexisted() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(99999);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(99999);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldSuccessWhenRevisionUnexistedCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(99999);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(99999);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAlreadyDeployed() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.appManagerment.deployAppSettings(deployApps, false);
         this.appManagerment.deployAppSettings(deployApps, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAlreadyDeployedCert() throws KintoneAPIException {
-        PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(APP_ID);
-        previewAppRequest.setRevision(-1);
+        PreviewApp previewApp = new PreviewApp();
+        previewApp.setApp(APP_ID);
+        previewApp.setRevision(-1);
 
-        ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
-        deployApps.add(previewAppRequest);
+        ArrayList<PreviewApp> deployApps = new ArrayList<PreviewApp>();
+        deployApps.add(previewApp);
         this.certAppManagerment.deployAppSettings(deployApps, false);
         this.certAppManagerment.deployAppSettings(deployApps, false);
     }
@@ -16161,8 +16161,8 @@ public class AppTest {
         views.put(name, properties);
         this.appManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16193,8 +16193,8 @@ public class AppTest {
         views.put(name, properties);
         this.certAppManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16374,8 +16374,8 @@ public class AppTest {
         views.put(name, properties);
         this.appManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16402,8 +16402,8 @@ public class AppTest {
         views.put(name, properties);
         this.certAppManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16430,8 +16430,8 @@ public class AppTest {
         views.put(name, properties);
         this.appManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16459,8 +16459,8 @@ public class AppTest {
         views.put(name, properties);
         this.certAppManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16522,8 +16522,8 @@ public class AppTest {
         views.put(name, properties);
         this.appManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16549,8 +16549,8 @@ public class AppTest {
         views.put(name, properties);
         this.certAppManagerment.updateViews(VIEW_SETTING_APP_ID, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(VIEW_SETTING_APP_ID);
         apps.add(app);
@@ -16658,8 +16658,8 @@ public class AppTest {
         views.put(name, properties);
         this.guestSpaceAppManagerment.updateViews(1804, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(1804);
         apps.add(app);
@@ -16685,8 +16685,8 @@ public class AppTest {
         views.put(name, properties);
         this.certGuestAppManagerment.updateViews(1804, views, null);
 
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
 
         app.setApp(1804);
         apps.add(app);
@@ -20742,8 +20742,8 @@ public class AppTest {
     @Test
     public void testGetGeneralSettingsShouldSuccess() throws KintoneAPIException, InterruptedException {
         GeneralSettings generalSettings = new GeneralSettings();
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
         app.setApp(APP_ID);
         apps.add(app);
 
@@ -20766,8 +20766,8 @@ public class AppTest {
     @Test
     public void testGetGeneralSettingsShouldSuccessCert() throws KintoneAPIException, InterruptedException {
         GeneralSettings generalSettings = new GeneralSettings();
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
         app.setApp(APP_ID);
         apps.add(app);
 
@@ -20824,8 +20824,8 @@ public class AppTest {
     @Test
     public void testGetGeneralSettingsShouldSuccessWhenInGuestSpace() throws KintoneAPIException, InterruptedException {
         GeneralSettings generalSettings = new GeneralSettings();
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
         app.setApp(TestConstants.GUEST_SPACE_APP_ID);
         apps.add(app);
 
@@ -20850,8 +20850,8 @@ public class AppTest {
     public void testGetGeneralSettingsShouldSuccessWhenInGuestSpaceCert()
             throws KintoneAPIException, InterruptedException {
         GeneralSettings generalSettings = new GeneralSettings();
-        ArrayList<PreviewAppRequest> apps = new ArrayList<>();
-        PreviewAppRequest app = new PreviewAppRequest();
+        ArrayList<PreviewApp> apps = new ArrayList<>();
+        PreviewApp app = new PreviewApp();
         app.setApp(TestConstants.GUEST_SPACE_APP_ID);
         apps.add(app);
 
