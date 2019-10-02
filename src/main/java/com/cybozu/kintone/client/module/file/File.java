@@ -10,6 +10,7 @@ package com.cybozu.kintone.client.module.file;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -22,69 +23,70 @@ import com.google.gson.JsonElement;
 
 public class File {
 
-    private Connection connection;
-    private static final FileParser parser = new FileParser();
+	private Connection connection;
+	private static final FileParser parser = new FileParser();
 
-    /**
-     * Constructor
-     * @param connection connection of the File
-     */
-    public File(Connection connection) {
-        this.connection = connection;
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param connection connection of the File
+	 */
+	public File(Connection connection) {
+		this.connection = connection;
+	}
 
-    /**
-     * Upload file on kintone.
-     * @param filePath filePath of the upload
-     * @return FileModel
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public FileModel upload(String filePath) throws KintoneAPIException {
-        InputStream fis = null;
-        String fileName;
-        try {
-            java.io.File uploadFile = new java.io.File(filePath);
-            fileName = uploadFile.getName();
-            fis = new FileInputStream(uploadFile.getAbsolutePath());
-        } catch (FileNotFoundException e) {
-            throw new KintoneAPIException("cannot open file", e);
-        }
-        JsonElement response = this.connection.uploadFile(fileName, fis);
-        return (FileModel) parser.parseJson(response, FileModel.class);
-    }
+	/**
+	 * Upload file on kintone.
+	 * 
+	 * @param filePath filePath of the upload
+	 * @return FileModel
+	 * @throws KintoneAPIException the KintoneAPIException to throw
+	 */
+	public FileModel upload(String filePath) throws KintoneAPIException {
+		InputStream fis = null;
+		String fileName;
+		try {
+			java.io.File uploadFile = new java.io.File(filePath);
+			fileName = uploadFile.getName();
+			fis = new FileInputStream(uploadFile.getAbsolutePath());
+		} catch (FileNotFoundException e) {
+			throw new KintoneAPIException("cannot open file", e);
+		}
+		JsonElement response = this.connection.uploadFile(fileName, fis);
+		return (FileModel) parser.parseJson(response, FileModel.class);
+	}
 
-    /**
-     * Download file from kintone.
-     * @param fileKey fileKey of the download
-     * @param outPutFilePath outPutFilePath of the download
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
-     */
-    public void download(String fileKey, String outPutFilePath) throws KintoneAPIException {
-        DownloadRequest request = new DownloadRequest(fileKey);
-        String requestBody = parser.parseObject(request);
-        InputStream is = this.connection.downloadFile(requestBody);
-        try {
-            try {
-                if (outPutFilePath != null) {
-                    OutputStream fos = new FileOutputStream(outPutFilePath);
-                    try {
-                        byte[] buffer = new byte[8192];
-                        int n = 0;
-                        while (-1 != (n = is.read(buffer))) {
-                            fos.write(buffer, 0, n);
-                        }
-                    } finally {
-                        fos.close();
-                    }
-                }
-            } finally {
-                is.close();
-            }
-        } catch (Exception e) {
-            throw new KintoneAPIException("an error occurred while receiving data", e);
-        }
-    }
+	/**
+	 * Download file from kintone.
+	 * 
+	 * @param fileKey        fileKey of the download
+	 * @param outPutFilePath outPutFilePath of the download
+	 * @throws KintoneAPIException the KintoneAPIException to throw
+	 */
+	public void download(String fileKey, String outPutFilePath) throws KintoneAPIException {
+		DownloadRequest request = new DownloadRequest(fileKey);
+		String requestBody = parser.parseObject(request);
+		InputStream is = this.connection.downloadFile(requestBody);
+		OutputStream fos = null;
+		try {
+			if (outPutFilePath != null) {
+				fos = new FileOutputStream(outPutFilePath);
+				byte[] buffer = new byte[8192];
+				int n = 0;
+				while (-1 != (n = is.read(buffer))) {
+					fos.write(buffer, 0, n);
+				}
+			}
+		} catch (Exception e) {
+			throw new KintoneAPIException("an error occurred while receiving data", e);
+		} finally {
+			try {
+				is.close();
+				fos.close();
+			} catch (IOException e2) {
+				throw new KintoneAPIException("an error occurred while receiving data", e2);
+			}
+		}
+	}
 
 }
