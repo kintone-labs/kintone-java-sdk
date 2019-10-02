@@ -81,7 +81,7 @@ The user or API Token must have permission to view the records.
         RecordCursor recordCursor = new RecordCursor(connection);
         
         int appID = your_appId;
-        int size = 500;
+        int size = your_size_recordCursor;
         String query = "your_query";
         ArrayList fields = new ArrayList();
         fields.add("your_field");
@@ -133,7 +133,7 @@ The user or API Token must have permission to view the records.
         RecordCursor recordCursor = new RecordCursor(connection);
         
         int appID = your_appId;
-        int size = 500;
+        int size = your_size_recordCursor;
         String query = "your_query";
         ArrayList fields = new ArrayList();
         fields.add("your_field");
@@ -190,7 +190,7 @@ The user or API Token must have permission to view the records.
         RecordCursor recordCursor = new RecordCursor(connection);
         
         int appID = your_appId;
-        int size = 500;
+        int size = your_size_recordCursor;
         String query = "your_query";
         ArrayList fields = new ArrayList();
         fields.add("your_field");
@@ -248,7 +248,7 @@ The user or API Token must have permission to view the records.
         RecordCursor recordCursor = new RecordCursor(connection);
 
         int appID = your_appId;
-        int size = 500;
+        int size = your_size_recordCursor;
         String query = "your_query";
         ArrayList fields = new ArrayList();
         fields.add("your_field");
