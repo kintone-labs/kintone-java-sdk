@@ -4,66 +4,70 @@ The general settings of app
 
 ## Methods
 
-### getName()
+### getName
 
 > The name of the app.
 
+**Declaration**
+```
+public String getName()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getDescription()
+### getDescription
 
 > The description of an app
 
+**Declaration**
+```
+public String getDescription()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getIcon()
+### getIcon
 
 Get the Icon of an app.
 
+**Declaration**
+```
+public Icon getIcon()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-[Icon](../icon-model)
-
-### getTheme()
+### getTheme
 
 Get the theme of an app.
 
+**Declaration**
+```
+public IconTheme getTheme()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-[IconTheme](#IconTheme)
-
-### getRevision()
+### getRevision
 
 Get the revision of an app.
 
+**Declaration**
+```
+public Integer getRevision()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
-
 
 ## Enum
 
