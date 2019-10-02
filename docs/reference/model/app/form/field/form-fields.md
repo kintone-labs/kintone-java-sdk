@@ -9,17 +9,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getApp()
+#### getApp
 
 Get the app
+
+**Declaration**
+```
+public Integer getApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -36,17 +37,18 @@ Integer
 
 </details>
 
-#### getRevision()
+#### getRevision
 
 Get the revision
 
-**Parameter **
+**Declaration**
+```
+public Integer getRevision()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -63,17 +65,18 @@ Integer
 
 </details>
 
-#### getProperties()
+#### getProperties
 
 Get the properties
 
-**Parameter **
+**Declaration**
+```
+public HashMap<String, Field> getProperties()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
- Map<String, [Field](#field)\>
 
 **Sample code**
 
@@ -97,17 +100,18 @@ Get the properties
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
+
+**Declaration**
+```
+public String getLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -124,17 +128,18 @@ String
 
 </details>
 
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
+
+**Declaration**
+```
+public Boolean getNoLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -151,17 +156,18 @@ Boolean
 
 </details>
 
-#### getOpenGroup()
+#### getOpenGroup
 
 Get the openGroup
+
+**Declaration**
+```
+public Boolean getOpenGroup()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -182,17 +188,18 @@ Boolean
 
 ### Methods
 
-#### getField()
+#### getField
 
 Get the field
+
+**Declaration**
+```
+public String getField()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -209,17 +216,18 @@ String
 
 </details>
 
-#### getRelatedFields()
+#### getRelatedFields
 
 Get the relatedFields
+
+**Declaration**
+```
+public String getRelatedFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -245,17 +253,18 @@ String
 
 </details>
 
-#### getFields()
+#### getFields
 
 Get the fields
+
+**Declaration**
+```
+public HashMap<String, AbstractInputField> getFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- Map<String, [AbstractInputField](../form-fields-input/#abstractinputfield)\>
 
 **Sample code**
 
@@ -279,9 +288,14 @@ Get the fields
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
@@ -291,17 +305,18 @@ Get the code
 
 String
 
-#### getType()
+#### getType
 
 Get the type
+
+**Declaration**
+```
+public FieldType getType()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-LayoutType
 
 ## Reference
 
