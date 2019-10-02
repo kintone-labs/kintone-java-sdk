@@ -12,17 +12,18 @@ General Field's value of the kintone app
 
 ### Methods
 
-#### getType()
+#### getType
 
 > get the type of field.
+
+**Declaration**
+```
+public FieldType getType()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-FieldType
 
 **Sample code**
 
@@ -44,19 +45,20 @@ FieldType fieldType = fv.getType();
 
 </details>
 
-#### setType(FieldType type)
+#### setType
 
 > set the type of field.
 
+**Declaration**
+```
+public void setType(FieldType type)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| type | FieldType  | The type of field - kintone-sdk FieldType constants.
-
-**Return**
-
-(none)
+| Name| Description |
+| ---  | --- |
+| type | The type of field - kintone-sdk FieldType constants.
 
 **Sample code**
 
@@ -79,17 +81,18 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 
 </details>
 
-#### getValue()
+#### getValue
 
 > get the value of field in the record.
+
+**Declaration**
+```
+public Object getValue()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Object
 
 **Sample code**
 
@@ -111,20 +114,20 @@ Object fieldValue = fv.getValue();
 
 </details>
 
-#### setValue(Object value)
+#### setValue
 
 > set the value of field in the record.
 
+**Declaration**
+```
+
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| value | Object  | The value of field in the record, read more at [Field Type here](https://developer.kintone.io/hc/en-us/articles/212494818/#responses).
-
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- |
+| value | The value of field in the record, read more at [Field Type here](https://developer.kintone.io/hc/en-us/articles/212494818/#responses).
 
 **Sample code**
 
@@ -157,17 +160,18 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 
 ### Methods
 
-#### getID()
+#### getID
 
 > get the ID of item in table.
+
+**Declaration**
+```
+public Integer getID()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -192,20 +196,20 @@ Integer itemID = subTable.get(0).getID();
 </details>
 
 
-#### setID(Integer id)
+#### setID
 
 > set the ID of table.
 
+**Declaration**
+```
+public void setID(Integer id)
+```
+
 **Parameter**
 
-| Name| type | Description |
-| --- | ---  | --- |
-| id | Integer | The ID of table .
-
-**Return**
-
-(none)
-
+| Name | Description |
+| --- | --- |
+| id | The ID of table .
 
 **Sample code**
 
@@ -231,17 +235,18 @@ tableItem.setValue(tableItemValue);
 
 </details>
 
-#### getValue()
+#### getValue
 
 > get the value of field in the record.
+
+**Declaration**
+```
+public HashMap<String, FieldValue> getValue()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-HashMap<String, [FieldValue](#fieldvalue)\>
 
 **Sample code**
 
@@ -265,21 +270,20 @@ HashMap<String, FieldValue> itemValue= subTable.get(0).getValue();
 
 </details>
 
-#### setValue(HashMap<String, [FieldValue](#fieldvalue)\> value) 
+#### setValue
 
 > set the value of field in the record.
 
+**Declaration**
+```
+public void setValue(HashMap<String, FieldValue> value)
+```
+
 **Parameter**
 
-| Name| type | Description |
-| --- | ---  | --- |
-| value | HashMap<String, [FieldValue](#fieldvalue)\>  | The row data of table.
-
-
-**Return**
-
-(none)
-
+| Name | Description |
+| --- | --- |
+| value | The row data of table. (HashMap<String, [FieldValue](#fieldvalue)\>)
 
 **Sample code**
 
