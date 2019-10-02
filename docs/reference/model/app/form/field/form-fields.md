@@ -31,7 +31,13 @@ public Integer getApp()
 
 <pre class="inline-code">
 
-    Integer app = formfields.getApp();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
+
+    Integer app = formFields.getApp();
 
 </pre>
 
@@ -59,7 +65,13 @@ public Integer getRevision()
 
 <pre class="inline-code">
 
-    int revision = formfields.getRevision();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
+
+    Integer revisionFields = formFields.getRevision();
 
 </pre>
 
@@ -87,8 +99,13 @@ public HashMap<String, Field> getProperties()
 
 <pre class="inline-code">
 
-    Map<String, Field> properties = formfields.getProperties();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
 
+    HashMap<String, Field> propertiesFields = formFields.getProperties();
 </pre>
 
 </details>
@@ -122,6 +139,7 @@ public String getLabel()
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     String label = fieldGroup.getLabel();
 
 </pre>
@@ -150,6 +168,7 @@ public Boolean getNoLabel()
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     Boolean noLabel = fieldGroup.getNoLabel();
 
 </pre>
@@ -178,6 +197,7 @@ public Boolean getOpenGroup()
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     Boolean openGroup = fieldGroup.getOpenGroup();
 
 </pre>
@@ -210,6 +230,7 @@ public String getField()
 
 <pre class="inline-code">
 
+    FieldMapping fieldMapping = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_RELATED_CODE");
     String field = fieldMapping.getField();
 
 </pre>
@@ -238,6 +259,7 @@ public String getRelatedFields()
 
 <pre class="inline-code">
 
+    FieldMapping fieldMapping = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_RELATED_CODE");
     String relatedFields = fieldMapping.getRelatedFields();
 
 </pre>
@@ -275,7 +297,8 @@ public HashMap<String, AbstractInputField> getFields()
 
 <pre class="inline-code">
 
-    Map<String, AbstractInputField> fields = subTableField.getFields();
+    SubTableField subTableField = new SubTableField("YOUR_FIELD_CODE");
+    HashMap<String, AbstractInputField> fields = subTableField.getFields();
     
 </pre>
 
