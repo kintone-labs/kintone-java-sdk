@@ -376,9 +376,9 @@ Creates a preview App.
 
 **Declaration**
 ```
-public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException 
-public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException 
-public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException 
+public PreviewApp addPreviewApp(String name) throws KintoneAPIException 
+public PreviewApp addPreviewApp(String name, Integer space) throws KintoneAPIException 
+public PreviewApp addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException 
 ```
 
 **Parameter**
@@ -414,12 +414,12 @@ public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer t
     String name = "YOUR_APP_NAME";
 
     // Add preview app by name
-    AddPreviewAppResponse addPreviewAppByName = kintoneApp.addPreviewApp(name);
+    PreviewApp addPreviewAppByName = kintoneApp.addPreviewApp(name);
 
     // add preview app
     Integer spaceId = 0; // Space will add this app
     Integer threadId = 0; // Thread will add this app
-    AddPreviewAppResponse addPreviewApp = kintoneApp.addPreviewApp(name, spaceId, threadId);
+    PreviewApp addPreviewApp = kintoneApp.addPreviewApp(name, spaceId, threadId);
 
 </pre>
 
@@ -925,7 +925,7 @@ public GeneralSettings getGeneralSettings(Integer app, LanguageSetting lang, Boo
 | --- | --- |
 | app | The kintone app id
 | lang | The localized language to retrieve the data in language constants
-| isPreview | Default value: **fasle**. <br> Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
+| isPreview | Default value: **false**. <br> Get general settings of the app with a [pre-live settings](https://developer.kintone.io/hc/en-us/articles/115005509288).
 
 **Sample code**
 
