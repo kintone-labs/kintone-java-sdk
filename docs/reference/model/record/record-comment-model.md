@@ -12,17 +12,18 @@ General comment structure of the record on kintone restAPI
 
 ### Methods
 
-#### getId()
+#### getId
 
 Get the Comment ID.
+
+**Declaration**
+```
+public Integer getId()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -50,17 +51,18 @@ Integer
 
 </details>
 
-#### getText()
+#### getText
 
 Get the comment including the line feed codes.
+
+**Declaration**
+```
+public String getText()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -88,17 +90,18 @@ String
 
 </details>
 
-#### getCreatedAt()
+#### getCreatedAt
 
 Get the created date and time of the comment.
+
+**Declaration**
+```
+public Date getCreatedAt()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Date
 
 **Sample code**
 
@@ -126,17 +129,18 @@ Date
 
 </details>
 
-#### getCreator()
+#### getCreator
 
 Get an object including information of the comment creator.
+
+**Declaration**
+```
+public Member getCreator()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[Member](../member/#member)
 
 **Sample code**
 
@@ -164,17 +168,18 @@ Get an object including information of the comment creator.
 
 </details>
 
-#### getMentions()
+#### getMentions
 
 Get an array including information of mentioned users.
+
+**Declaration**
+```
+public ArrayList<CommentMention> getMentions()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-List<[CommentMention](#commentmention)\>
 
 **Sample code**
 
@@ -212,19 +217,20 @@ List<[CommentMention](#commentmention)\>
 
 ### Methods
 
-#### setText(String text)
+#### setText
 
 > set the comment including the line feed codes.
 
+**Declaration**
+```
+public void setText(String text)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| text | String  | The comment including the line feed codes.
-
-**Return**
-
-(none)
+| Name|Description |
+| --- | ---  |
+| text | The comment including the line feed codes.
 
 **Sample code**
 
@@ -252,19 +258,20 @@ List<[CommentMention](#commentmention)\>
 
 </details>
 
-#### setMentions(List<[CommentMention](#commentmention)\> mentions)
+#### setMentions
 
 Get an array including information of mentioned users.
 
+**Declaration**
+```
+public void setMentions(ArrayList<CommentMention> mentions)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| mentions | List<[CommentMention](#commentmention)\>  | An array including information of mentioned users.
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | ---  |
+| mentions| An array including information of mentioned users.
 
 **Sample code**
 
@@ -302,17 +309,18 @@ Get an array including information of mentioned users.
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code of the mentioned user, group or organization.
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -342,19 +350,20 @@ String
 
 </details>
 
-#### setCode(String code)
+#### setCode
 
 > set the comment including the line feed codes.
 
+**Declaration**
+```
+public void setCode(String code)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| code | String  | The code of the mentioned user, group or organization.
-
-**Return**
-
-(none)
+| Name| Description |
+| ---  | --- |
+| code | The code of the mentioned user, group or organization.
 
 **Sample code**
 
@@ -382,17 +391,18 @@ String
 
 </details>
 
-#### getType()
+#### getType
 
 Get the type of the mentioned user, group or organization.
+
+**Declaration**
+```
+public String getType()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -422,19 +432,20 @@ String
 
 </details>
 
-#### setType(String type)
+#### setType
 
 Get an array including information of mentioned users.
 
+**Declaration**
+```
+public void setType(String type)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| type | String  | The type of the mentioned user, group or organization.
-
-**Return**
-
-(none)
+| Name| Description |
+| ---  | --- |
+| type | The type of the mentioned user, group or organization.
 
 **Sample code**
 
@@ -472,17 +483,18 @@ Get an array including information of mentioned users.
 
 ### Methods
 
-#### getComments()
+#### getComments
 
 Get the comments List on a record.
+
+**Declaration**
+```
+public ArrayList<Comment> getComments()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-ArrayList<[Comment](#comment)\>
 
 **Sample code**
 
@@ -508,17 +520,18 @@ ArrayList<[Comment](#comment)\>
 
 </details>
 
-#### getOlder()
+#### getOlder
 
 Get information of older comments.
+
+**Declaration**
+```
+public Boolean getOlder()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -544,17 +557,18 @@ Boolean
 
 </details>
 
-#### getNewer()
+#### getNewer
 
 Get information of newer comments.
+
+**Declaration**
+```
+public Boolean getNewer()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -590,17 +604,18 @@ Boolean
 
 ### Methods
 
-#### getId()
+#### getId
 
 Get the ID of comment which have just created.
+
+**Declaration**
+```
+public Integer getId()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
