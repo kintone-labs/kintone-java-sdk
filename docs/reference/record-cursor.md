@@ -80,7 +80,7 @@ The user or API Token must have permission to view the records.
         kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
         RecordCursor recordCursor = new RecordCursor(connection);
         
-        int appID = 110;
+        int appID = your_appId;
         int size = 500;
         String query = "your_query";
         ArrayList fields = new ArrayList();
@@ -132,7 +132,7 @@ The user or API Token must have permission to view the records.
         kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
         RecordCursor recordCursor = new RecordCursor(connection);
         
-        int appID = 1;
+        int appID = your_appId;
         int size = 500;
         String query = "your_query";
         ArrayList fields = new ArrayList();
@@ -189,7 +189,7 @@ The user or API Token must have permission to view the records.
         kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
         RecordCursor recordCursor = new RecordCursor(connection);
         
-        int appID = 1;
+        int appID = your_appId;
         int size = 500;
         String query = "your_query";
         ArrayList fields = new ArrayList();
@@ -247,7 +247,7 @@ The user or API Token must have permission to view the records.
         kintoneAuth = kintoneAuth.setPasswordAuth(username, password);
         RecordCursor recordCursor = new RecordCursor(connection);
 
-        int appID = 1;
+        int appID = your_appId;
         int size = 500;
         String query = "your_query";
         ArrayList fields = new ArrayList();
