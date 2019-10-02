@@ -27,8 +27,8 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <pre class="inline-code">
 
   Auth kintoneAuth = new Auth();
-  String username = "username";
-  String password = "password";
+  String username = "your_username";
+  String password = "your_password";
   kintoneAuth.setPasswordAuth(username, password);
   String myDomainName = "domain";
   Connection connection = new Connection(myDomainName, kintoneAuth);
@@ -63,22 +63,22 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-  String username = "cybozu";
-  String password = "cybozu";
+  String username = "your_username"
+  String password = "your_password"
 
   // Init authenticationAuth
   Auth kintoneAuth = new Auth();
   kintoneAuth.setPasswordAuth(username, password);
 
   // Init Connection
-  String myDomainName = "sample.cybozu.com";
+  String myDomainName = "your_domain";
   Connection kintoneOnDemoDomain = new Connection(myDomainName, kintoneAuth);
 
   // Init File Module
   File kintoneFileManager = new File(kintoneOnDemoDomain);
 
   // execute upload file API
-  String uploadPath = "C:/Users/Administrator/Desktop/upload";
+  String uploadPath = "your_path";
   try {
 			FileModel fileModel = kintoneFileManager.upload(uploadPath + "test.txt");
 	} catch (KintoneAPIException e) {
@@ -113,14 +113,14 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-  String username = "name";
-  String password = "password";
+  String username = "your_username"
+  String password = "your_password"
 
   // Init authenticationAuth
   Auth kintoneAuth = new Auth();
   kintoneAuth.setPasswordAuth(username, password);
 
-  String myDomainName = "domain";
+  String myDomainName = "your_domain";
   Connection kintoneOnDemoDomain = new Connection(myDomainName, kintoneAuth);
 
   // Init File Module
@@ -129,8 +129,8 @@ Provide manipulate functions on file: file download & file upload in the kintone
   Record kintonRecordManager = new Record(kintoneOnDemoDomain);
 
   // get filekey
-  Integer appID = 18;
-  Integer recordID =134;
+  Integer appID = your_id;
+  Integer recordID = your_record_id;
   GetRecordResponse recordJson;
   try {
     recordJson = kintonRecordManager.getRecord(appID, recordID);
@@ -138,7 +138,7 @@ Provide manipulate functions on file: file download & file upload in the kintone
     FieldValue fileVal = (FieldValue) recordVal.get("file");
     ArrayList fileList =  (ArrayList) fileVal.getValue();
   // execute download file API
-    String downloadPath = "C:/Users/h001587/directory/";
+    String downloadPath = "your_path";
     for (int i = 0; i < fileList.size(); i++) {
         FileModel fdata =  (FileModel) fileList.get(i);
         kintoneFileManager.download(fdata.getFileKey(), downloadPath + fdata.getName());
