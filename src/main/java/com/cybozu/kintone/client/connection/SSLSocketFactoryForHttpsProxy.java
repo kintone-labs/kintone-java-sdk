@@ -17,11 +17,10 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
     private String proxyUser;
     private boolean socketConnected = false;
 
-
     /**
      * Constructor for the SSLSocketFactoryForHttpsProxy object
      *
-     * @param dfactory  The socket factory used for setting client certificate
+     * @param dfactory The socket factory used for setting client certificate
      */
     public SSLSocketFactoryForHttpsProxy(SSLSocketFactory dfactory) {
         System.err.println("creating Socket Factory");
@@ -38,12 +37,12 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
         System.err.println("creating Socket Factory");
         this.proxyHost = proxyHost;
         this.proxyPort = Integer.parseInt(proxyPort);
-        this.dfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        dfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
     }
 
     /**
      * Constructor for the SSLSocketFactoryForHttpsProxy object
-     * 
+     *
      * @param dfactory  The socket factory used for setting client certificate
      * @param proxyHost The url of the proxy host
      * @param proxyPort the port of the proxy
@@ -62,10 +61,9 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param proxyPort     the port of the proxy
      * @param proxyUserName username for authenticating with the proxy
      * @param proxyPassword password for authenticating with the proxy
-     * 
      */
     public SSLSocketFactoryForHttpsProxy(String proxyHost, String proxyPort, String proxyUserName,
-            String proxyPassword) {
+                                         String proxyPassword) {
         System.err.println("creating Socket Factory with password/username");
         this.proxyHost = proxyHost;
         this.proxyPort = Integer.parseInt(proxyPort);
@@ -82,10 +80,9 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param proxyPort     the port of the proxy
      * @param proxyUserName username for authenticating with the proxy
      * @param proxyPassword password for authenticating with the proxy
-     * 
      */
     public SSLSocketFactoryForHttpsProxy(SSLSocketFactory dfactory, String proxyHost, String proxyPort,
-            String proxyUserName, String proxyPassword) {
+                                         String proxyUserName, String proxyPassword) {
         System.err.println("creating Socket Factory with password/username");
         this.proxyHost = proxyHost;
         this.proxyPort = Integer.parseInt(proxyPort);
@@ -95,9 +92,9 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
     }
 
     public SSLSocketFactoryForHttpsProxy() {
-        this.dfactory = (SSLSocketFactory)SSLSocketFactory.getDefault();
+        this.dfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
     }
-    
+
     /**
      * Sets the proxyHost attribute of the SSLSocketFactoryForHttpsProxy object
      *
@@ -116,7 +113,7 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
         this.proxyPort = proxyPort;
     }
 
-	/**
+    /**
      * Sets the proxyUserName attribute of the SSLSocketFactoryForHttpsProxy object
      *
      * @param proxyUserName The new proxyUserName value
@@ -169,8 +166,8 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param port      destination port
      * @param autoClose wether to close the socket automaticly
      * @return proxy tunneled socket
-     * @exception IOException          raised by an IO error
-     * @exception UnknownHostException raised when the host is unknown
+     * @throws IOException          raised by an IO error
+     * @throws UnknownHostException raised when the host is unknown
      */
     public Socket createSocket(Socket s, String host, int port, boolean autoClose)
             throws IOException, UnknownHostException {
@@ -195,8 +192,8 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param host destination host
      * @param port destination port
      * @return tunneled SSL Socket
-     * @exception IOException          raised by IO error
-     * @exception UnknownHostException raised when the host is unknown
+     * @throws IOException          raised by IO error
+     * @throws UnknownHostException raised when the host is unknown
      */
     public Socket createSocket(String host, int port) throws IOException, UnknownHostException {
         return createSocket(null, host, port, true);
@@ -210,8 +207,8 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param clientHost Ignored
      * @param clientPort Ignored
      * @return SSL Tunneled Socket
-     * @exception IOException          Raised when IO error occurs
-     * @exception UnknownHostException Raised when the destination host is unknown
+     * @throws IOException          Raised when IO error occurs
+     * @throws UnknownHostException Raised when the destination host is unknown
      */
     public Socket createSocket(String host, int port, InetAddress clientHost, int clientPort)
             throws IOException, UnknownHostException {
@@ -224,7 +221,7 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param host destination host
      * @param port destination port
      * @return tunneled SSL Socket
-     * @exception IOException raised when IO error occurs
+     * @throws IOException raised when IO error occurs
      */
     public Socket createSocket(InetAddress host, int port) throws IOException {
         return createSocket(null, host.getHostName(), port, true);
@@ -238,7 +235,7 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param clientAddress ignored
      * @param clientPort    ignored
      * @return tunneled SSL Socket
-     * @exception IOException raised when IO exception occurs
+     * @throws IOException raised when IO exception occurs
      */
     public Socket createSocket(InetAddress address, int port, InetAddress clientAddress, int clientPort)
             throws IOException {
@@ -260,7 +257,7 @@ class SSLSocketFactoryForHttpsProxy extends SSLSocketFactory {
      * @param tunnel tunnel socket
      * @param host   destination host
      * @param port   destination port
-     * @exception IOException raised when an IO error occurs
+     * @throws IOException raised when an IO error occurs
      */
     private void doTunnelHandshake(SSLSocket tunnel, String host, int port) throws IOException {
         OutputStream out = tunnel.getOutputStream();
