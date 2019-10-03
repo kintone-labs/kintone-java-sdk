@@ -72,10 +72,8 @@ public class KintoneAPIException extends Exception {
 
     @Override
     public String toString() {
-        if (errorResponse == null) {
-            if (request == null) {
-                return super.toString();
-            }
+        if (errorResponse == null && request == null) {
+            return super.toString();
         }
 
         StringBuilder sb = new StringBuilder();
