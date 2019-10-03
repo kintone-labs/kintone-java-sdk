@@ -4,7 +4,7 @@ Handle error responses when using multiple bulk request
 
 ## Methods
 
-### getResults()
+### getResults
 
 **Declaration**
 ```

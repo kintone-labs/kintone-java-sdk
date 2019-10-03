@@ -4,7 +4,7 @@ Handle error responses from kintone Rest API
 
 ## Methods
 
-### getHttpErrorCode()
+### getHttpErrorCode
 
 **Declaration**
 ```
@@ -46,7 +46,7 @@ public int getHttpErrorCode()
 
 </details>
 
-### getErrorResponse()
+### getErrorResponse
 
 **Declaration**
 ```
