@@ -54,7 +54,6 @@ Get the content type of the file.
         System.out.println("Content type: " + fdata.getContentType());
     }
   } catch (KintoneAPIException e) {
-    // TODO Auto-generated catch block
     e.printStackTrace();
   }
 </pre>
@@ -111,7 +110,6 @@ Get the file key of the file.
         System.out.println("File key: " + fdata.getFileKey());
     }
   } catch (KintoneAPIException e) {
-    // TODO Auto-generated catch block
     e.printStackTrace();
   }
 </pre>
@@ -168,7 +166,6 @@ Get the name of the file.
         System.out.println("Name: " + fdata.getName());
     }
   } catch (KintoneAPIException e) {
-    // TODO Auto-generated catch block
     e.printStackTrace();
   }
 </pre>
@@ -227,7 +224,6 @@ Get the size of the file.
         System.out.println("Size: " + fdata.getSize());
     }
   } catch (KintoneAPIException e) {
-    // TODO Auto-generated catch block
     e.printStackTrace();
   }
 </pre>
