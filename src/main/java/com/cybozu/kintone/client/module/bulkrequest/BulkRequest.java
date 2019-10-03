@@ -361,22 +361,16 @@ public class BulkRequest {
                     responses.addResponse(parser.parseJson(array.get(count), AddRecordsResponse.class));
                     break;
                 case BulkRequestConstants.UPDATE_RECORD:
+                case BulkRequestConstants.UPDATE_STATUS_RECORD:
+                case BulkRequestConstants.UPDATE_ASSIGNEE_RECORDS:
                     responses.addResponse(parser.parseJson(array.get(count), UpdateRecordResponse.class));
                     break;
                 case BulkRequestConstants.UPDATE_RECORDS:
+                case BulkRequestConstants.UPDATE_STATUS_RECORDS:
                     responses.addResponse(parser.parseJson(array.get(count), UpdateRecordsResponse.class));
                     break;
                 case BulkRequestConstants.DELETE_RECORDS:
                     responses.addResponse(parser.parseJson(array.get(count), HashMap.class));
-                    break;
-                case BulkRequestConstants.UPDATE_STATUS_RECORD:
-                    responses.addResponse(parser.parseJson(array.get(count), UpdateRecordResponse.class));
-                    break;
-                case BulkRequestConstants.UPDATE_STATUS_RECORDS:
-                    responses.addResponse(parser.parseJson(array.get(count), UpdateRecordsResponse.class));
-                    break;
-                case BulkRequestConstants.UPDATE_ASSIGNEE_RECORDS:
-                    responses.addResponse(parser.parseJson(array.get(count), UpdateRecordResponse.class));
                     break;
                 default:
                     throw new KintoneAPIException("Invalid Request Command");
