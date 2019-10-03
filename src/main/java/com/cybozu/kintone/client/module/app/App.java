@@ -59,7 +59,7 @@ public class App {
     /**
      * Get list app by offset and limit
      *
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @param limit  The limit number of result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
@@ -82,7 +82,7 @@ public class App {
     /**
      * Get list app by offset
      *
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
      */
@@ -95,7 +95,7 @@ public class App {
      * Get list app by list id, offset and limit
      *
      * @param ids    list id of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @param limit  The limit number of result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException the KintoneAPIException to throw
@@ -126,10 +126,10 @@ public class App {
     }
 
     /**
-     * et list app by list id, offset
+     * Get list app by list id, offset
      *
      * @param ids    list id of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
      */
@@ -141,7 +141,7 @@ public class App {
      * Get list app by list codes, offset and limit
      *
      * @param codes  list codes of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @param limit  The limit number of result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
@@ -176,7 +176,7 @@ public class App {
      * Get list app by list codes, offset and limit
      *
      * @param codes  list codes of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
      */
@@ -188,7 +188,7 @@ public class App {
      * Get list app by LIKE name, offset and limit
      *
      * @param name   The name of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @param limit  The limit number of result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
@@ -222,7 +222,7 @@ public class App {
      * Get list app by LIKE name, offset and limit
      *
      * @param name   The name of kintone App
-     * @param offset The offset off data result
+     * @param offset The offset of data result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
      */
@@ -234,7 +234,7 @@ public class App {
      * Get list app by list space ids, offset and limit
      *
      * @param spaceIds List space ids of kintone App
-     * @param offset   The offset off data result
+     * @param offset   The offset of data result
      * @param limit    The limit number of result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
@@ -270,7 +270,7 @@ public class App {
      * Get list app by list space ids, offset and limit
      *
      * @param spaceIds List space ids of kintone App
-     * @param offset   The offset off data result
+     * @param offset   The offset of data result
      * @return ArrayList<AppModel>
      * @throws KintoneAPIException
      */
@@ -280,7 +280,7 @@ public class App {
     }
 
     /**
-     * Gets the list of fields and field settings of an App.
+     * Get the list of fields and field settings of an App.
      *
      * @param appId     appId of kintone App
      * @param lang      language of LanguageSetting (EN, JP, ZH)
@@ -293,7 +293,7 @@ public class App {
     }
 
     /**
-     * Gets the list of fields and field settings of an App.
+     * Get the list of fields and field settings of an App.
      *
      * @param appId appId of kintone App
      * @return FormFields
@@ -304,7 +304,7 @@ public class App {
     }
 
     /**
-     * Gets the list of fields and field settings of an App.
+     * Get the list of fields and field settings of an App.
      *
      * @param appId appId of kintone App
      * @param lang  language of LanguageSetting (EN, JP, ZH)
@@ -316,7 +316,7 @@ public class App {
     }
 
     /**
-     * Gets the list of fields and field settings of an App.
+     * Get the list of fields and field settings of an App.
      *
      * @param appId     appId of kintone App
      * @param isPreview option preview
@@ -381,7 +381,7 @@ public class App {
     }
 
     /**
-     * Deletes fields from a form of an App.
+     * Delete fields from a form of an App.
      *
      * @param app    appId of kintone App
      * @param fields formFields which will add to form of kintone app
@@ -393,7 +393,7 @@ public class App {
     }
 
     /**
-     * Deletes fields from a form of an App.
+     * Delete fields from a form of an App.
      *
      * @param app      appId of kintone App
      * @param fields   formFields which will add to form of kintone app
@@ -407,7 +407,7 @@ public class App {
     }
 
     /**
-     * Gets the field layout info of a form in an App.
+     * Get the field layout info of a form in an App.
      *
      * @param appId appId of kintone App
      * @return FormLayout
@@ -418,7 +418,7 @@ public class App {
     }
 
     /**
-     * Gets the field layout info of a form in an App.
+     * Get the field layout info of a form in an App.
      *
      * @param appId     appId of kintone App
      * @param isPreview option preview
@@ -430,7 +430,7 @@ public class App {
     }
 
     /**
-     * Updates the field layout info of a form in an App.
+     * Update the field layout info of a form in an App.
      *
      * @param app    appId of kintone App
      * @param layout list item layout of kintone App
@@ -442,7 +442,7 @@ public class App {
     }
 
     /**
-     * Updates the field layout info of a form in an App.
+     * Update the field layout info of a form in an App.
      *
      * @param app      appId of kintone App
      * @param layout   list item layout of kintone App
@@ -492,7 +492,7 @@ public class App {
     }
 
     /**
-     * Updates the settings of a pre-live App to the live App.
+     * Update the settings of a pre-live App to the live App.
      *
      * @param apps list preview app
      * @throws KintoneAPIException
@@ -502,7 +502,7 @@ public class App {
     }
 
     /**
-     * Updates the settings of a pre-live App to the live App.
+     * Update the settings of a pre-live App to the live App.
      *
      * @param apps   list preview app
      * @param revert option revert
@@ -513,7 +513,7 @@ public class App {
     }
 
     /**
-     * Updates the settings of a pre-live App to the live App.
+     * Update the settings of a pre-live App to the live App.
      *
      * @param apps list app i
      * @return GetAppDeployStatusResponse
@@ -529,7 +529,7 @@ public class App {
     }
 
     /**
-     * Gets the View settings of a an App.
+     * Get the View settings of a an App.
      *
      * @param app app id of kintone App
      * @return GetViewsResponse
@@ -540,7 +540,7 @@ public class App {
     }
 
     /**
-     * Gets the View settings of a an App.
+     * Get the View settings of a an App.
      *
      * @param app  app id of kintone App
      * @param lang language of LanguageSetting
@@ -552,7 +552,7 @@ public class App {
     }
 
     /**
-     * Gets the View settings of a an App.
+     * Get the View settings of a an App.
      *
      * @param app       app id of kintone App
      * @param isPreview option preview
@@ -564,7 +564,7 @@ public class App {
     }
 
     /**
-     * Gets the View settings of a an App.
+     * Get the View settings of a an App.
      *
      * @param app       app id of kintone App
      * @param lang      language of LanguageSetting
@@ -603,7 +603,7 @@ public class App {
     }
 
     /**
-     * Gets the description, name, icon, revision and color theme of an App.
+     * Get the description, name, icon, revision and color theme of an App.
      *
      * @param app       app id of kintone App
      * @return GeneralSettings
@@ -614,7 +614,7 @@ public class App {
     }
 
     /**
-     * Gets the description, name, icon, revision and color theme of an App.
+     * Get the description, name, icon, revision and color theme of an App.
      *
      * @param app  app id of kintone App
      * @param lang language of LanguageSetting
@@ -626,7 +626,7 @@ public class App {
     }
 
     /**
-     * Gets the description, name, icon, revision and color theme of an App.
+     * Get the description, name, icon, revision and color theme of an App.
      *
      * @param app       app id of kintone App
      * @param isPreview option preview
@@ -638,7 +638,7 @@ public class App {
     }
 
     /**
-     * Gets the description, name, icon, revision and color theme of an App.
+     * Get the description, name, icon, revision and color theme of an App.
      *
      * @param app       app id of kintone App
      * @param lang      language of LanguageSetting
@@ -652,7 +652,7 @@ public class App {
     }
 
     /**
-     * Updates the description, name, icon, revision and color theme of an App.
+     * Update the description, name, icon, revision and color theme of an App.
      *
      * @param app             app id of kintone App
      * @param generalSettings generalSettings of the updateGeneralSettings
