@@ -13,13 +13,18 @@ The Bulk Request API allows multiple API requests to run on multiple kintone app
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public BulkRequest(Connection connection) 
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| connection | [Connection](../connection) | yes | The connection module of this SDK.
+**Parameter**
 
-### **Sample code**
+| Name| Description |
+| --- | --- | 
+| connection | The connection module of this SDK ([Connection](../connection)).
+
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Init bulk request module</Summary>
@@ -36,17 +41,19 @@ BulkRequest bulkRequestManager = new BulkRequest(connection);
 
 > All below methods (excluded `execute()` method) will add request to queue, you must execute the `execute()` function to get result of BulkRequest.
 
-### addRecord(app, record)
+### addRecord
+
+**Declaration**
+```
+public BulkRequest addRecord(Integer app)
+public BulkRequest addRecord(Integer app, HashMap<String, FieldValue> record)
+```
 
 **Parameter**
 
-See at [Record - addRecord](../record#addrecordappid-recorddata)
+See at [Record - addRecord](../record#addrecordapp-record)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>add Record</Summary>
@@ -71,17 +78,18 @@ bulkRequestManager.addRecord(appID, record);
 
 </details>
 
-### addRecords(app, records)
+### addRecords
+
+**Declaration**
+```
+public BulkRequest addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records)
+```
 
 **Parameter**
 
-See at [Record - addRecords](../record#addrecordsappid-recordsdata)
+See at [Record - addRecords](../record#addrecordsapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>add multiple Records</Summary>
@@ -115,17 +123,21 @@ bulkRequestManager.addRecords(appID, records);
 
 </details>
 
-### updateRecordByID(app, id, record, revision)
+### updateRecordByID
+
+**Declaration**
+```
+public BulkRequest updateRecordByID(Integer app, Integer id)
+public BulkRequest updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record) 
+public BulkRequest updateRecordByID(Integer app, Integer id, Integer revision) 
+public BulkRequest updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record, Integer revision)
+```
 
 **Parameter**
 
-See at [Record - updateRecordByID](../record#updaterecordbyidappid-recordid-recorddata-revision)
+See at [Record - updateRecordByID](../record#updaterecordbyidapp-id-record-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update Record By ID</Summary>
@@ -151,17 +163,22 @@ bulkRequestManager.updateRecordByID(appID, recordID, record, revision);
 
 </details>
 
-### updateRecordByUpdateKey(app, updateKey, record, revision)
+### updateRecordByUpdateKey
+
+**Declaration**
+```
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey)
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record) 
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, Integer revision)
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision)
+
+```
 
 **Parameter**
 
-See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyappid-updatekey-recorddata-revision)
+See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyapp-updatekey-record-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update Record By UpdateKey</Summary>
@@ -187,17 +204,19 @@ bulkRequestManager.updateRecordByUpdateKey(appID, uKey, record, revision);
 
 </details>
 
-### updateRecords(app, records)
+### updateRecords
+
+**Declaration**
+```
+public BulkRequest updateRecords(Integer app)
+public BulkRequest updateRecords(Integer app, ArrayList<RecordUpdateItem> records)
+```
 
 **Parameter**
 
-See at [Record - updateRecords](../record#updaterecordsappid-recordsdata)
+See at [Record - updateRecords](../record#updaterecordsapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update multiple Records</Summary>
@@ -234,17 +253,18 @@ bulkRequestManager.updateRecords(appID, records);
 
 </details>
 
-### deleteRecords(app, ids)
+### deleteRecords
+
+**Declaration**
+```
+public BulkRequest deleteRecords(Integer app, ArrayList<Integer> ids)
+```
 
 **Parameter**
 
-See at [Record - deleteRecords](../record#deleterecordsappid-recordids)
+See at [Record - deleteRecords](../record#deleterecordsapp-ids)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Bulk Delete Records</Summary>
@@ -266,17 +286,18 @@ bulkRequestManager.deleteRecords(appID, ids);
 
 </details>
 
-### deleteRecordsWithRevision(app, idsWithRevision)
+### deleteRecordsWithRevision
+
+**Declaration**
+```
+public BulkRequest deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> idsWithRevision) 
+```
 
 **Parameter**
 
-See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisionappid-idswithrevision)
+See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisionapp-idswithrevision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>delete Records With Revision</Summary>
@@ -298,17 +319,19 @@ bulkRequestManager.deleteRecordsWithRevision(appID, idsWithRevision);
 
 </details>
 
-### updateRecordAssignees(app, record, assignees, revision)
+### updateRecordAssignees
+
+**Declaration**
+```
+public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees) 
+public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees, Integer revision)
+```
 
 **Parameter**
 
-See at [Record - updateRecordAssignees](../record#updaterecordassigneesappid-recordid-assignees-revision)
+See at [Record - updateRecordAssignees](../record#updaterecordassigneesapp-id-assignees-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the Assignees for the record</Summary>
@@ -330,17 +353,21 @@ bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
 
 </details>
 
-### updateRecordStatus(app, id, action, assignee, revision)
+### updateRecordStatus
+
+**Declaration**
+```
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action)
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, String assignee)
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, Integer revision) 
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, String assignee, Integer revision) 
+```
 
 **Parameter**
 
-See at [Record - updateRecordStatus](../record#updaterecordstatusappid-recordid-actionname-assignee-revision)
+See at [Record - updateRecordStatus](../record#updaterecordstatusapp-id-action-assignee-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the status of a single record</Summary>
@@ -361,17 +388,18 @@ bulkRequestManager.updateRecordStatus(appID, recordID, action, assignee, revisio
 
 </details>
 
-### updateRecordsStatus(app, records)
+### updateRecordsStatus
+
+**Declaration**
+```
+public BulkRequest updateRecordsStatus(Integer app, ArrayList<RecordUpdateStatusItem> records)
+```
 
 **Parameter**
 
-See at [Record - updateRecordsStatus](../record#updaterecordsstatusappid-recordsstatusupdate)
+See at [Record - updateRecordsStatus](../record#updaterecordsstatusapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the status of multiple records in bulk</Summary>
@@ -401,19 +429,20 @@ bulkRequestManager.updateRecordsStatus(appID, rusi);
 
 </details>
 
-### execute()
+### execute
 
 > Execute the bulk request and get data response
+
+**Declaration**
+```
+public BulkRequestResponse execute() throws KintoneAPIException 
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-[BulkRequestResponse](../bulk-request-model#bulkrequestresponse)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Execute bulk request</Summary>
