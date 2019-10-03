@@ -63,8 +63,8 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-  String username = "your_username"
-  String password = "your_password"
+  String username = "your_username";
+  String password = "your_password";
 
   // Init authenticationAuth
   Auth kintoneAuth = new Auth();
@@ -112,8 +112,8 @@ Provide manipulate functions on file: file download & file upload in the kintone
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-  String username = "your_username"
-  String password = "your_password"
+  String username = "your_username";
+  String password = "your_password";
 
   // Init authenticationAuth
   Auth kintoneAuth = new Auth();
