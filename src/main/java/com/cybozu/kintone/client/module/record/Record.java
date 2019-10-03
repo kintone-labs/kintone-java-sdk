@@ -304,13 +304,18 @@ public class Record {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException {
-        // execute POST RECORD API
-        AddRecordRequest addRecordRequest = new AddRecordRequest(app, record);
-        String requestBody = parser.parseObject(addRecordRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORD,
-                requestBody);
-        // return response as AddRecordResponse class
-        return (AddRecordResponse) parser.parseJson(response, AddRecordResponse.class);
+        return addRecordApp(app, record);
+    }
+
+    /**
+     * Add a record to kintone APP
+     *
+     * @param app app of the addRecord
+     * @return AddRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public AddRecordResponse addRecord(Integer app) throws KintoneAPIException {
+        return addRecordApp(app, null);
     }
 
     /**
@@ -323,12 +328,10 @@ public class Record {
      */
     public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records)
             throws KintoneAPIException {
-        // execute POST RECORDS API
         AddRecordsRequest addRecordsRequest = new AddRecordsRequest(app, records);
         String requestBody = parser.parseObject(addRecordsRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS,
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS,
                 requestBody);
-        // return response as AddRecordsResponse class
         return (AddRecordsResponse) parser.parseJson(response, AddRecordsResponse.class);
     }
 
@@ -674,13 +677,10 @@ public class Record {
      */
     public AddCommentResponse addComment(Integer app, Integer record, CommentContent comment)
             throws KintoneAPIException {
-        // execute POST RECORD_COMMENT API
         AddCommentRecordRequest addCommentRequest = new AddCommentRecordRequest(app, record, comment);
         String requestBody = parser.parseObject(addCommentRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST,
-                ConnectionConstants.RECORD_COMMENT,
-                requestBody);
-        // return response as AddCommentResponse class
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST,
+                ConnectionConstants.RECORD_COMMENT, requestBody);
         return (AddCommentResponse) parser.parseJson(response, AddCommentResponse.class);
     }
 
@@ -718,20 +718,16 @@ public class Record {
         return bulkRequest.execute();
     }
 
-    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
-        BulkRequest bulkRequest = new BulkRequest(this.connection);
+
+    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records)
+            throws KintoneAPIException {
+        BulkRequest bulkRequest = new BulkRequest(connection);
         int length = records.size();
-        int loopTimes = (int) length / LIMIT_POST_RECORD;
-        if ((length % LIMIT_POST_RECORD) > 0) {
-            loopTimes++;
-        }
-        if (length > 0 && length < LIMIT_POST_RECORD) {
-            loopTimes = 1;
-        }
+        int loopTimes = getAddLoopTimes(length);
         for (int index = 0; index < loopTimes; index++) {
             int begin = index * LIMIT_POST_RECORD;
             int end = (length - begin) < LIMIT_POST_RECORD ? length : begin + LIMIT_POST_RECORD;
-            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<HashMap<String, FieldValue>>(records.subList(begin, end));
+            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<>(records.subList(begin, end));
             bulkRequest.addRecords(app, recordsPerRequest);
         }
         return bulkRequest.execute();
@@ -803,24 +799,20 @@ public class Record {
         return deleteAllRecordsByQuery(app, "");
     }
 
+
     public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
-    	if (records == null) {
-    		records = new ArrayList<HashMap<String, FieldValue>>();
-    	}
-        int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
-        int numBulkRequest = (int) (records.size() / numRecordsPerBulk);
-        if ((records.size() % numRecordsPerBulk) > 0) {
-            numBulkRequest++;
-        }
-        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
-            numBulkRequest = 1;
+        if (records == null) {
+            records = new ArrayList<>();
         }
         int offset = 0;
+        int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
+        int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
+
         BulkRequestResponse requestResponse = new BulkRequestResponse();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
-            ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<HashMap<String, FieldValue>>(records.subList(offset, end));
+            ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<>(records.subList(offset, end));
             try {
                 BulkRequestResponse requestResponsePerBulk = this.addBulkRecord(app, recordsPerBulk);
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
@@ -855,7 +847,7 @@ public class Record {
 
             ArrayList<RecordUpdateItem> recordsPerBulk = new ArrayList<RecordUpdateItem>(records.subList(offset, end));
             try {
-                BulkRequestResponse requestResponsePerBulk = this.updateBulkRecord(app, recordsPerBulk);
+                BulkRequestResponse requestResponsePerBulk = updateBulkRecord(app, recordsPerBulk);
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
                 requestResponse.addResponse(e);
@@ -866,4 +858,45 @@ public class Record {
         }
         return requestResponse;
     }
+
+    /**
+     * PRIVATE FUNCTION
+     */
+
+    private AddRecordResponse addRecordApp(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException {
+        // execute POST RECORD API
+        AddRecordRequest addRecordRequest = new AddRecordRequest(app, record);
+        String requestBody = parser.parseObject(addRecordRequest);
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST,
+                ConnectionConstants.RECORD, requestBody);
+        // return response as AddRecordResponse class
+        return (AddRecordResponse) parser.parseJson(response, AddRecordResponse.class);
+    }
+
+    /**
+     * SUPPORT FUNCTION
+     */
+
+    private Integer getAddLoopTimes(int length) {
+        int loopTimes = length / LIMIT_POST_RECORD;
+        if ((length % LIMIT_POST_RECORD) > 0) {
+            loopTimes++;
+        }
+        if (length > 0 && length < LIMIT_POST_RECORD) {
+            loopTimes = 1;
+        }
+        return loopTimes;
+    }
+
+    private Integer getNumBulkRequest(int recordSize, int numRecordsPerBulk) {
+        int numBulkRequest = recordSize / numRecordsPerBulk;
+        if ((recordSize % numRecordsPerBulk) > 0) {
+            numBulkRequest++;
+        }
+        if (recordSize >= 0 && recordSize < numRecordsPerBulk) {
+            numBulkRequest = 1;
+        }
+        return numBulkRequest;
+    }
+
 }
