@@ -6,18 +6,18 @@ General record response, using for data response from the kintone app
 
 ### Methods
 
-#### getRecord()
+#### getRecord
 
 > get the Record data response.
+
+**Declaration**
+```
+public HashMap<String, FieldValue> getRecord()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>
-
 
 **Sample code**
 
@@ -27,12 +27,28 @@ HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID =1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-HashMap<String, FieldValue> resultRecord = response.getRecord();
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -41,17 +57,18 @@ HashMap<String, FieldValue> resultRecord = response.getRecord();
 
 ### Methods
 
-#### getRecords()
+#### getRecords
 
 > get the Records data response.
+
+**Declaration**
+```
+public ArrayList<HashMap<String, FieldValue>> getRecords()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-ArrayList<HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>\>
 
 **Sample code**
 
@@ -61,27 +78,45 @@ ArrayList<HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>\>
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORDS API
-Integer appID = 1;
-String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
-GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
 
-ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    String query = "YOUR_QUERY";
+    try {
+        GetRecordsResponse response = kintoneRecord.getRecords(appID, query, null, true);
+        ArrayList<HashMap<String, FieldValue>> resultRecords = response.getRecords();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
+
 </pre>
 
 </details>
 
-#### getTotalCount()
+#### getTotalCount
 
 > get the number of records response.
+
+**Declaration**
+```
+public Integer getTotalCount()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -91,12 +126,29 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORDS API
-Integer appID = 1;
-String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
-GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
 
-Integer count =  response.getTotalCount();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    String query = "YOUR_QUERY";
+    try {
+        GetRecordsResponse response = kintoneRecord.getRecords(appID, query, null, true);
+        int totalCount = response.getTotalCount();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
+
 </pre>
 
 </details>
@@ -105,17 +157,18 @@ Integer count =  response.getTotalCount();
 
 ### Methods
 
-#### getID()
+#### getID
 
 > get the the ID of record added.
+
+**Declaration**
+```
+public Integer getID()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -125,33 +178,49 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute ADD RECORD API
-Integer appID = 1;
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
-record.put("FieldCode1", fv);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-Integer resultID = response.getID();
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    try {
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE");
+
+        HashMap<String, FieldValue> record = new HashMap<>();
+        record.put("YOUR_FIELD_CODE", fv);
+
+        AddRecordResponse response = kintoneRecord.addRecord(appID, record);
+        Integer resultID = response.getID();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
 
-#### getRevision()
+#### getRevision
 
 > get the revision number of record added.
+
+**Declaration**
+```
+public Integer getRevision()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -161,18 +230,33 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute ADD RECORD API
-Integer appID = 1;
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
-record.put("FieldCode1", fv);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-Integer resultRevision = response.getRevision();
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    try {
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE");
+
+        HashMap<String, FieldValue> record = new HashMap<>();
+        record.put("YOUR_FIELD_CODE", fv);
+
+        AddRecordResponse response = kintoneRecord.addRecord(appID, record);
+        Integer resultRevision = response.getRevision();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -181,17 +265,18 @@ Integer resultRevision = response.getRevision();
 
 ### Methods
 
-#### getIDs()
+#### getIDs
 
 > get the array of added records ID.
+
+**Declaration**
+```
+public ArrayList<Integer> getIDs()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-ArrayList<Integer\>
 
 **Sample code**
 
@@ -201,44 +286,59 @@ ArrayList<Integer\>
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute ADD RECORDS API
-Integer appID = 1;
-ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecords1");
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_AddRecords2");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-record1.put("FieldCode1", fv);
-record2.put("FieldCode1", fv2);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    try {
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
 
-records.add(record1);
-records.add(record2);
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-ArrayList<Integer> resultIDs = response.getIDs();
+        records.add(record1);
+        records.add(record2);
+
+        AddRecordsResponse response = kintoneRecord.addRecords(appID, records);
+        List<Integer> resultIds = response.getIDs();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
 
-#### getRevisions()
+#### getRevisions
 
 > get the array of added records revision number.
+
+**Declaration**
+```
+public ArrayList<Integer> getRevisions()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-ArrayList<Integer\>
 
 **Sample code**
 
@@ -248,29 +348,43 @@ ArrayList<Integer\>
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute ADD RECORDS API
-Integer appID = 1;
-ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecords1");
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_AddRecords2");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-record1.put("FieldCode1", fv);
-record2.put("FieldCode1", fv2);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    try {
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
 
-records.add(record1);
-records.add(record2);
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-ArrayList<Integer> resultRevisions = response.getRevisions();
+        records.add(record1);
+        records.add(record2);
+
+        AddRecordsResponse response = kintoneRecord.addRecords(appID, records);
+        List<Integer> resultRevision = response.getRevisions();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -279,17 +393,18 @@ ArrayList<Integer> resultRevisions = response.getRevisions();
 
 ### Methods
 
-#### getRevision()
+#### getRevision
 
 > get the revision number of record updated.
+
+**Declaration**
+```
+public Integer getRevision()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -299,21 +414,36 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORD API
-Integer appID = 1;
-Integer recordID = 1;
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
-Integer revision = 1;
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_updateRecordById");
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-record.put("FieldCode1", fv);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-UpdateRecordResponse response = kintoneRecordManager.updateRecordByID(appID, recordID, record, revision);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+    Integer revision = 0; // Latest revision of the settings
+    try {
 
-Integer resultRevision = response.getRevision();
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE_1");
+
+        HashMap<String, FieldValue> record = new HashMap<>();
+        record.put("YOUR_FIELD_CODE_1", fv);
+
+        UpdateRecordResponse response = kintoneRecord.updateRecordByID(appID, recordID, record, revision);
+        Integer resultRevision = response.getRevision();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -322,17 +452,18 @@ Integer resultRevision = response.getRevision();
 
 ### Methods
 
-#### getRecords()
+#### getRecords
 
 > get the array of added records ID with revision.
+
+**Declaration**
+```
+public ArrayList<RecordUpdateResponseItem> getRecords()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-ArrayList<[RecordUpdateResponseItem](#recordupdateresponseitem)\>
 
 **Sample code**
 
@@ -342,32 +473,46 @@ ArrayList<[RecordUpdateResponseItem](#recordupdateresponseitem)\>
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORDS API
-Integer appID = 1;
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-Integer recordId1 = 1;
-Integer recordId2 = 2;
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("test_updateRecords1");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("test_updateRecords2");
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordId1 = 0;   // Input your record id
+    Integer recordId2 = 0;   // Input your record id
+    try {
 
-record1.put("FieldCode1", fv1);
-record2.put("FieldCode1", fv2);
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
-records.add(new RecordUpdateItem(recordId1, null, null, record1));
-records.add(new RecordUpdateItem(recordId2, null, null, record2));
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
+        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        records.add(new RecordUpdateItem(recordId1, null, null, record1));
+        records.add(new RecordUpdateItem(recordId2, null, null, record2));
 
-ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
+        UpdateRecordsResponse response = kintoneRecord.updateRecords(appID, records);
+
+        ArrayList<RecordUpdateResponseItem> updatedRecord = response.getRecords();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -376,17 +521,18 @@ ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
 
 ### Methods
 
-#### getID()
+#### getID
 
 > get the the ID of record updated.
+
+**Declaration**
+```
+public Integer getID()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -396,50 +542,66 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORDS API
-Integer appID = 1;
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-Integer recordId1 = 1;
-Integer recordId2 = 2;
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("test_updateRecords1");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("test_updateRecords2");
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordId1 = 0;   // Input your record id
+    Integer recordId2 = 0;   // Input your record id
+    try {
 
-record1.put("FieldCode1", fv1);
-record2.put("FieldCode1", fv2);
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-ArrayList<RecordUpdateItem> records = ArrayList<RecordUpdateItem>();
-records.add(new RecordUpdateItem(recordId1, null, null, record1));
-records.add(new RecordUpdateItem(recordId2, null, null, record2));
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
+        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        records.add(new RecordUpdateItem(recordId1, null, null, record1));
+        records.add(new RecordUpdateItem(recordId2, null, null, record2));
 
-ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
-RecordUpdateResponseItem resultRusi = resultRuris.get(0);
+        UpdateRecordsResponse response = kintoneRecord.updateRecords(appID, records);
 
-Integer resultID = resultRusi.getID();
+        ArrayList<RecordUpdateResponseItem> updatedRecord = response.getRecords();
+
+        RecordUpdateResponseItem responseItem = updatedRecord.get(0);
+
+        Integer resultID = responseItem.getID();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
 
-#### getRevision()
+#### getRevision
 
 > get the revision number of record updated.
+
+**Declaration**
+```
+public Integer getRevision()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -449,35 +611,50 @@ Integer
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORDS API
-Integer appID = 1;
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-Integer recordId1 = 1;
-Integer recordId2 = 2;
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("test_updateRecords1");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("test_updateRecords2");
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordId1 = 0;   // Input your record id
+    Integer recordId2 = 0;   // Input your record id
+    try {
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-record1.put("FieldCode1", fv1);
-record2.put("FieldCode1", fv2);
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
-records.add(new RecordUpdateItem(recordId1, null, null, record1));
-records.add(new RecordUpdateItem(recordId2, null, null, record2));
+        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        records.add(new RecordUpdateItem(recordId1, null, null, record1));
+        records.add(new RecordUpdateItem(recordId2, null, null, record2));
 
-UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
+        UpdateRecordsResponse response = kintoneRecord.updateRecords(appID, records);
 
-ArrayList<RecordUpdateResponseItem> resultRuris = response.getRecords();
-RecordUpdateResponseItem resultRusi = resultRuris.get(0);
+        ArrayList<RecordUpdateResponseItem> updatedRecord = response.getRecords();
 
-Integer resultRevision = resultRusi.getRevision();
+        RecordUpdateResponseItem responseItem = updatedRecord.get(0);
+
+        Integer resultRevision = responseItem.getRevision();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
+
 </pre>
 
 </details>
@@ -486,14 +663,20 @@ Integer resultRevision = resultRusi.getRevision();
 
 ### Constructor
 
+**Declaration**
+```
+public RecordUpdateItem(RecordUpdateKey updateKey, HashMap<String, FieldValue> record) 
+public RecordUpdateItem(Integer id, Integer revision, RecordUpdateKey updateKey, HashMap<String, FieldValue> record)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| id | Integer  | The ID of the record.
-| revision | Integer  | The revision number of the record.
-| updateKey | [RecordUpdateKey](#recordupdatekey)  |  The unique key of the record to be updated. Required, if id will not be specified. To specify this field, the field must have the "Prohibit duplicate values" option turned on.
-| record | HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>  | The data to update record.
+| Name| Description |
+| --- | ---  | 
+| id | The ID of the record.
+| revision | The revision number of the record.
+| updateKey | The unique key of the record to be updated. Required, if id will not be specified. To specify this field, the field must have the "Prohibit duplicate values" option turned on. ([RecordUpdateKey](#recordupdatekey))
+| record | The data to update record. (HashMap<String, [FieldValue](../record-field-model#fieldvalue)\>)
 
 **Sample code**
 
@@ -503,33 +686,46 @@ Integer resultRevision = resultRusi.getRevision();
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORDS API
-Integer appID = 1;
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-Integer recordId1 = 1;
-Integer recordId2 = 2;
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("test_updateRecords1");
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("test_updateRecords2");
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordId1 = 0;   // Input your record id
+    Integer recordId2 = 0;   // Input your record id
+    try {
+        FieldValue fvOfRecord1 = new FieldValue();
+        fvOfRecord1.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord1.setValue("FIELD_VALUE_1");
+        FieldValue fvOfRecord2 = new FieldValue();
+        fvOfRecord2.setType(FieldType.SINGLE_LINE_TEXT);
+        fvOfRecord2.setValue("FIELD_VALUE_2");
 
-record1.put("FieldCode1", fv1);
-record2.put("FieldCode1", fv2);
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+        record1.put("YOUR_FIELD_CODE_1", fvOfRecord1);
+        HashMap<String, FieldValue> record2 = new HashMap<>();
+        record2.put("YOUR_FIELD_CODE_2", fvOfRecord2);
 
-RecordUpdateItem updateItem1 = new RecordUpdateItem(recordId1, null, null, record1);
-RecordUpdateItem updateItem2 = new RecordUpdateItem(recordId2, null, null, record2);
+        RecordUpdateItem recordUpdateItem1 = new RecordUpdateItem(recordId1, null, null, record1);
+        RecordUpdateItem recordUpdateItem2 = new RecordUpdateItem(recordId2, null, null, record2);
 
-ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
-records.add(updateItem1);
-records.add(updateItem2);
+        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        records.add(recordUpdateItem1);
+        records.add(recordUpdateItem2);
 
-UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, records);
+        UpdateRecordsResponse response = kintoneRecord.updateRecords(appID, records);
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -542,12 +738,17 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 
 ### Constructor
 
+**Declaration**
+```
+public RecordUpdateKey(String field, String value)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| field | String  | The field code of unique key in the kintone app.
-| value | String  | The field value in the record.
+| Name| Description |
+| --- | --- |
+| field | The field code of unique key in the kintone app.
+| value | The field value in the record.
 
 **Sample code**
 
@@ -558,9 +759,9 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 
 <pre class="inline-code">
 
-String field = "field_code";
-String value = "unique_value1";
-RecordUpdateKey uKey = new RecordUpdateKey(field, value);
+    String field = "YOUR_FIELD_CODE";
+    String value = "FIELD_VALUE";
+    RecordUpdateKey recordUpdateKey = new RecordUpdateKey(field, value);
 </pre>
 
 </details>
@@ -573,14 +774,19 @@ RecordUpdateKey uKey = new RecordUpdateKey(field, value);
 
 ### Constructor
 
+**Declaration**
+```
+public RecordUpdateStatusItem(String action, String assignee, Integer id, Integer revision)
+```
+
 **Parameter**
 
-| Name| type| Description |
-| --- | ---  | --- |
-| action | String  | The Action name of the action you want.
-| assignee | String  |  (Optional) The next Assignee. Specify the Assignee's log in name..
-| id | Integer  |   The record ID.
-| revision | Integer  |  (Optional) The revision number of the record before updating the status.If the specified revision is not the latest revision, the request will result in an error.
+| Name| Description |
+| --- | ---  | 
+| action | The Action name of the action you want.
+| assignee | The next Assignee. Specify the Assignee's log in name..
+| id | The record ID.
+| revision | The revision number of the record before updating the status. If the specified revision is not the latest revision, the request will result in an error.
 
 **Sample code**
 
@@ -590,19 +796,32 @@ RecordUpdateKey uKey = new RecordUpdateKey(field, value);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute UPDATE RECORDS API
-Integer appID = 1;
-String action = "処理開始";
-String assignee = "sample_user1";
-Integer recordID =1;
-Integer revision = 1;
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-RecordUpdateStatusItem updateStatusItem = new RecordUpdateStatusItem(action, assignee, recordID, revision);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-rusi.add(updateStatusItem);
-UpdateRecordsResponse response = kintoneRecordManager.updateRecordsStatus(appID, rusi);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+    Integer revision = 0;  // Input your revision
+    String action = "YOUR_ACTION";
+    String assignee = "YOUR_USER_CODE";
+    try {
+        ArrayList<RecordUpdateStatusItem> recordUpdateStatusItems = new ArrayList<>();
+        RecordUpdateStatusItem updateStatusItem = new RecordUpdateStatusItem(action, assignee, recordID, revision);
+        recordUpdateStatusItems.add(updateStatusItem);
+        UpdateRecordsResponse response = kintoneRecord.updateRecordsStatus(appID, recordUpdateStatusItems);
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
