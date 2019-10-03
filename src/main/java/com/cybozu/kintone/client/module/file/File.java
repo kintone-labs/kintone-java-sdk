@@ -72,31 +72,24 @@ public class File {
      */
     public void download(String fileKey, String outPutFilePath)
             throws KintoneAPIException {
-        DownloadRequest request = new DownloadRequest(fileKey);
-        String requestBody = parser.parseObject(request);
-        InputStream is = this.connection.downloadFile(requestBody);
-        OutputStream fos = null;
-        try {
-            if (outPutFilePath != null) {
-                fos = new FileOutputStream(outPutFilePath);
+        if (outPutFilePath != null) {
+            DownloadRequest request = new DownloadRequest(fileKey);
+            String requestBody = parser.parseObject(request);
+            try (OutputStream fos = new FileOutputStream(outPutFilePath);
+                    InputStream is = this.connection
+                            .downloadFile(requestBody)) {
                 byte[] buffer = new byte[8192];
                 int n = 0;
                 while (-1 != (n = is.read(buffer))) {
                     fos.write(buffer, 0, n);
                 }
-            }
-        } catch (Exception e) {
-            throw new KintoneAPIException(
-                    "an error occurred while receiving data", e);
-        } finally {
-            try {
-                is.close();
-                fos.close();
-            } catch (IOException e2) {
+
+            } catch (Exception e) {
                 throw new KintoneAPIException(
-                        "an error occurred while receiving data", e2);
+                        "an error occurred while receiving data", e);
             }
         }
+
     }
 
 }
