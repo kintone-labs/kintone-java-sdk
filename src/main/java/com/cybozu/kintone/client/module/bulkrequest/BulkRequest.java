@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -46,6 +46,7 @@ public class BulkRequest {
 
     /**
      * Constructor function of BulkRequest.
+     *
      * @param connection connection of the BulkRequest
      */
     public BulkRequest(Connection connection) {
@@ -56,7 +57,7 @@ public class BulkRequest {
     /**
      * Add the record.
      *
-     * @param app app of the addRecord
+     * @param app    app of the addRecord
      * @param record record of the addRecord
      * @return this
      */
@@ -70,7 +71,7 @@ public class BulkRequest {
     /**
      * Add multi records.
      *
-     * @param app app of the addRecords
+     * @param app     app of the addRecords
      * @param records records of the addRecords
      * @return this
      */
@@ -94,9 +95,9 @@ public class BulkRequest {
     /**
      * Update the specific record by ID.
      *
-     * @param app app of the updateRecordByID
-     * @param id id of the updateRecordByID
-     * @param record record of the updateRecordByID
+     * @param app      app of the updateRecordByID
+     * @param id       id of the updateRecordByID
+     * @param record   record of the updateRecordByID
      * @param revision revision of the updateRecordByID
      * @return this
      */
@@ -110,11 +111,11 @@ public class BulkRequest {
     /**
      * Update the specific record by updateKey.
      *
-     * @param app app of the updateRecordByUpdateKey
+     * @param app       app of the updateRecordByUpdateKey
      * @param updateKey updateKey of the updateRecordByUpdateKey
-     * @param record record of the updateRecordByUpdateKey
-     * @param revision revision of the updateRecordByUpdateKey
-     * @return this 
+     * @param record    record of the updateRecordByUpdateKey
+     * @param revision  revision of the updateRecordByUpdateKey
+     * @return this
      */
     public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision) {
         UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, null, updateKey, revision, record);
@@ -126,7 +127,7 @@ public class BulkRequest {
     /**
      * Update multi records.
      *
-     * @param app app of the updateRecords
+     * @param app     app of the updateRecords
      * @param records records of the updateRecords
      * @return this
      */
@@ -154,7 +155,7 @@ public class BulkRequest {
     /**
      * Delete records at the specific revision.
      *
-     * @param app app of the deleteRecordsWithRevision
+     * @param app             app of the deleteRecordsWithRevision
      * @param idsWithRevision idsWithRevision of the deleteRecordsWithRevision
      * @return this
      */
@@ -177,10 +178,10 @@ public class BulkRequest {
     /**
      * Update assignees of the specific record.
      *
-     * @param app app of the updateRecordAssignees
-     * @param record record of the updateRecordAssignees
+     * @param app       app of the updateRecordAssignees
+     * @param record    record of the updateRecordAssignees
      * @param assignees assignees of the updateRecordAssignees
-     * @param revision revision of the updateRecordAssignees
+     * @param revision  revision of the updateRecordAssignees
      * @return this
      */
     public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees, Integer revision) {
@@ -194,9 +195,9 @@ public class BulkRequest {
     /**
      * Update status of the specific record.
      *
-     * @param app app of the updateRecordStatus
-     * @param id id of the updateRecordStatus
-     * @param action action of the updateRecordStatus
+     * @param app      app of the updateRecordStatus
+     * @param id       id of the updateRecordStatus
+     * @param action   action of the updateRecordStatus
      * @param assignee assignee of the updateRecordStatus
      * @param revision revision of the updateRecordStatus
      * @return this
@@ -212,7 +213,7 @@ public class BulkRequest {
     /**
      * Update status of the multi records.
      *
-     * @param app app of the updateRecordsStatus
+     * @param app     app of the updateRecordsStatus
      * @param records records of the updateRecordsStatus
      * @return this
      */
@@ -228,8 +229,7 @@ public class BulkRequest {
      * Execute the BulkRequest and get data which is returned from kintone.
      *
      * @return BulkRequestResponse
-     * @throws KintoneAPIException
-     *           the KintoneAPIException to throw
+     * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public BulkRequestResponse execute() throws KintoneAPIException {
         BulkRequestResponse responses = new BulkRequestResponse();
@@ -241,8 +241,8 @@ public class BulkRequest {
         JsonArray array = object.getAsJsonArray("results");
 
         Integer count = 0;
-        for(BulkRequestItem request : requests) {
-            switch(request.getPayload().getClass().getSimpleName()) {
+        for (BulkRequestItem request : requests) {
+            switch (request.getPayload().getClass().getSimpleName()) {
                 case BulkRequestConstants.ADD_RECORD:
                     responses.addResponse(parser.parseJson(array.get(count), AddRecordResponse.class));
                     break;
