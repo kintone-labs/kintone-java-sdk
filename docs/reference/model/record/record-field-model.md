@@ -33,14 +33,31 @@ public FieldType getType()
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID =1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-HashMap<String, FieldValue> resultRecord = response.getRecord();
-FieldValue fv = resultRecord.get("sample field");
-FieldType fieldType = fv.getType();
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+        FieldValue fv = resultRecord.get("YOUR_FIELD_CODE");
+        FieldType fieldType = fv.getType();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -68,15 +85,34 @@ public void setType(FieldType type)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-Integer appID = 1;
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
-record.put("FieldCode1", fv);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        HashMap<String, FieldValue> record = new HashMap<>();
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT); // Input field type
+        fv.setValue("FIELD_VALUE");
+        record.put("YOUR_FIELD_CODE", fv);
+        AddRecordResponse response = kintoneRecord.addRecord(appID, record);
+        System.out.println(response.getID());
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
+
 </pre>
 
 </details>
@@ -102,14 +138,33 @@ public Object getValue()
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID =1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
 
-HashMap<String, FieldValue> resultRecord = response.getRecord();
-FieldValue fv = resultRecord.get("sample field");
-Object fieldValue = fv.getValue();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+        FieldValue fv = resultRecord.get("txt_projectTitle");
+        Object fieldValue = fv.getValue();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
+
 </pre>
 
 </details>
@@ -137,15 +192,33 @@ Object fieldValue = fv.getValue();
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-Integer appID = 1;
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
-record.put("FieldCode1", fv);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+
+    try {
+        HashMap<String, FieldValue> record = new HashMap<>();
+
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE");
+        record.put("FieldCode1", fv);
+
+        AddRecordResponse response = kintoneRecord.addRecord(appID, record);
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -181,16 +254,35 @@ public Integer getID()
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID =1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-HashMap<String, FieldValue> resultRecord = response.getRecord();
-FieldValue fv = resultRecord.get("SubTable field");
-Object fieldValue = fv.getValue();
-ArrayList<SubTableValueItem> subTable = (ArrayList<SubTableValueItem>)fieldValue;
-Integer itemID = subTable.get(0).getID();
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+        SubTableValueItem subTableValueItem = new SubTableValueItem();
+        subTableValueItem.setValue(resultRecord);
+        ArrayList<SubTableValueItem> subTable = new ArrayList<>();
+        subTable.add(subTableValueItem);
+
+        Integer itemID = subTable.get(0).getID();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -219,18 +311,25 @@ public void setID(Integer id)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-SubTableValueItem tableItem = new SubTableValueItem();
-tableItem.setID(00000);
-HashMap<String, FieldValue> tableItemValue = new HashMap<String, FieldValue>();
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("sample_text1");
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_text2");
-tableItemValue.put("sample field1", fv1);
-tableItemValue.put("sample field2", fv2);
-tableItem.setValue(tableItemValue);  
+
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    SubTableValueItem tableItem = new SubTableValueItem();
+    tableItem.setID(0); // Input table item id
+    HashMap<String, FieldValue> tableItemValue = new HashMap<>();
+    FieldValue fv1 = new FieldValue();
+    fv1.setType(FieldType.SINGLE_LINE_TEXT);
+    fv1.setValue("FIELD_VALUE");
+    tableItem.setValue(tableItemValue);
 </pre>
 
 </details>
@@ -256,16 +355,35 @@ public HashMap<String, FieldValue> getValue()
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-// execute GET RECORD API
-Integer appID = 1;
-Integer recordID =1;
-GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-HashMap<String, FieldValue> resultRecord = response.getRecord();
-FieldValue fv = resultRecord.get("SubTable field");
-Object fieldValue = fv.getValue();
-ArrayList<SubTableValueItem> subTable = (ArrayList<SubTableValueItem>)fieldValue;
-HashMap<String, FieldValue> itemValue= subTable.get(0).getValue();
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+        SubTableValueItem subTableValueItem = new SubTableValueItem();
+        subTableValueItem.setValue(resultRecord);
+        ArrayList<SubTableValueItem> subTable = new ArrayList<>();
+        subTable.add(subTableValueItem);
+
+        HashMap<String, FieldValue> value = subTable.get(0).getValue();
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
@@ -293,18 +411,32 @@ public void setValue(HashMap<String, FieldValue> value)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-SubTableValueItem tableItem = new SubTableValueItem();
-tableItem.setID(00000);
-HashMap<String, FieldValue> tableItemValue = new HashMap<String, FieldValue>();
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("sample_text1");
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_text2");
-tableItemValue.put("sample field1", fv1);
-tableItemValue.put("sample field2", fv2);
-tableItem.setValue(tableItemValue); 
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+    Integer appID = 0;  // Input your app id
+    Integer recordID = 0;   // Input your record id
+
+    try {
+        GetRecordResponse response = kintoneRecord.getRecord(appID, recordID);
+
+        HashMap<String, FieldValue> resultRecord = response.getRecord();
+        SubTableValueItem subTableValueItem = new SubTableValueItem();
+        subTableValueItem.setValue(resultRecord);
+
+    } catch (KintoneAPIException e) {
+        e.printStackTrace();
+    }
 </pre>
 
 </details>
