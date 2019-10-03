@@ -82,7 +82,6 @@ Provide manipulate functions on file: file download & file upload in the kintone
   try {
 			FileModel fileModel = kintoneFileManager.upload(uploadPath + "test.txt");
 	} catch (KintoneAPIException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 	}
 </pre>
