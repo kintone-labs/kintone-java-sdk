@@ -1,7 +1,7 @@
 # Authentication
 
 Authentication module will be used by [Connection](../connection).
-This modules allows authentication with kintone app by password authenticator or API token authenticator. This module also supports basic authenticator.
+This module allows authentication with kintone app by password authenticator or API token authenticator. This module also supports basic authenticator.
 
 !!! warning
 
@@ -129,7 +129,7 @@ public Auth setBasicAuth(String username, String password)
 
 ### createHeaderCredentials
 
-> Provide the list of HTTP Headers which use to authentication.
+> Provide the list of HTTP Headers for authentication.
 
 **Declaration**
 ```
