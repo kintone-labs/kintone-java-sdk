@@ -396,15 +396,16 @@ public class BulkRequest {
         UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, id, null, revision, record);
         BulkRequestItem bulkRequestItem = new BulkRequestItem(ConnectionConstants.PUT_REQUEST,
                 connection.getPathURI(ConnectionConstants.RECORD), updateRecordRequest);
-        this.bulkRequests.addRequest(bulkRequestItem);
+        bulkRequests.addRequest(bulkRequestItem);
         return this;
     }
 
-    private BulkRequest updateRecordByUpdateKeyApp(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision) {
+    private BulkRequest updateRecordByUpdateKeyApp(Integer app, RecordUpdateKey updateKey,
+                                                   HashMap<String, FieldValue> record, Integer revision) {
         UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, null, updateKey, revision, record);
         BulkRequestItem bulkRequestItem = new BulkRequestItem(ConnectionConstants.PUT_REQUEST,
                 connection.getPathURI(ConnectionConstants.RECORD), updateRecordRequest);
-        this.bulkRequests.addRequest(bulkRequestItem);
+        bulkRequests.addRequest(bulkRequestItem);
         return this;
     }
 
@@ -412,13 +413,15 @@ public class BulkRequest {
         UpdateRecordsRequest updateRecordsRequest = new UpdateRecordsRequest(app, records);
         BulkRequestItem bulkRequestItem = new BulkRequestItem(ConnectionConstants.PUT_REQUEST,
                 connection.getPathURI(ConnectionConstants.RECORDS), updateRecordsRequest);
-        this.bulkRequests.addRequest(bulkRequestItem);
+        bulkRequests.addRequest(bulkRequestItem);
         return this;
     }
 
-    private BulkRequest updateRecordAssigneesApp(Integer app, Integer record, ArrayList<String> assignees, Integer revision) {
+    private BulkRequest updateRecordAssigneesApp(Integer app, Integer record, ArrayList<String> assignees,
+                                                 Integer revision) {
 
-        UpdateRecordAssigneesRequest updateRecordAssigneesRequest = new UpdateRecordAssigneesRequest(app, record, assignees, revision);
+        UpdateRecordAssigneesRequest updateRecordAssigneesRequest =
+                new UpdateRecordAssigneesRequest(app, record, assignees, revision);
         BulkRequestItem bulkRequestItem = new BulkRequestItem(ConnectionConstants.PUT_REQUEST,
                 connection.getPathURI(ConnectionConstants.RECORD_ASSIGNEES), updateRecordAssigneesRequest);
         bulkRequests.addRequest(bulkRequestItem);
@@ -427,7 +430,8 @@ public class BulkRequest {
 
     private BulkRequest updateRecordStatusApp(Integer app, Integer id, String action, String assignee, Integer revision) {
 
-        UpdateRecordStatusRequest updateRecordStatusRequest = new UpdateRecordStatusRequest(action, app, assignee, id, revision);
+        UpdateRecordStatusRequest updateRecordStatusRequest =
+                new UpdateRecordStatusRequest(action, app, assignee, id, revision);
         BulkRequestItem bulkRequestItem = new BulkRequestItem(ConnectionConstants.PUT_REQUEST,
                 connection.getPathURI(ConnectionConstants.RECORD_STATUS), updateRecordStatusRequest);
         bulkRequests.addRequest(bulkRequestItem);
