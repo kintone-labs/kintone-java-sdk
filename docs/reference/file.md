@@ -144,7 +144,6 @@ Provide manipulate functions on file: file download & file upload in the kintone
         kintoneFileManager.download(fdata.getFileKey(), downloadPath + fdata.getName());
     }
   } catch (KintoneAPIException e) {
-    // TODO Auto-generated catch block
     e.printStackTrace();
   }
 </pre>
