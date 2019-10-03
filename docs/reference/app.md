@@ -104,7 +104,7 @@ public ArrayList<AppModel> getApps(Integer offset, Integer limit) throws Kintone
 
 | Name| Description |
 | --- | --- |
-| offset | The offset off data result
+| offset | The offset of data result
 | limit | The limit number of result
 
 **Sample code**
@@ -158,7 +158,7 @@ public ArrayList<AppModel> getAppsByIDs(ArrayList<Integer> ids, Integer offset, 
 | Name| Description |
 | --- | --- |
 | ids | The array of app ids
-| offset | The offset off data result
+| offset | The offset of data result
 | limit | The limit number of result
 
 **Sample code**
@@ -217,7 +217,7 @@ public ArrayList<AppModel> getAppsByCodes(ArrayList<String> codes, Integer offse
 | Name| Description |
 | --- | --- |
 | codes | The array of app codes
-| offset | The offset off data result
+| offset | The offset of data result
 | limit | The limit number of result
 
 **Sample code**
@@ -276,7 +276,7 @@ public ArrayList<AppModel> getAppsByName(String name, Integer offset, Integer li
 | Name| Description |
 | --- | --- |
 | name | The App Name.<br>A partial search will be used, and the search will be case insensitive.<br>The localized name of the App in the user's locale will also be included in the search.
-| offset | The offset off data result
+| offset | The offset of data result
 | limit | The limit number of result
 
 **Sample code**
@@ -332,7 +332,7 @@ public ArrayList<AppModel> getAppsBySpaceIDs(ArrayList<Integer> spaceIds, Intege
 | Name| Description |
 | --- | --- |
 | spaceIds | The array of space ids
-| offset | The offset off data result
+| offset | The offset of data result
 | limit | The limit number of result
 
 **Sample code**
