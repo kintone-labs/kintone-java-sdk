@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -28,8 +28,7 @@ public class OptionData {
     }
 
     /**
-     * @param index
-     *            the index to set
+     * @param index the index to set
      */
     public void setIndex(Integer index) {
         this.index = index;
@@ -43,8 +42,7 @@ public class OptionData {
     }
 
     /**
-     * @param label
-     *            the label to set
+     * @param label the label to set
      */
     public void setLabel(String label) {
         this.label = label;

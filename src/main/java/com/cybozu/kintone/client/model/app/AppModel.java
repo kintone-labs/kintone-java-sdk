@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -130,6 +130,7 @@ public class AppModel {
     public Member getModifier() {
         return modifier;
     }
+
     /**
      * @param modifier the modifier to set
      */

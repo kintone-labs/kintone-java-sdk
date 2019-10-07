@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -20,14 +20,14 @@ public class ReferenceTable {
     private String sort;
 
     /**
-     * @param condition condition of the ReferenceTable
-     * @param filterCond filterCond of the ReferenceTable
-     * @param relatedApp relatedApp of the ReferenceTable
-     * @param size size of the ReferenceTable
+     * @param condition     condition of the ReferenceTable
+     * @param filterCond    filterCond of the ReferenceTable
+     * @param relatedApp    relatedApp of the ReferenceTable
+     * @param size          size of the ReferenceTable
      * @param displayFields displayFields of the ReferenceTable
      */
     public ReferenceTable(FieldMapping condition, String filterCond, RelatedApp relatedApp, Integer size,
-            ArrayList<String> displayFields) {
+                          ArrayList<String> displayFields) {
         this.condition = condition;
         this.filterCond = filterCond;
         this.relatedApp = relatedApp;

@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -30,8 +30,7 @@ public class RadioButtonField extends AbstractSelectionField {
     }
 
     /**
-     * @param align
-     *            the align to set
+     * @param align the align to set
      */
     public void setAlign(AlignLayout align) {
         this.align = align;

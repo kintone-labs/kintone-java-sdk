@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -21,8 +21,7 @@ public abstract class Field {
     }
 
     /**
-     * @param code
-     *            the code to set
+     * @param code the code to set
      */
     public void setCode(String code) {
         this.code = code;

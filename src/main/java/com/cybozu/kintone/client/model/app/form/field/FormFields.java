@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -20,13 +20,13 @@ public class FormFields {
     public FormFields() {
         app = null;
         revision = null;
-        properties = new HashMap<String, Field>();
+        properties = new HashMap<>();
     }
 
     /**
-     * @param app app of the FormFields
+     * @param app        app of the FormFields
      * @param properties properties of the FormFields
-     * @param revision revision of the FormFields
+     * @param revision   revision of the FormFields
      */
     public FormFields(Integer app, HashMap<String, Field> properties, Integer revision) {
         this.app = app;
@@ -42,8 +42,7 @@ public class FormFields {
     }
 
     /**
-     * @param app
-     *            the app to set
+     * @param app the app to set
      */
     public void setApp(Integer app) {
         this.app = app;
@@ -57,8 +56,7 @@ public class FormFields {
     }
 
     /**
-     * @param revision
-     *            the revision to set
+     * @param revision the revision to set
      */
     public void setRevision(Integer revision) {
         this.revision = revision;
@@ -72,8 +70,7 @@ public class FormFields {
     }
 
     /**
-     * @param properties
-     *            the properties to set
+     * @param properties the properties to set
      */
     public void setProperties(HashMap<String, Field> properties) {
         this.properties = properties;

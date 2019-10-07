@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -11,7 +11,7 @@ import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.app.form.LinkProtocol;
 
 public class LinkField extends AbstractInputField {
-	private String defaultValue;
+    private String defaultValue;
     private Boolean unique;
     private String maxLength;
     private String minLength;
@@ -38,6 +38,7 @@ public class LinkField extends AbstractInputField {
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
     }
+
     /**
      * @return the unique
      */
