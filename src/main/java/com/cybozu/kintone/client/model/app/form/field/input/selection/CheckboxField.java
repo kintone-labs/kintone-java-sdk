@@ -7,7 +7,6 @@
 
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
-import com.cybozu.kintone.client.model.app.form.AlignLayout;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 
 import java.util.ArrayList;

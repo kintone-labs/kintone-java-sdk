@@ -9,7 +9,6 @@ package com.cybozu.kintone.client.model.record;
 
 import java.util.HashMap;
 
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 
 public class RecordsUpsertItem {
 

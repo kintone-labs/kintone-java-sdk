@@ -27,10 +27,7 @@ import com.cybozu.kintone.client.model.app.form.field.input.NumberField;
 import com.cybozu.kintone.client.model.app.form.field.input.RichTextField;
 import com.cybozu.kintone.client.model.app.form.field.input.SingleLineTextField;
 import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupField;
-import com.cybozu.kintone.client.model.app.form.field.input.member.DepartmentSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.member.GroupSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.member.MemberSelectEntity;
-import com.cybozu.kintone.client.model.app.form.field.input.member.UserSelectionField;
+import com.cybozu.kintone.client.model.app.form.field.input.member_selection.*;
 import com.cybozu.kintone.client.model.app.form.field.input.selection.CheckboxField;
 import com.cybozu.kintone.client.model.app.form.field.input.selection.DropDownField;
 import com.cybozu.kintone.client.model.app.form.field.input.selection.MultipleSelectField;
@@ -47,7 +44,6 @@ import com.cybozu.kintone.client.model.app.form.field.system.ModifierField;
 import com.cybozu.kintone.client.model.app.form.field.system.RecordNumberField;
 import com.cybozu.kintone.client.model.app.form.field.system.StatusField;
 import com.cybozu.kintone.client.model.app.form.field.system.UpdatedTimeField;
-import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -740,8 +736,8 @@ public class FormFieldParser extends Parser {
      * @throws KintoneAPIException
      */
     @SuppressWarnings("unchecked")
-    private UserSelectionField parseUserSelectionType(FormFieldParseData data) throws KintoneAPIException {
-        UserSelectionField userSelection = new UserSelectionField(data.getCode());
+    private UserSelectField parseUserSelectionType(FormFieldParseData data) throws KintoneAPIException {
+        UserSelectField userSelection = new UserSelectField(data.getCode());
         userSelection.setEntities(data.getEntities());
 
         if (data.getDefaultValue() == null ) {
@@ -779,8 +775,8 @@ public class FormFieldParser extends Parser {
      * @throws KintoneAPIException
      */
     @SuppressWarnings("unchecked")
-    private GroupSelectionField parseGroupSelectionType(FormFieldParseData data) throws KintoneAPIException {
-        GroupSelectionField groupSelection = new GroupSelectionField(data.getCode());
+    private GroupSelectField parseGroupSelectionType(FormFieldParseData data) throws KintoneAPIException {
+        GroupSelectField groupSelection = new GroupSelectField(data.getCode());
         groupSelection.setEntities(data.getEntities());
 
         if (data.getDefaultValue() == null ) {

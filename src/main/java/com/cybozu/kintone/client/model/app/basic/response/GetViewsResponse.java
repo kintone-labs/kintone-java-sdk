@@ -2,11 +2,9 @@ package com.cybozu.kintone.client.model.app.basic.response;
 
 import java.util.HashMap;
 
-import com.cybozu.kintone.client.model.app.view.ViewModel;
-
 public class GetViewsResponse {
     private Integer revision;
-    private HashMap<String, ViewModel> views;
+    private HashMap<String, com.cybozu.kintone.client.model.app.view.View> views;
 
     public Integer getRevision() {
         return revision;
@@ -16,11 +14,11 @@ public class GetViewsResponse {
         this.revision = revision;
     }
 
-    public HashMap<String, ViewModel> getViews() {
+    public HashMap<String, com.cybozu.kintone.client.model.app.view.View> getViews() {
         return views;
     }
 
-    public void setViews(HashMap<String, ViewModel> views) {
+    public void setViews(HashMap<String, com.cybozu.kintone.client.model.app.view.View> views) {
         this.views = views;
     }
 }

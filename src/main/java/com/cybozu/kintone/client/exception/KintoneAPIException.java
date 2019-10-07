@@ -7,7 +7,8 @@
 
 package com.cybozu.kintone.client.exception;
 
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestItem;
+
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestItem;
 
 import java.util.ArrayList;
 
