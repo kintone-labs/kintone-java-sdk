@@ -1,9 +1,10 @@
 package com.cybozu.kintone.client.model.cursor;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 
 public class GetRecordCursorResponse {
 	private ArrayList<HashMap<String, FieldValue>> records;

@@ -7,10 +7,12 @@
 
 package com.cybozu.kintone.client.model.comment;
 
+
+import com.cybozu.kintone.client.model.member.Member;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.cybozu.kintone.client.model.member.Member;
 
 public class Comment {
 

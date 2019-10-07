@@ -2,7 +2,6 @@ package com.cybozu.kintone.client.model.cursor;
 
 import java.util.HashMap;
 
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 
 public class CreateRecordCursorResponse {
 	private String id;

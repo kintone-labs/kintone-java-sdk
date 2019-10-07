@@ -10,7 +10,7 @@ package com.cybozu.kintone.client.model.app.form.field.input.lookup;
 import java.util.ArrayList;
 
 import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
-import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedApp;
+import com.cybozu.kintone.client.model.app.form.field.RelatedApp;
 
 public class LookupItem {
     private ArrayList<FieldMapping> fieldMappings;

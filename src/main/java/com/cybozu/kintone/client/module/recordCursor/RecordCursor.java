@@ -7,8 +7,8 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.cursor.*;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
 import com.cybozu.kintone.client.module.parser.CursorParser;
 import com.google.gson.JsonElement;
 

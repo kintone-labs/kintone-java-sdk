@@ -8,8 +8,6 @@
 package com.cybozu.kintone.client.model.app.form.field.input;
 
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.app.form.NumberFormat;
-import com.cybozu.kintone.client.model.app.form.UnitPosition;
 
 public class CalculatedField extends AbstractInputField {
     private String expression;
