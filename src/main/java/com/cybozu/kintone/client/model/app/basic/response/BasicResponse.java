@@ -10,7 +10,7 @@
 package com.cybozu.kintone.client.model.app.basic.response;
 
 public class BasicResponse {
-    private Integer revision;
+    protected Integer revision;
 
     public BasicResponse() {
     }
