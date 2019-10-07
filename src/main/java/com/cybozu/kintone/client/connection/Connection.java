@@ -8,6 +8,7 @@
 package com.cybozu.kintone.client.connection;
 
 import com.cybozu.kintone.client.authentication.Auth;
+import com.cybozu.kintone.client.exception.BulksErrorResponse;
 import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.http.HTTPHeader;
@@ -374,7 +375,7 @@ public class Connection {
     private void checkStatus(HttpURLConnection conn) throws IOException, KintoneAPIException {
         int statusCode = conn.getResponseCode();
         if (statusCode != 200) {
-            ErrorResponse response = getErrorResponse(conn);
+            Object response = getErrorResponse(conn);
             if (response == null) {
                 switch (statusCode) {
                     case 401:
@@ -385,6 +386,13 @@ public class Connection {
                         throw new KintoneAPIException("http status code: " + statusCode);
                 }
             } else {
+                if (response.getClass().getSimpleName().contains("BulksErrorResponse")) {
+                    BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) response;
+                    throw new KintoneAPIException(statusCode, bulksErrorResponse);
+                } else if (response.getClass().getSimpleName().contains("ErrorResponse")){
+                    ErrorResponse errorResponse = (ErrorResponse) response;
+                    throw new KintoneAPIException(statusCode, errorResponse);
+                }
                 throw new KintoneAPIException(statusCode, response);
             }
         }
@@ -396,12 +404,15 @@ public class Connection {
      * @param conn
      * @return ErrorResponse object. return null if any error occurred
      */
-    private ErrorResponse getErrorResponse(HttpURLConnection conn) {
+    private Object getErrorResponse(HttpURLConnection conn) {
         InputStream err = conn.getErrorStream();
         String response;
         try {
             if (err == null) err = conn.getInputStream();
             response = parseString(err);
+            if (response.contains("results")) {
+                return gson.fromJson(response, BulksErrorResponse.class);
+            }
             return gson.fromJson(response, ErrorResponse.class);
         } catch (IOException e) {
             return null;
