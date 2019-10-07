@@ -9,12 +9,12 @@ package com.cybozu.kintone.client.module.record;
 
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
-import com.cybozu.kintone.client.exception.BulksErrorResponse;
 import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
+import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponses;
 import com.cybozu.kintone.client.model.comment.*;
 import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
 import com.cybozu.kintone.client.model.record.*;
@@ -817,12 +817,12 @@ public class Record {
      *
      * @param app   appId of the deleteAllRecordsByQuery
      * @param query query of the deleteAllRecordsByQuery
-     * @return BulkRequestResponse
+     * @return BulkRequestResponses
      * @throws BulksException
      * @throws KintoneAPIException
      */
-    public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+    public BulkRequestResponses deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
+        BulkRequestResponses requestResponses = new BulkRequestResponses();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("$id");
         GetRecordsResponse getRecordsRequest = getAllRecordsByQuery(app, query, fields, true);
@@ -852,30 +852,34 @@ public class Record {
 
             try {
                 BulkRequestResponse requestResponsePerBulk = this.deleteBulkRecord(app, idPerBulkArray);
-                requestResponse.addResponses(requestResponsePerBulk.getResults());
+                requestResponses.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
-                requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResults());
+                if(requestResponses.getResponses().size() == 0) {
+                    throw e;
+                } else {
+                    requestResponses.addResponse(e);
+                    throw new BulksException(requestResponses.getResponses());
+                }
             }
             offset += numRecordsPerBulk;
         }
-        return requestResponse;
+        return requestResponses;
     }
 
     /**
      * Delete all records by query from kintone APP
      *
      * @param app   appId of the deleteAllRecordsByQuery
-     * @return BulkRequestResponse
+     * @return BulkRequestResponses
      * @throws BulksException
      * @throws KintoneAPIException
      */
-    public BulkRequestResponse deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
+    public BulkRequestResponses deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
         return deleteAllRecordsByQuery(app, "");
     }
 
 
-    public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+    public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException, BulksException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -883,26 +887,29 @@ public class Record {
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
         int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
 
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+        BulkRequestResponses requestResponses = new BulkRequestResponses();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
             ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<>(records.subList(offset, end));
             try {
                 BulkRequestResponse requestResponsePerBulk = this.addBulkRecord(app, recordsPerBulk);
-                requestResponse.addResponses(requestResponsePerBulk.getResults());
+                requestResponses.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
-                requestResponse.addResponse(e);
-                // TODO
-                throw new KintoneAPIException(new BulksErrorResponse(requestResponse.getResults()));
+                if(requestResponses.getResponses().size() == 0) {
+                    throw e;
+                } else {
+                    requestResponses.addResponse(e);
+                    throw new BulksException(requestResponses.getResponses());
+                }
             }
 
             offset += numRecordsPerBulk;
         }
-        return requestResponse;
+        return requestResponses;
     }
 
-    public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+    public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -910,7 +917,7 @@ public class Record {
         int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
         int offset = 0;
 
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+        BulkRequestResponses requestResponse = new BulkRequestResponses();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
@@ -921,7 +928,7 @@ public class Record {
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
                 requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResults());
+                throw new BulksException(requestResponse.getResponses());
             }
 
             offset += numRecordsPerBulk;
@@ -1036,5 +1043,4 @@ public class Record {
         }
         return numBulkRequest;
     }
-
 }
