@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -28,8 +28,7 @@ public class AttachmentField extends AbstractInputField {
     }
 
     /**
-     * @param thumbnailSize
-     *            the thumbnailSize to set
+     * @param thumbnailSize the thumbnailSize to set
      */
     public void setThumbnailSize(String thumbnailSize) {
         this.thumbnailSize = thumbnailSize;

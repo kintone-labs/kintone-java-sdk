@@ -7,30 +7,11 @@
 
 package com.cybozu.kintone.client.module.app;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.GetAppRequest;
-import com.cybozu.kintone.client.model.app.GetAppsRequest;
-import com.cybozu.kintone.client.model.app.GetFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.GetFormLayoutRequest;
-import com.cybozu.kintone.client.model.app.LanguageSetting;
-import com.cybozu.kintone.client.model.app.basic.request.AddPreviewAppRequest;
-import com.cybozu.kintone.client.model.app.basic.request.AddUpdateFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.DeleteFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.DeployAppSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetAppDeployStatusRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetGeneralSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.GetViewsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.PreviewAppRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateFormLayoutRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateGeneralSettingsRequest;
-import com.cybozu.kintone.client.model.app.basic.request.UpdateViewsRequest;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
+import com.cybozu.kintone.client.model.app.*;
+import com.cybozu.kintone.client.model.app.basic.request.*;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetViewsResponse;
@@ -43,6 +24,9 @@ import com.cybozu.kintone.client.model.app.general.GeneralSettings;
 import com.cybozu.kintone.client.model.app.view.ViewModel;
 import com.cybozu.kintone.client.module.parser.AppParser;
 import com.google.gson.JsonElement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Managing kintone applications such as creating app, setting of form fields, form layout,
@@ -307,7 +291,7 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
+    public PreviewApp addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
         AddPreviewAppRequest addPreviewAppRequest = new AddPreviewAppRequest(name, space, thread);
         String apiRequest = ConnectionConstants.APP_PREVIEW;
         String requestBody = parser.parseObject(addPreviewAppRequest);
@@ -316,7 +300,7 @@ public class App {
         return parser.parseAddPreviewAppResponse(response);
     }
 
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+    public void deployAppSettings(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
         String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
         String requestBody = parser.parseObject(deployAppSettingsRequest);

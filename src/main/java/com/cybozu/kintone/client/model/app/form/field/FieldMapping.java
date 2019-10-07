@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -12,7 +12,7 @@ public class FieldMapping {
     private String relatedField;
 
     /**
-     * @param field field of the FieldMapping
+     * @param field         field of the FieldMapping
      * @param relatedFields relatedFields of the FieldMapping
      */
     public FieldMapping(String field, String relatedFields) {
@@ -28,8 +28,7 @@ public class FieldMapping {
     }
 
     /**
-     * @param field
-     *            the field to set
+     * @param field the field to set
      */
     public void setField(String field) {
         this.field = field;
@@ -43,8 +42,7 @@ public class FieldMapping {
     }
 
     /**
-     * @param relatedFields
-     *            the relatedFields to set
+     * @param relatedFields the relatedFields to set
      */
     public void setRelatedFields(String relatedFields) {
         this.relatedField = relatedFields;

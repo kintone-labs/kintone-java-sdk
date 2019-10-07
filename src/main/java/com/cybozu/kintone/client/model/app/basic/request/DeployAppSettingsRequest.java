@@ -2,17 +2,17 @@ package com.cybozu.kintone.client.model.app.basic.request;
 
 import java.util.ArrayList;
 
-import com.cybozu.kintone.client.model.app.basic.request.PreviewAppRequest;
+import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
 
 public class DeployAppSettingsRequest {
-    private ArrayList<PreviewAppRequest> apps;
+    private ArrayList<PreviewApp> apps;
     private Boolean revert;
 
-    public ArrayList<PreviewAppRequest> getApps() {
+    public ArrayList<PreviewApp> getApps() {
         return this.apps;
     }
 
-    public void setApps(ArrayList<PreviewAppRequest> apps) {
+    public void setApps(ArrayList<PreviewApp> apps) {
         this.apps = apps;
     }
 
@@ -24,7 +24,7 @@ public class DeployAppSettingsRequest {
         this.revert = revert;
     }
 
-    public DeployAppSettingsRequest(ArrayList<PreviewAppRequest> apps, Boolean revert) {
+    public DeployAppSettingsRequest(ArrayList<PreviewApp> apps, Boolean revert) {
         this.apps = apps;
         this.revert = revert;
     }
