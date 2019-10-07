@@ -7,44 +7,17 @@
 
 package com.cybozu.kintone.client.module.record;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
+import com.cybozu.kintone.client.exception.BulksErrorResponse;
 import com.cybozu.kintone.client.exception.BulksException;
-import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.exception.ErrorResponse;
+import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
-import com.cybozu.kintone.client.model.comment.AddCommentRecordRequest;
-import com.cybozu.kintone.client.model.comment.AddCommentResponse;
-import com.cybozu.kintone.client.model.comment.CommentContent;
-import com.cybozu.kintone.client.model.comment.DeleteCommentRecordRequest;
-import com.cybozu.kintone.client.model.comment.GetCommentsRecordRequest;
-import com.cybozu.kintone.client.model.comment.GetCommentsResponse;
+import com.cybozu.kintone.client.model.comment.*;
 import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
-import com.cybozu.kintone.client.model.record.AddRecordRequest;
-import com.cybozu.kintone.client.model.record.AddRecordResponse;
-import com.cybozu.kintone.client.model.record.AddRecordsRequest;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.DeleteRecordsRequest;
-import com.cybozu.kintone.client.model.record.GetRecordRequest;
-import com.cybozu.kintone.client.model.record.GetRecordResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsRequest;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.RecordUpdateItem;
-import com.cybozu.kintone.client.model.record.RecordUpdateKey;
-import com.cybozu.kintone.client.model.record.RecordUpdateStatusItem;
-import com.cybozu.kintone.client.model.record.RecordsUpsertItem;
-import com.cybozu.kintone.client.model.record.UpdateRecordAssigneesRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
-import com.cybozu.kintone.client.model.record.UpdateRecordStatusRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordsRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
-import com.cybozu.kintone.client.model.record.UpdateRecordsStatusRequest;
+import com.cybozu.kintone.client.model.record.*;
 import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.parser.RecordParser;
@@ -52,6 +25,11 @@ import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class Record {
 
@@ -456,24 +434,9 @@ public class Record {
      * @return UpdateRecordResponse or AddRecordResponse
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
-    public Object upsertRecord(Integer app, RecordUpdateKey updateKey,
-                               HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
-        try {
-            UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, revision);
-            return updateRecordResponse;
-        } catch (KintoneAPIException e) {
-            String NO_RECORD_FOUND = "GAIA_RE20";
-            ErrorResponse error = e.getErrorResponse();
-            if (!error.getCode().equals(NO_RECORD_FOUND)) {
-                throw e;
-            }
-            FieldValue fv = new FieldValue();
-            fv.setValue(updateKey.getValue());
-
-            record.put(updateKey.getField(), fv);
-            AddRecordResponse addRecordResponse = this.addRecord(app, record);
-            return addRecordResponse;
-        }
+    public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey,
+                                      HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
+        return upsertRecordApp(app, updateKey, record, revision);
     }
 
     /**
@@ -485,27 +448,13 @@ public class Record {
      * @return UpdateRecordResponse or AddRecordResponse
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
-    public Object upsertRecord(Integer app, RecordUpdateKey updateKey,
-                               HashMap<String, FieldValue> record) throws KintoneAPIException {
-        try {
-            UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, -1);
-            return updateRecordResponse;
-        } catch (KintoneAPIException e) {
-            String NO_RECORD_FOUND = "GAIA_RE20";
-            ErrorResponse error = e.getErrorResponse();
-            if (!error.getCode().equals(NO_RECORD_FOUND)) {
-                throw e;
-            }
-            FieldValue fv = new FieldValue();
-            fv.setValue(updateKey.getValue());
-
-            record.put(updateKey.getField(), fv);
-            AddRecordResponse addRecordResponse = this.addRecord(app, record);
-            return addRecordResponse;
-        }
+    public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey,
+                                      HashMap<String, FieldValue> record) throws KintoneAPIException {
+        return upsertRecordApp(app, updateKey, record, -1);
     }
 
-    private Boolean doesExistSameFieldValue(ArrayList<HashMap<String, FieldValue>> allRecords, RecordsUpsertItem comparedRecord) throws KintoneAPIException {
+
+    private Boolean doesExistSameFieldValue(ArrayList<HashMap<String, FieldValue>> allRecords, RecordsUpsertItem comparedRecord) {
         if (comparedRecord.getUpdateKey() == null) {
             return false;
         }
@@ -524,7 +473,7 @@ public class Record {
 
     private BulkRequest makePUTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<RecordUpdateItem> records) {
         int length = records.size();
-        int loopTimes = (int) Math.ceil((double) length / (double) Record.LIMIT_UPDATE_RECORD);
+        int loopTimes = getLoopTimes(length, LIMIT_UPDATE_RECORD);
 
         for (int i = 0; i < loopTimes; i++) {
             int begin = i * Record.LIMIT_UPDATE_RECORD;
@@ -532,7 +481,7 @@ public class Record {
             if (length - begin >= Record.LIMIT_UPDATE_RECORD) {
                 end = begin + Record.LIMIT_UPDATE_RECORD;
             }
-            ArrayList<RecordUpdateItem> recordsPerRequest = new ArrayList<RecordUpdateItem>(records.subList(begin, end));
+            ArrayList<RecordUpdateItem> recordsPerRequest = new ArrayList<>(records.subList(begin, end));
             bulkRequest.updateRecords(app, recordsPerRequest);
         }
         return bulkRequest;
@@ -540,7 +489,7 @@ public class Record {
 
     private BulkRequest makePOSTBulkReq(Integer app, BulkRequest bulkRequest, ArrayList<HashMap<String, FieldValue>> records) {
         int length = records.size();
-        int loopTimes = (int) Math.ceil((double) length / (double) Record.LIMIT_POST_RECORD);
+        int loopTimes = getLoopTimes(length, LIMIT_POST_RECORD);
 
         for (int i = 0; i < loopTimes; i++) {
             int begin = i * Record.LIMIT_POST_RECORD;
@@ -548,26 +497,29 @@ public class Record {
             if (length - begin >= Record.LIMIT_POST_RECORD) {
                 end = begin + Record.LIMIT_POST_RECORD;
             }
-            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<HashMap<String, FieldValue>>(records.subList(begin, end));
+            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<>(records.subList(begin, end));
             bulkRequest.addRecords(app, recordsPerRequest);
         }
         return bulkRequest;
     }
 
-    private BulkRequestResponse executeUpsertBulkRequest(Integer app, ArrayList<HashMap<String, FieldValue>> recordsForPost, ArrayList<RecordUpdateItem> recordsForPut) throws KintoneAPIException {
-        BulkRequest bulkRequest = new BulkRequest(this.connection);
-        bulkRequest = this.makePOSTBulkReq(app, bulkRequest, recordsForPost);
-        bulkRequest = this.makePUTBulkReq(app, bulkRequest, recordsForPut);
+    private BulkRequestResponse executeUpsertBulkRequest(Integer app, ArrayList<HashMap<String, FieldValue>> recordsForPost, ArrayList<RecordUpdateItem> recordsForPut)
+            throws KintoneAPIException {
+        BulkRequest bulkRequest = new BulkRequest(connection);
+        bulkRequest = makePOSTBulkReq(app, bulkRequest, recordsForPost);
+        bulkRequest = makePUTBulkReq(app, bulkRequest, recordsForPut);
         return bulkRequest.execute();
     }
 
-    public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertItem> records) throws KintoneAPIException {
+    public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertItem> records)
+            throws KintoneAPIException {
         if (records.size() > Record.LIMIT_UPSERT_RECORD) {
             throw new Error("upsertRecords can't handle over " + Record.LIMIT_UPSERT_RECORD + " records.");
         }
-        ArrayList<HashMap<String, FieldValue>> allRecords = this.getAllRecordsByQuery(app, "", new ArrayList<>(), false).getRecords();
-        ArrayList<HashMap<String, FieldValue>> recordsForPost = new ArrayList<HashMap<String, FieldValue>>();
-        ArrayList<RecordUpdateItem> recordsForPut = new ArrayList<RecordUpdateItem>();
+        ArrayList<HashMap<String, FieldValue>> allRecords =
+                getAllRecordsByQuery(app, "", new ArrayList<>(), false).getRecords();
+        ArrayList<HashMap<String, FieldValue>> recordsForPost = new ArrayList<>();
+        ArrayList<RecordUpdateItem> recordsForPut = new ArrayList<>();
 
         for (int i = 0; i < records.size(); i++) {
             if (doesExistSameFieldValue(allRecords, records.get(i))) {
@@ -814,13 +766,7 @@ public class Record {
     private BulkRequestResponse updateBulkRecord(Integer app, ArrayList<RecordUpdateItem> records) throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(this.connection);
         int length = records.size();
-        int loopTimes = (int) length / LIMIT_UPDATE_RECORD;
-        if ((length % LIMIT_UPDATE_RECORD) > 0) {
-            loopTimes++;
-        }
-        if (records.size() > 0 && records.size() < LIMIT_UPDATE_RECORD) {
-            loopTimes = 1;
-        }
+        int loopTimes = getLoopTimes(length, LIMIT_UPDATE_RECORD);
         for (int index = 0; index < loopTimes; index++) {
             int begin = index * LIMIT_UPDATE_RECORD;
             int end = (length - begin) < LIMIT_UPDATE_RECORD ? length : begin + LIMIT_UPDATE_RECORD;
@@ -835,7 +781,7 @@ public class Record {
             throws KintoneAPIException {
         BulkRequest bulkRequest = new BulkRequest(connection);
         int length = records.size();
-        int loopTimes = getAddLoopTimes(length);
+        int loopTimes = getLoopTimes(length, LIMIT_POST_RECORD);
         for (int index = 0; index < loopTimes; index++) {
             int begin = index * LIMIT_POST_RECORD;
             int end = (length - begin) < LIMIT_POST_RECORD ? length : begin + LIMIT_POST_RECORD;
@@ -912,7 +858,7 @@ public class Record {
     }
 
 
-    public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
+    public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -930,7 +876,8 @@ public class Record {
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
                 requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResults());
+                // TODO
+                throw new KintoneAPIException(new BulksErrorResponse(requestResponse.getResults()));
             }
 
             offset += numRecordsPerBulk;
@@ -1027,16 +974,36 @@ public class Record {
         return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
     }
 
+    private BasicResponse upsertRecordApp(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record,
+                                          Integer revision) throws KintoneAPIException {
+        try {
+            UpdateRecordResponse updateRecordResponse = this.updateRecordByUpdateKey(app, updateKey, record, revision);
+            return updateRecordResponse;
+        } catch (KintoneAPIException e) {
+            String NO_RECORD_FOUND = "GAIA_RE20";
+            ErrorResponse error = (ErrorResponse) e.getErrorResponse();
+            if (!error.getCode().equals(NO_RECORD_FOUND)) {
+                throw e;
+            }
+            FieldValue fv = new FieldValue();
+            fv.setValue(updateKey.getValue());
+
+            record.put(updateKey.getField(), fv);
+            AddRecordResponse addRecordResponse = this.addRecord(app, record);
+            return addRecordResponse;
+        }
+    }
+
     /**
      * SUPPORT FUNCTION
      */
 
-    private Integer getAddLoopTimes(int length) {
-        int loopTimes = length / LIMIT_POST_RECORD;
-        if ((length % LIMIT_POST_RECORD) > 0) {
+    private Integer getLoopTimes(int length, int limitRecord) {
+        int loopTimes = length / limitRecord;
+        if ((length % limitRecord) > 0) {
             loopTimes++;
         }
-        if (length > 0 && length < LIMIT_POST_RECORD) {
+        if (length > 0 && length < limitRecord) {
             loopTimes = 1;
         }
         return loopTimes;
