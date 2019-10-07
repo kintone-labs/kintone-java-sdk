@@ -457,20 +457,21 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 
 </details>
 
-### deleteRecords(app, ids)
+### deleteRecords
 
-> Deletes multiple records in an app.
+> Delete multiple records in an app.
+
+**Declaration**
+```
+public void deleteRecords(Integer app, ArrayList<Integer> ids) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| ids | ArrayList<Integer\> | yes | The list ids of record will be delete.
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- |
+| app | The ID of kintone app
+| ids | Array of record IDs that will be deleted
 
 **Sample code**
 
@@ -480,44 +481,46 @@ UpdateRecordsResponse response = kintoneRecordManager.updateRecords(appID, recor
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String USERNAME = "YOUR_USERNAME";
+    String PASSWORD = "YOUR_PASSWORD";
+    String DOMAIN = "YOUR_DOMAIN.COM";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecordManager = new Record(kintoneConnection);
 
-// execute DELETE RECORDS API
-Integer appID = 1;
-ArrayList&lt;Integer&gt; ids = new ArrayList&lt;Integer&gt;();
-ids.add(1);
-ids.add(2);
+    // execute DELETE RECORDS API
+    Integer appID = 1;
+    ArrayList&lt;Integer&gt; ids = new ArrayList&lt;Integer&gt;();
+    ids.add(1);
+    ids.add(2);
 
-kintoneRecordManager.deleteRecords(appID, ids);
+    kintoneRecordManager.deleteRecords(appID, ids);
 </pre>
 
 </details>
 
-### deleteRecordsWithRevision(app, idsWithRevision)
+### deleteRecordsWithRevision
 
-> Deletes multiple records in an app with revision.
+> Delete multiple records in an app with revision.
+
+**Declaration**
+```
+public void deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> idsWithRevision) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| idsWithRevision | HashTable<Integer, Integer\> | yes |  (**key**: `The Id of record`, **value**: `The Revision of record.`)
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- |
+| app | The ID of kintone app
+| idsWithRevision | <ul><li>HashTable<Integer, Integer>:<ul><li>Key: The Id of record</li><li>Value: The Revision of record.</li></ul><li>The Expected revision number.<ul><li>The id number will correspond to the revision number in each HashTable's item.</li><li>If the revision number does not match, an error will occur and no records will be deleted.</li><li>If the revision number is left blank or is -1, the revision number will not be checked for the corresponding record ID.</li></ul></li></ul>
 
 **Sample code**
 
@@ -527,28 +530,29 @@ kintoneRecordManager.deleteRecords(appID, ids);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String USERNAME = "YOUR_USERNAME";
+    String PASSWORD = "YOUR_PASSWORD";
+    String DOMAIN = "YOUR_DOMAIN.COM";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecordManager = new Record(kintoneConnection);
 
-// execute DELETE RECORDS API
-Integer appID = 1;
-HashMap&lt;Integer, Integer&gt; idsWithRevision = new HashMap&lt;Integer, Integer&gt;();
+    // execute DELETE RECORDS API
+    Integer appID = 1;
+    HashMap&lt;Integer, Integer&gt; idsWithRevision = new HashMap&lt;Integer, Integer&gt;();
 
-idsWithRevision.put(1, 1);
-idsWithRevision.put(2, null);
-idsWithRevision.put(3, -1);
+    idsWithRevision.put(1, 1);
+    idsWithRevision.put(2, null);
+    idsWithRevision.put(3, -1);
 
-kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
+    kintoneRecordManager.deleteRecordsWithRevision(appID, idsWithRevision);
 </pre>
 
 </details>
@@ -812,19 +816,22 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 
 </details>
 
-### deleteComment(app, record, comment)
+### deleteComment
+
+> Delete comment of record in an app.
+
+**Declaration**
+```
+public void deleteComment(Integer app, Integer record, Integer comment) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | Integer | yes | The record ID on kintone app
-| comment | Integer | yes | The comment ID on kintone record
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- |
+| app | The ID of kintone app
+| record | The ID of record
+| comment | The ID of comment
 
 **Sample code**
 
@@ -834,25 +841,26 @@ AddCommentResponse response = kintoneRecordManager.addComment(app, record, comme
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String USERNAME = "YOUR_USERNAME";
+    String PASSWORD = "YOUR_PASSWORD";
+    String DOMAIN = "YOUR_DOMAIN.COM";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecordManager = new Record(kintoneConnection);
 
-// execute DELETE RECORD_COMMENT API
-Integer app = 1;
-Integer record = 1;
-Integer comment = 1;
+    // execute DELETE RECORD_COMMENT API
+    Integer app = 1;
+    Integer record = 1;
+    Integer comment = 1;
 
-kintoneRecordManager.deleteComment(app, record, comment);
+    kintoneRecordManager.deleteComment(app, record, comment);
 </pre>
 
 </details>
@@ -887,20 +895,22 @@ kintoneRecordManager.deleteComment(app, record, comment);
 </pre>
 </details>
 
-### deleteAllRecordsByQuery(Integer app, String query)
+### deleteAllRecordsByQuery
 
 > Delete all records by indicating query. Can delete over 2000 records, but can't do rollback.
 
+**Declaration**
+```
+public BulkRequestResponse deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException
+public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| query | String | (optional) | The query string that will specify what records will be responded. If nothing is specified, fields will be returned from all accessible records. The query detail can't indicate **limit** and **offset**.
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- |
+| app | The ID of kintone app
+| query | The query string that will specify what records will be responded. If nothing is specified, fields will be returned from all accessible records. The query detail can't indicate **limit** and **offset**.
 
 **Sample code**
 
@@ -910,40 +920,51 @@ kintoneRecordManager.deleteComment(app, record, comment);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-Integer appID = 114;
-String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
-try {
-    // Init Record Module
-    Record kintoneRecord = new Record(kintoneConnection);
-    BulkRequestResponse bulkRequestResponse = kintoneRecord.deleteAllRecordsByQuery(appID, query);
-} catch (BulksException e) {
-    System.out.println(e.getResults());
-    // Ex: If User delete 6000 records:
-    // Case 1: If there error occur in record 0
-    // Err response:
-    // [KintoneAPIException]
-    // Case 2: the error occur in record 4000
-    // err response
-    // [
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    BulkRequestResponse,
-    //    KintoneAPIException
-    //  ]
-}
+    String USERNAME = "YOUR_USERNAME";
+    String PASSWORD = "YOUR_PASSWORD";
+    String DOMAIN = "YOUR_DOMAIN.COM";
+
+    // Init authenticationAuth
+    Auth kintoneAuthWithPassword = new Auth();
+    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+
+    // Init Connection without "guest space ID"
+    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
+
+    Integer appID = 114;
+    String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
+    try {
+        // Init Record Module
+        Record kintoneRecord = new Record(kintoneConnection);
+        BulkRequestResponse bulkRequestResponse = kintoneRecord.deleteAllRecordsByQuery(appID, query);
+    } catch (BulksException e) {
+        System.out.println(e.getResults());
+        // Ex: If User delete 6000 records:
+        // Case 1: If there error occur in record 0
+        // Err response:
+        // [KintoneAPIException]
+        // Case 2: the error occur in record 4000
+        // err response
+        // [
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    BulkRequestResponse,
+        //    KintoneAPIException
+        //  ]
+    }
 </pre>
 </details>
 
