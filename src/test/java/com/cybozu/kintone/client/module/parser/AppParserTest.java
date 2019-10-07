@@ -1,10 +1,9 @@
 package com.cybozu.kintone.client.module.parser;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.AppDeployStatus;
-import com.cybozu.kintone.client.model.app.AppDeployStatus.Status;
-import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
+import com.cybozu.kintone.client.model.app.app.AppDeployStatus;
+import com.cybozu.kintone.client.model.app.app.AppModel;
+import com.cybozu.kintone.client.model.app.basic.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.member.Member;
@@ -475,11 +474,11 @@ public class AppParserTest {
                     .parseAppDeployStatusResponse(jsonParser.parse(validParse));
             ArrayList<AppDeployStatus> apps = parseAppDeployStatusResponse.getApps();
             assertEquals(Integer.valueOf(20), apps.get(0).getApp());
-            assertEquals(Status.valueOf("PROCESSING"), apps.get(0).getStatus());
+            assertEquals(AppDeployStatus.Status.valueOf("PROCESSING"), apps.get(0).getStatus());
             assertEquals(Integer.valueOf(21), apps.get(1).getApp());
-            assertEquals(Status.valueOf("SUCCESS"), apps.get(1).getStatus());
+            assertEquals(AppDeployStatus.Status.valueOf("SUCCESS"), apps.get(1).getStatus());
             assertEquals(Integer.valueOf(22), apps.get(2).getApp());
-            assertEquals(Status.valueOf("FAIL"), apps.get(2).getStatus());
+            assertEquals(AppDeployStatus.Status.valueOf("FAIL"), apps.get(2).getStatus());
         } catch (KintoneAPIException e) {
             fail(e.getMessage());
         }
