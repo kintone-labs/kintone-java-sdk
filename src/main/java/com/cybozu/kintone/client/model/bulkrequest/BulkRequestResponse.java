@@ -6,7 +6,8 @@
  */
 
 package com.cybozu.kintone.client.model.bulkrequest;
-import java.util.ArrayList;;
+
+import java.util.ArrayList;
 
 public class BulkRequestResponse {
 	private ArrayList<Object> results;
@@ -20,23 +21,10 @@ public class BulkRequestResponse {
 
 	/**
 	 * Get result
+	 * 
 	 * @return results
 	 */
 	public ArrayList<Object> getResults() {
-		return results;
-	}
-
-	/**
-	 * Add response Object to the results.
-	 *
-	 * @param responseObject the responseObject to add
-	 */
-	public void addResponse(Object responseObject) {
-		results.add(responseObject);
-	}
-	
-	public ArrayList<Object> addResponses(ArrayList<Object> responseObject) {
-		results.addAll(responseObject);
 		return results;
 	}
 }

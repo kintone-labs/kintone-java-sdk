@@ -8,7 +8,7 @@
 package com.cybozu.kintone.client.connection;
 
 import com.cybozu.kintone.client.authentication.Auth;
-import com.cybozu.kintone.client.exception.BulksErrorResponse;
+import com.cybozu.kintone.client.exception.BulkErrorResponse;
 import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.http.HTTPHeader;
@@ -386,8 +386,8 @@ public class Connection {
                         throw new KintoneAPIException("http status code: " + statusCode);
                 }
             } else {
-                if (response.getClass().getSimpleName().contains("BulksErrorResponse")) {
-                    BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) response;
+                if (response.getClass().getSimpleName().contains("BulkErrorResponse")) {
+                    BulkErrorResponse bulksErrorResponse = (BulkErrorResponse) response;
                     throw new KintoneAPIException(statusCode, bulksErrorResponse);
                 } else if (response.getClass().getSimpleName().contains("ErrorResponse")){
                     ErrorResponse errorResponse = (ErrorResponse) response;
@@ -402,7 +402,7 @@ public class Connection {
      * Creates an error response object.
      *
      * @param conn
-     * @return ErrorResponse object. return null if any error occurred
+     * @return ErrorResponse | BulkErrorResponse object. return null if unknown error occurred
      */
     private Object getErrorResponse(HttpURLConnection conn) {
         InputStream err = conn.getErrorStream();
@@ -411,7 +411,7 @@ public class Connection {
             if (err == null) err = conn.getInputStream();
             response = parseString(err);
             if (response.contains("results")) {
-                return gson.fromJson(response, BulksErrorResponse.class);
+                return new BulkErrorResponse(response);
             }
             return gson.fromJson(response, ErrorResponse.class);
         } catch (IOException e) {

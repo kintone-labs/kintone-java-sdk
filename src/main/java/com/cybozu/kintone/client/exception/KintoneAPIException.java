@@ -8,7 +8,7 @@
 package com.cybozu.kintone.client.exception;
 
 import com.cybozu.kintone.client.model.bulkrequest.BulkRequestItem;
-
+import com.cybozu.kintone.client.exception.BulkErrorResponse;
 import java.util.ArrayList;
 
 /**
@@ -77,8 +77,8 @@ public class KintoneAPIException extends Exception {
      * @return the errorResponse
      */
     public Object getErrorResponse() {
-        if (errorResponse.getClass().getSimpleName().contains("BulksErrorResponse")) {
-            BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) errorResponse;
+        if (errorResponse.getClass().getSimpleName().contains("BulkErrorResponse")) {
+            BulkErrorResponse bulksErrorResponse = (BulkErrorResponse) errorResponse;
             return bulksErrorResponse;
         } else {
             ErrorResponse response = (ErrorResponse) errorResponse;
@@ -95,8 +95,8 @@ public class KintoneAPIException extends Exception {
         String className = errorResponse.getClass().getSimpleName();
 
         switch (className) {
-            case "BulksErrorResponse":
-                BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) errorResponse;
+            case "BulkErrorResponse":
+            BulkErrorResponse bulksErrorResponse = (BulkErrorResponse) errorResponse;
                 ArrayList<Object> errorsList = bulksErrorResponse.getResults();
                 Integer count = 1;
                 for (Object errorResponse : errorsList) {
