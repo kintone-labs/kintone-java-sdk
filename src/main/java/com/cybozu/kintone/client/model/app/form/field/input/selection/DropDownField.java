@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -28,8 +28,7 @@ public class DropDownField extends AbstractSelectionField {
     }
 
     /**
-     * @param defaultValue
-     *            the defaultValue to set
+     * @param defaultValue the defaultValue to set
      */
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;

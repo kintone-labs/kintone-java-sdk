@@ -1,15 +1,15 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
-import java.util.HashMap;
-
 import com.cybozu.kintone.client.model.app.form.field.input.AbstractInputField;
+
+import java.util.HashMap;
 
 public class AbstractSelectionField extends AbstractInputField {
     protected HashMap<String, OptionData> options;
@@ -22,8 +22,7 @@ public class AbstractSelectionField extends AbstractInputField {
     }
 
     /**
-     * @param options
-     *            the options to set
+     * @param options the options to set
      */
     public void setOptions(HashMap<String, OptionData> options) {
         this.options = options;

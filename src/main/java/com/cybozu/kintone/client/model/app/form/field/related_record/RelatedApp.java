@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -12,7 +12,7 @@ public class RelatedApp {
     private String code;
 
     /**
-     * @param app app of the RelatedApp
+     * @param app  app of the RelatedApp
      * @param code code of the RelatedApp
      */
     public RelatedApp(String app, String code) {
@@ -28,8 +28,7 @@ public class RelatedApp {
     }
 
     /**
-     * @param app
-     *            the app to set
+     * @param app the app to set
      */
     public void setApp(String app) {
         this.app = app;
@@ -43,8 +42,7 @@ public class RelatedApp {
     }
 
     /**
-     * @param code
-     *            the code to set
+     * @param code the code to set
      */
     public void setCode(String code) {
         this.code = code;

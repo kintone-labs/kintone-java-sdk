@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -30,8 +30,7 @@ public class MultipleSelectField extends AbstractSelectionField {
     }
 
     /**
-     * @param defaultValue
-     *            the defaultValue to set
+     * @param defaultValue the defaultValue to set
      */
     public void setDefaultValue(ArrayList<String> defaultValue) {
         this.defaultValue = defaultValue;
