@@ -304,13 +304,18 @@ public class Record {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException {
-        // execute POST RECORD API
-        AddRecordRequest addRecordRequest = new AddRecordRequest(app, record);
-        String requestBody = parser.parseObject(addRecordRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORD,
-                requestBody);
-        // return response as AddRecordResponse class
-        return (AddRecordResponse) parser.parseJson(response, AddRecordResponse.class);
+        return addRecordApp(app, record);
+    }
+
+    /**
+     * Add a record to kintone APP
+     *
+     * @param app app of the addRecord
+     * @return AddRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public AddRecordResponse addRecord(Integer app) throws KintoneAPIException {
+        return addRecordApp(app, null);
     }
 
     /**
@@ -323,12 +328,10 @@ public class Record {
      */
     public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records)
             throws KintoneAPIException {
-        // execute POST RECORDS API
         AddRecordsRequest addRecordsRequest = new AddRecordsRequest(app, records);
         String requestBody = parser.parseObject(addRecordsRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS,
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST, ConnectionConstants.RECORDS,
                 requestBody);
-        // return response as AddRecordsResponse class
         return (AddRecordsResponse) parser.parseJson(response, AddRecordsResponse.class);
     }
 
@@ -344,13 +347,45 @@ public class Record {
      */
     public UpdateRecordResponse updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record,
                                                  Integer revision) throws KintoneAPIException {
-        // execute PUT RECORD API
-        UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, id, null, revision, record);
-        String requestBody = parser.parseObject(updateRecordRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD,
-                requestBody);
-        // return response as UpdateRecordResponse class
-        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+        return updateRecordByIDApp(app, id, record, revision);
+    }
+
+    /**
+     * Update a record on kintone APP by ID
+     *
+     * @param app app of the updateRecordByID
+     * @param id  id of the updateRecordByID
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByID(Integer app, Integer id) throws KintoneAPIException {
+        return updateRecordByIDApp(app, id, null, null);
+    }
+
+    /**
+     * Update a record on kintone APP by ID
+     *
+     * @param app    app of the updateRecordByID
+     * @param id     id of the updateRecordByID
+     * @param record record of the updateRecordByID
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record) throws KintoneAPIException {
+        return updateRecordByIDApp(app, id, record, null);
+    }
+
+    /**
+     * Update a record on kintone APP by ID
+     *
+     * @param app      app of the updateRecordByID
+     * @param id       id of the updateRecordByID
+     * @param revision revision of the updateRecordByID
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByID(Integer app, Integer id, Integer revision) throws KintoneAPIException {
+        return updateRecordByIDApp(app, id, null, revision);
     }
 
     /**
@@ -364,14 +399,51 @@ public class Record {
      * @throws KintoneAPIException the KintoneAPIException to throw
      */
     public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey,
-                                                        HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException {
-        // execute PUT RECORD API
-        UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, null, updateKey, revision, record);
-        String requestBody = parser.parseObject(updateRecordRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD,
-                requestBody);
-        // return response as UpdateRecordResponse class
-        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+                                                        HashMap<String, FieldValue> record, Integer revision)
+            throws KintoneAPIException {
+        return updateRecordByUpdateKeyApp(app, updateKey, record, revision);
+    }
+
+    /**
+     * Update a record on kintone APP by UpdateKey
+     *
+     * @param app       app of the updateRecordByUpdateKey
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param record    record of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey,
+                                                        HashMap<String, FieldValue> record)
+            throws KintoneAPIException {
+        return updateRecordByUpdateKeyApp(app, updateKey, record, null);
+    }
+
+    /**
+     * Update a record on kintone APP by UpdateKey
+     *
+     * @param app       app of the updateRecordByUpdateKey
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @param revision  revision of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, Integer revision)
+            throws KintoneAPIException {
+        return updateRecordByUpdateKeyApp(app, updateKey, null, revision);
+    }
+
+    /**
+     * Update a record on kintone APP by UpdateKey
+     *
+     * @param app       app of the updateRecordByUpdateKey
+     * @param updateKey updateKey of the updateRecordByUpdateKey
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey)
+            throws KintoneAPIException {
+        return updateRecordByUpdateKeyApp(app, updateKey, null, null);
     }
 
     /**
@@ -524,13 +596,18 @@ public class Record {
      */
     public UpdateRecordsResponse updateRecords(Integer app, ArrayList<RecordUpdateItem> records)
             throws KintoneAPIException {
-        // execute PUT RECORDS API
-        UpdateRecordsRequest updateRecordsRequest = new UpdateRecordsRequest(app, records);
-        String requestBody = parser.parseObject(updateRecordsRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORDS,
-                requestBody);
-        // return response as UpdateRecordsResponse class
-        return (UpdateRecordsResponse) parser.parseJson(response, UpdateRecordsResponse.class);
+        return updateRecordsApp(app, records);
+    }
+
+    /**
+     * Update records on kintone APP
+     *
+     * @param app app of the updateRecords
+     * @return UpdateRecordsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordsResponse updateRecords(Integer app) throws KintoneAPIException {
+        return updateRecordsApp(app, null);
     }
 
     /**
@@ -585,15 +662,21 @@ public class Record {
      */
     public UpdateRecordResponse updateRecordAssignees(Integer app, Integer id, ArrayList<String> assignees,
                                                       Integer revision) throws KintoneAPIException {
-        // execute PUT RECORD_ASSIGNEES API
-        UpdateRecordAssigneesRequest updateRecordAssigneesRequest = new UpdateRecordAssigneesRequest(app, id, assignees,
-                revision);
-        String requestBody = parser.parseObject(updateRecordAssigneesRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST,
-                ConnectionConstants.RECORD_ASSIGNEES,
-                requestBody);
-        // return response as UpdateRecordResponse class
-        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+        return updateRecordAssigneesApp(app, id, assignees, revision);
+    }
+
+    /**
+     * Update assignees of record on kintone APP
+     *
+     * @param app       app of the updateRecordAssignees
+     * @param id        id of the updateRecordAssignees
+     * @param assignees assignees of the updateRecordAssignees
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordAssignees(Integer app, Integer id, ArrayList<String> assignees)
+            throws KintoneAPIException {
+        return updateRecordAssigneesApp(app, id, assignees, null);
     }
 
     /**
@@ -609,15 +692,50 @@ public class Record {
      */
     public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String action, String assignee,
                                                    Integer revision) throws KintoneAPIException {
-        // execute PUT RECORD_STATUS API
-        UpdateRecordStatusRequest updateRecordStatusRequest = new UpdateRecordStatusRequest(action, app, assignee, id,
-                revision);
-        String requestBody = parser.parseObject(updateRecordStatusRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST,
-                ConnectionConstants.RECORD_STATUS,
-                requestBody);
-        // return response as UpdateRecordResponse class
-        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+        return updateRecordStatusApp(app, id, action, assignee, revision);
+    }
+
+    /**
+     * Update status of record on kintone APP
+     *
+     * @param app      app of the updateRecordStatus
+     * @param id       id of the updateRecordStatus
+     * @param action   action of the updateRecordStatus
+     * @param assignee assignee of the updateRecordStatus
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String action, String assignee)
+            throws KintoneAPIException {
+        return updateRecordStatusApp(app, id, action, assignee, null);
+    }
+
+    /**
+     * Update status of record on kintone APP
+     *
+     * @param app    app of the updateRecordStatus
+     * @param id     id of the updateRecordStatus
+     * @param action action of the updateRecordStatus
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String action) throws KintoneAPIException {
+        return updateRecordStatusApp(app, id, action, null, null);
+    }
+
+    /**
+     * Update status of record on kintone APP
+     *
+     * @param app      app of the updateRecordStatus
+     * @param id       id of the updateRecordStatus
+     * @param action   action of the updateRecordStatus
+     * @param revision revision of the updateRecordStatus
+     * @return UpdateRecordResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String action, Integer revision)
+            throws KintoneAPIException {
+        return updateRecordStatusApp(app, id, action, null, revision);
     }
 
     /**
@@ -630,13 +748,10 @@ public class Record {
      */
     public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUpdateStatusItem> records)
             throws KintoneAPIException {
-        // execute PUT RECORDS_STATUS API
         UpdateRecordsStatusRequest updateRecordsStatusRequest = new UpdateRecordsStatusRequest(app, records);
         String requestBody = parser.parseObject(updateRecordsStatusRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.PUT_REQUEST,
-                ConnectionConstants.RECORDS_STATUS,
-                requestBody);
-        // return response as UpdateRecordsResponse class
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST,
+                ConnectionConstants.RECORDS_STATUS, requestBody);
         return (UpdateRecordsResponse) parser.parseJson(response, UpdateRecordsResponse.class);
     }
 
@@ -674,13 +789,10 @@ public class Record {
      */
     public AddCommentResponse addComment(Integer app, Integer record, CommentContent comment)
             throws KintoneAPIException {
-        // execute POST RECORD_COMMENT API
         AddCommentRecordRequest addCommentRequest = new AddCommentRecordRequest(app, record, comment);
         String requestBody = parser.parseObject(addCommentRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.POST_REQUEST,
-                ConnectionConstants.RECORD_COMMENT,
-                requestBody);
-        // return response as AddCommentResponse class
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST,
+                ConnectionConstants.RECORD_COMMENT, requestBody);
         return (AddCommentResponse) parser.parseJson(response, AddCommentResponse.class);
     }
 
@@ -718,20 +830,16 @@ public class Record {
         return bulkRequest.execute();
     }
 
-    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
-        BulkRequest bulkRequest = new BulkRequest(this.connection);
+
+    private BulkRequestResponse addBulkRecord(Integer app, ArrayList<HashMap<String, FieldValue>> records)
+            throws KintoneAPIException {
+        BulkRequest bulkRequest = new BulkRequest(connection);
         int length = records.size();
-        int loopTimes = (int) length / LIMIT_POST_RECORD;
-        if ((length % LIMIT_POST_RECORD) > 0) {
-            loopTimes++;
-        }
-        if (length > 0 && length < LIMIT_POST_RECORD) {
-            loopTimes = 1;
-        }
+        int loopTimes = getAddLoopTimes(length);
         for (int index = 0; index < loopTimes; index++) {
             int begin = index * LIMIT_POST_RECORD;
             int end = (length - begin) < LIMIT_POST_RECORD ? length : begin + LIMIT_POST_RECORD;
-            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<HashMap<String, FieldValue>>(records.subList(begin, end));
+            ArrayList<HashMap<String, FieldValue>> recordsPerRequest = new ArrayList<>(records.subList(begin, end));
             bulkRequest.addRecords(app, recordsPerRequest);
         }
         return bulkRequest.execute();
@@ -820,24 +928,20 @@ public class Record {
         return deleteAllRecordsByQuery(app, "");
     }
 
+
     public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws BulksException {
-    	if (records == null) {
-    		records = new ArrayList<HashMap<String, FieldValue>>();
-    	}
-        int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
-        int numBulkRequest = (int) (records.size() / numRecordsPerBulk);
-        if ((records.size() % numRecordsPerBulk) > 0) {
-            numBulkRequest++;
-        }
-        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
-            numBulkRequest = 1;
+        if (records == null) {
+            records = new ArrayList<>();
         }
         int offset = 0;
+        int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
+        int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
+
         BulkRequestResponse requestResponse = new BulkRequestResponse();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
-            ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<HashMap<String, FieldValue>>(records.subList(offset, end));
+            ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<>(records.subList(offset, end));
             try {
                 BulkRequestResponse requestResponsePerBulk = this.addBulkRecord(app, recordsPerBulk);
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
@@ -853,16 +957,10 @@ public class Record {
 
     public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
         if (records == null) {
-    		records = new ArrayList<RecordUpdateItem>();
-    	}
+            records = new ArrayList<>();
+        }
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_UPDATE_RECORD;
-        int numBulkRequest = (int) records.size() / numRecordsPerBulk;
-        if ((records.size() % numRecordsPerBulk) > 0) {
-            numBulkRequest++;
-        }
-        if (records.size() >= 0 && records.size() < numRecordsPerBulk) {
-            numBulkRequest = 1;
-        }
+        int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
         int offset = 0;
 
         BulkRequestResponse requestResponse = new BulkRequestResponse();
@@ -870,9 +968,9 @@ public class Record {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
 
-            ArrayList<RecordUpdateItem> recordsPerBulk = new ArrayList<RecordUpdateItem>(records.subList(offset, end));
+            ArrayList<RecordUpdateItem> recordsPerBulk = new ArrayList<>(records.subList(offset, end));
             try {
-                BulkRequestResponse requestResponsePerBulk = this.updateBulkRecord(app, recordsPerBulk);
+                BulkRequestResponse requestResponsePerBulk = updateBulkRecord(app, recordsPerBulk);
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
                 requestResponse.addResponse(e);
@@ -883,4 +981,93 @@ public class Record {
         }
         return requestResponse;
     }
+
+    /**
+     * PRIVATE FUNCTION
+     */
+
+    private AddRecordResponse addRecordApp(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException {
+        // execute POST RECORD API
+        AddRecordRequest addRecordRequest = new AddRecordRequest(app, record);
+        String requestBody = parser.parseObject(addRecordRequest);
+        JsonElement response = connection.request(ConnectionConstants.POST_REQUEST,
+                ConnectionConstants.RECORD, requestBody);
+        // return response as AddRecordResponse class
+        return (AddRecordResponse) parser.parseJson(response, AddRecordResponse.class);
+    }
+
+    private UpdateRecordResponse updateRecordByIDApp(Integer app, Integer id, HashMap<String, FieldValue> record,
+                                                     Integer revision) throws KintoneAPIException {
+        UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, id, null, revision, record);
+        String requestBody = parser.parseObject(updateRecordRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD,
+                requestBody);
+        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+    }
+
+    private UpdateRecordsResponse updateRecordsApp(Integer app, ArrayList<RecordUpdateItem> records)
+            throws KintoneAPIException {
+        UpdateRecordsRequest updateRecordsRequest = new UpdateRecordsRequest(app, records);
+        String requestBody = parser.parseObject(updateRecordsRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORDS,
+                requestBody);
+        return (UpdateRecordsResponse) parser.parseJson(response, UpdateRecordsResponse.class);
+    }
+
+    private UpdateRecordResponse updateRecordAssigneesApp(Integer app, Integer id, ArrayList<String> assignees,
+                                                          Integer revision) throws KintoneAPIException {
+        UpdateRecordAssigneesRequest updateRecordAssigneesRequest =
+                new UpdateRecordAssigneesRequest(app, id, assignees, revision);
+        String requestBody = parser.parseObject(updateRecordAssigneesRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST,
+                ConnectionConstants.RECORD_ASSIGNEES, requestBody);
+        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+    }
+
+    private UpdateRecordResponse updateRecordStatusApp(Integer app, Integer id, String action, String assignee,
+                                                       Integer revision) throws KintoneAPIException {
+        UpdateRecordStatusRequest updateRecordStatusRequest =
+                new UpdateRecordStatusRequest(action, app, assignee, id, revision);
+        String requestBody = parser.parseObject(updateRecordStatusRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST,
+                ConnectionConstants.RECORD_STATUS, requestBody);
+        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+    }
+
+    private UpdateRecordResponse updateRecordByUpdateKeyApp(Integer app, RecordUpdateKey updateKey,
+                                                            HashMap<String, FieldValue> record, Integer revision)
+            throws KintoneAPIException {
+        UpdateRecordRequest updateRecordRequest = new UpdateRecordRequest(app, null, updateKey, revision, record);
+        String requestBody = parser.parseObject(updateRecordRequest);
+        JsonElement response = connection.request(ConnectionConstants.PUT_REQUEST, ConnectionConstants.RECORD,
+                requestBody);
+        return (UpdateRecordResponse) parser.parseJson(response, UpdateRecordResponse.class);
+    }
+
+    /**
+     * SUPPORT FUNCTION
+     */
+
+    private Integer getAddLoopTimes(int length) {
+        int loopTimes = length / LIMIT_POST_RECORD;
+        if ((length % LIMIT_POST_RECORD) > 0) {
+            loopTimes++;
+        }
+        if (length > 0 && length < LIMIT_POST_RECORD) {
+            loopTimes = 1;
+        }
+        return loopTimes;
+    }
+
+    private Integer getNumBulkRequest(int recordSize, int numRecordsPerBulk) {
+        int numBulkRequest = recordSize / numRecordsPerBulk;
+        if ((recordSize % numRecordsPerBulk) > 0) {
+            numBulkRequest++;
+        }
+        if (recordSize >= 0 && recordSize < numRecordsPerBulk) {
+            numBulkRequest = 1;
+        }
+        return numBulkRequest;
+    }
+
 }
