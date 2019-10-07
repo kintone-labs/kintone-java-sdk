@@ -7,6 +7,8 @@
 
 package com.cybozu.kintone.client.exception;
 
+import java.util.HashMap;
+
 public class ErrorResponse {
     private String message;
     private String id;
@@ -24,6 +26,10 @@ public class ErrorResponse {
         this.id = id;
         this.code = code;
         this.errors = errors;
+    }
+
+    public ErrorResponse() {
+
     }
 
     /**
@@ -84,5 +90,15 @@ public class ErrorResponse {
      */
     public void setErrors(Object errors) {
         this.errors = errors;
+    }
+
+    @Override
+    public String toString() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", this.id);
+        map.put("code", this.code);
+        map.put("message", this.message);
+        map.put("errors", this.errors);
+        return map.toString();
     }
 }
