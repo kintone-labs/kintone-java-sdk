@@ -758,6 +758,15 @@ public class Record {
         return bulkRequest.execute();
     }
 
+    /**
+     * Delete all records by query from kintone APP
+     *
+     * @param app   appId of the deleteAllRecordsByQuery
+     * @param query query of the deleteAllRecordsByQuery
+     * @return BulkRequestResponse
+     * @throws BulksException
+     * @throws KintoneAPIException
+     */
     public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
         BulkRequestResponse requestResponse = new BulkRequestResponse();
         ArrayList<String> fields = new ArrayList<>();
@@ -799,6 +808,14 @@ public class Record {
         return requestResponse;
     }
 
+    /**
+     * Delete all records by query from kintone APP
+     *
+     * @param app   appId of the deleteAllRecordsByQuery
+     * @return BulkRequestResponse
+     * @throws BulksException
+     * @throws KintoneAPIException
+     */
     public BulkRequestResponse deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
         return deleteAllRecordsByQuery(app, "");
     }

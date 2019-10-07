@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -23,8 +23,7 @@ public abstract class AbstractMemberSelectField extends AbstractInputField {
     }
 
     /**
-     * @param defaultValue
-     *            the defaultValue to set
+     * @param defaultValue the defaultValue to set
      */
     public void setDefaultValue(ArrayList<MemberSelectEntity> defaultValue) {
         this.defaultValue = defaultValue;
@@ -38,8 +37,7 @@ public abstract class AbstractMemberSelectField extends AbstractInputField {
     }
 
     /**
-     * @param entities
-     *            the entities to set
+     * @param entities the entities to set
      */
     public void setEntities(ArrayList<MemberSelectEntity> entities) {
         this.entities = entities;

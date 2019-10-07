@@ -761,8 +761,7 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    private AddPreviewAppResponse addPreviewAppResponse(String name, Integer space, Integer thread)
-            throws KintoneAPIException {
+    public PreviewApp addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
         AddPreviewAppRequest addPreviewAppRequest = new AddPreviewAppRequest(name, space, thread);
         String apiRequest = ConnectionConstants.APP_PREVIEW;
         String requestBody = parser.parseObject(addPreviewAppRequest);
@@ -771,7 +770,7 @@ public class App {
         return parser.parseAddPreviewAppResponse(response);
     }
 
-    private void deployAppSettingResult(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
+    public void deployAppSettings(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
         String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
         String requestBody = parser.parseObject(deployAppSettingsRequest);

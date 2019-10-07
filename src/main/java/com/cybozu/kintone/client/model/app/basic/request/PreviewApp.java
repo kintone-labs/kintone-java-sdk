@@ -1,6 +1,6 @@
-package com.cybozu.kintone.client.model.app.basic.response;
+package com.cybozu.kintone.client.model.app.basic.request;
 
-public class AddPreviewAppResponse {
+public class PreviewApp {
     private Integer app;
     private Integer revision;
 
@@ -20,12 +20,12 @@ public class AddPreviewAppResponse {
         this.revision = revision;
     }
 
-    public AddPreviewAppResponse(Integer app, Integer revision) {
+    public PreviewApp(Integer app, Integer revision) {
         this.app = app;
         this.revision = revision;
     }
 
-    public AddPreviewAppResponse() {
+    public PreviewApp() {
     }
 
 }

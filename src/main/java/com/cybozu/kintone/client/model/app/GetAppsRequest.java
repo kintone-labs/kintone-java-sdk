@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -18,8 +18,8 @@ public class GetAppsRequest {
     private Integer offset;
     private Integer limit;
 
-    public GetAppsRequest(ArrayList<Integer> ids, ArrayList<String> codes, String name, ArrayList<Integer> spaceIds, Integer offset,
-            Integer limit) {
+    public GetAppsRequest(ArrayList<Integer> ids, ArrayList<String> codes, String name, ArrayList<Integer> spaceIds,
+                          Integer offset, Integer limit) {
         this.ids = ids;
         this.codes = codes;
         this.name = name;

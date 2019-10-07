@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -20,8 +20,7 @@ public class FieldSize {
     }
 
     /**
-     * @param width
-     *            the width to set
+     * @param width the width to set
      */
     public void setWidth(String width) {
         this.width = width;
@@ -35,8 +34,7 @@ public class FieldSize {
     }
 
     /**
-     * @param height
-     *            the height to set
+     * @param height the height to set
      */
     public void setHeight(String height) {
         this.height = height;
@@ -50,8 +48,7 @@ public class FieldSize {
     }
 
     /**
-     * @param innerHeight
-     *            the innerHeight to set
+     * @param innerHeight the innerHeight to set
      */
     public void setInnerHeight(String innerHeight) {
         this.innerHeight = innerHeight;

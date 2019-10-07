@@ -7,18 +7,10 @@
 
 package com.cybozu.kintone.client.module.parser;
 
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.TimeZone;
-
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.AppDeployStatus;
 import com.cybozu.kintone.client.model.app.AppModel;
-import com.cybozu.kintone.client.model.app.basic.response.AddPreviewAppResponse;
+import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.app.basic.response.GetAppDeployStatusResponse;
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
@@ -27,6 +19,14 @@ import com.cybozu.kintone.client.model.member.Member;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.TimeZone;
 
 public class AppParser extends Parser {
     private static final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -166,13 +166,13 @@ public class AppParser extends Parser {
      * @throws KintoneAPIException
      *           the KintoneAPIException to throw
      */
-    public AddPreviewAppResponse parseAddPreviewAppResponse(JsonElement input) throws KintoneAPIException {
+    public PreviewApp parseAddPreviewAppResponse(JsonElement input) throws KintoneAPIException {
         if (!input.isJsonObject()) {
             throw new KintoneAPIException("Parse error");
         }
         try {
-            AddPreviewAppResponse response = new AddPreviewAppResponse();
-            response = gson.fromJson(input, AddPreviewAppResponse.class);
+            PreviewApp response = new PreviewApp();
+            response = gson.fromJson(input, PreviewApp.class);
             return response;
         } catch (Exception e) {
             throw new KintoneAPIException("Invalid data type", e);

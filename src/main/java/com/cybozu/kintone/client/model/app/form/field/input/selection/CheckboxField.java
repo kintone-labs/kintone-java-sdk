@@ -1,16 +1,16 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
 package com.cybozu.kintone.client.model.app.form.field.input.selection;
 
-import java.util.ArrayList;
-
 import com.cybozu.kintone.client.model.app.form.AlignLayout;
 import com.cybozu.kintone.client.model.app.form.FieldType;
+
+import java.util.ArrayList;
 
 public class CheckboxField extends AbstractSelectionField {
     protected ArrayList<String> defaultValue;
@@ -32,8 +32,7 @@ public class CheckboxField extends AbstractSelectionField {
     }
 
     /**
-     * @param align
-     *            the align to set
+     * @param align the align to set
      */
     public void setAlign(AlignLayout align) {
         this.align = align;

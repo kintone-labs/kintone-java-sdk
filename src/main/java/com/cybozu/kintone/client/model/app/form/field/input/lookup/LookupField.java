@@ -1,6 +1,6 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018 Cybozu
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
@@ -38,8 +38,7 @@ public class LookupField extends AbstractInputField {
 
 
     /**
-     * @param type
-     *            the type to set
+     * @param type the type to set
      */
     public void setType(FieldType type) {
         this.type = type;
