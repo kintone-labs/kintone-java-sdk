@@ -3,14 +3,15 @@ The response of the app deploy status.
 
 ## Methods
 
-### getApps()
+### getApps
 
 Get information of the deploy statuses of multiple app
+
+**Declaration**
+```
+public ArrayList<AppDeployStatus> getApps()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Array<[AppDeployStatus](../app-deploy-status)\>

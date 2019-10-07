@@ -1,54 +1,60 @@
 # Icon
-The Icom of an apps.
+The Icon of an apps.
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public Icon(FileModel file, String key, IconType type) 
+```
 
+**Parameter**
 
-| Name| Type| Description |
-| --- | --- | --- |
-| key | String | The key of the Icon
-| iconType | [IconType](#icontype) | The icon type of the Icon
-| file | [FileModel](/reference/model/file/file-model) | The file of the Icon
+| Name|Description |
+| --- | --- |
+| key | The key of the Icon
+| iconType | The icon type of the Icon ([IconType](#icontype))
+| file | The file of the Icon ([FileModel](/reference/model/file/file-model))
 
 ## Methods
 
-### getFile()
+### getFile
 
 The file of the Icon
+
+**Declaration**
+```
+public FileModel getFile()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-[FileModel](/reference/model/file/file-model)
-
-### getKey()
+### getKey
 
 The key of the Icon
 
-**Parameter **
+**Declaration**
+```
+public String getKey()
+```
+
+**Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getIconType()
+### getIconType
 
 The icon type of the Icon
 
-**Parameter **
+**Declaration**
+```
+public IconType getType()
+```
+**Parameter**
 
 (none)
-
-**Return**
-
-[IconType](#icontype)
 
 ## Enum
 

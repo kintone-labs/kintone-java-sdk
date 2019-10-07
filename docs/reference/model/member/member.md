@@ -2,38 +2,45 @@
 
 General information of the member(user/group/organization) on the kintone application
 
-
 ## Constructor
+
+**Declaration**
+```
+public Member()
+public Member(String code, String name)
+```
 
 **Parameter**
 
-| Name| Type| Description |
-| --- | --- | --- |
-| code | String | The user/group/organization code.
-| name | String | The user/group/organization name.
+| Name| Description |
+| --- | --- | 
+| code | The user/group/organization code.
+| name | The user/group/organization name.
 
 ## Methods
 
-### getCode()
+### getCode
 
 Get the code of the user/group/organization
 
+**Declaration**
+```
+public String getCode()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-### getName()
+### getName
 
 Get the name of the user/group/organization
 
+**Declaration**
+```
+public String getName()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-String

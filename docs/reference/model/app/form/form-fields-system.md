@@ -22,17 +22,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getEnabled()
+#### getEnabled
 
 Get the enabled
+
+**Declaration**
+```
+public Boolean getEnabled()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -43,7 +44,8 @@ Boolean
 
 <pre class="inline-code">
 
-    Boolean enabled = categoryField.getEnabled();
+    CategoryField categoryField = new CategoryField("YOUR_FIELD_CODE");
+    Boolean isEnabled = categoryField.getEnabled();
     
 </pre>
 
@@ -111,17 +113,18 @@ Boolean
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
+
+**Declaration**
+```
+public String getLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## AbstractProcessManagementField
 
@@ -131,17 +134,18 @@ String
 
 ### Methods
 
-#### getEnabled()
+#### getEnabled
 
 Get the enabled
+
+**Declaration**
+```
+public Boolean getEnabled()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## AbstractSystemInfoField
 
@@ -151,17 +155,18 @@ Boolean
 
 ### Methods
 
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
+
+**Declaration**
+```
+public Boolean getNoLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## Reference
 

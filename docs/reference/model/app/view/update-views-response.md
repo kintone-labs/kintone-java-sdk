@@ -3,36 +3,37 @@ The views of an apps.
 
 ## Constructor
 
-### **Parameter**
+**Parameter**
 
-
-| Name| Type| Description |
-| --- | --- | --- |
-| views | [String: [ViewModel](../view-model)] | The appId
+| Name| Description |
+| --- | --- |
+| views | The views list ([String: [ViewModel](../view-model)])
 | revision | The revision of the preview app
 
 ## Methods
 
-### getViews()
+### getViews
 
 Get the views of an app.
+
+**Declaration**
+```
+public HashMap<String, ViewModel> getViews()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-[String: [ViewModel](../view-model)]
-
-### getRevision()
+### getRevision
 
 The revision of the preview app.
 
-**Parameter **
+**Declaration**
+```
+public Integer getRevision()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-Integer

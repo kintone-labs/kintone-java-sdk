@@ -4,151 +4,179 @@ General information of the member(user/group/organization) on the kintone applic
 
 ## Methods
 
-### getBuiltinType()
+### getBuiltinType
 
 Get the code of the user/group/organization
+
+**Declaration**
+```
+public BuiltinType getBuiltinType()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-[BuiltinType](#builtintype)
-
-### setCode()
+### setCode
 
 The [BuiltinType](#BuiltinType) of the built-in View.
+
+**Declaration**
+```
+public void setSort(String sort)
+```
 
 **Parameter**
 
 None
 
-**Return**
-
-[BuiltinType](#BuiltinType)
-
-### getDate()
+### getDate
 
 The field code set for the Date Field. Responded for Calendar Views.
 
-**Return**
+**Declaration**
+```
+public String getDate()
+```
 
-String
+**Parameter**
 
-### getFields()
+None
+
+### getFields
 
 The list of field codes for the fields displayed in the View.
 > Responded for List Views.
 
+**Declaration**
+```
+public ArrayList<String> getFields()
+```
+
 **Parameter**
 
 None
 
-**Return**
-[String]
-
-### getFilterCond()
+### getFilterCond
 
 The filter condition as a query.
 
-**Return**
 
-String
+**Declaration**
+```
+public String getFilterCond()
+```
 
-### getHtml()
+**Parameter**
+
+None
+
+### getHtml
 
 The HTML code set for the View. 
 > Responded for Custom Views.
 
+**Declaration**
+```
+public String getHtml()
+```
+
 **Parameter**
 
 None
 
-**Return**
-String
-
-### getId()
+### getId
 
 The View ID.
 
+**Declaration**
+```
+public Integer getId()
+```
+
 **Parameter**
 
 None
 
-**Return**
-Integer
-
-
-### getIndex()
+### getIndex
 
 The display order (ascending) of the View, when listed with other views.
 
+**Declaration**
+```
+public Integer getIndex()
+```
+
 **Parameter**
 
 None
 
-**Return**
-Integer
-
-
-### getName()
+### getName
 
 The name of the View.
 
+**Declaration**
+```
+public String getName()
+```
+
 **Parameter**
 
 None
 
-**Return**
-String
-
-
-### getPager()
+### getPager
 
 The pagination settings. 
 Responded for Custom Views.
 
+**Declaration**
+```
+public Boolean getPager()
+```
+
 **Parameter**
 
 None
 
-**Return**
-Boolean
-
-### getSort()
+### getSort
 
 The sort order as a query.
 
+**Declaration**
+```
+public String getSort()
+```
+
 **Parameter**
 
 None
 
-**Return**
-String
-
-### getTitle()
+### getTitle
 
 The field code set for the Title Field. 
 Responded for Calendar Views.
 
+**Declaration**
+```
+public String getTitle()
+```
+
 **Parameter**
 
 None
 
-**Return**
-String
-
-### getType()
+### getType
 
 The type of View in [Type](#type)
 
+**Declaration**
+```
+public ViewType getType()
+```
+
 **Parameter**
 
 None
-
-**Return**
-[Type](#type)
 
 ## Enum
 

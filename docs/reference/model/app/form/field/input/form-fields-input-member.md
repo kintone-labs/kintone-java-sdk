@@ -27,29 +27,31 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code
 
+**Declaration**
+```
+public String getCode()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getType()
+#### getType
 
 Get the type
 
+**Declaration**
+```
+public MemberSelectEntityType getType()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-MemberSelectEntityType
 
 ## UserSelectionField
 
@@ -68,29 +70,31 @@ MemberSelectEntityType
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public ArrayList<MemberSelectEntity> getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-List<[MemberSelectEntity](#memberselectentity)\>
-
-#### getEntites()
+#### getEntites
 
 Get the entites
 
+**Declaration**
+```
+public ArrayList<MemberSelectEntity> getEntities()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-List<[MemberSelectEntity](#memberselectentity)\>
 
 ## Reference
 

@@ -12,17 +12,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getThumbnailSize()
+#### getThumbnailSize
 
 Get the thumbnailSize
+
+**Declaration**
+```
+public String getThumbnailSize()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 ## CalculatedField
 
@@ -32,45 +33,53 @@ Integer
 
 ### Methods
 
-#### getExpression()
+#### getExpression
 
 Get the expression
 
+**Declaration**
+```
+public String getExpression()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getHideExpression()
+#### getHideExpression
 
 Get the hideExpression
 
+**Declaration**
+```
+public Boolean getHideExpression()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getDisplayScale()
+#### getDisplayScale
 
 Get the displayScale
 
+**Declaration**
+```
+public String getDisplayScale()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getUnit()
+#### getUnit
 
 Get the unit
+
+**Declaration**
+```
+public String getUnit()
+```
 
 **Parameter**
 
@@ -80,29 +89,31 @@ Get the unit
 
 String
 
-#### getUnitPosition()
+#### getUnitPosition
 
 Get the unitPosition
 
+**Declaration**
+```
+public UnitPosition getUnitPosition()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-UnitPosition
-
-#### getFormat()
+#### getFormat
 
 Get the format
 
+**Declaration**
+```
+public NumberFormat getFormat()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-NumberFormat
 
 ## LinkField
 
@@ -112,65 +123,70 @@ NumberFormat
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getUnique()
+#### getUnique
 
 Get the unique
 
+**Declaration**
+```
+public Boolean getUnique()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getMaxLength()
+#### getMaxLength
 
 Get the maxLength
 
+**Declaration**
+```
+public String getMaxLength()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getMinLength()
+#### getMinLength
 
 Get the minLength
 
+**Declaration**
+```
+public String getMinLength()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getProtocol()
+#### getProtocol
 
 Get the protocol
 
+**Declaration**
+```
+public LinkProtocol getProtocol()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-LinkProtocol
 
 ## MultiLineTextField
 
@@ -180,121 +196,129 @@ LinkProtocol
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
+
+**Declaration**
+```
+public String getDefaultValue()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
 ## NumberField
-
 
 !!! warning
     - extend the abstract class  "[AbstractInputField](#abstractinputfield)"
 
 ### Methods
 
-#### getDisplayScale()
+#### getDisplayScale
 
 Get the displayScale
 
+**Declaration**
+```
+public String getDisplayScale()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getUnit()
+#### getUnit
 
 Get the unit
 
+**Declaration**
+```
+public String getUnit()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getUnitPosition()
+#### getUnitPosition
 
 Get the unitPosition
 
+**Declaration**
+```
+public UnitPosition getUnitPosition()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-UnitPosition
-
-#### getDigit()
+#### getDigit
 
 Get the digit
 
+**Declaration**
+```
+public Boolean getDigit()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getMaxValue()
+#### getMaxValue
 
 Get the maxValue
 
+**Declaration**
+```
+public String getMaxValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getMinValue()
+#### getMinValue
 
 Get the minValue
 
+**Declaration**
+```
+public String getMinValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getUnique()
+#### getUnique
 
 Get the unique
 
+**Declaration**
+```
+public Boolean getUnique()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## RichTextField
 
@@ -303,97 +327,103 @@ Boolean
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
+
+**Declaration**
+```
+public String getDefaultValue()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
 ## SingleLineTextField
-
 
 !!! warning
     - extend the abstract class  "[AbstractInputField](#abstractinputfield)"
 
 ### Methods
 
-#### getMinLength()
+#### getMinLength
 
 Get the minLength
 
+**Declaration**
+```
+public String getMinLength()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getMaxLength()
+#### getMaxLength
 
 Get the maxLength
 
+**Declaration**
+```
+public String getMaxLength()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getExpression()
+#### getExpression
 
 Get the expression
 
+**Declaration**
+```
+public String getExpression()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getHideExpression()
+#### getHideExpression
 
 Get the hideExpression
 
+**Declaration**
+```
+public Boolean getHideExpression()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getUnique()
+#### getUnique
 
 Get the unique
 
+**Declaration**
+```
+public Boolean getUnique()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## AbstractInputField
 
@@ -403,41 +433,44 @@ Boolean
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
 
+**Declaration**
+```
+public String getLabel()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-String
-
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
 
+**Declaration**
+```
+public Boolean getNoLabel()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Boolean
-
-#### getRequired()
+#### getRequired
 
 Get the required
 
+**Declaration**
+```
+public Boolean getRequired()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 ## Reference
 

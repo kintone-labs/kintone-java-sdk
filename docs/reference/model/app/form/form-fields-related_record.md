@@ -10,17 +10,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getApp()
+#### getApp
 
 Get the app
+
+**Declaration**
+```
+public String getApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- String
 
 **Sample code**
 
@@ -31,23 +32,25 @@ Get the app
 
 <pre class="inline-code">
 
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
     String app = relatedApp.getApp();
 
 </pre>
 
 </details>
 
-#### getCode()
+#### getCode
 
 Get the code
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -58,7 +61,8 @@ String
 
 <pre class="inline-code">
 
-    String app = relatedApp.getCode();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    String code = relatedApp.getCode();
 
 </pre>
 
@@ -68,17 +72,18 @@ String
 
 ### Methods
 
-#### getCondition()
+#### getCondition
 
 Get the condition
+
+**Declaration**
+```
+public FieldMapping getCondition()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[FieldMapping](../form-fields/#fieldmapping)
 
 **Sample code**
 
@@ -89,23 +94,32 @@ Get the condition
 
 <pre class="inline-code">
 
-    FieldMapping condition = referenceTable.getCondition();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    FieldMapping referenceTableCondition = referenceTable.getCondition();
 
 </pre>
 
 </details>
 
-#### getFilterCond()
+#### getFilterCond
 
 Get the filterCond
+
+**Declaration**
+```
+public String getFilterCond()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- String
 
 **Sample code**
 
@@ -116,23 +130,32 @@ Get the filterCond
 
 <pre class="inline-code">
 
-    String filterCond = referenceTable.getFilterCond();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    String referenceTableFilterCond = referenceTable.getFilterCond();
 
 </pre>
 
 </details>
 
-#### getRelatedApp()
+#### getRelatedApp
 
 Get the relatedApp
+
+**Declaration**
+```
+public RelatedApp getRelatedApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[RelatedApp](#relatedapp)
 
 **Sample code**
 
@@ -143,23 +166,32 @@ Get the relatedApp
 
 <pre class="inline-code">
 
-    RelatedApp relatedApp = referenceTable.getRelatedApp();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    RelatedApp referenceTableRelatedApp = referenceTable.getRelatedApp();
 
 </pre>
 
 </details>
 
-#### getSize()
+#### getSize
 
 Get the size
+
+**Declaration**
+```
+public Integer getSize()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- Integer
 
 **Sample code**
 
@@ -170,23 +202,32 @@ Get the size
 
 <pre class="inline-code">
 
-    Integer size = referenceTable.getSize();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    Integer referenceTableSize = referenceTable.getSize();
 
 </pre>
 
 </details>
 
-#### getDisplayFields()
+#### getDisplayFields
 
 Get the displayFields
+
+**Declaration**
+```
+public ArrayList<String> getDisplayFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- List<String\>
 
 **Sample code**
 
@@ -197,23 +238,32 @@ Get the displayFields
 
 <pre class="inline-code">
 
-    ArrayList<String> displayFields = referenceTable.getDisplayFields();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    ArrayList<String> referenceTableDisplayFields = referenceTable.getDisplayFields();
 
 </pre>
 
 </details>
 
-#### getSort()
+#### getSort
 
 Get the sort
+
+**Declaration**
+```
+public String getSort()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -224,7 +274,15 @@ String
 
 <pre class="inline-code">
 
-    String sort = referenceTable.getSort();
+    RelatedApp relatedApp = new RelatedApp("YOUR_APP_ID", "YOUR_APP_CODE");
+    ArrayList<String> displayFields = new ArrayList<>();
+    displayFields.add("YOUR_FIELD_CODE");
+    String filterCondition = "YOUR_FILTER_CONDITION";
+    FieldMapping condition = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_CODE_RELATED");
+    int size = 0;    // Input size of referenceTable
+
+    ReferenceTable referenceTable = new ReferenceTable(condition, filterCondition, relatedApp, size, displayFields);
+    String referenceTableSort = referenceTable.getSort();
 
 </pre>
 
@@ -237,17 +295,18 @@ String
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
+
+**Declaration**
+```
+public String getLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -258,23 +317,25 @@ String
 
 <pre class="inline-code">
 
-    String label = relatedRecordsField.getLabel();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    String label = recordsField.getLabel();
 
 </pre>
 
 </details>
 
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
+
+**Declaration**
+```
+public Boolean getNoLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -285,23 +346,25 @@ Boolean
 
 <pre class="inline-code">
 
-    Boolean noLabel = relatedRecordsField.getNoLabel();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    Boolean noLabel = recordsField.getNoLabel();
 
 </pre>
 
 </details>
 
-#### getReferenceTable()
+#### getReferenceTable
 
 Get the referenceTable
+
+**Declaration**
+```
+public ReferenceTable getReferenceTable()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-[ReferenceTable](#referencetable)
 
 **Sample code**
 
@@ -312,7 +375,8 @@ Get the referenceTable
 
 <pre class="inline-code">
 
-    ReferenceTable referenceTable = relatedRecordsField.getReferenceTable();
+    RelatedRecordsField recordsField = new RelatedRecordsField("YOUR_FIELD_CODE");
+    ReferenceTable referenceTable = recordsField.getReferenceTable();
     
 </pre>
 

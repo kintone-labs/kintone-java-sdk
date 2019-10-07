@@ -9,17 +9,18 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getApp()
+#### getApp
 
 Get the app
+
+**Declaration**
+```
+public Integer getApp()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -30,23 +31,30 @@ Integer
 
 <pre class="inline-code">
 
-    Integer app = formfields.getApp();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
+
+    Integer app = formFields.getApp();
 
 </pre>
 
 </details>
 
-#### getRevision()
+#### getRevision
 
 Get the revision
 
-**Parameter **
+**Declaration**
+```
+public Integer getRevision()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-Integer
 
 **Sample code**
 
@@ -57,23 +65,30 @@ Integer
 
 <pre class="inline-code">
 
-    int revision = formfields.getRevision();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
+
+    Integer revisionFields = formFields.getRevision();
 
 </pre>
 
 </details>
 
-#### getProperties()
+#### getProperties
 
 Get the properties
 
-**Parameter **
+**Declaration**
+```
+public HashMap<String, Field> getProperties()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
- Map<String, [Field](#field)\>
 
 **Sample code**
 
@@ -84,8 +99,13 @@ Get the properties
 
 <pre class="inline-code">
 
-    Map<String, Field> properties = formfields.getProperties();
+    Integer appID = 0;  // Input your app id
+    Integer revision = 0; // Latest_revision_of_the_settings
+    HashMap<String, Field> properties = new HashMap<>();
+    properties.put("YOUR_FIELD_CODE", new RadioButtonField("YOUR_FIELD_CODE"));
+    FormFields formFields = new FormFields(appID, properties, revision);
 
+    HashMap<String, Field> propertiesFields = formFields.getProperties();
 </pre>
 
 </details>
@@ -97,17 +117,18 @@ Get the properties
 
 ### Methods
 
-#### getLabel()
+#### getLabel
 
 Get the label
+
+**Declaration**
+```
+public String getLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -118,23 +139,25 @@ String
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     String label = fieldGroup.getLabel();
 
 </pre>
 
 </details>
 
-#### getNoLabel()
+#### getNoLabel
 
 Get the noLabel
+
+**Declaration**
+```
+public Boolean getNoLabel()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -145,23 +168,25 @@ Boolean
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     Boolean noLabel = fieldGroup.getNoLabel();
 
 </pre>
 
 </details>
 
-#### getOpenGroup()
+#### getOpenGroup
 
 Get the openGroup
+
+**Declaration**
+```
+public Boolean getOpenGroup()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Boolean
 
 **Sample code**
 
@@ -172,6 +197,7 @@ Boolean
 
 <pre class="inline-code">
 
+    FieldGroup fieldGroup = new FieldGroup("YOUR_FIELD_CODE");
     Boolean openGroup = fieldGroup.getOpenGroup();
 
 </pre>
@@ -182,17 +208,18 @@ Boolean
 
 ### Methods
 
-#### getField()
+#### getField
 
 Get the field
+
+**Declaration**
+```
+public String getField()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -203,23 +230,25 @@ String
 
 <pre class="inline-code">
 
+    FieldMapping fieldMapping = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_RELATED_CODE");
     String field = fieldMapping.getField();
 
 </pre>
 
 </details>
 
-#### getRelatedFields()
+#### getRelatedFields
 
 Get the relatedFields
+
+**Declaration**
+```
+public String getRelatedFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 **Sample code**
 
@@ -230,6 +259,7 @@ String
 
 <pre class="inline-code">
 
+    FieldMapping fieldMapping = new FieldMapping("YOUR_FIELD_CODE", "YOUR_FIELD_RELATED_CODE");
     String relatedFields = fieldMapping.getRelatedFields();
 
 </pre>
@@ -245,17 +275,18 @@ String
 
 </details>
 
-#### getFields()
+#### getFields
 
 Get the fields
+
+**Declaration**
+```
+public HashMap<String, AbstractInputField> getFields()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
- Map<String, [AbstractInputField](../form-fields-input/#abstractinputfield)\>
 
 **Sample code**
 
@@ -266,7 +297,8 @@ Get the fields
 
 <pre class="inline-code">
 
-    Map<String, AbstractInputField> fields = subTableField.getFields();
+    SubTableField subTableField = new SubTableField("YOUR_FIELD_CODE");
+    HashMap<String, AbstractInputField> fields = subTableField.getFields();
     
 </pre>
 
@@ -279,9 +311,14 @@ Get the fields
 
 ### Methods
 
-#### getCode()
+#### getCode
 
 Get the code
+
+**Declaration**
+```
+public String getCode()
+```
 
 **Parameter**
 
@@ -291,17 +328,18 @@ Get the code
 
 String
 
-#### getType()
+#### getType
 
 Get the type
+
+**Declaration**
+```
+public FieldType getType()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-LayoutType
 
 ## Reference
 

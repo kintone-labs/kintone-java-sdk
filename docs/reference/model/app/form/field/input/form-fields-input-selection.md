@@ -12,29 +12,31 @@ Get a list of fields and their settings.
 
 ### Methods
 
-#### getAlign()
+#### getAlign
 
 Get the align
 
+**Declaration**
+```
+public AlignLayout getAlign()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-AlignLayout
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public ArrayList<String> getDefaultValue()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-List<String\>
 
 ## DropDownField
 
@@ -43,17 +45,18 @@ List<String\>
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
+
+**Declaration**
+```
+public String getDefaultValue()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## MultipleSelectField
 
@@ -62,45 +65,48 @@ String
 
 ### Methods
 
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
+
+**Declaration**
+```
+public ArrayList<String> getDefaultValue()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-List<String\>
 
 ## OptionData
 
 ### Methods
 
-#### getIndex()
+#### getIndex
 
 Get the index
 
+**Declaration**
+```
+public Integer getIndex()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-#### getLabel()
+#### getLabel
 
 Get the label
 
+**Declaration**
+```
+public String getLabel()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## RadioButtonField
 
@@ -109,29 +115,31 @@ String
 
 ### Methods
 
-#### getAlign()
+#### getAlign
 
 Get the align
 
+**Declaration**
+```
+public AlignLayout getAlign()
+```
+
 **Parameter**
 
 (none)
 
-**Return**
-
-AlignLayout
-
-#### getDefaultValue()
+#### getDefaultValue
 
 Get the defaultValue
 
+**Declaration**
+```
+public String getDefaultValue()
+```
+
 **Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## AbstractSelectionField
 
@@ -141,17 +149,18 @@ String
 
 ### Methods
 
-#### getOptions()
+#### getOptions
 
 Get the options
+
+**Declaration**
+```
+public HashMap<String, OptionData> getOptions()
+```
 
 **Parameter**
 
 (none)
-
-**Return**
-
-Map<String, [OptionData](#optiondata)\>
 
 ## Reference
 

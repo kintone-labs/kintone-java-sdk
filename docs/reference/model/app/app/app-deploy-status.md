@@ -4,39 +4,46 @@ Get information about the deploy status of an app
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public AppDeployStatus()
+public AppDeployStatus(Integer app, Status status)
+```
 
+**Parameter**
 
-| Name| Type| Description |
-| --- | --- | --- |
-| app | Integer | The appId
-| status | [Status](#status) | The status of the deployment of App settings.
+| Name| Description |
+| --- | --- |
+| app | The appId
+| status | The status of the deployment of App settings.
 
 ## Methods
 
-### getApp()
+### getApp
 
 Get the appId
+
+**Declaration**
+```
+public Integer getApp()
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-Integer
-
-### getStatus()
+### getStatus
 
 The status of the deployment of App settings.
 
-**Parameter **
+**Declaration**
+```
+public Status getStatus()
+```
+
+**Parameter**
 
 (none)
-
-**Return**
-
-String
 
 ## Enum
 
