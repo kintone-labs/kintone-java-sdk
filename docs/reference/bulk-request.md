@@ -13,13 +13,18 @@ The Bulk Request API allows multiple API requests to run on multiple kintone app
 
 ## Constructor
 
-### **Parameter**
+**Declaration**
+```
+public BulkRequest(Connection connection) 
+```
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| connection | [Connection](../connection) | yes | The connection module of this SDK.
+**Parameter**
 
-### **Sample code**
+| Name| Description |
+| --- | --- | 
+| connection | The connection module of this SDK ([Connection](../connection)).
+
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Init bulk request module</Summary>
@@ -27,7 +32,19 @@ The Bulk Request API allows multiple API requests to run on multiple kintone app
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
+
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
+
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
 </pre>
 
 </details>
@@ -36,17 +53,19 @@ BulkRequest bulkRequestManager = new BulkRequest(connection);
 
 > All below methods (excluded `execute()` method) will add request to queue, you must execute the `execute()` function to get result of BulkRequest.
 
-### addRecord(app, record)
+### addRecord
+
+**Declaration**
+```
+public BulkRequest addRecord(Integer app)
+public BulkRequest addRecord(Integer app, HashMap<String, FieldValue> record)
+```
 
 **Parameter**
 
-See at [Record - addRecord](../record#addrecordappid-recorddata)
+See at [Record - addRecord](../record#addrecordapp-record)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>add Record</Summary>
@@ -54,34 +73,45 @@ See at [Record - addRecord](../record#addrecordappid-recorddata)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
 
-record.put("FieldCode1", fv);
+	HashMap<String, FieldValue> record = new HashMap<>();
+	FieldValue fv = new FieldValue();
 
-bulkRequestManager.addRecord(appID, record);
+	fv.setType(FieldType.SINGLE_LINE_TEXT);
+	fv.setValue("FIELD_VALUE");
+	record.put("YOUR_FIELD_CODE", fv);
+
+	kintoneBulkRequest.addRecord(appID, record);
 </pre>
 
 </details>
 
-### addRecords(app, records)
+### addRecords
+
+**Declaration**
+```
+public BulkRequest addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records)
+```
 
 **Parameter**
 
-See at [Record - addRecords](../record#addrecordsappid-recordsdata)
+See at [Record - addRecords](../record#addrecordsapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>add multiple Records</Summary>
@@ -89,43 +119,50 @@ See at [Record - addRecords](../record#addrecordsappid-recordsdata)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecords1");
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_AddRecords2");
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
 
-record1.put("FieldCode1", fv);
-record2.put("FieldCode1", fv2);
+	ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+	HashMap<String, FieldValue> record = new HashMap<>();
+	FieldValue fv = new FieldValue();
 
-records.add(record1);
-records.add(record2);
+	fv.setType(FieldType.SINGLE_LINE_TEXT);
+	fv.setValue("FIELD_VALUE");
+	record.put("YOUR_FIELD_CODE", fv);
 
-bulkRequestManager.addRecords(appID, records);
+	records.add(record);
+	kintoneBulkRequest.addRecords(appID, records);
 </pre>
 
 </details>
 
-### updateRecordByID(app, id, record, revision)
+### updateRecordByID
+
+**Declaration**
+```
+public BulkRequest updateRecordByID(Integer app, Integer id)
+public BulkRequest updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record) 
+public BulkRequest updateRecordByID(Integer app, Integer id, Integer revision) 
+public BulkRequest updateRecordByID(Integer app, Integer id, HashMap<String, FieldValue> record, Integer revision)
+```
 
 **Parameter**
 
-See at [Record - updateRecordByID](../record#updaterecordbyidappid-recordid-recorddata-revision)
+See at [Record - updateRecordByID](../record#updaterecordbyidapp-id-record-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update Record By ID</Summary>
@@ -133,35 +170,51 @@ See at [Record - updateRecordByID](../record#updaterecordbyidappid-recordid-reco
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
-Integer recordID = 1;
-Integer revision = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_updateRecordById");
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-record.put("FieldCode1", fv);
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer recordID = 0; // Input your record id
+	Integer revision = 0; // Latest revision of the settings
 
-bulkRequestManager.updateRecordByID(appID, recordID, record, revision);
+	HashMap<String, FieldValue> record = new HashMap<>();
+	FieldValue fv = new FieldValue();
+
+	fv.setType(FieldType.SINGLE_LINE_TEXT);
+	fv.setValue("FIELD_VALUE");
+	record.put("YOUR_FIELD_CODE", fv);
+
+	kintoneBulkRequest.updateRecordByID(appID, recordID, record, revision);
 </pre>
 
 </details>
 
-### updateRecordByUpdateKey(app, updateKey, record, revision)
+### updateRecordByUpdateKey
+
+**Declaration**
+```
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey)
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record) 
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, Integer revision)
+public BulkRequest updateRecordByUpdateKey(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision)
+
+```
 
 **Parameter**
 
-See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyappid-updatekey-recorddata-revision)
+See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyapp-updatekey-record-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update Record By UpdateKey</Summary>
@@ -169,35 +222,49 @@ See at [Record - updateRecordByUpdateKey](../record#updaterecordbyupdatekeyappid
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
-RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", "unique_value1");
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
-Integer revision = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_updateRecordByUpdateKey");
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-record.put("FieldCode1", fv);
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer revision = 0; // Latest revision of the settings
 
-bulkRequestManager.updateRecordByUpdateKey(appID, uKey, record, revision);
+	RecordUpdateKey updateKey = new RecordUpdateKey("YOUR_UPDATE_KEY_FIELD", "YOUR_UPDATE_KEY_VALUE");
+
+	HashMap<String, FieldValue> record = new HashMap<>();
+	FieldValue fv = new FieldValue();
+
+	fv.setType(FieldType.SINGLE_LINE_TEXT);
+	fv.setValue("FIELD_VALUE");
+	record.put("YOUR_FIELD_CODE", fv);
+
+	kintoneBulkRequest.updateRecordByUpdateKey(appID, updateKey, record, revision);
 </pre>
 
 </details>
 
-### updateRecords(app, records)
+### updateRecords
+
+**Declaration**
+```
+public BulkRequest updateRecords(Integer app)
+public BulkRequest updateRecords(Integer app, ArrayList<RecordUpdateItem> records)
+```
 
 **Parameter**
 
-See at [Record - updateRecords](../record#updaterecordsappid-recordsdata)
+See at [Record - updateRecords](../record#updaterecordsapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>update multiple Records</Summary>
@@ -205,46 +272,58 @@ See at [Record - updateRecords](../record#updaterecordsappid-recordsdata)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
-HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
-Integer recordId1 = 1;
-Integer recordId2 = 2;
-Integer revision = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-FieldValue fv1 = new FieldValue();
-fv1.setType(FieldType.SINGLE_LINE_TEXT);
-fv1.setValue("test_updateRecords1");
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("test_updateRecords2");
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer revision = 0; // Latest revision of the settings
+	Integer recordId1 = 0; // Input your record id
+	Integer recordId2 = 0; // Input your record id
 
-record1.put("FieldCode1", fv1);
-record2.put("FieldCode1", fv2);
+	HashMap<String, FieldValue> record1 = new HashMap<>();
+	HashMap<String, FieldValue> record2 = new HashMap<>();
 
-ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
-records.add(new RecordUpdateItem(recordId1, revision, null, record1));
-records.add(new RecordUpdateItem(recordId2, null, null, record2));
+	FieldValue fv1 = new FieldValue();
+	fv1.setType(FieldType.SINGLE_LINE_TEXT);
+	fv1.setValue("FIELD_VALUE_1");
+	record1.put("YOUR_FIELD_CODE_1", fv1);
 
-bulkRequestManager.updateRecords(appID, records);
+	FieldValue fv2 = new FieldValue();
+	fv2.setType(FieldType.SINGLE_LINE_TEXT);
+	fv2.setValue("FIELD_VALUE_2");
+	record2.put("YOUR_FIELD_CODE_2", fv2);
+
+	ArrayList<RecordUpdateItem> records = new ArrayList<>();
+	records.add(new RecordUpdateItem(recordId1, revision, null, record1));
+	records.add(new RecordUpdateItem(recordId2, null, null, record2));
+
+	kintoneBulkRequest.updateRecords(appID, records);
 </pre>
 
 </details>
 
-### deleteRecords(app, ids)
+### deleteRecords
+
+**Declaration**
+```
+public BulkRequest deleteRecords(Integer app, ArrayList<Integer> ids)
+```
 
 **Parameter**
 
-See at [Record - deleteRecords](../record#deleterecordsappid-recordids)
+See at [Record - deleteRecords](../record#deleterecordsapp-ids)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Bulk Delete Records</Summary>
@@ -252,31 +331,42 @@ See at [Record - deleteRecords](../record#deleterecordsappid-recordids)
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-ArrayList<Integer> ids = new ArrayList<Integer>();
-ids.add(1);
-ids.add(2);
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
 
-bulkRequestManager.deleteRecords(appID, ids);
+	ArrayList<Integer> deleteIds = new ArrayList<>();
+	deleteIds.add(1);   // Input deleted record id
+	deleteIds.add(2);   // Input deleted record id
+
+	kintoneBulkRequest.deleteRecords(appID, deleteIds);
 </pre>
 
 </details>
 
-### deleteRecordsWithRevision(app, idsWithRevision)
+### deleteRecordsWithRevision
+
+**Declaration**
+```
+public BulkRequest deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> idsWithRevision) 
+```
 
 **Parameter**
 
-See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisionappid-idswithrevision)
+See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisionapp-idswithrevision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>delete Records With Revision</Summary>
@@ -284,31 +374,44 @@ See at [Record - deleteRecordsWithRevision](../record#deleterecordswithrevisiona
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-idsWithRevision.put(1, 1);
-idsWithRevision.put(2, null);
-idsWithRevision.put(3, -1);
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-bulkRequestManager.deleteRecordsWithRevision(appID, idsWithRevision);
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+
+	HashMap<Integer, Integer> idsWithRevision = new HashMap<>();
+
+	idsWithRevision.put(1, 1);  // Input recordId, revision
+	idsWithRevision.put(2, null);   // Input recordId, revision
+
+	kintoneBulkRequest.deleteRecordsWithRevision(appID, idsWithRevision);
 </pre>
 
 </details>
 
-### updateRecordAssignees(app, record, assignees, revision)
+### updateRecordAssignees
+
+**Declaration**
+```
+public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees) 
+public BulkRequest updateRecordAssignees(Integer app, Integer record, ArrayList<String> assignees, Integer revision)
+```
 
 **Parameter**
 
-See at [Record - updateRecordAssignees](../record#updaterecordassigneesappid-recordid-assignees-revision)
+See at [Record - updateRecordAssignees](../record#updaterecordassigneesapp-id-assignees-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the Assignees for the record</Summary>
@@ -316,31 +419,45 @@ See at [Record - updateRecordAssignees](../record#updaterecordassigneesappid-rec
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
-Integer recordID =1;
-Integer revision = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-ArrayList<String> assignees = new ArrayList<String>();
-assignees.add("sample_user");
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer recordID = 0;   //Input your record id
+	Integer revision = 0; // Latest revision of the settings
+	
+	ArrayList<String> assignees = new ArrayList<>();
+	assignees.add("YOUR_USER_CODE");
+	kintoneBulkRequest.updateRecordAssignees(appID, recordID, assignees, revision);
 </pre>
 
 </details>
 
-### updateRecordStatus(app, id, action, assignee, revision)
+### updateRecordStatus
+
+**Declaration**
+```
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action)
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, String assignee)
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, Integer revision) 
+public BulkRequest updateRecordStatus(Integer app, Integer id, String action, String assignee, Integer revision) 
+```
 
 **Parameter**
 
-See at [Record - updateRecordStatus](../record#updaterecordstatusappid-recordid-actionname-assignee-revision)
+See at [Record - updateRecordStatus](../record#updaterecordstatusapp-id-action-assignee-revision)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the status of a single record</Summary>
@@ -348,30 +465,46 @@ See at [Record - updateRecordStatus](../record#updaterecordstatusappid-recordid-
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
+	/*
+	* Enable process management for using this function
+	*/
+	
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-Integer appID = 1;
-Integer recordID =1;
-String action = "処理開始";
-String assignee = "sample_user";
-Integer revision = 1;
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-bulkRequestManager.updateRecordStatus(appID, recordID, action, assignee, revision);
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer recordID = 0;   //Input your record id
+	Integer revision = 0; // Latest revision of the settings
+	String action = "YOUR_ACTION_NAME";
+	String assignee = "YOUR_USER_CODE";
+
+	kintoneBulkRequest.updateRecordStatus(appID, recordID, action, assignee, revision);
 </pre>
 
 </details>
 
-### updateRecordsStatus(app, records)
+### updateRecordsStatus
+
+**Declaration**
+```
+public BulkRequest updateRecordsStatus(Integer app, ArrayList<RecordUpdateStatusItem> records)
+```
 
 **Parameter**
 
-See at [Record - updateRecordsStatus](../record#updaterecordsstatusappid-recordsstatusupdate)
+See at [Record - updateRecordsStatus](../record#updaterecordsstatusapp-records)
 
-**Return**
-
-[BulkRequest](#bulkrequest)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Update the status of multiple records in bulk</Summary>
@@ -379,41 +512,55 @@ See at [Record - updateRecordsStatus](../record#updaterecordsstatusappid-records
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+	/*
+	* Enable process management for using this function
+	*/
 
-Integer appID = 1;
-String action = "処理開始";
-String assignee = "sample_user1";
-Integer recordID1 =1;
-Integer recordID2 =2;
-Integer recordID3 =3;
-Integer revision1 = 1;
-Integer revision2 = null;
-Integer revision3 = -1;
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
-rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
 
-bulkRequestManager.updateRecordsStatus(appID, rusi);
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+	Integer appID = 0;  // Input your app id
+	Integer recordID1 = 1;  // Input your record id
+	Integer recordID2 = 2;  // Input your record id
+	Integer revision1 = 1;   // Latest revision of the settings
+	Integer revision2 = null;   // Latest revision of the settings
+	String action = "YOUR_ACTION_NAME";
+	String assignee = "YOUR_USER_CODE";
+
+	ArrayList<RecordUpdateStatusItem> updateStatusItems = new ArrayList<>();
+
+	updateStatusItems.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
+	updateStatusItems.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
+
+	kintoneBulkRequest.updateRecordsStatus(appID, updateStatusItems);
 </pre>
 
 </details>
 
-### execute()
+### execute
 
 > Execute the bulk request and get data response
+
+**Declaration**
+```
+public BulkRequestResponse execute() throws KintoneAPIException 
+```
 
 **Parameter**
 
 (none)
 
-**Return**
-
-[BulkRequestResponse](../bulk-request-model#bulkrequestresponse)
-
-### **Sample code**
+**Sample code**
 
 <details class="tab-container" open>
 <Summary>Execute bulk request</Summary>
@@ -421,17 +568,30 @@ bulkRequestManager.updateRecordsStatus(appID, rusi);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-BulkRequest bulkRequestManager = new BulkRequest(connection);
-bulkRequestManager.addRecord(/*[Args]*/);
-bulkRequestManager.addRecords(/*[Args]*/);
-bulkRequestManager.updateRecords(/*[Args]*/);
-bulkRequestManager.deleteRecords(/*[Args]*/);
+	String username = "YOUR_USERNAME";
+	String password = "YOUR_PASSWORD";
 
-try {
-  BulkRequestResponse responses = bulkRequestManager.execute();
-} catch (Exception e) {
-  System.out.println(e.getMessage());
-}
+	// Init authenticationAuth
+	Auth kintoneAuth = new Auth();
+	kintoneAuth.setPasswordAuth(username, password);
+
+	// Init Connection without "guest space ID"
+	String kintoneDomain = "YOUR_DOMAIN.COM";
+	Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+	// Init BulkRequest Module
+	BulkRequest kintoneBulkRequest = new BulkRequest(kintoneConnection);
+
+	kintoneBulkRequest.addRecord(/*[Args]*/);
+	kintoneBulkRequest.addRecords(/*[Args]*/);
+	kintoneBulkRequest.updateRecords(/*[Args]*/);
+	kintoneBulkRequest.deleteRecords(/*[Args]*/);
+
+	try {
+		BulkRequestResponse responses = kintoneBulkRequest.execute();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 </pre>
 
 </details>
