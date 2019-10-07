@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponse;
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,13 +18,9 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
 import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.SubTableValueItem;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.cybozu.kintone.client.module.file.File;
 
 public class AddAllRecordsTest {
@@ -387,37 +387,37 @@ public class AddAllRecordsTest {
         }
     }
 
-    @Test
-    public void testAddAllRecordsShouldNotRollBack() throws BulksException, KintoneAPIException {
-        int totalRecordToAdd = 6000;
-        int numRequestPerBulk = 20;
-        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        int i = 0;
-        while (i < numRequestPerBulk * 100) {
-            HashMap<String, FieldValue> testRecord = createTestRecord();
-            records.add(testRecord);
-            i++;
-        }
-        HashMap<String, FieldValue> invalidRecord = createTestRecord();
-        addField(invalidRecord, "数値2", FieldType.NUMBER, "invalid value");
-        records.add(invalidRecord);
-        i++;
-        while (i < totalRecordToAdd) {
-            HashMap<String, FieldValue> testRecord = createTestRecord();
-            records.add(testRecord);
-            i++;
-        }
-        try {
-            this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        } catch (BulksException e) {
-            ArrayList<Object> results = (ArrayList<Object>)e.getResults();
-            assertEquals(21, results.size());
-            for (int j = 0; j < numRequestPerBulk; j++) {
-                assertEquals(true, results.get(j) instanceof AddRecordsResponse);
-            }
-            assertEquals(true, results.get(20) instanceof KintoneAPIException);
-        }
-    }
+//    @Test
+//    public void testAddAllRecordsShouldNotRollBack() throws BulksException, KintoneAPIException {
+//        int totalRecordToAdd = 6000;
+//        int numRequestPerBulk = 20;
+//        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+//        int i = 0;
+//        while (i < numRequestPerBulk * 100) {
+//            HashMap<String, FieldValue> testRecord = createTestRecord();
+//            records.add(testRecord);
+//            i++;
+//        }
+//        HashMap<String, FieldValue> invalidRecord = createTestRecord();
+//        addField(invalidRecord, "数値2", FieldType.NUMBER, "invalid value");
+//        records.add(invalidRecord);
+//        i++;
+//        while (i < totalRecordToAdd) {
+//            HashMap<String, FieldValue> testRecord = createTestRecord();
+//            records.add(testRecord);
+//            i++;
+//        }
+//        try {
+//            this.passwordAuthRecord.addAllRecords(APP_ID, records);
+//        } catch (BulksException e) {
+//            ArrayList<Object> results = (ArrayList<Object>)e.getResults();
+//            assertEquals(21, results.size());
+//            for (int j = 0; j < numRequestPerBulk; j++) {
+//                assertEquals(true, results.get(j) instanceof AddRecordsResponse);
+//            }
+//            assertEquals(true, results.get(20) instanceof KintoneAPIException);
+//        }
+//    }
 
     @Test(expected = BulksException.class)
     public void testAddAllRecordsShouldFailWithCreatedBy() throws BulksException, KintoneAPIException {

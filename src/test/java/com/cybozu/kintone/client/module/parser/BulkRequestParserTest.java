@@ -1,34 +1,27 @@
 package com.cybozu.kintone.client.module.parser;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
-import com.cybozu.kintone.client.model.record.AddRecordRequest;
-import com.cybozu.kintone.client.model.record.AddRecordResponse;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.RecordUpdateItem;
-import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
-import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponse;
+import com.cybozu.kintone.client.model.record.*;
+import com.cybozu.kintone.client.model.record.record.request.AddRecordRequest;
+import com.cybozu.kintone.client.model.record.record.response.*;
 import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.record.Record;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.Assert.assertTrue;
 
 public class BulkRequestParserTest {
     private static int APP_ID;

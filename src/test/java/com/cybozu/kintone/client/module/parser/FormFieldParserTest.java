@@ -16,7 +16,24 @@
 
 package com.cybozu.kintone.client.module.parser;
 
-import static org.junit.Assert.*;
+import com.cybozu.kintone.client.exception.KintoneAPIException;
+import com.cybozu.kintone.client.model.app.form.FieldType;
+import com.cybozu.kintone.client.model.app.form.field.*;
+import com.cybozu.kintone.client.model.app.form.field.input.*;
+import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupField;
+import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupItem;
+import com.cybozu.kintone.client.model.app.form.field.input.member_selection.*;
+import com.cybozu.kintone.client.model.app.form.field.input.selection.*;
+import com.cybozu.kintone.client.model.app.form.field.input.time.DateField;
+import com.cybozu.kintone.client.model.app.form.field.input.time.DateTimeField;
+import com.cybozu.kintone.client.model.app.form.field.input.time.TimeField;
+import com.cybozu.kintone.client.model.app.form.field.related_record.ReferenceTable;
+import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedRecordsField;
+import com.cybozu.kintone.client.model.app.form.field.system.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,54 +43,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.app.form.AlignLayout;
-import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.app.form.LinkProtocol;
-import com.cybozu.kintone.client.model.app.form.UnitPosition;
-import com.cybozu.kintone.client.model.app.form.field.Field;
-import com.cybozu.kintone.client.model.app.form.field.FieldGroup;
-import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
-import com.cybozu.kintone.client.model.app.form.field.FormFields;
-import com.cybozu.kintone.client.model.app.form.field.SubTableField;
-import com.cybozu.kintone.client.model.app.form.field.input.AbstractInputField;
-import com.cybozu.kintone.client.model.app.form.field.input.AttachmentField;
-import com.cybozu.kintone.client.model.app.form.field.input.LinkField;
-import com.cybozu.kintone.client.model.app.form.field.input.MultiLineTextField;
-import com.cybozu.kintone.client.model.app.form.field.input.NumberField;
-import com.cybozu.kintone.client.model.app.form.field.input.RichTextField;
-import com.cybozu.kintone.client.model.app.form.field.input.SingleLineTextField;
-import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupField;
-import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupItem;
-import com.cybozu.kintone.client.model.app.form.field.input.member.DepartmentSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.member.GroupSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.member.MemberSelectEntity;
-import com.cybozu.kintone.client.model.app.form.field.input.member.UserSelectionField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.CheckboxField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.DropDownField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.MultipleSelectField;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.OptionData;
-import com.cybozu.kintone.client.model.app.form.field.input.selection.RadioButtonField;
-import com.cybozu.kintone.client.model.app.form.field.input.time.DateField;
-import com.cybozu.kintone.client.model.app.form.field.input.time.DateTimeField;
-import com.cybozu.kintone.client.model.app.form.field.input.time.TimeField;
-import com.cybozu.kintone.client.model.app.form.field.related_record.ReferenceTable;
-import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedApp;
-import com.cybozu.kintone.client.model.app.form.field.related_record.RelatedRecordsField;
-import com.cybozu.kintone.client.model.app.form.field.system.AssigneeField;
-import com.cybozu.kintone.client.model.app.form.field.system.CategoryField;
-import com.cybozu.kintone.client.model.app.form.field.system.CreatedTimeField;
-import com.cybozu.kintone.client.model.app.form.field.system.CreatorField;
-import com.cybozu.kintone.client.model.app.form.field.system.ModifierField;
-import com.cybozu.kintone.client.model.app.form.field.system.RecordNumberField;
-import com.cybozu.kintone.client.model.app.form.field.system.StatusField;
-import com.cybozu.kintone.client.model.app.form.field.system.UpdatedTimeField;
-import com.cybozu.kintone.client.model.member.MemberSelectEntityType;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import static org.junit.Assert.*;
 
 public class FormFieldParserTest {
     private static final JsonParser jsonParser = new JsonParser();
@@ -933,7 +903,7 @@ public class FormFieldParserTest {
 
             Map<String, Field> properties = formFields.getProperties();
             try {
-                UserSelectionField userSelect = (UserSelectionField) properties.get("User_selection");
+                UserSelectField userSelect = (UserSelectField) properties.get("User_selection");
                 assertNotNull(userSelect);
                 assertEquals(FieldType.USER_SELECT, userSelect.getType());
                 assertEquals("User_selection", userSelect.getCode());
@@ -974,7 +944,7 @@ public class FormFieldParserTest {
 
             Map<String, Field> properties = formFields.getProperties();
             try {
-                GroupSelectionField groupSelect = (GroupSelectionField) properties.get("Group_selection");
+                GroupSelectField groupSelect = (GroupSelectField) properties.get("Group_selection");
                 assertNotNull(groupSelect);
                 assertEquals(FieldType.GROUP_SELECT, groupSelect.getType());
                 assertEquals("Group_selection", groupSelect.getCode());

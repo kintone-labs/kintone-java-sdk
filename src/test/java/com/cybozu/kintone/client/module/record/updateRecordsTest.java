@@ -1,14 +1,5 @@
 package com.cybozu.kintone.client.module.record;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
@@ -16,16 +7,17 @@ import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.RecordUpdateItem;
-import com.cybozu.kintone.client.model.record.RecordUpdateKey;
-import com.cybozu.kintone.client.model.record.RecordUpdateResponseItem;
-import com.cybozu.kintone.client.model.record.SubTableValueItem;
-import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.cybozu.kintone.client.model.record.*;
+import com.cybozu.kintone.client.model.record.record.response.*;
 import com.cybozu.kintone.client.module.file.File;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+import static org.junit.Assert.assertEquals;
 
 public class updateRecordsTest {
     private static Integer APP_ID;
