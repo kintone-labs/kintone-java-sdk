@@ -43,7 +43,7 @@ import com.cybozu.kintone.client.model.app.form.field.system.*;
 import com.cybozu.kintone.client.model.app.form.layout.*;
 import com.cybozu.kintone.client.model.app.general_settings.GeneralSettings;
 import com.cybozu.kintone.client.model.app.general_settings.Icon;
-import com.cybozu.kintone.client.model.app.view.View;
+import com.cybozu.kintone.client.model.app.views.View;
 import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
 import com.cybozu.kintone.client.module.file.File;
@@ -16095,9 +16095,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccess() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "AList View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -16127,9 +16127,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessCert() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "AList View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -16159,9 +16159,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenAppNeverChangeSettingsInPreview() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "AList View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -16180,9 +16180,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenAppNeverChangeSettingsInPreviewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "AList View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -16201,9 +16201,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenNotSaveChanges() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "Be View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setType(View.ViewType.CUSTOM);
         properties.setIndex(1);
@@ -16218,9 +16218,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenNotSaveChangesCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "Be View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setType(View.ViewType.CUSTOM);
         properties.setIndex(1);
@@ -16235,9 +16235,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewInPreview() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16254,9 +16254,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewInPreviewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16273,9 +16273,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewInPreviewPagerFalse() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16292,9 +16292,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewInPreviewPagerFalseCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16311,9 +16311,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeView() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16339,9 +16339,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewCert() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16367,9 +16367,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewPagerFalse() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16396,9 +16396,9 @@ public class AppTest {
     @Test
     public void testGetViewShouldSuccessWithCustomizeViewPagerFalseCert()
             throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16424,9 +16424,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithClandarViewInPreview() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACalendar View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16442,9 +16442,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithClandarViewInPreviewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACalendar View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16460,9 +16460,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithClandarView() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCalendar View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16487,9 +16487,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithClandarViewCert() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCalendar View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16514,8 +16514,8 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithListViewNoAllViewInPreview() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "AList View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -16537,8 +16537,8 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWithListViewNoAllViewInPreviewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "AList View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -16560,9 +16560,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenGuestSpaceInPreview() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16578,9 +16578,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenGuestSpaceInPreviewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "BCustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16596,9 +16596,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenGuestSpace() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16623,9 +16623,9 @@ public class AppTest {
 
     @Test
     public void testGetViewShouldSuccessWhenGuestSpaceCert() throws KintoneAPIException, InterruptedException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
+        HashMap<String, View> views = new HashMap<>();
         String name = "ACustomize View";
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        View properties = new View();
 
         properties.setName(name);
         properties.setIndex(1);
@@ -16805,8 +16805,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenAddWithoutDevice() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setIndex(1);
@@ -16822,8 +16822,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenAddWithoutDeviceCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setIndex(1);
@@ -16856,8 +16856,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetStatusAsSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setIndex(1);
@@ -16880,8 +16880,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetStatusAsSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setIndex(1);
@@ -16904,10 +16904,10 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetEWeekFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties1 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties2 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties3 = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties1 = new View();
+        View properties2 = new View();
+        View properties3 = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -16956,10 +16956,10 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetEWeekFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties1 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties2 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties3 = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties1 = new View();
+        View properties2 = new View();
+        View properties3 = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17008,10 +17008,10 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetEFormTodayFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties1 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties2 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties3 = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties1 = new View();
+        View properties2 = new View();
+        View properties3 = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17060,10 +17060,10 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetEFormTodayFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties1 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties2 = new com.cybozu.kintone.client.model.app.view.View();
-        com.cybozu.kintone.client.model.app.view.View properties3 = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties1 = new View();
+        View properties2 = new View();
+        View properties3 = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17112,8 +17112,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessCalendarViewWhenTitleIsGroupSelect() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17148,8 +17148,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessCalendarViewWhenTitleIsGroupSelectCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17184,8 +17184,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessCalendarViewWhenTitleIsOrgSelect() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17220,8 +17220,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessCalendarViewWhenTitleIsOrgSelectCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17256,8 +17256,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSet$IdAsFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17282,8 +17282,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSet$IdAsFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17308,8 +17308,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetConditionNotNowFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17334,8 +17334,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetConditionNotNowFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17360,8 +17360,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetRelatedRecordsInFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17385,8 +17385,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenSetRelatedRecordsInFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17410,8 +17410,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenChangeToListWithoutFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -17441,8 +17441,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenChangeToListWithoutFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -17472,8 +17472,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenChangeToCalendarWithoutDateTitle() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17506,8 +17506,8 @@ public class AppTest {
 
     @Test
     public void testUpdateViewShouldSuccessWhenChangeToCalendarWithoutDateTitleCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
@@ -17540,8 +17540,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetSubTableAsSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17558,8 +17558,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetSubTableAsSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17576,8 +17576,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordAsSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17594,8 +17594,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordAsSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17612,8 +17612,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupAsSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17630,8 +17630,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupAsSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17648,8 +17648,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetWrongFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17666,8 +17666,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetWrongFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17684,8 +17684,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17702,8 +17702,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17720,8 +17720,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetSubTableToFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("数値_0");
 
@@ -17737,8 +17737,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetSubTableToFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("数値_0");
 
@@ -17754,8 +17754,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenAddListViewWithoutFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View1";
         properties.setName(name);
@@ -17768,8 +17768,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenAddListViewWithoutFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View1";
         properties.setName(name);
@@ -17782,8 +17782,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenKeyNameDiffWithName() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17799,8 +17799,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenKeyNameDiffWithNameCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17816,8 +17816,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenAddViewWithoutName() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17832,8 +17832,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenAddViewWithoutNameCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -17848,8 +17848,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordToFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("関連レコード一覧");
 
@@ -17865,8 +17865,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordToFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("関連レコード一覧");
 
@@ -17882,8 +17882,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetCategoryToFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("カテゴリー");
 
@@ -17899,8 +17899,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetCategoryToFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("カテゴリー");
 
@@ -17916,8 +17916,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("ステータス");
 
@@ -17933,8 +17933,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("ステータス");
 
@@ -17950,8 +17950,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeCustomizeViewToCalendar() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setName(name);
@@ -17973,8 +17973,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeCustomizeViewToCalendarCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setName(name);
@@ -17996,8 +17996,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeListViewToCustomize() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18020,8 +18020,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeListViewToCustomizeCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18044,8 +18044,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeFilterCondWithAssignee() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18063,8 +18063,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenChangeFilterCondWithAssigneeCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18082,8 +18082,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDeleteInsideView() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18100,8 +18100,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDeleteInsideViewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18118,8 +18118,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenIndexDuplicate() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18142,8 +18142,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenIndexDuplicateCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18166,8 +18166,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithoutIndex() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18182,8 +18182,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithoutIndexCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18198,8 +18198,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenHtmlOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setName(name);
@@ -18216,8 +18216,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenHtmlOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setName(name);
@@ -18234,8 +18234,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidTitle() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18249,8 +18249,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidTitleCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18264,8 +18264,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenTitleOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18284,8 +18284,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenTitleOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18304,8 +18304,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenTitleZero() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18319,8 +18319,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenTitleZeroCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18334,8 +18334,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidDate() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18349,8 +18349,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidDateCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18364,8 +18364,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDateOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18384,8 +18384,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDateOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18404,8 +18404,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDateZero() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18419,8 +18419,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDateZeroCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Calendar View";
         properties.setName(name);
@@ -18434,8 +18434,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSortOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setName(name);
@@ -18449,8 +18449,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSortOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setName(name);
@@ -18464,8 +18464,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupToFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("グループ");
 
@@ -18481,8 +18481,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupToFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("グループ");
 
@@ -18498,8 +18498,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsZero() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("");
 
@@ -18515,8 +18515,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsZeroCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("");
 
@@ -18532,8 +18532,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         StringBuffer sb = new StringBuffer();
@@ -18554,8 +18554,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         StringBuffer sb = new StringBuffer();
@@ -18576,8 +18576,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsDuplicate() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         fields.add("レコード番号");
@@ -18595,8 +18595,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsDuplicateCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         fields.add("レコード番号");
@@ -18614,8 +18614,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsBlank() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         String name = "List View";
@@ -18630,8 +18630,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenFieldsBlankCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
 
         String name = "List View";
@@ -18646,8 +18646,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenNameOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < 65; i++) {
@@ -18665,8 +18665,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenNameOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < 65; i++) {
@@ -18684,8 +18684,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenNameZero() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "";
         properties.setName(name);
@@ -18698,8 +18698,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenNameZeroCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "";
         properties.setName(name);
@@ -18712,8 +18712,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithoutViewType() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setName(name);
@@ -18725,8 +18725,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithoutViewTypeCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "List View";
         properties.setName(name);
@@ -18738,8 +18738,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithNoAdminPermission() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
 
         String name = "Customize View";
         properties.setName(name);
@@ -18752,8 +18752,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithNoReadPermission() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18771,8 +18771,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithNoReadPermissionCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18790,8 +18790,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18808,8 +18808,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18826,8 +18826,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18844,8 +18844,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18862,8 +18862,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidSort() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18880,8 +18880,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidSortCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18898,8 +18898,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18916,8 +18916,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetRelatedRecordToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18934,8 +18934,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOffsetToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18952,8 +18952,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOffsetToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18970,8 +18970,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetLimitToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -18988,8 +18988,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetLimitToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19006,8 +19006,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOrderByToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19024,8 +19024,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOrderByToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19042,8 +19042,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetNotToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19060,8 +19060,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetNotToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19078,8 +19078,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetBothAndORToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19096,8 +19096,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetBothAndORToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19114,8 +19114,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetNumberInSubTableToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19132,8 +19132,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetNumberInSubTableToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19150,8 +19150,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetLikeToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19168,8 +19168,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetLikeToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19186,8 +19186,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUserInGroupToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19204,8 +19204,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUserInGroupToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19222,8 +19222,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUserInOrgToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19240,8 +19240,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUserInOrgToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19258,8 +19258,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedOrgToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19276,8 +19276,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedOrgToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19294,8 +19294,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedGroupToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19312,8 +19312,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedGroupToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19330,8 +19330,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedUserToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19348,8 +19348,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedUserToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19368,8 +19368,8 @@ public class AppTest {
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDecimalToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19388,8 +19388,8 @@ public class AppTest {
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDecimalToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19406,8 +19406,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetMonthStringToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19424,8 +19424,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetMonthStringToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19442,8 +19442,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetWeekStringToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19460,8 +19460,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetWeekStringToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19478,8 +19478,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDayOverflowToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19496,8 +19496,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDayOverflowToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19514,8 +19514,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalid2ndFromTodayToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19532,8 +19532,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalid2ndFromTodayToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19550,8 +19550,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalid1stFromTodayToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19568,8 +19568,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalid1stFromTodayToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19586,8 +19586,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStringFromTodayToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19604,8 +19604,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStringFromTodayToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19622,8 +19622,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidDateTimeToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19640,8 +19640,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidDateTimeToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19658,8 +19658,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidTimeToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19676,8 +19676,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidTimeToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19694,8 +19694,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidDateToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19712,8 +19712,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetInvalidDateToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19730,8 +19730,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19748,8 +19748,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetGroupToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19766,8 +19766,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19784,8 +19784,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetStatusToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19802,8 +19802,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOnlyRelatedRecordsToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19820,8 +19820,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetOnlyRelatedRecordsToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19838,8 +19838,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetFieldInRelatedRecordsToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19856,8 +19856,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetFieldInRelatedRecordsToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19874,8 +19874,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetFieldInSubTableToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19892,8 +19892,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetFieldInSubTableToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19910,8 +19910,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetTodayToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19928,8 +19928,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetTodayToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19946,8 +19946,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedFieldToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19964,8 +19964,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetUnexistedFieldToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19982,8 +19982,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDuplicateAllView() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -19999,8 +19999,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenDuplicateAllViewCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -20016,8 +20016,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDateNowToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -20034,8 +20034,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetDateNowToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -20052,8 +20052,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenRequestOverflow() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -20071,8 +20071,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenRequestOverflowCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("レコード番号");
 
@@ -20090,8 +20090,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedTitle() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         properties.setName(name);
@@ -20105,8 +20105,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedTitleCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         properties.setName(name);
@@ -20120,8 +20120,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedDate() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         properties.setName(name);
@@ -20135,8 +20135,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedDateCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         properties.setName(name);
@@ -20150,8 +20150,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedFields() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -20168,8 +20168,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithUnexistedFieldsCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "Calendar View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -20186,8 +20186,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidFiltedCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "List View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -20205,8 +20205,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWithInvalidFiltedCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "List View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -20224,8 +20224,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetCategoryToFilterCond() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "List View";
 
         ArrayList<String> fields = new ArrayList<>();
@@ -20243,8 +20243,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateViewShouldFailWhenSetCategoryToFilterCondCert() throws KintoneAPIException {
-        HashMap<String, com.cybozu.kintone.client.model.app.view.View> views = new HashMap<>();
-        com.cybozu.kintone.client.model.app.view.View properties = new com.cybozu.kintone.client.model.app.view.View();
+        HashMap<String, View> views = new HashMap<>();
+        View properties = new View();
         String name = "List View";
 
         ArrayList<String> fields = new ArrayList<>();
