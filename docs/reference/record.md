@@ -199,20 +199,22 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 </details>
 
-### addRecord(app, record)
+### addRecord
 
 >Add one record to an app.
 
+**Declaration**
+```
+public AddRecordResponse addRecord(Integer app) throws KintoneAPIException
+public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> record) throws KintoneAPIException
+```
+
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| record | HashMap&lt;String, [FieldValue](../record-field-model#fieldvalue)\> | (optional) | The record data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page
-
-**Return**
-
-[AddRecordResponse](../record-model/#addrecordresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| record | The record data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page. (HashMap<String, [FieldValue](../model/record/record-field-model#fieldvalue)\>)
 
 **Sample code**
 
@@ -222,47 +224,50 @@ Provide manipulate functions on records: get, update, delete, update the record 
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
 
-// execute ADD RECORD API
-Integer appID = 1;
-HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
+    Integer appID = 0;  // Input your app id
+    HashMap<String, FieldValue> record = new HashMap<>();
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecord");
-record.put("FieldCode1", fv);
-
-AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
+    FieldValue fv = new FieldValue();
+    fv.setType(FieldType.SINGLE_LINE_TEXT);
+    fv.setValue("FIELD_VALUE");
+    record.put("YOUR_FIELD_CODE", fv);
+    try {
+        AddRecordResponse response = kintoneRecord.addRecord(appID, record);
+    } catch (KintoneAPIException e) {
+        System.out.println(e.toString());
+    }
 </pre>
 
 </details>
 
-### addRecords(app, records)
+### addRecords
 
 >Add multiple records to an app.
 
+**Declaration**
+```
+public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException
+```
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | ArrayList<HashMap&lt;String, [FieldValue](../record-field-model#fieldvalue)\>\> | yes | List of records data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
-
-**Return**
-
-[AddRecordsResponse](../record-model/#addrecordsresponse)
+| Name| Description |
+| --- | --- | 
+| app | The kintone app ID
+| records | List of records data to be add to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page. (ArrayList<HashMap<String, [FieldValue](../model/record/record-field-model#fieldvalue)\>\>)
 
 **Sample code**
 
@@ -272,40 +277,44 @@ AddRecordResponse response = kintoneRecordManager.addRecord(appID, record);
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
 
-// execute ADD RECORDS API
-Integer appID = 1;
-ArrayList&lt;HashMap&lt;String, FieldValue&gt;> records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt;>();
-HashMap&lt;String, FieldValue&gt; record1 = new HashMap&lt;String, FieldValue&gt;();
-HashMap&lt;String, FieldValue&gt; record2 = new HashMap&lt;String, FieldValue&gt;();
+    Integer appID = 0;  // Input your app id
+    ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+    HashMap<String, FieldValue> record1 = new HashMap<>();
+    HashMap<String, FieldValue> record2 = new HashMap<>();
 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("sample_AddRecords1");
+    FieldValue fv1 = new FieldValue();
+    fv1.setType(FieldType.SINGLE_LINE_TEXT);
+    fv1.setValue("FIELD_VALUE_1");
 
-FieldValue fv2 = new FieldValue();
-fv2.setType(FieldType.SINGLE_LINE_TEXT);
-fv2.setValue("sample_AddRecords2");
+    FieldValue fv2 = new FieldValue();
+    fv2.setType(FieldType.SINGLE_LINE_TEXT);
+    fv2.setValue("sample_AddRecords2");
 
-record1.put("FieldCode1", fv);
-record2.put("FieldCode1", fv2);
+    record1.put("FIELD_CODE_OF_RECORD_1", fv1);
+    record2.put("FIELD_CODE_OF_RECORD_2", fv2);
 
-records.add(record1);
-records.add(record2);
+    records.add(record1);
+    records.add(record2);
 
-AddRecordsResponse response = kintoneRecordManager.addRecords(appID, records);
+    try {
+        AddRecordsResponse response = kintoneRecord.addRecords(appID, records);
+    } catch (KintoneAPIException e) {
+        System.out.println(e.toString());
+    }
 </pre>
 
 </details>
@@ -799,19 +808,20 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 
 </details>
 
-### addComment(app, record, comment)
+### addComment
+
+**Declaration**
+```
+public AddCommentResponse addComment(Integer app, Integer record, CommentContent comment) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID |
-| record | Integer | yes | The kintone app ID |
-| comment | [CommentContent](../record-comment-model/#commentcontent) | yes | About the format, please look the sample below or [reference](#reference) at the end of this page.|
-
-**Return**
-
-[AddCommentResponse](../record-comment-model/#addcommentresponse)
+| Name| Description |
+| --- | --- |
+| app |  The kintone app ID |
+| record | The kintone record ID |
+| comment | About the format, please look the sample below or [reference](#reference) at the end of this page. ([CommentContent](../model/record/record-comment-model/#commentcontent))|
 
 **Sample code**
 
@@ -821,32 +831,36 @@ UpdateRecordResponse response = kintoneRecordManager.updateRecordStatus(appID, r
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-String USERNAME = "YOUR_USERNAME";
-String PASSWORD = "YOUR_PASSWORD";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-// Init authenticationAuth
-Auth kintoneAuthWithPassword = new Auth();
-kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
 
-// Init Connection without "guest space ID"
-Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
 
-// Init Record Module
-Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
 
-// execute ADD RECORD_COMMENT  API
-Integer app = 1;
-Integer record = 1;
-CommentContent comment = new CommentContent();
-ArrayList&lt;CommentMention&gt; mentionList = new ArrayList&lt;CommentMention&gt;();
-CommentMention mention = new CommentMention();
-mention.setCode("sample_user");
-mention.setType("USER");
-mentionList.add(mention);
-comment.setText("test comment");
-comment.setMentions(mentionList);
+    Integer appID = 0;  // Input your app id
+    Integer recordId = 0;   // Input your record id
+    CommentContent comment = new CommentContent();
+    ArrayList<CommentMention> mentionList = new ArrayList<>();
+    CommentMention mention = new CommentMention();
+    mention.setCode("YOUR_USER_CODE");
+    mention.setType("USER");
+    mentionList.add(mention);
+    comment.setText("YOUR_COMMENT_CONTENT");
+    comment.setMentions(mentionList);
 
-AddCommentResponse response = kintoneRecordManager.addComment(app, record, comment);
+    try {
+        AddCommentResponse response = kintoneRecord.addComment(appID, recordId, comment);
+    } catch (KintoneAPIException e) {
+        System.out.println(e.toString());
+    }
 </pre>
 
 </details>
@@ -1104,19 +1118,20 @@ try {
 
 </details>
 
-### addAllRecords(Integer app, ArrayList<HashMap&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)\>\> records)
+### addAllRecords
 > Add all records to the kintone app
+
+**Declaration**
+```
+public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException, BulksException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | Array&lt;HashTable&lt;String, [FieldValue](../model/record/record-field-model#fieldvalue)&gt;&gt; | yes | The records data which will add to kintone app
-
-**Return**
-
-(none)
+| Name| Description |
+| --- | --- | 
+| app | The kintone app ID
+| records | The records data which will add to kintone app
 
 **Sample code**
 
@@ -1126,60 +1141,44 @@ try {
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-Integer appID = 114;
-ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt;&gt;();
- 
-HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
- 
-FieldValue fv = new FieldValue();
-fv.setType(FieldType.SINGLE_LINE_TEXT);
-fv.setValue("test_updateRecords3x");
- 
-record.put("文字列__1行", fv);
-records.add(record);
-try {
-    BulkRequestResponse bulkRequestResponse = this.passwordAuthRecordManagerment.addAllRecords(appID, records);
-    AddRecordsResponse addRecordsResponse =  (AddRecordsResponse) bulkRequestResponse.getResults().get(0);
-    System.out.println("record ID: " + addRecordsResponse.getIDs().get(0));
-    System.out.println("revision: " + addRecordsResponse.getRevisions().get(0));
-    /*
-    output:
-        record ID: 58179   // record ID
-        revision: 1  // revision
-    */
-} catch (BulksException e) {
-    System.out.println(e.getResults());
- 
-    // Ex: User update 6000 records:
-    // Case 1: If there error occur in record 0
-    // err response:[KintoneAPIException]
-    
-    // Case 2: the error occur in record 4000
-    // err response:
-    //  [
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    AddRecordsResponse,
-    //    KintoneAPIException
-    //  ]
-}
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+
+    Integer appID = 0;  // Input your app id
+    try {
+        HashMap<String, FieldValue> record = new HashMap<>();
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE_1");
+        record.put("FIELD_CODE_1", fv);
+
+        FieldValue fv1 = new FieldValue();
+        fv1.setType(FieldType.SINGLE_LINE_TEXT);
+        fv1.setValue("FIELD_VALUE_2");
+        record.put("FIELD_CODE_2", fv);
+
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+        records.add(record);
+        records.add(record1);
+        kintoneRecord.addAllRecords(appID, records);
+    } catch (KintoneAPIException e) {
+        System.out.println("KintoneAPIException " + e.toString());
+    } catch (BulksException e) {
+        System.out.println("BulksException " + e.toString());
+    }
 </pre>
 
 </details>
