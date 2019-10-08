@@ -5,7 +5,9 @@
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
-package com.cybozu.kintone.client.model.comment;
+package com.cybozu.kintone.client.model.comment.request;
+
+import com.cybozu.kintone.client.model.comment.CommentContent;
 
 public class AddCommentRecordRequest {
 

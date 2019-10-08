@@ -1,8 +1,5 @@
 package com.cybozu.kintone.client.model.cursor;
 
-import java.util.HashMap;
-
-
 public class CreateRecordCursorResponse {
 	private String id;
 	private Integer totalCount;

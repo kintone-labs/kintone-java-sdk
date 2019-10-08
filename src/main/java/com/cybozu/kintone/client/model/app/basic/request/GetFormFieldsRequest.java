@@ -5,7 +5,9 @@
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
-package com.cybozu.kintone.client.model.app;
+package com.cybozu.kintone.client.model.app.basic.request;
+
+import com.cybozu.kintone.client.model.app.LanguageSetting;
 
 public class GetFormFieldsRequest {
 

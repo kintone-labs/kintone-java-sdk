@@ -1,4 +1,4 @@
-package com.cybozu.kintone.client.model.app.view;
+package com.cybozu.kintone.client.model.app.views;
 
 import java.util.ArrayList;
 

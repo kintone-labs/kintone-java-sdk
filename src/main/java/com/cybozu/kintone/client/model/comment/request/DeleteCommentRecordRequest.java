@@ -5,7 +5,7 @@
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
-package com.cybozu.kintone.client.model.comment;
+package com.cybozu.kintone.client.model.comment.request;
 
 public class DeleteCommentRecordRequest {
     private Integer app;
