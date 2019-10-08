@@ -916,7 +916,7 @@ public class Record {
         return requestResponses;
     }
 
-    public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+    public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException, KintoneAPIException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -934,8 +934,12 @@ public class Record {
                 BulkRequestResponse requestResponsePerBulk = updateBulkRecord(app, recordsPerBulk);
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
-                requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResponses());
+                if (requestResponse.getResponses().size() == 0) {
+                    throw e;
+                } else {
+                    requestResponse.addResponse(e);
+                    throw new BulksException(requestResponse.getResponses());
+                }
             }
 
             offset += numRecordsPerBulk;
