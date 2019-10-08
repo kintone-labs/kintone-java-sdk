@@ -30,7 +30,7 @@ import org.junit.Test;
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.file.DownloadRequest;
+import com.cybozu.kintone.client.model.file.request.DownloadRequest;
 import com.cybozu.kintone.client.module.parser.FileParser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
