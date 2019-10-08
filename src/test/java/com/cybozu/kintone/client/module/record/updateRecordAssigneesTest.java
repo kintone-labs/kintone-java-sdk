@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordResponse;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.UpdateRecordResponse;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,10 +19,6 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
 import com.cybozu.kintone.client.model.member.Member;
-import com.cybozu.kintone.client.model.record.AddRecordResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
-import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 
 public class updateRecordAssigneesTest {
     private static Integer APP_ID;

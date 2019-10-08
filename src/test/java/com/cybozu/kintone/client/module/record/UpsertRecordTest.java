@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordResponse;
+import com.cybozu.kintone.client.model.record.record.response.UpdateRecordResponse;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -17,10 +20,7 @@ import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.cybozu.kintone.client.model.record.AddRecordResponse;
 import com.cybozu.kintone.client.model.record.RecordUpdateKey;
-import com.cybozu.kintone.client.model.record.UpdateRecordResponse;
 
 public class UpsertRecordTest {
     private static Integer APP_ID = 1;

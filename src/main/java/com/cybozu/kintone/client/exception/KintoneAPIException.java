@@ -7,8 +7,7 @@
 
 package com.cybozu.kintone.client.exception;
 
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestItem;
-import com.cybozu.kintone.client.exception.BulkErrorResponse;
+
 import java.util.ArrayList;
 
 /**
@@ -18,7 +17,6 @@ public class KintoneAPIException extends Exception {
     private static final long serialVersionUID = 1L;
     private int httpErrorCode;
     private Object errorResponse;
-    private ArrayList<BulkRequestItem> request;
 
     /**
      * @param httpErrorCode httpErrorCode of the KintoneAPIException
@@ -88,7 +86,7 @@ public class KintoneAPIException extends Exception {
 
     @Override
     public String toString() {
-        if (errorResponse == null && request == null) {
+        if (errorResponse == null) {
             return super.toString();
         }
         StringBuilder sb = new StringBuilder();
@@ -102,9 +100,7 @@ public class KintoneAPIException extends Exception {
                 for (Object errorResponse : errorsList) {
                     if (errorResponse != null) {
                         ErrorResponse response = (ErrorResponse) errorResponse;
-                        sb.append("api_no: " + count.toString());
-                        sb.append(", method: " + request.get(count - 1).getMethod());
-                        sb.append(", api_name: " + request.get(count - 1).getApi());
+                        sb.append("BulkRequestItem index: " + count.toString());
                         sb.append(", id: " + response.getId());
                         sb.append(", code: " + response.getCode());
                         sb.append(", message: " + response.getMessage());

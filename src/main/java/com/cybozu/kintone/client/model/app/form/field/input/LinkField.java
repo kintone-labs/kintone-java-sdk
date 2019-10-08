@@ -8,7 +8,6 @@
 package com.cybozu.kintone.client.model.app.form.field.input;
 
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.app.form.LinkProtocol;
 
 public class LinkField extends AbstractInputField {
     private String defaultValue;

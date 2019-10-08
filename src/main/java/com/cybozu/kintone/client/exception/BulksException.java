@@ -22,15 +22,12 @@ public class BulksException extends Exception {
         StringBuilder sb = new StringBuilder();
         Integer failedBulkRequestIndex = 1;
         for (Object bulkResponse : responses) {
-            BulkErrorResponse bulkError = (BulkErrorResponse)bulkResponse;
-            for(Object bulkRequestSingleResponse: bulkError.getResults()) {
-                KintoneAPIException bulkRequestError = (KintoneAPIException)bulkRequestSingleResponse;
-                if(bulkRequestError.getMessage() == "") {
-                    failedBulkRequestIndex++;
-                } else {
-                    sb.append("bulk_request_index: " + failedBulkRequestIndex.toString());
-                    sb.append(", " + bulkRequestError.toString());
-                }
+            if (bulkResponse.getClass().getSimpleName().equals("KintoneAPIException")) {
+                KintoneAPIException bulkError = (KintoneAPIException) bulkResponse;
+                sb.append("BulkRequest index: " + failedBulkRequestIndex.toString());
+                sb.append(", " + bulkError.toString());
+            } else {
+                failedBulkRequestIndex++;
             }
         }
         return sb.toString();

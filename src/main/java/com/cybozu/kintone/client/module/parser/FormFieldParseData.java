@@ -10,13 +10,13 @@ package com.cybozu.kintone.client.module.parser;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.cybozu.kintone.client.model.app.form.AlignLayout;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.app.form.LinkProtocol;
-import com.cybozu.kintone.client.model.app.form.NumberFormat;
-import com.cybozu.kintone.client.model.app.form.UnitPosition;
+import com.cybozu.kintone.client.model.app.form.field.input.LinkProtocol;
+import com.cybozu.kintone.client.model.app.form.field.input.NumberFormat;
+import com.cybozu.kintone.client.model.app.form.field.input.UnitPosition;
 import com.cybozu.kintone.client.model.app.form.field.input.lookup.LookupItem;
-import com.cybozu.kintone.client.model.app.form.field.input.member.MemberSelectEntity;
+import com.cybozu.kintone.client.model.app.form.field.input.member_selection.MemberSelectEntity;
+import com.cybozu.kintone.client.model.app.form.field.input.selection.AlignLayout;
 import com.cybozu.kintone.client.model.app.form.field.input.selection.OptionData;
 import com.cybozu.kintone.client.model.app.form.field.related_record.ReferenceTable;
 import com.google.gson.JsonObject;

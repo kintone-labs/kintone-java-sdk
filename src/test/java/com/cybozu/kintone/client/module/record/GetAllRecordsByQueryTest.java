@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -14,9 +17,6 @@ import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 
 public class GetAllRecordsByQueryTest {
     private static Integer APP_ID = 1;
@@ -26,7 +26,7 @@ public class GetAllRecordsByQueryTest {
     private ArrayList<Integer> recordsToDelete = new ArrayList<Integer>();
 
     public HashMap<String, FieldValue> addField(HashMap<String, FieldValue> record, String code, FieldType type,
-            Object value) {
+                                                Object value) {
         FieldValue newField = new FieldValue();
         newField.setType(type);
         newField.setValue(value);

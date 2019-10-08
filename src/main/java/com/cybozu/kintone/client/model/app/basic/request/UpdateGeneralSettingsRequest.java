@@ -1,6 +1,7 @@
 package com.cybozu.kintone.client.model.app.basic.request;
 
-import com.cybozu.kintone.client.model.app.general.GeneralSettings;
+
+import com.cybozu.kintone.client.model.app.general_settings.GeneralSettings;
 
 public class UpdateGeneralSettingsRequest extends GeneralSettings {
     private Integer app;
