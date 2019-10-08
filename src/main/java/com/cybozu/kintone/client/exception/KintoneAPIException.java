@@ -8,8 +8,6 @@
 package com.cybozu.kintone.client.exception;
 
 
-import com.cybozu.kintone.client.model.bulk_request.BulkRequestItem;
-
 import java.util.ArrayList;
 
 /**
@@ -19,7 +17,6 @@ public class KintoneAPIException extends Exception {
     private static final long serialVersionUID = 1L;
     private int httpErrorCode;
     private Object errorResponse;
-    private ArrayList<BulkRequestItem> request;
 
     /**
      * @param httpErrorCode httpErrorCode of the KintoneAPIException
@@ -78,8 +75,8 @@ public class KintoneAPIException extends Exception {
      * @return the errorResponse
      */
     public Object getErrorResponse() {
-        if (errorResponse.getClass().getSimpleName().contains("BulksErrorResponse")) {
-            BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) errorResponse;
+        if (errorResponse.getClass().getSimpleName().contains("BulkErrorResponse")) {
+            BulkErrorResponse bulksErrorResponse = (BulkErrorResponse) errorResponse;
             return bulksErrorResponse;
         } else {
             ErrorResponse response = (ErrorResponse) errorResponse;
@@ -89,23 +86,21 @@ public class KintoneAPIException extends Exception {
 
     @Override
     public String toString() {
-        if (errorResponse == null && request == null) {
+        if (errorResponse == null) {
             return super.toString();
         }
         StringBuilder sb = new StringBuilder();
         String className = errorResponse.getClass().getSimpleName();
 
         switch (className) {
-            case "BulksErrorResponse":
-                BulksErrorResponse bulksErrorResponse = (BulksErrorResponse) errorResponse;
+            case "BulkErrorResponse":
+            BulkErrorResponse bulksErrorResponse = (BulkErrorResponse) errorResponse;
                 ArrayList<Object> errorsList = bulksErrorResponse.getResults();
                 Integer count = 1;
                 for (Object errorResponse : errorsList) {
                     if (errorResponse != null) {
                         ErrorResponse response = (ErrorResponse) errorResponse;
-                        sb.append("api_no: " + count.toString());
-                        sb.append(", method: " + request.get(count - 1).getMethod());
-                        sb.append(", api_name: " + request.get(count - 1).getApi());
+                        sb.append("BulkRequestItem index: " + count.toString());
                         sb.append(", id: " + response.getId());
                         sb.append(", code: " + response.getCode());
                         sb.append(", message: " + response.getMessage());
