@@ -33,8 +33,8 @@ pages:
   - RecordCursor: reference/record-cursor.md
   - Bulk Request: reference/bulk-request.md
   - App: reference/app.md
-  - Kintone APIException: reference/kintone-api-exception.md
-  - Bulks Exception: reference/bulks-exception.md
+  - KintoneAPIException: reference/kintone-api-exception.md
+  - BulksException: reference/bulks-exception.md
   - File: reference/file.md
   - Model:
     - App:
