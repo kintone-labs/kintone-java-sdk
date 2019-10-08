@@ -1199,20 +1199,22 @@ try {
 
 </details>
 
-### upsertRecord(app, updateKey, record, revision)
+### upsertRecord
+
+**Declaration**
+```
+public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record) throws KintoneAPIException
+public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey, HashMap<String, FieldValue> record, Integer revision) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| updateKey | [RecordUpdateKey](../model/record/record-model/#recordupdatekey) | yes | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| record | HashMap<String, [FieldValue](../model/record/record-field-model#fieldvalue)\>  | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
-| revision | Integer | (optional) | The revision number of record
-
-**Return**
-
-[AddRecordResponse](../model/record/record-model/#addrecordresponse) or [UpdateRecordResponse](../model/record/record-model/#updaterecordresponse)
+| Name| Description |
+| --- | --- |
+| app | The kintone app ID
+| updateKey | The unique key of the record to be updated. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| record | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
+| revision | The revision number of record
 
 **Sample code**
 
@@ -1223,34 +1225,59 @@ try {
 
 <pre class="inline-code">
 
-    Integer appID = {YOUR_APP_ID};
-    FieldValue fv = new FieldValue();
-    fv.setType(FieldType.SINGLE_LINE_TEXT);
-    fv.setValue( {YOUR_FIELD_VALUE} );
-    
-    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
-    record.put("title", fv);
-    
-    RecordUpdateKey updateKey = new RecordUpdateKey("detail", "update 123");
-    
-    kintoneRecordManager.upsertRecord(appID, updateKey, record, 1);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+
+    Integer appID = 0;  // Input your app id
+
+    try {
+        HashMap<String, FieldValue> record = new HashMap<>();
+
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_UPDATE_VALUE_1");
+        record.put("FIELD_CODE_1", fv);
+
+        FieldValue fv1 = new FieldValue();
+        fv1.setType(FieldType.SINGLE_LINE_TEXT);
+        fv1.setValue("FIELD_UPDATE_VALUE_2");
+        record.put("FIELD_CODE_2", fv);
+
+        RecordUpdateKey updateKey = new RecordUpdateKey("YOUR_FIELD", "YOUR_KEY_VALUE");
+
+        kintoneRecord.upsertRecord(appID, updateKey, record);
+    } catch (KintoneAPIException e) {
+        System.out.println("KintoneAPIException: " + e.toString());
+    }
 
 </pre>
 
 </details>
 
-### upsertRecords(app, updateKey, records, revision)
+### upsertRecords
+
+**Declaration**
+```
+public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertItem> records) throws KintoneAPIException
+```
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-| app | Integer | yes | The kintone app ID
-| records | ArrayList<[RecordUpdateItem](../model/record/record-model/#recordupdateitem)\> | yes | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
-
-**Return**
-
-[BulkRequestResponse](../model/bulk-request/bulk-request-response)
+| Name| Description |
+| --- | --- | 
+| app | The kintone app ID
+| records | The record data will be added to kintone app. About the format, please look the sample below or [reference](#reference) at the end of this page.
 
 **Sample code**
 
@@ -1261,23 +1288,48 @@ try {
 
 <pre class="inline-code">
 
-    Integer appID = {YOUR_APP_ID};
-    ArrayList&lt;RecordsUpsertItem&gt; upsertRecords = new ArrayList&lt;RecordsUpsertItem&gt;();
-    
-    ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt; records = new ArrayList&lt;HashMap&lt;String, FieldValue&gt; &gt;();
-    
-    FieldValue fv = new FieldValue();
-    fv.setType(FieldType.SINGLE_LINE_TEXT);
-    fv.setValue("Title 123");
-    
-    HashMap&lt;String, FieldValue&gt; record = new HashMap&lt;String, FieldValue&gt;();
-    record.put("title", fv);
-    
-    RecordUpdateKey updateKey = new RecordUpdateKey("title", "update 123");
-    
-    upsertRecords.add(new RecordsUpsertItem(updateKey, record));
-    kintoneRecordManager.upsertRecords(appID, upsertRecords);
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
+    // Init authenticationAuth
+    Auth kintoneAuth = new Auth();
+    kintoneAuth.setPasswordAuth(username, password);
+
+    // Init Connection without "guest space ID"
+    String kintoneDomain = "YOUR_DOMAIN.COM";
+    Connection kintoneConnection = new Connection(kintoneDomain, kintoneAuth);
+
+    // Init Record Module
+    Record kintoneRecord = new Record(kintoneConnection);
+
+    Integer appID = 0;  // Input your app id
+
+    try {
+        HashMap<String, FieldValue> record = new HashMap<>();
+        HashMap<String, FieldValue> record1 = new HashMap<>();
+
+        FieldValue fv = new FieldValue();
+        fv.setType(FieldType.SINGLE_LINE_TEXT);
+        fv.setValue("FIELD_VALUE_1");
+        record.put("FIELD_CODE_1", fv);
+
+        FieldValue fv1 = new FieldValue();
+        fv1.setType(FieldType.SINGLE_LINE_TEXT);
+        fv1.setValue("FIELD_VALUE_2");
+        record1.put("FIELD_CODE_2", fv);
+
+        ArrayList<RecordsUpsertItem> records = new ArrayList<>();
+
+        RecordUpdateKey updateKey = new RecordUpdateKey("YOUR_FIELD", "YOUR_KEY_VALUE");
+
+        records.add(new RecordsUpsertItem(updateKey, record));
+        records.add(new RecordsUpsertItem(updateKey, record1));
+
+        kintoneRecord.upsertRecords(appID, records);
+
+    } catch (KintoneAPIException e) {
+        System.out.println("KintoneAPIException: " + e.toString());
+    }
 </pre>
 </details>
 
