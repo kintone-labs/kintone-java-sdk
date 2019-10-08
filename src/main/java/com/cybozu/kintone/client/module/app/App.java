@@ -11,10 +11,6 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.*;
-import com.cybozu.kintone.client.model.app.GetAppRequest;
-import com.cybozu.kintone.client.model.app.GetAppsRequest;
-import com.cybozu.kintone.client.model.app.GetFormFieldsRequest;
-import com.cybozu.kintone.client.model.app.GetFormLayoutRequest;
 import com.cybozu.kintone.client.model.app.app.AppModel;
 import com.cybozu.kintone.client.model.app.basic.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.request.*;
@@ -24,6 +20,7 @@ import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
 import com.cybozu.kintone.client.model.app.form.layout.ItemLayout;
 import com.cybozu.kintone.client.model.app.general_settings.GeneralSettings;
+import com.cybozu.kintone.client.model.app.views.View;
 import com.cybozu.kintone.client.module.parser.AppParser;
 import com.google.gson.JsonElement;
 
@@ -589,7 +586,7 @@ public class App {
      * @return UpdateViewsResponse
      * @throws KintoneAPIException
      */
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, com.cybozu.kintone.client.model.app.view.View> views) throws KintoneAPIException {
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, View> views) throws KintoneAPIException {
         return updateViewsApp(app, views, null);
     }
 
@@ -602,7 +599,7 @@ public class App {
      * @return UpdateViewsResponse
      * @throws KintoneAPIException
      */
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, com.cybozu.kintone.client.model.app.view.View> views, Integer revision)
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, View> views, Integer revision)
             throws KintoneAPIException {
         return updateViewsApp(app, views, revision);
     }
@@ -799,7 +796,7 @@ public class App {
         return (GetViewsResponse) parser.parseJson(response, GetViewsResponse.class);
     }
 
-    private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, com.cybozu.kintone.client.model.app.view.View> views, Integer revision)
+    private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, View> views, Integer revision)
             throws KintoneAPIException {
 
         UpdateViewsRequest updateViewsRequest = new UpdateViewsRequest(app, views, revision);
