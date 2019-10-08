@@ -98,8 +98,6 @@ public class QuickStart {
         try {
             // Init App Module
             App kintoneApp = new App(kintoneConnection);
-            AppModel app = kintoneApp.getApp(appID);
-            System.out.println("App Name: " + app.getName());
 
             boolean isPreview = true;
             LanguageSetting languageSetting = LanguageSetting.EN; // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
