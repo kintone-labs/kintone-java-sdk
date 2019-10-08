@@ -102,52 +102,93 @@ public class Record {
      */
     public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount)
             throws KintoneAPIException {
-        // execute GET RECORDS API
-        GetRecordsRequest getRecordsRequest = new GetRecordsRequest(fields, app, query, totalCount);
-        String requestBody = parser.parseObject(getRecordsRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORDS,
-                requestBody);
-        // get records as JsonObject
-        JsonArray recordsJson = response.getAsJsonObject().getAsJsonArray("records");
-        JsonElement recordsCount = response.getAsJsonObject().get("totalCount");
+        return getRecordsApp(app, query, fields, totalCount);
+    }
 
-        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        // processing for each record
-        for (JsonElement jsonElement : recordsJson) {
-            // convert JsonObject to HashMap<String, FieldValue> class
-            HashMap<String, FieldValue> record = new HashMap<>();
-            JsonObject recordJson = jsonElement.getAsJsonObject();
-            for (Map.Entry<String, JsonElement> entry : recordJson.entrySet()) {
-                String fieldType = entry.getValue().getAsJsonObject().get("type").getAsString();
-                JsonElement fieldValue = entry.getValue().getAsJsonObject().get("value");
-                FieldValue field = parser.parseField(fieldType, fieldValue);
-                record.put(entry.getKey(), field);
-            }
-            records.add(record);
-        }
+    /**
+     * Get records from kintone APP by query
+     *
+     * @param app    app of the getRecords
+     * @param query  query of the getRecords
+     * @param fields fields of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
 
-        // return response as GetRecordsResponse class
-        GetRecordsResponse getRecordsResponse = new GetRecordsResponse();
-        getRecordsResponse.setRecords(records);
-        getRecordsResponse.setTotalCount((Integer) parser.parseJson(recordsCount, Integer.class));
-        return getRecordsResponse;
+    public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException {
+        return getRecordsApp(app, query, fields, false);
+    }
+
+    /**
+     * Get records from kintone APP by query
+     *
+     * @param app   app of the getRecords
+     * @param query query of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetRecordsResponse getRecords(Integer app, String query) throws KintoneAPIException {
+        return getRecordsApp(app, query, null, false);
+    }
+
+    /**
+     * Get records from kintone APP by query
+     *
+     * @param app app of the getRecords
+     * @return GetRecordsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetRecordsResponse getRecords(Integer app) throws KintoneAPIException {
+        return getRecordsApp(app, null, null, false);
     }
 
     /**
      * Get all records by cursor
      *
-     * @param app
-     * @param query
-     * @param fields
+     * @param app    kintone App id
+     * @param query  query of kintone api
+     * @param fields fields in record of kintone api
      * @return
      * @throws KintoneAPIException
      */
     public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields)
             throws KintoneAPIException {
-        RecordCursor recordCursor = new RecordCursor(this.connection);
-        CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, LIMIT_GET_RECORD);
+        return getAllRecordsByCursorApp(app, query, fields);
+    }
 
-        return recordCursor.getAllRecords(cursor.getId());
+    /**
+     * Get all records by cursor
+     *
+     * @param app   kintone App id
+     * @param query query of kintone api
+     * @return
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByCursor(Integer app, String query) throws KintoneAPIException {
+        return getAllRecordsByCursorApp(app, query, null);
+    }
+
+    /**
+     * Get all records by cursor
+     *
+     * @param app kintone App id
+     * @return
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByCursor(Integer app) throws KintoneAPIException {
+        return getAllRecordsByCursorApp(app, null, null);
+    }
+
+    /**
+     * Get all records by cursor
+     *
+     * @param app    kintone App id
+     * @param fields fields in record of kintone api
+     * @return
+     * @throws KintoneAPIException
+     */
+    public GetRecordsResponse getAllRecordsByCursor(Integer app, ArrayList<String> fields) throws KintoneAPIException {
+        return getAllRecordsByCursorApp(app, null, fields);
     }
 
     /**
@@ -727,14 +768,59 @@ public class Record {
      */
     public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset, Integer limit)
             throws KintoneAPIException {
-        // execute GET RECORD_COMMENTS API
-        GetCommentsRecordRequest getCommentsRequest = new GetCommentsRecordRequest(app, record, order, offset, limit);
-        String requestBody = parser.parseObject(getCommentsRequest);
-        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST,
-                ConnectionConstants.RECORD_COMMENTS,
-                requestBody);
-        // return response as GetCommentsResponse class
-        return (GetCommentsResponse) parser.parseJson(response, GetCommentsResponse.class);
+        return getCommentsApp(app, record, order, offset, limit);
+    }
+
+    /**
+     * Get comments of a record on kintone APP
+     *
+     * @param app    app of the getComments
+     * @param record record of the getComments
+     * @return GetCommentsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetCommentsResponse getComments(Integer app, Integer record) throws KintoneAPIException {
+        return getCommentsApp(app, record, null, null, null);
+    }
+
+    /**
+     * Get comments of a record on kintone APP
+     *
+     * @param app    app of the getComments
+     * @param record record of the getComments
+     * @param order  order of the getComments
+     * @return GetCommentsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetCommentsResponse getComments(Integer app, Integer record, String order) throws KintoneAPIException {
+        return getCommentsApp(app, record, order, null, null);
+    }
+
+    /**
+     * Get comments of a record on kintone APP
+     *
+     * @param app    app of the getComments
+     * @param record record of the getComments
+     * @return GetCommentsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetCommentsResponse getComments(Integer app, Integer record, Integer offset) throws KintoneAPIException {
+        return getCommentsApp(app, record, null, offset, null);
+    }
+
+    /**
+     * Get comments of a record on kintone APP
+     *
+     * @param app    app of the getComments
+     * @param record record of the getComments
+     * @param order  order of the getComments
+     * @param offset offset of the getComments
+     * @return GetCommentsResponse
+     * @throws KintoneAPIException the KintoneAPIException to throw
+     */
+    public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset)
+            throws KintoneAPIException {
+        return getCommentsApp(app, record, order, offset, null);
     }
 
     /**
@@ -1027,6 +1113,56 @@ public class Record {
             AddRecordResponse addRecordResponse = this.addRecord(app, record);
             return addRecordResponse;
         }
+    }
+
+    private GetRecordsResponse getRecordsApp(Integer app, String query, ArrayList<String> fields, Boolean totalCount)
+            throws KintoneAPIException {
+        // execute GET RECORDS API
+        GetRecordsRequest getRecordsRequest = new GetRecordsRequest(fields, app, query, totalCount);
+        String requestBody = parser.parseObject(getRecordsRequest);
+        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.RECORDS,
+                requestBody);
+        // get records as JsonObject
+        JsonArray recordsJson = response.getAsJsonObject().getAsJsonArray("records");
+        JsonElement recordsCount = response.getAsJsonObject().get("totalCount");
+
+        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+        // processing for each record
+        for (JsonElement jsonElement : recordsJson) {
+            HashMap<String, FieldValue> record = new HashMap<>();
+            JsonObject recordJson = jsonElement.getAsJsonObject();
+            for (Map.Entry<String, JsonElement> entry : recordJson.entrySet()) {
+                String fieldType = entry.getValue().getAsJsonObject().get("type").getAsString();
+                JsonElement fieldValue = entry.getValue().getAsJsonObject().get("value");
+                FieldValue field = parser.parseField(fieldType, fieldValue);
+                record.put(entry.getKey(), field);
+            }
+            records.add(record);
+        }
+
+        // return response as GetRecordsResponse class
+        GetRecordsResponse getRecordsResponse = new GetRecordsResponse();
+        getRecordsResponse.setRecords(records);
+        getRecordsResponse.setTotalCount((Integer) parser.parseJson(recordsCount, Integer.class));
+        return getRecordsResponse;
+    }
+
+    private GetRecordsResponse getAllRecordsByCursorApp(Integer app, String query, ArrayList<String> fields)
+            throws KintoneAPIException {
+        RecordCursor recordCursor = new RecordCursor(this.connection);
+        CreateRecordCursorResponse cursor = recordCursor.createCursor(app, fields, query, LIMIT_GET_RECORD);
+
+        return recordCursor.getAllRecords(cursor.getId());
+    }
+
+    private GetCommentsResponse getCommentsApp(Integer app, Integer record, String order, Integer offset, Integer limit)
+            throws KintoneAPIException {
+        GetCommentsRecordRequest getCommentsRequest = new GetCommentsRecordRequest(app, record, order, offset, limit);
+        String requestBody = parser.parseObject(getCommentsRequest);
+        JsonElement response = this.connection.request(ConnectionConstants.GET_REQUEST,
+                ConnectionConstants.RECORD_COMMENTS,
+                requestBody);
+        return (GetCommentsResponse) parser.parseJson(response, GetCommentsResponse.class);
     }
 
     /**
