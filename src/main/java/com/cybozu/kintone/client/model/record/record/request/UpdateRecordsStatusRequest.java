@@ -5,7 +5,9 @@
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
-package com.cybozu.kintone.client.model.record;
+package com.cybozu.kintone.client.model.record.record.request;
+
+import com.cybozu.kintone.client.model.record.RecordUpdateStatusItem;
 
 import java.util.ArrayList;
 

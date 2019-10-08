@@ -1,13 +1,15 @@
 package com.cybozu.kintone.client.model.app.basic.request;
 
+import com.cybozu.kintone.client.model.app.views.View;
+
 import java.util.HashMap;
 
 public class UpdateViewsRequest {
     private Integer app;
-    private HashMap<String, com.cybozu.kintone.client.model.app.view.View> views;
+    private HashMap<String, View> views;
     private Integer revision;
 
-    public UpdateViewsRequest(Integer app, HashMap<String, com.cybozu.kintone.client.model.app.view.View> views, Integer revision) {
+    public UpdateViewsRequest(Integer app, HashMap<String, View> views, Integer revision) {
         this.app = app;
         this.views = views;
         this.revision = revision;
@@ -21,11 +23,11 @@ public class UpdateViewsRequest {
         this.app = app;
     }
 
-    public HashMap<String, com.cybozu.kintone.client.model.app.view.View> getViews() {
+    public HashMap<String, View> getViews() {
         return views;
     }
 
-    public void setViews(HashMap<String, com.cybozu.kintone.client.model.app.view.View> views) {
+    public void setViews(HashMap<String, View> views) {
         this.views = views;
     }
 
