@@ -25,7 +25,7 @@ public ArrayList<Object> getResults()
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -37,8 +37,8 @@ public ArrayList<Object> getResults()
     Record kintoneRecord = new Record(kintoneConnection);
 
     Integer appID = 0;  // Input your app id
-    ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
-    HashMap<String, FieldValue> record = new HashMap<>();
+    ArrayList&lt;HashMap&lt;String, FieldValue>> records = new ArrayList<>();
+    HashMap&lt;String, FieldValue> record = new HashMap<>();
     FieldValue fv = new FieldValue();
 
     fv.setType(FieldType.SINGLE_LINE_TEXT); // Input your field type

@@ -72,7 +72,7 @@ public Connection setHeader(String key, String value)
     String key = "X-HTTP-Method-Override";
     String value = "GET";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
@@ -102,7 +102,7 @@ public void setProxy(String host, Integer port, String username, String password
 | host | The proxy host name
 | port | The proxy port number
 | username | Username of the proxy
-| password | String | Optional | Password of the proxy
+| password | Password of the proxy
 
 <strong class="tab-name">Source code</strong>
 
@@ -117,7 +117,7 @@ public void setProxy(String host, Integer port, String username, String password
     String proxyHost = "YOUR_PROXY_HOST";
     Integer proxyPort = 1111; // Input your proxy port
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -156,7 +156,7 @@ public void setHttpsProxy(String host, Integer port, String username, String pas
 <strong class="tab-name">Source code</strong>
 
 <details class="tab-container" open>
-<Summary>Set the proxy of the request</Summary>
+<Summary>Set the SSL-secured proxy for requests</Summary>
 
 <strong class="tab-name">Source code</strong>
 
@@ -166,7 +166,7 @@ public void setHttpsProxy(String host, Integer port, String username, String pas
     String proxyHost = "YOUR_PROXY_HOST";
     Integer proxyPort = 1111; // Input your proxy port
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
