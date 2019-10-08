@@ -60,7 +60,7 @@ public ErrorResponse getErrorResponse()
 **Sample code**
 
 <details class="tab-container" open>
-<Summary>Get apps with error response</Summary>
+<Summary>Get App with the error response</Summary>
 
 <strong class="tab-name">Source code</strong>
 
