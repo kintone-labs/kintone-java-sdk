@@ -7,32 +7,24 @@
 
 package com.cybozu.kintone.client.module.record;
 
+
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
-import com.cybozu.kintone.client.exception.BulksErrorResponse;
 import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.ErrorResponse;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.basic.response.BasicResponse;
 import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponse;
-import com.cybozu.kintone.client.model.comment.*;
-import com.cybozu.kintone.client.model.comment.AddCommentRecordRequest;
-import com.cybozu.kintone.client.model.comment.DeleteCommentRecordRequest;
-import com.cybozu.kintone.client.model.comment.GetCommentsRecordRequest;
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponses;
+import com.cybozu.kintone.client.model.comment.CommentContent;
+import com.cybozu.kintone.client.model.comment.request.AddCommentRecordRequest;
+import com.cybozu.kintone.client.model.comment.request.DeleteCommentRecordRequest;
+import com.cybozu.kintone.client.model.comment.request.GetCommentsRecordRequest;
 import com.cybozu.kintone.client.model.comment.response.AddCommentResponse;
 import com.cybozu.kintone.client.model.comment.response.GetCommentsResponse;
 import com.cybozu.kintone.client.model.cursor.CreateRecordCursorResponse;
 import com.cybozu.kintone.client.model.record.*;
-import com.cybozu.kintone.client.model.record.DeleteRecordsRequest;
-import com.cybozu.kintone.client.model.record.GetRecordRequest;
-import com.cybozu.kintone.client.model.record.GetRecordsRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordAssigneesRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordStatusRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordsRequest;
-import com.cybozu.kintone.client.model.record.UpdateRecordsStatusRequest;
-import com.cybozu.kintone.client.model.record.record.request.AddRecordRequest;
-import com.cybozu.kintone.client.model.record.record.request.AddRecordsRequest;
-import com.cybozu.kintone.client.model.record.record.request.UpdateRecordRequest;
+import com.cybozu.kintone.client.model.record.record.request.*;
 import com.cybozu.kintone.client.model.record.record.response.*;
 import com.cybozu.kintone.client.module.bulkrequest.BulkRequest;
 import com.cybozu.kintone.client.module.parser.RecordParser;
@@ -44,7 +36,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.Map;
 
 public class Record {
 
@@ -85,7 +77,7 @@ public class Record {
 
         // convert JsonObject to HashMap<String, FieldValue> class
         HashMap<String, FieldValue> record = new HashMap<>();
-        for (Entry<String, JsonElement> entry : recordJson.entrySet()) {
+        for (Map.Entry<String, JsonElement> entry : recordJson.entrySet()) {
             String fieldType = entry.getValue().getAsJsonObject().get("type").getAsString();
             JsonElement fieldValue = entry.getValue().getAsJsonObject().get("value");
             FieldValue field = parser.parseField(fieldType, fieldValue);
@@ -125,7 +117,7 @@ public class Record {
             // convert JsonObject to HashMap<String, FieldValue> class
             HashMap<String, FieldValue> record = new HashMap<>();
             JsonObject recordJson = jsonElement.getAsJsonObject();
-            for (Entry<String, JsonElement> entry : recordJson.entrySet()) {
+            for (Map.Entry<String, JsonElement> entry : recordJson.entrySet()) {
                 String fieldType = entry.getValue().getAsJsonObject().get("type").getAsString();
                 JsonElement fieldValue = entry.getValue().getAsJsonObject().get("value");
                 FieldValue field = parser.parseField(fieldType, fieldValue);
@@ -607,7 +599,7 @@ public class Record {
         // split idsWithRevision into key list and value list
         ArrayList<Integer> keys = new ArrayList<Integer>();
         ArrayList<Integer> values = new ArrayList<Integer>();
-        for (Entry<Integer, Integer> entry : idsWithRevision.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : idsWithRevision.entrySet()) {
             keys.add(entry.getKey());
             values.add(entry.getValue());
         }
@@ -832,12 +824,12 @@ public class Record {
      *
      * @param app   appId of the deleteAllRecordsByQuery
      * @param query query of the deleteAllRecordsByQuery
-     * @return BulkRequestResponse
+     * @return BulkRequestResponses
      * @throws BulksException
      * @throws KintoneAPIException
      */
-    public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+    public BulkRequestResponses deleteAllRecordsByQuery(Integer app, String query) throws BulksException, KintoneAPIException {
+        BulkRequestResponses requestResponses = new BulkRequestResponses();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("$id");
         GetRecordsResponse getRecordsRequest = getAllRecordsByQuery(app, query, fields, true);
@@ -867,30 +859,34 @@ public class Record {
 
             try {
                 BulkRequestResponse requestResponsePerBulk = this.deleteBulkRecord(app, idPerBulkArray);
-                requestResponse.addResponses(requestResponsePerBulk.getResults());
+                requestResponses.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
-                requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResults());
+                if (requestResponses.getResponses().size() == 0) {
+                    throw e;
+                } else {
+                    requestResponses.addResponse(e);
+                    throw new BulksException(requestResponses.getResponses());
+                }
             }
             offset += numRecordsPerBulk;
         }
-        return requestResponse;
+        return requestResponses;
     }
 
     /**
      * Delete all records by query from kintone APP
      *
-     * @param app   appId of the deleteAllRecordsByQuery
-     * @return BulkRequestResponse
+     * @param app appId of the deleteAllRecordsByQuery
+     * @return BulkRequestResponses
      * @throws BulksException
      * @throws KintoneAPIException
      */
-    public BulkRequestResponse deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
+    public BulkRequestResponses deleteAllRecordsByQuery(Integer app) throws BulksException, KintoneAPIException {
         return deleteAllRecordsByQuery(app, "");
     }
 
 
-    public BulkRequestResponse addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException {
+    public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String, FieldValue>> records) throws KintoneAPIException, BulksException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -898,26 +894,29 @@ public class Record {
         int numRecordsPerBulk = NUM_BULK_REQUEST * LIMIT_POST_RECORD;
         int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
 
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+        BulkRequestResponses requestResponses = new BulkRequestResponses();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
             ArrayList<HashMap<String, FieldValue>> recordsPerBulk = new ArrayList<>(records.subList(offset, end));
             try {
                 BulkRequestResponse requestResponsePerBulk = this.addBulkRecord(app, recordsPerBulk);
-                requestResponse.addResponses(requestResponsePerBulk.getResults());
+                requestResponses.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
-                requestResponse.addResponse(e);
-                // TODO
-                throw new KintoneAPIException(new BulksErrorResponse(requestResponse.getResults()));
+                if (requestResponses.getResponses().size() == 0) {
+                    throw e;
+                } else {
+                    requestResponses.addResponse(e);
+                    throw new BulksException(requestResponses.getResponses());
+                }
             }
 
             offset += numRecordsPerBulk;
         }
-        return requestResponse;
+        return requestResponses;
     }
 
-    public BulkRequestResponse updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
+    public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdateItem> records) throws BulksException {
         if (records == null) {
             records = new ArrayList<>();
         }
@@ -925,7 +924,7 @@ public class Record {
         int numBulkRequest = getNumBulkRequest(records.size(), numRecordsPerBulk);
         int offset = 0;
 
-        BulkRequestResponse requestResponse = new BulkRequestResponse();
+        BulkRequestResponses requestResponse = new BulkRequestResponses();
         for (int i = 0; i < numBulkRequest; i++) {
             int length = records.size();
             int end = (length - offset) < numRecordsPerBulk ? length : offset + numRecordsPerBulk;
@@ -936,7 +935,7 @@ public class Record {
                 requestResponse.addResponses(requestResponsePerBulk.getResults());
             } catch (KintoneAPIException e) {
                 requestResponse.addResponse(e);
-                throw new BulksException(requestResponse.getResults());
+                throw new BulksException(requestResponse.getResponses());
             }
 
             offset += numRecordsPerBulk;
@@ -1051,5 +1050,4 @@ public class Record {
         }
         return numBulkRequest;
     }
-
 }
