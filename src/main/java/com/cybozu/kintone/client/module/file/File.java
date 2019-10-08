@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
-import com.cybozu.kintone.client.model.file.DownloadRequest;
+import com.cybozu.kintone.client.model.file.request.DownloadRequest;
 import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.module.parser.FileParser;
 import com.google.gson.JsonElement;

@@ -5,7 +5,7 @@
  * https://github.com/kintone/kintone-java-sdk/blob/master/LICENSE
  */
 
-package com.cybozu.kintone.client.model.file;
+package com.cybozu.kintone.client.model.file.request;
 
 public class DownloadRequest {
 
