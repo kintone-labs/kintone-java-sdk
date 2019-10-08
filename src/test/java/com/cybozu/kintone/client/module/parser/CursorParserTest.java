@@ -10,12 +10,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.cursor.GetRecordCursorResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

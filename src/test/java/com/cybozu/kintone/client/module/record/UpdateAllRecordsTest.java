@@ -1,27 +1,25 @@
 package com.cybozu.kintone.client.module.record;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponses;
+import com.cybozu.kintone.client.model.record.FieldValue;
 import com.cybozu.kintone.client.model.record.RecordUpdateItem;
-import com.cybozu.kintone.client.model.record.RecordUpdateResponseItem;
-import com.cybozu.kintone.client.model.record.UpdateRecordsResponse;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.cybozu.kintone.client.module.record.Record;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.RecordUpdateResponseItem;
+import com.cybozu.kintone.client.model.record.record.response.UpdateRecordsResponse;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class UpdateAllRecordsTest {
 	private static Integer APP_ID = 114;
@@ -61,24 +59,25 @@ public class UpdateAllRecordsTest {
 			recordsToUpdate.add(record);
 			i++;
 		}
-		BulkRequestResponse addResponse = this.passwordAuthRecordManagerment.addAllRecords(APP_ID, recordsToAdd);
-		
+
+		BulkRequestResponses addResponse = this.passwordAuthRecordManagerment.addAllRecords(APP_ID, recordsToAdd);
+
 		ArrayList<RecordUpdateItem> updateItems = new ArrayList<RecordUpdateItem>();
 		i = 0;
 		for (int j = 0; j < numBulkRequest; j++) {
-			AddRecordsResponse addRecordsResponse = (AddRecordsResponse) addResponse.getResults().get(j);
+			AddRecordsResponse addRecordsResponse = (AddRecordsResponse) addResponse.getResponses().get(j);
 			for (int id: addRecordsResponse.getIDs()) {
 				RecordUpdateItem item = new RecordUpdateItem(id, null, null, recordsToUpdate.get(i));
 				updateItems.add(item);
 				i++;
 			}
 		}
-		BulkRequestResponse response = this.passwordAuthRecordManagerment.updateAllRecords(APP_ID, updateItems);
-		assertEquals(numBulkRequest, response.getResults().size());
+		BulkRequestResponses response = this.passwordAuthRecordManagerment.updateAllRecords(APP_ID, updateItems);
+		assertEquals(numBulkRequest, response.getResponses().size());
 		
 		for (int j = 0; j < numBulkRequest; j++) {
-			UpdateRecordsResponse updateRecordsResponse = (UpdateRecordsResponse) response.getResults().get(j);
-			AddRecordsResponse addRecordsResponse = (AddRecordsResponse) addResponse.getResults().get(j);
+			UpdateRecordsResponse updateRecordsResponse = (UpdateRecordsResponse) response.getResponses().get(j);
+			AddRecordsResponse addRecordsResponse = (AddRecordsResponse) addResponse.getResponses().get(j);
 			i = 0;
 			for (RecordUpdateResponseItem recordUpdateResponseItem: updateRecordsResponse.getRecords()) {
 				assertEquals(addRecordsResponse.getIDs().get(i),recordUpdateResponseItem.getID());

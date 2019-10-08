@@ -7,14 +7,10 @@
 
 package com.cybozu.kintone.client.exception;
 
+import com.google.gson.*;
+
 import java.util.ArrayList;
 
-import com.cybozu.kintone.client.exception.ErrorResponse;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;;
 
 public class BulkErrorResponse {
 	private ArrayList<Object> results;
@@ -23,7 +19,7 @@ public class BulkErrorResponse {
 	 * Constructor
 	 */
 	public BulkErrorResponse() {
-		this.results = new ArrayList<Object>();
+		this.results = new ArrayList<>();
 	}
 
 	public BulkErrorResponse(String resultJsonString) {

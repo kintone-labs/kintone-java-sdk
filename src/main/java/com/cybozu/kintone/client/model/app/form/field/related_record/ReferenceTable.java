@@ -10,6 +10,7 @@ package com.cybozu.kintone.client.model.app.form.field.related_record;
 import java.util.ArrayList;
 
 import com.cybozu.kintone.client.model.app.form.field.FieldMapping;
+import com.cybozu.kintone.client.model.app.form.field.RelatedApp;
 
 public class ReferenceTable {
     private FieldMapping condition;

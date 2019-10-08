@@ -1,8 +1,9 @@
 package com.cybozu.kintone.client.model.app.basic.request;
 
+import com.cybozu.kintone.client.model.app.basic.PreviewApp;
+
 import java.util.ArrayList;
 
-import com.cybozu.kintone.client.model.app.basic.request.PreviewApp;
 
 public class DeployAppSettingsRequest {
     private ArrayList<PreviewApp> apps;

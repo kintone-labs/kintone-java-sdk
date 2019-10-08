@@ -11,14 +11,16 @@ import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.*;
+import com.cybozu.kintone.client.model.app.app.AppModel;
+import com.cybozu.kintone.client.model.app.basic.PreviewApp;
 import com.cybozu.kintone.client.model.app.basic.request.*;
 import com.cybozu.kintone.client.model.app.basic.response.*;
 import com.cybozu.kintone.client.model.app.form.field.Field;
 import com.cybozu.kintone.client.model.app.form.field.FormFields;
 import com.cybozu.kintone.client.model.app.form.layout.FormLayout;
 import com.cybozu.kintone.client.model.app.form.layout.ItemLayout;
-import com.cybozu.kintone.client.model.app.general.GeneralSettings;
-import com.cybozu.kintone.client.model.app.view.ViewModel;
+import com.cybozu.kintone.client.model.app.general_settings.GeneralSettings;
+import com.cybozu.kintone.client.model.app.views.View;
 import com.cybozu.kintone.client.module.parser.AppParser;
 import com.google.gson.JsonElement;
 
@@ -462,8 +464,8 @@ public class App {
      * @return AddPreviewAppResponse
      * @throws KintoneAPIException
      */
-    public AddPreviewAppResponse addPreviewApp(String name) throws KintoneAPIException {
-        return addPreviewAppResponse(name, null, null);
+    public PreviewApp addPreviewApp(String name) throws KintoneAPIException {
+        return addPreviewAppResult(name, null, null);
     }
 
     /**
@@ -474,8 +476,8 @@ public class App {
      * @return AddPreviewAppResponse
      * @throws KintoneAPIException
      */
-    public AddPreviewAppResponse addPreviewApp(String name, Integer space) throws KintoneAPIException {
-        return addPreviewAppResponse(name, space, null);
+    public PreviewApp addPreviewApp(String name, Integer space) throws KintoneAPIException {
+        return addPreviewAppResult(name, space, null);
     }
 
     /**
@@ -487,8 +489,8 @@ public class App {
      * @return AddPreviewAppResponse
      * @throws KintoneAPIException
      */
-    public AddPreviewAppResponse addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
-        return addPreviewAppResponse(name, space, thread);
+    public PreviewApp addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
+        return addPreviewAppResult(name, space, thread);
     }
 
     /**
@@ -497,8 +499,8 @@ public class App {
      * @param apps list preview app
      * @throws KintoneAPIException
      */
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps) throws KintoneAPIException {
-        deployAppSettingResult(apps, false);
+    public void deployAppSettings(ArrayList<PreviewApp> apps) throws KintoneAPIException {
+        deployAppSettingsResult(apps, false);
     }
 
     /**
@@ -508,8 +510,8 @@ public class App {
      * @param revert option revert
      * @throws KintoneAPIException
      */
-    public void deployAppSettings(ArrayList<PreviewAppRequest> apps, Boolean revert) throws KintoneAPIException {
-        deployAppSettingResult(apps, revert);
+    public void deployAppSettings(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
+        deployAppSettingsResult(apps, revert);
     }
 
     /**
@@ -584,7 +586,7 @@ public class App {
      * @return UpdateViewsResponse
      * @throws KintoneAPIException
      */
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views) throws KintoneAPIException {
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, View> views) throws KintoneAPIException {
         return updateViewsApp(app, views, null);
     }
 
@@ -597,7 +599,7 @@ public class App {
      * @return UpdateViewsResponse
      * @throws KintoneAPIException
      */
-    public UpdateViewsResponse updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)
+    public UpdateViewsResponse updateViews(Integer app, HashMap<String, View> views, Integer revision)
             throws KintoneAPIException {
         return updateViewsApp(app, views, revision);
     }
@@ -761,7 +763,7 @@ public class App {
         return parser.parseBasicResponse(response);
     }
 
-    public PreviewApp addPreviewApp(String name, Integer space, Integer thread) throws KintoneAPIException {
+    public PreviewApp addPreviewAppResult(String name, Integer space, Integer thread) throws KintoneAPIException {
         AddPreviewAppRequest addPreviewAppRequest = new AddPreviewAppRequest(name, space, thread);
         String apiRequest = ConnectionConstants.APP_PREVIEW;
         String requestBody = parser.parseObject(addPreviewAppRequest);
@@ -770,7 +772,7 @@ public class App {
         return parser.parseAddPreviewAppResponse(response);
     }
 
-    public void deployAppSettings(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
+    public void deployAppSettingsResult(ArrayList<PreviewApp> apps, Boolean revert) throws KintoneAPIException {
         DeployAppSettingsRequest deployAppSettingsRequest = new DeployAppSettingsRequest(apps, revert);
         String apiRequest = ConnectionConstants.APP_DEPLOY_PREVIEW;
         String requestBody = parser.parseObject(deployAppSettingsRequest);
@@ -794,7 +796,7 @@ public class App {
         return (GetViewsResponse) parser.parseJson(response, GetViewsResponse.class);
     }
 
-    private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, ViewModel> views, Integer revision)
+    private UpdateViewsResponse updateViewsApp(Integer app, HashMap<String, View> views, Integer revision)
             throws KintoneAPIException {
 
         UpdateViewsRequest updateViewsRequest = new UpdateViewsRequest(app, views, revision);

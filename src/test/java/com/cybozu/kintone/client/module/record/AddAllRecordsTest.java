@@ -1,27 +1,26 @@
 package com.cybozu.kintone.client.module.record;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.cybozu.kintone.client.TestConstants;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.bulkrequest.BulkRequestResponse;
+import com.cybozu.kintone.client.model.bulk_request.BulkRequestResponses;
 import com.cybozu.kintone.client.model.file.FileModel;
 import com.cybozu.kintone.client.model.member.Member;
-import com.cybozu.kintone.client.model.record.AddRecordsResponse;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
+import com.cybozu.kintone.client.model.record.FieldValue;
 import com.cybozu.kintone.client.model.record.SubTableValueItem;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.AddRecordsResponse;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
 import com.cybozu.kintone.client.module.file.File;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class AddAllRecordsTest {
 
@@ -103,10 +102,10 @@ public class AddAllRecordsTest {
                 records.add(testRecord);
                 i++;
             }
-            BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-            assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+            BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+            assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
             for (int j = 0; j < numBulkRequest; j++) {
-                assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+                assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
             }
         }
 
@@ -122,10 +121,10 @@ public class AddAllRecordsTest {
                 records.add(testRecord);
                 i++;
             }
-            BulkRequestResponse response = this.tokenAuthRecord.addAllRecords(APP_ID, records);
-            assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+            BulkRequestResponses response = this.tokenAuthRecord.addAllRecords(APP_ID, records);
+            assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
             for (int j = 0; j < numBulkRequest; j++) {
-                assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+                assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
             }
         }
 
@@ -151,10 +150,10 @@ public class AddAllRecordsTest {
             records.add(testRecord);
             i++;
         }
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -241,10 +240,10 @@ public class AddAllRecordsTest {
 
         records.add(testRecord);
         // Preprocessing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -270,10 +269,10 @@ public class AddAllRecordsTest {
 
         records.add(testRecord);
         // Preprocessing
-        BulkRequestResponse response = this.tokenAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.tokenAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -291,9 +290,9 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Main Test processing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
-        assertEquals(true, response.getResults().get(0) instanceof AddRecordsResponse);
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
+        assertEquals(true, response.getResponses().get(0) instanceof AddRecordsResponse);
     }
 
     @Test
@@ -304,10 +303,10 @@ public class AddAllRecordsTest {
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
         HashMap<String, FieldValue> testRecord = createTestRecord();
         records.add(testRecord);
-        BulkRequestResponse response = guestRecord.addAllRecords(GUEST_APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = guestRecord.addAllRecords(GUEST_APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -328,9 +327,9 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Main Test processing
-        BulkRequestResponse response = guestRecord.addAllRecords(GUEST_APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
-        assertEquals(true, response.getResults().get(0) instanceof AddRecordsResponse);
+        BulkRequestResponses response = guestRecord.addAllRecords(GUEST_APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
+        assertEquals(true, response.getResponses().get(0) instanceof AddRecordsResponse);
     }
 
     @Test
@@ -349,9 +348,9 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Main Test processing
-        BulkRequestResponse response = tokenGuestAuthRecord.addAllRecords(GUEST_APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
-        assertEquals(true, response.getResults().get(0) instanceof AddRecordsResponse);
+        BulkRequestResponses response = tokenGuestAuthRecord.addAllRecords(GUEST_APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
+        assertEquals(true, response.getResponses().get(0) instanceof AddRecordsResponse);
     }
 
     @Test(expected = BulksException.class)
@@ -380,44 +379,44 @@ public class AddAllRecordsTest {
             records.add(testRecord);
             i++;
         }
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
-    @Test
-    public void testAddAllRecordsShouldNotRollBack() throws BulksException, KintoneAPIException {
-        int totalRecordToAdd = 6000;
-        int numRequestPerBulk = 20;
-        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
-        int i = 0;
-        while (i < numRequestPerBulk * 100) {
-            HashMap<String, FieldValue> testRecord = createTestRecord();
-            records.add(testRecord);
-            i++;
-        }
-        HashMap<String, FieldValue> invalidRecord = createTestRecord();
-        addField(invalidRecord, "数値2", FieldType.NUMBER, "invalid value");
-        records.add(invalidRecord);
-        i++;
-        while (i < totalRecordToAdd) {
-            HashMap<String, FieldValue> testRecord = createTestRecord();
-            records.add(testRecord);
-            i++;
-        }
-        try {
-            this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        } catch (BulksException e) {
-            ArrayList<Object> results = (ArrayList<Object>)e.getResults();
-            assertEquals(21, results.size());
-            for (int j = 0; j < numRequestPerBulk; j++) {
-                assertEquals(true, results.get(j) instanceof AddRecordsResponse);
-            }
-            assertEquals(true, results.get(20) instanceof KintoneAPIException);
-        }
-    }
+//    @Test
+//    public void testAddAllRecordsShouldNotRollBack() throws BulksException, KintoneAPIException {
+//        int totalRecordToAdd = 6000;
+//        int numRequestPerBulk = 20;
+//        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+//        int i = 0;
+//        while (i < numRequestPerBulk * 100) {
+//            HashMap<String, FieldValue> testRecord = createTestRecord();
+//            records.add(testRecord);
+//            i++;
+//        }
+//        HashMap<String, FieldValue> invalidRecord = createTestRecord();
+//        addField(invalidRecord, "数値2", FieldType.NUMBER, "invalid value");
+//        records.add(invalidRecord);
+//        i++;
+//        while (i < totalRecordToAdd) {
+//            HashMap<String, FieldValue> testRecord = createTestRecord();
+//            records.add(testRecord);
+//            i++;
+//        }
+//        try {
+//            this.passwordAuthRecord.addAllRecords(APP_ID, records);
+//        } catch (BulksException e) {
+//            ArrayList<Object> results = (ArrayList<Object>)e.getResults();
+//            assertEquals(21, results.size());
+//            for (int j = 0; j < numRequestPerBulk; j++) {
+//                assertEquals(true, results.get(j) instanceof AddRecordsResponse);
+//            }
+//            assertEquals(true, results.get(20) instanceof KintoneAPIException);
+//        }
+//    }
 
     @Test(expected = BulksException.class)
     public void testAddAllRecordsShouldFailWithCreatedBy() throws BulksException, KintoneAPIException {
@@ -478,10 +477,10 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Preprocessing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -496,10 +495,10 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Preprocessing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
     @Test
@@ -514,10 +513,10 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Preprocessing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 
@@ -532,10 +531,10 @@ public class AddAllRecordsTest {
         records.add(testRecord);
 
         // Preprocessing
-        BulkRequestResponse response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
-        assertEquals((numRequestPerBulk * numBulkRequest), response.getResults().size());
+        BulkRequestResponses response = this.passwordAuthRecord.addAllRecords(APP_ID, records);
+        assertEquals((numRequestPerBulk * numBulkRequest), response.getResponses().size());
         for (int j = 0; j < numBulkRequest; j++) {
-            assertEquals(true, response.getResults().get(j) instanceof AddRecordsResponse);
+            assertEquals(true, response.getResponses().get(j) instanceof AddRecordsResponse);
         }
     }
 

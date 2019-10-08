@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.cybozu.kintone.client.model.record.FieldValue;
+import com.cybozu.kintone.client.model.record.record.response.GetRecordsResponse;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -14,8 +16,6 @@ import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.app.form.FieldType;
-import com.cybozu.kintone.client.model.record.field.FieldValue;
-import com.cybozu.kintone.client.model.record.GetRecordsResponse;
 import com.cybozu.kintone.client.model.record.RecordUpdateKey;
 import com.cybozu.kintone.client.model.record.RecordsUpsertItem;
 
