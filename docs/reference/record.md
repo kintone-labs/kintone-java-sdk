@@ -6,7 +6,7 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 **Declaration**
 ```
-    public Record(Connection connection)
+public Record(Connection connection)
 ```
 
 **Parameter**
@@ -24,15 +24,15 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 <pre class="inline-code">
 
-    String USERNAME = "YOUR_USERNAME";
-    String PASSWORD = "YOUR_PASSWORD";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuthWithPassword = new Auth();
-    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    kintoneAuthWithPassword.setPasswordAuth(username, password);
 
     // Init Connection without "guest space ID"
-    Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
+    Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN.COM", kintoneAuthWithPassword);
 
     // Init Record Module
     Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
@@ -42,13 +42,13 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 ## Methods
 
-### getRecord(app, id)
+### getRecord
 
 > Retrieves details of 1 record from an app.
 
 **Declaration**
 ```
-    public GetRecordResponse getRecord(Integer app, Integer id) throws KintoneAPIException 
+public GetRecordResponse getRecord(Integer app, Integer id) throws KintoneAPIException 
 ```
 
 **Parameter**
@@ -68,15 +68,15 @@ Provide manipulate functions on records: get, update, delete, update the record 
 <pre class="inline-code">
 
     try {
-        String USERNAME = "YOUR_USERNAME";
-        String PASSWORD = "YOUR_PASSWORD";
+        String username = "YOUR_USERNAME";
+        String password = "YOUR_PASSWORD";
 
-        // Init authenticationAuth
+        // Init authentication module
         Auth kintoneAuthWithPassword = new Auth();
-        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        kintoneAuthWithPassword.setPasswordAuth(username, password);
 
         // Init Connection without "guest space ID"
-        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN.COM", kintoneAuthWithPassword);
 
         // Init Record Module
         Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
@@ -85,21 +85,23 @@ Provide manipulate functions on records: get, update, delete, update the record 
         Integer appID = YOUR_APPID;
         Integer recordID = YOUR_RECORD_ID;
         GetRecordResponse response = kintoneRecordManager.getRecord(appID, recordID);
-    } catch (Exception e) {
-        // TODO: handle exception
-        System.out.println(e);
-	}
+    } catch (KintoneAPIException e) {
+        System.out.println(e.toString());
+    }
 </pre>
 
 </details>
 
-### getRecords(app, query, fields, totalCount)
+### getRecords
 
 > Retrieves details of multiple records from an app using a query string.
 
 **Declaration**
 ```
-    public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
+public GetRecordsResponse getRecords(Integer app) throws KintoneAPIException
+public GetRecordsResponse getRecords(Integer app, String query) throws KintoneAPIException 
+public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException 
+public GetRecordsResponse getRecords(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
 ```
 
 **Parameter**
@@ -121,15 +123,15 @@ Provide manipulate functions on records: get, update, delete, update the record 
 <pre class="inline-code">
 
     try {
-        String USERNAME = "YOUR_USERNAME";
-        String PASSWORD = "YOUR_PASSWORD";
+        String username = "YOUR_USERNAME";
+        String password = "YOUR_PASSWORD";
 
-        // Init authenticationAuth
+        // Init authentication module
         Auth kintoneAuthWithPassword = new Auth();
-        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        kintoneAuthWithPassword.setPasswordAuth(username, password);
 
         // Init Connection without "guest space ID"
-        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN.COM", kintoneAuthWithPassword);
 
         // Init Record Module
         Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
@@ -137,23 +139,26 @@ Provide manipulate functions on records: get, update, delete, update the record 
         // execute GET RECORDS API
         Integer appID = YOUR_APPID;
         String query = "YOUR_QUERY";
-        GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query, null, true);
-    } catch (Exception e) {
+        GetRecordsResponse response = kintoneRecordManager.getRecords(appID, query);
+    } catch (KintoneAPIException e) {
         // TODO: handle exception
-        System.out.println(e);
+        System.out.println(e.toString());
 	}
    
 </pre>
 
 </details>
 
-### getAllRecordsByCursor(Integer app, String query, Array<String\> fields)
+### getAllRecordsByCursor
 
 > Retrieves details of all records from an app using a query string.
 
 **Declaration**
 ```
-    public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByCursor(Integer app) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByCursor(Integer app, String query) throws KintoneAPIException 
+public GetRecordsResponse getAllRecordsByCursor(Integer app, ArrayList<String> fields) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByCursor(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException
 ```
 
 **Parameter**
@@ -173,15 +178,15 @@ Provide manipulate functions on records: get, update, delete, update the record 
 
 <pre class="inline-code">
     try {
-        String USERNAME = "YOUR_USERNAME";
-        String PASSWORD = "YOUR_PASSWORD";
+        String username = "YOUR_USERNAME";
+        String password = "YOUR_PASSWORD";
 
-        // Init authenticationAuth
+        // Init authentication module
         Auth kintoneAuthWithPassword = new Auth();
-        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        kintoneAuthWithPassword.setPasswordAuth(username, password);
 
         // Init Connection without "guest space ID"
-        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN", kintoneAuthWithPassword);
+        Connection kintoneOnDemoDomain = new Connection("YOUR_DOMAIN.COM", kintoneAuthWithPassword);
 
         // Init Record Module
         Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
@@ -189,10 +194,10 @@ Provide manipulate functions on records: get, update, delete, update the record 
         // execute GET RECORDS API
         Integer appID = YOUR_APPID;
         String query = "YOR_QUERY";
-        GetRecordsResponse response = kintoneRecordManager.getAllRecordsByCursor(appID, query, null);
-    } catch (Exception e) {
+        GetRecordsResponse response = kintoneRecordManager.getAllRecordsByCursor(appID, query);
+    } catch (KintoneAPIException e) {
         // TODO: handle exception
-        System.out.println(e);
+        System.out.println(e.toString());
 	}
     
 </pre>
@@ -227,7 +232,7 @@ public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> reco
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -239,7 +244,7 @@ public AddRecordResponse addRecord(Integer app, HashMap<String, FieldValue> reco
     Record kintoneRecord = new Record(kintoneConnection);
 
     Integer appID = 0;  // Input your app id
-    HashMap<String, FieldValue> record = new HashMap<>();
+    HashMap&lt;String, FieldValue> record = new HashMap<>();
 
     FieldValue fv = new FieldValue();
     fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -280,7 +285,7 @@ public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, Fiel
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -292,9 +297,9 @@ public AddRecordsResponse addRecords(Integer app, ArrayList<HashMap<String, Fiel
     Record kintoneRecord = new Record(kintoneConnection);
 
     Integer appID = 0;  // Input your app id
-    ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
-    HashMap<String, FieldValue> record1 = new HashMap<>();
-    HashMap<String, FieldValue> record2 = new HashMap<>();
+    ArrayList&lt;HashMap&lt;String, FieldValue>> records = new ArrayList<>();
+    HashMap&lt;String, FieldValue> record1 = new HashMap<>();
+    HashMap&lt;String, FieldValue> record2 = new HashMap<>();
 
     FieldValue fv1 = new FieldValue();
     fv1.setType(FieldType.SINGLE_LINE_TEXT);
@@ -351,7 +356,7 @@ public UpdateRecordResponse updateRecordByID(Integer app, Integer id, HashMap<St
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -366,7 +371,7 @@ public UpdateRecordResponse updateRecordByID(Integer app, Integer id, HashMap<St
     Integer recordID = 0;   // Input your record id
 
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
         fv.setValue("NEW_FIELD_VALUE");
@@ -412,7 +417,7 @@ public UpdateRecordResponse updateRecordByUpdateKey(Integer app, RecordUpdateKey
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -469,7 +474,7 @@ public UpdateRecordsResponse updateRecords(Integer app, ArrayList<RecordUpdateIt
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -483,8 +488,8 @@ public UpdateRecordsResponse updateRecords(Integer app, ArrayList<RecordUpdateIt
     Integer appID = 0;  // Input your app id
 
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
-        HashMap<String, FieldValue> record1 = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record1 = new HashMap<>();
 
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -496,7 +501,7 @@ public UpdateRecordsResponse updateRecords(Integer app, ArrayList<RecordUpdateIt
         fv1.setValue("FIELD_VALUE_2");
         record.put("FIELD_CODE_2", fv);
 
-        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        ArrayList&lt;RecordUpdateItem> records = new ArrayList<>();
         records.add(new RecordUpdateItem(1, null, null, record));
         records.add(new RecordUpdateItem(2, null, null, record1));
         kintoneRecord.updateRecords(appID, records);
@@ -531,16 +536,16 @@ public void deleteRecords(Integer app, ArrayList<Integer> ids) throws KintoneAPI
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    String USERNAME = "YOUR_USERNAME";
-    String PASSWORD = "YOUR_PASSWORD";
-    String DOMAIN = "YOUR_DOMAIN.COM";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String domain = "YOUR_DOMAIN.COM";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuthWithPassword = new Auth();
-    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    kintoneAuthWithPassword.setPasswordAuth(username, password);
 
     // Init Connection without "guest space ID"
-    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
+    Connection kintoneConnection = new Connection(domain, kintoneAuthWithPassword);
 
     // Init Record Module
     Record kintoneRecordManager = new Record(kintoneConnection);
@@ -580,11 +585,11 @@ public void deleteRecordsWithRevision(Integer app, HashMap<Integer, Integer> ids
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    String USERNAME = "YOUR_USERNAME";
-    String PASSWORD = "YOUR_PASSWORD";
-    String DOMAIN = "YOUR_DOMAIN.COM";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String domain = "YOUR_DOMAIN.COM";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuthWithPassword = new Auth();
     kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
@@ -637,7 +642,7 @@ public UpdateRecordResponse updateRecordAssignees(Integer app, Integer id, Array
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -696,7 +701,7 @@ public UpdateRecordResponse updateRecordStatus(Integer app, Integer id, String a
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -748,7 +753,7 @@ public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUp
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -764,7 +769,7 @@ public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUp
     String action = "YOUR_ACTION";
     String assignee = "YOUR_USER_CODE";
     try {
-        ArrayList<RecordUpdateStatusItem> recordUpdateStatusItems = new ArrayList<>();
+        ArrayList&lt;RecordUpdateStatusItem> recordUpdateStatusItems = new ArrayList<>();
         RecordUpdateStatusItem updateStatusItem = new RecordUpdateStatusItem(action, assignee, recordID, revision);
         recordUpdateStatusItems.add(updateStatusItem);
 
@@ -776,13 +781,16 @@ public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUp
 
 </details>
 
-### getComments(app, record, order, offset, limit)
+### getComments
 
 > Retrieves multiple comments from a record in an app.
 
 **Declaration**
 ```
-    public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset, Integer limit) throws KintoneAPIException
+public GetCommentsResponse getComments(Integer app, Integer record) throws KintoneAPIException
+public GetCommentsResponse getComments(Integer app, Integer record, String order) throws KintoneAPIException 
+public GetCommentsResponse getComments(Integer app, Integer record, Integer offset) throws KintoneAPIException 
+public GetCommentsResponse getComments(Integer app, Integer record, String order, Integer offset, Integer limit) throws KintoneAPIException
 ```
 
 **Parameter**
@@ -804,12 +812,12 @@ public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUp
 
 <pre class="inline-code">
     try {
-        String USERNAME = "YOUR_USERNAME";
-        String PASSWORD = "YOUR_PASSWORD";
+        String username = "YOUR_USERNAME";
+        String password = "YOUR_PASSWORD";
 
-        // Init authenticationAuth
+        // Init authentication module
         Auth kintoneAuthWithPassword = new Auth();
-        kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        kintoneAuthWithPassword.setPasswordAuth(username, password);
 
         // Init Connection without "guest space ID"
         Connection kintoneOnDemoDomain = new Connection("sample.domain.dot", kintoneAuthWithPassword);
@@ -823,9 +831,9 @@ public UpdateRecordsResponse updateRecordsStatus(Integer app, ArrayList<RecordUp
         String order = "your_order";
 
         GetCommentsResponse response = kintoneRecordManager.getComments(appID, recordID, order, null, null);
-    } catch (Exception e) {
+    } catch (KintoneAPIException e) {
         // TODO: handle exception
-        System.out.println(e);
+        System.out.println(e.toString());
 	}
 </pre>
 
@@ -857,7 +865,7 @@ public AddCommentResponse addComment(Integer app, Integer record, CommentContent
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -871,7 +879,7 @@ public AddCommentResponse addComment(Integer app, Integer record, CommentContent
     Integer appID = 0;  // Input your app id
     Integer recordId = 0;   // Input your record id
     CommentContent comment = new CommentContent();
-    ArrayList<CommentMention> mentionList = new ArrayList<>();
+    ArrayList&lt;CommentMention> mentionList = new ArrayList<>();
     CommentMention mention = new CommentMention();
     mention.setCode("YOUR_USER_CODE");
     mention.setType("USER");
@@ -917,7 +925,7 @@ public void deleteComment(Integer app, Integer record, Integer comment) throws K
     String PASSWORD = "YOUR_PASSWORD";
     String DOMAIN = "YOUR_DOMAIN.COM";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuthWithPassword = new Auth();
     kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
 
@@ -937,13 +945,20 @@ public void deleteComment(Integer app, Integer record, Integer comment) throws K
 
 </details>
 
-### getAllRecordsByQuery(app, query, fields, totalCount)
+### getAllRecordsByQuery
 
 > Retrieves details of multiple records from an App by specifying the App ID and a query string.
 
 **Declaration**
 ```
-    public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, Boolean totalCount) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, ArrayList<String> fields) throws KintoneAPIException 
+public GetRecordsResponse getAllRecordsByQuery(Integer app, String query) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, Boolean totalCount) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
+public GetRecordsResponse getAllRecordsByQuery(Integer app, String query, ArrayList<String> fields, Boolean totalCount) throws KintoneAPIException
 ```
 
 **Parameter**
@@ -964,27 +979,27 @@ public void deleteComment(Integer app, Integer record, Integer comment) throws K
 
 <pre class="inline-code">
     try {
-			String USERNAME = "your_username";
-			String PASSWORD = "your_password";
+        String username = "your_username";
+        String password = "your_password";
 
-			// Init authenticationAuth
-			Auth kintoneAuthWithPassword = new Auth();
-			kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+        // Init authentication module
+        Auth kintoneAuthWithPassword = new Auth();
+        kintoneAuthWithPassword.setPasswordAuth(username, password);
 
-			// Init Connection without "guest space ID"
-			Connection kintoneOnDemoDomain = new Connection("your_domain", kintoneAuthWithPassword);
+        // Init Connection without "guest space ID"
+        Connection kintoneOnDemoDomain = new Connection("your_domain", kintoneAuthWithPassword);
 
-			// Init Record Module
-			Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
-			Integer appID = your_appId;
-			Integer recordID = your_recordId;
-			String query = "your_query";
-			ArrayList listField= new ArrayList<String>();
-		    GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, listField);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
+        // Init Record Module
+        Record kintoneRecordManager = new Record(kintoneOnDemoDomain);
+        Integer appID = your_appId;
+        Integer recordID = your_recordId;
+        String query = "your_query";
+        ArrayList listField= new ArrayList&lt;String>();
+        GetRecordsResponse getAllRecords = kintoneRecordManager.getAllRecordsByQuery(appID, query, listField);
+    } catch (KintoneAPIException e) {
+        // TODO: handle exception
+        System.out.println(e.toString());
+    }
 </pre>
 </details>
 
@@ -1013,50 +1028,27 @@ public BulkRequestResponse deleteAllRecordsByQuery(Integer app, String query) th
 <strong class="tab-name">Source code</strong>
 
 <pre class="inline-code">
-    String USERNAME = "YOUR_USERNAME";
-    String PASSWORD = "YOUR_PASSWORD";
-    String DOMAIN = "YOUR_DOMAIN.COM";
+    String username = "YOUR_USERNAME";
+    String password = "YOUR_PASSWORD";
+    String domain = "YOUR_DOMAIN.COM";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuthWithPassword = new Auth();
-    kintoneAuthWithPassword.setPasswordAuth(USERNAME, PASSWORD);
+    kintoneAuthWithPassword.setPasswordAuth(username, password);
 
     // Init Connection without "guest space ID"
-    Connection kintoneConnection = new Connection(DOMAIN, kintoneAuthWithPassword);
+    Connection kintoneConnection = new Connection(domain, kintoneAuthWithPassword);
 
-    Integer appID = 114;
-    String query = "$id >=" +  1 + "and $id <=" + 10 + "order by $id asc";
+    Integer appID = 0;  // Input your app id
+    String query = "YOUR_QUERY";
     try {
         // Init Record Module
         Record kintoneRecord = new Record(kintoneConnection);
-        BulkRequestResponse bulkRequestResponse = kintoneRecord.deleteAllRecordsByQuery(appID, query);
+        BulkRequestResponses bulkRequestResponses = kintoneRecord.deleteAllRecordsByQuery(appID, query);
     } catch (BulksException e) {
-        System.out.println(e.getResults());
-        // Ex: If User delete 6000 records:
-        // Case 1: If there error occur in record 0
-        // Err response:
-        // [KintoneAPIException]
-        // Case 2: the error occur in record 4000
-        // err response
-        // [
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    BulkRequestResponse,
-        //    KintoneAPIException
-        //  ]
+        System.out.println("BulksException: " + e.toString());
+    } catch (KintoneAPIException e) {
+        System.out.println("KintoneAPIException: " + e.toString());
     }
 </pre>
 </details>
@@ -1088,7 +1080,7 @@ public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdate
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -1102,8 +1094,8 @@ public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdate
     Integer appID = 0;  // Input your app id
 
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
-        HashMap<String, FieldValue> record1 = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record1 = new HashMap<>();
 
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -1115,7 +1107,7 @@ public BulkRequestResponses updateAllRecords(Integer app, ArrayList<RecordUpdate
         fv1.setValue("FIELD_UPDATE_VALUE_2");
         record.put("FIELD_CODE_2", fv);
 
-        ArrayList<RecordUpdateItem> records = new ArrayList<>();
+        ArrayList&lt;RecordUpdateItem> records = new ArrayList<>();
 
         Integer record1UpdateId = 1;
         Integer record2UpdateId = 1;
@@ -1159,7 +1151,7 @@ public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String,
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -1172,8 +1164,8 @@ public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String,
 
     Integer appID = 0;  // Input your app id
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
-        HashMap<String, FieldValue> record1 = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record1 = new HashMap<>();
 
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -1185,7 +1177,7 @@ public BulkRequestResponses addAllRecords(Integer app, ArrayList<HashMap<String,
         fv1.setValue("FIELD_VALUE_2");
         record.put("FIELD_CODE_2", fv);
 
-        ArrayList<HashMap<String, FieldValue>> records = new ArrayList<>();
+        ArrayList&lt;HashMap&lt;String, FieldValue>> records = new ArrayList<>();
         records.add(record);
         records.add(record1);
         kintoneRecord.addAllRecords(appID, records);
@@ -1227,7 +1219,7 @@ public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey, HashMa
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -1241,7 +1233,7 @@ public BasicResponse upsertRecord(Integer app, RecordUpdateKey updateKey, HashMa
     Integer appID = 0;  // Input your app id
 
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
 
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -1290,7 +1282,7 @@ public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertIte
     String username = "YOUR_USERNAME";
     String password = "YOUR_PASSWORD";
 
-    // Init authenticationAuth
+    // Init authentication module
     Auth kintoneAuth = new Auth();
     kintoneAuth.setPasswordAuth(username, password);
 
@@ -1304,8 +1296,8 @@ public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertIte
     Integer appID = 0;  // Input your app id
 
     try {
-        HashMap<String, FieldValue> record = new HashMap<>();
-        HashMap<String, FieldValue> record1 = new HashMap<>();
+        HashMap&lt;String, FieldValue> record = new HashMap<>();
+        HashMap&lt;String, FieldValue> record1 = new HashMap<>();
 
         FieldValue fv = new FieldValue();
         fv.setType(FieldType.SINGLE_LINE_TEXT);
@@ -1317,7 +1309,7 @@ public BulkRequestResponse upsertRecords(Integer app, ArrayList<RecordsUpsertIte
         fv1.setValue("FIELD_VALUE_2");
         record1.put("FIELD_CODE_2", fv);
 
-        ArrayList<RecordsUpsertItem> records = new ArrayList<>();
+        ArrayList&lt;RecordsUpsertItem> records = new ArrayList<>();
 
         RecordUpdateKey updateKey = new RecordUpdateKey("YOUR_FIELD", "YOUR_KEY_VALUE");
 

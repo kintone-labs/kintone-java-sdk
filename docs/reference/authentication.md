@@ -143,7 +143,7 @@ public ArrayList<HTTPHeader> createHeaderCredentials()
 **Sample code**
 
 <details class="tab-container" open>
-<Summary>Provide the list of HTTP Headers which use to authentication</Summary>
+<Summary>Provide the list of HTTP Headers for authentication</Summary>
 
 <strong class="tab-name">Source code</strong>
 
