@@ -30,3 +30,4 @@ target/
 .project
 /bin/
 .vscode
+src/test/java/com/cybozu/kintone/client/TestConstants.java
