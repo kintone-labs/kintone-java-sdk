@@ -1,3 +1,9 @@
+# DEPRECATED
+
+The repository/library is deprecated.
+It is recommended to use a new version of Java client library.  
+https://github.com/kintone/kintone-java-client
+
 # kintone-java-sdk
 
 > The SDK of kintone REST API client use for kintone-java-sdk
