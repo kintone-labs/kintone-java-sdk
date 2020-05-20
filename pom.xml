@@ -10,7 +10,12 @@
 
 	<name>kintone-sdk</name>
 	<url>http://maven.apache.org</url>
-	<description>kintone Java SDK for REST API</description>
+	<description>
+		[deprecated]kintone Java SDK for REST API.
+		The repository/library is deprecated.
+                It is recommended to use a new version of Java client library.  
+                https://github.com/kintone/kintone-java-client
+	</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
