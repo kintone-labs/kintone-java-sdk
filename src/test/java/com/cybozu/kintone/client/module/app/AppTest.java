@@ -36,7 +36,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -153,98 +153,98 @@ public class AppTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, auth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, auth);
+        passwordAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.appManagerment = new App(passwordAuthConnection);
 
         Auth fileAuth = new Auth();
-        fileAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.fileConnection = new Connection(TestConstants.DOMAIN, fileAuth);
-        this.fileConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        fileAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.fileConnection = new Connection(TestConstantsSample.DOMAIN, fileAuth);
+        this.fileConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.file = new File(this.fileConnection);
 
         Auth noAddNoReadAuth = new Auth();
         noAddNoReadAuth.setPasswordAuth("xxx", "xxx");
-        Connection noAddNoReadAuthConnection = new Connection(TestConstants.DOMAIN, noAddNoReadAuth);
-        noAddNoReadAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection noAddNoReadAuthConnection = new Connection(TestConstantsSample.DOMAIN, noAddNoReadAuth);
+        noAddNoReadAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.noAddNoReadAppManagerment = new App(noAddNoReadAuthConnection);
 
         Auth addOnlyAuth = new Auth();
         addOnlyAuth.setPasswordAuth("xxx", "xxx");
-        Connection addOnlyAuthConnection = new Connection(TestConstants.DOMAIN, addOnlyAuth);
-        addOnlyAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection addOnlyAuthConnection = new Connection(TestConstantsSample.DOMAIN, addOnlyAuth);
+        addOnlyAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.addOnlyAppManagerment = new App(addOnlyAuthConnection);
 
         Auth readOnlyAuth = new Auth();
         readOnlyAuth.setPasswordAuth("xxx", "xxx");
-        Connection readOnlyAuthConnection = new Connection(TestConstants.DOMAIN, readOnlyAuth);
-        readOnlyAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection readOnlyAuthConnection = new Connection(TestConstantsSample.DOMAIN, readOnlyAuth);
+        readOnlyAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.readOnlyAppManagerment = new App(readOnlyAuthConnection);
 
         Auth noAdminauth = new Auth();
         noAdminauth.setPasswordAuth("xxx", "xxx");
-        Connection noAdminAuthConnection = new Connection(TestConstants.DOMAIN, noAdminauth);
-        noAdminAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection noAdminAuthConnection = new Connection(TestConstantsSample.DOMAIN, noAdminauth);
+        noAdminAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.noAdminAppManagerment = new App(noAdminAuthConnection);
 
         Auth guestSpaceAuth = new Auth();
-        guestSpaceAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection guestSpacePasswordAuthconnection = new Connection(TestConstants.DOMAIN, guestSpaceAuth,
-                TestConstants.GUEST_SPACE_ID);
-        guestSpacePasswordAuthconnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        guestSpaceAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection guestSpacePasswordAuthconnection = new Connection(TestConstantsSample.DOMAIN, guestSpaceAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
+        guestSpacePasswordAuthconnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.guestSpaceAppManagerment = new App(guestSpacePasswordAuthconnection);
 
         Auth guestSpaceTokenAuth = new Auth();
         guestSpaceTokenAuth.setApiToken(GUEST_SPACE_API_TOKEN);
-        Connection guestSpaceTokenconnection = new Connection(TestConstants.DOMAIN, guestSpaceTokenAuth,
-                TestConstants.GUEST_SPACE_ID);
-        guestSpaceTokenconnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection guestSpaceTokenconnection = new Connection(TestConstantsSample.DOMAIN, guestSpaceTokenAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
+        guestSpaceTokenconnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.guestSpaceTokenAppManagerment = new App(guestSpaceTokenconnection);
 
         Auth addFormFieldTokenAuth = new Auth();
         addFormFieldTokenAuth.setApiToken(ADD_FORMFIELD_API_TOKEN);
-        Connection addFormFieldTokenConnection = new Connection(TestConstants.DOMAIN, addFormFieldTokenAuth);
-        addFormFieldTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection addFormFieldTokenConnection = new Connection(TestConstantsSample.DOMAIN, addFormFieldTokenAuth);
+        addFormFieldTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.addFormFieldTokenAppManagerment = new App(addFormFieldTokenConnection);
 
         Auth viewTokenAuth = new Auth();
         viewTokenAuth.setApiToken(VIEW_API_TOKEN);
-        Connection ViewTokenConnection = new Connection(TestConstants.DOMAIN, viewTokenAuth);
-        ViewTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection ViewTokenConnection = new Connection(TestConstantsSample.DOMAIN, viewTokenAuth);
+        ViewTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.viewTokenAppManagerment = new App(ViewTokenConnection);
 
         Auth noViewTokenAuth = new Auth();
         noViewTokenAuth.setApiToken(NO_VIEW_API_TOKEN);
-        Connection noViewTokenConnection = new Connection(TestConstants.DOMAIN, noViewTokenAuth);
-        noViewTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection noViewTokenConnection = new Connection(TestConstantsSample.DOMAIN, noViewTokenAuth);
+        noViewTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.noViewTokenAppManagerment = new App(noViewTokenConnection);
 
         Auth updateformlayoutTokenAuth = new Auth();
         updateformlayoutTokenAuth.setApiToken(UPDATE_FORMLAYOUT_API_TOKEN);
-        Connection updateformlayoutTokenConnection = new Connection(TestConstants.DOMAIN, updateformlayoutTokenAuth);
-        updateformlayoutTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection updateformlayoutTokenConnection = new Connection(TestConstantsSample.DOMAIN, updateformlayoutTokenAuth);
+        updateformlayoutTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.updateformlayoutTokenAppManagerment = new App(updateformlayoutTokenConnection);
 
         Auth notInSpaceOrThreadTokenAuth = new Auth();
         notInSpaceOrThreadTokenAuth.setApiToken(NOT_IN_SPACE_OR_THREAD_API_TOKEN);
-        Connection notInSpaceOrThreadTokenConnection = new Connection(TestConstants.DOMAIN,
+        Connection notInSpaceOrThreadTokenConnection = new Connection(TestConstantsSample.DOMAIN,
                 notInSpaceOrThreadTokenAuth);
-        notInSpaceOrThreadTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        notInSpaceOrThreadTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.notInSpaceOrThreadTokenAppManagerment = new App(notInSpaceOrThreadTokenConnection);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection CertConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        CertConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection CertConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        CertConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.certAppManagerment = new App(CertConnection);
 
         Auth certGuestAuth = new Auth();
-        certGuestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certGuestAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection certGuestonnection = new Connection(TestConstants.DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        certGuestonnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certGuestAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certGuestAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection certGuestonnection = new Connection(TestConstantsSample.DOMAIN, auth, TestConstantsSample.GUEST_SPACE_ID);
+        certGuestonnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.certGuestAppManagerment = new App(certGuestonnection);
     }
 
@@ -680,8 +680,8 @@ public class AppTest {
 
         assertNotNull(app);
         assertEquals(Integer.valueOf(APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_ID), app.getSpaceId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_THREAD_ID), app.getThreadId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_THREAD_ID), app.getThreadId());
         assertNotNull(app.getCode());
         assertNotNull(app.getName());
         assertNotNull(app.getDescription());
@@ -697,8 +697,8 @@ public class AppTest {
 
         assertNotNull(app);
         assertEquals(Integer.valueOf(APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_ID), app.getSpaceId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_THREAD_ID), app.getThreadId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_THREAD_ID), app.getThreadId());
         assertNotNull(app.getCode());
         assertNotNull(app.getName());
         assertNotNull(app.getDescription());
@@ -714,8 +714,8 @@ public class AppTest {
 
         assertNotNull(app);
         assertEquals(Integer.valueOf(APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_ID), app.getSpaceId());
-        assertEquals(Integer.valueOf(TestConstants.SPACE_THREAD_ID), app.getThreadId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.SPACE_THREAD_ID), app.getThreadId());
         assertNotNull(app.getCode());
         assertNotNull(app.getName());
         assertNotNull(app.getDescription());
@@ -831,11 +831,11 @@ public class AppTest {
     @Test
     public void testGetAppInGuestSpaceShouldSuccess()
             throws KintoneAPIException, ParseException, InterruptedException, ExecutionException {
-        AppModel app = this.guestSpaceAppManagerment.getApp(TestConstants.GUEST_SPACE_APP_ID);
+        AppModel app = this.guestSpaceAppManagerment.getApp(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         assertNotNull(app);
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_APP_ID), app.getAppId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_ID), app.getSpaceId());
         assertEquals(Integer.valueOf(150), app.getThreadId());
         assertEquals("guestApp", app.getCode());
         assertEquals("Guest Space java sdk Test", app.getName());
@@ -859,11 +859,11 @@ public class AppTest {
     @Test
     public void testGetAppInGuestSpaceShouldSuccessToken()
             throws KintoneAPIException, ParseException, InterruptedException, ExecutionException {
-        AppModel app = this.guestSpaceTokenAppManagerment.getApp(TestConstants.GUEST_SPACE_APP_ID);
+        AppModel app = this.guestSpaceTokenAppManagerment.getApp(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         assertNotNull(app);
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_APP_ID), app.getAppId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_ID), app.getSpaceId());
         assertEquals(Integer.valueOf(150), app.getThreadId());
         assertEquals("guestApp", app.getCode());
         assertEquals("Guest Space java sdk Test", app.getName());
@@ -887,11 +887,11 @@ public class AppTest {
     @Test
     public void testGetAppInGuestSpaceShouldSuccessCert()
             throws KintoneAPIException, ParseException, InterruptedException, ExecutionException {
-        AppModel app = this.certGuestAppManagerment.getApp(TestConstants.GUEST_SPACE_APP_ID);
+        AppModel app = this.certGuestAppManagerment.getApp(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         assertNotNull(app);
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_APP_ID), app.getAppId());
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_ID), app.getSpaceId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_APP_ID), app.getAppId());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_ID), app.getSpaceId());
         assertEquals(Integer.valueOf(150), app.getThreadId());
         assertEquals("guestApp", app.getCode());
         assertEquals("Guest Space java sdk Test", app.getName());
@@ -1091,7 +1091,7 @@ public class AppTest {
     public void testGetAppsWithIdsInGuestSpaceShouldSuccess()
             throws KintoneAPIException, ParseException, InterruptedException, ExecutionException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
         List<AppModel> apps = this.guestSpaceAppManagerment.getAppsByIDs(appIds, null, null);
         assertTrue(!apps.isEmpty());
     }
@@ -1100,7 +1100,7 @@ public class AppTest {
     public void testGetAppsWithIdsInGuestSpaceShouldSuccessCert()
             throws KintoneAPIException, ParseException, InterruptedException, ExecutionException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
         List<AppModel> apps = this.certGuestAppManagerment.getAppsByIDs(appIds, null, null);
         assertTrue(!apps.isEmpty());
     }
@@ -1697,7 +1697,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccess() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.appManagerment.getAppsBySpaceIDs(spaceIds, null, null);
         assertEquals(39, apps.size());
     }
@@ -1705,7 +1705,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccessCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, null);
         assertEquals(39, apps.size());
     }
@@ -1714,7 +1714,7 @@ public class AppTest {
     public void testGetAppsWithSpaceIdShouldSuccessReturnListHasOneElementWhenGivenLimitIsOne()
             throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.appManagerment.getAppsBySpaceIDs(spaceIds, null, 1);
         assertEquals(1, apps.size());
     }
@@ -1723,7 +1723,7 @@ public class AppTest {
     public void testGetAppsWithSpaceIdShouldSuccessReturnListHasOneElementWhenGivenLimitIsOneCert()
             throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, 1);
         assertEquals(1, apps.size());
     }
@@ -1731,7 +1731,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccessThenSkippedBasedOnTheOffset() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.appManagerment.getAppsBySpaceIDs(spaceIds, 1, null);
         assertEquals(38, apps.size());
     }
@@ -1739,7 +1739,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccessThenSkippedBasedOnTheOffsetCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         List<AppModel> apps = this.certAppManagerment.getAppsBySpaceIDs(spaceIds, 1, null);
         assertEquals(38, apps.size());
     }
@@ -1759,7 +1759,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccessGuestSpace() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         List<AppModel> apps = this.appManagerment.getAppsBySpaceIDs(spaceIds, null, null);
         assertEquals(4, apps.size());
     }
@@ -1767,7 +1767,7 @@ public class AppTest {
     @Test
     public void testGetAppsWithSpaceIdShouldSuccessGuestSpaceCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         List<AppModel> apps = this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, null);
         assertEquals(4, apps.size());
     }
@@ -1780,84 +1780,84 @@ public class AppTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongLimitValueLessThanOne() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, null, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongLimitValueLessThanOneCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongLimitValueLessThanOne() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, null, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongLimitValueLessThanOneCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongLimitValueOverHundred() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, null, 101);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongLimitValueOverHundredCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, 101);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongLimitValueOverHundred() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, null, 101);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongLimitValueOverHundredCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, null, 101);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongOffsetValueLessThanZero() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, -1, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithSpaceIdShouldFailWhenWrongOffsetValueLessThanZeroCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.SPACE_ID);
+        spaceIds.add(TestConstantsSample.SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, -1, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongOffsetValueLessThanZero() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.appManagerment.getAppsBySpaceIDs(spaceIds, -1, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetAppsWithGuestSpaceIdShouldFailWhenWrongOffsetValueLessThanZeroCert() throws KintoneAPIException {
         ArrayList<Integer> spaceIds = new ArrayList<Integer>();
-        spaceIds.add(TestConstants.GUEST_SPACE_ID);
+        spaceIds.add(TestConstantsSample.GUEST_SPACE_ID);
         this.certAppManagerment.getAppsBySpaceIDs(spaceIds, -1, null);
     }
 
@@ -2040,10 +2040,10 @@ public class AppTest {
 
     @Test
     public void testGetFormFieldsShouldSuccessGuestSpace() throws KintoneAPIException {
-        FormFields formfields = this.guestSpaceAppManagerment.getFormFields(TestConstants.GUEST_SPACE_APP_ID, null,
+        FormFields formfields = this.guestSpaceAppManagerment.getFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, null,
                 null);
         assertNotNull(formfields);
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_APP_ID), formfields.getApp());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_APP_ID), formfields.getApp());
         Map<String, Field> properties = formfields.getProperties();
         assertNotNull(properties);
         assertEquals(13, properties.size());
@@ -2051,10 +2051,10 @@ public class AppTest {
 
     @Test
     public void testGetFormFieldsShouldSuccessGuestSpaceCert() throws KintoneAPIException {
-        FormFields formfields = this.certGuestAppManagerment.getFormFields(TestConstants.GUEST_SPACE_APP_ID, null,
+        FormFields formfields = this.certGuestAppManagerment.getFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, null,
                 null);
         assertNotNull(formfields);
-        assertEquals(Integer.valueOf(TestConstants.GUEST_SPACE_APP_ID), formfields.getApp());
+        assertEquals(Integer.valueOf(TestConstantsSample.GUEST_SPACE_APP_ID), formfields.getApp());
         Map<String, Field> properties = formfields.getProperties();
         assertNotNull(properties);
         assertEquals(13, properties.size());
@@ -2436,14 +2436,14 @@ public class AppTest {
 
     @Test
     public void testGetFormLayoutShouldSuccessGuestSpace() throws KintoneAPIException {
-        FormLayout formLayout = this.guestSpaceAppManagerment.getFormLayout(TestConstants.GUEST_SPACE_APP_ID, null);
+        FormLayout formLayout = this.guestSpaceAppManagerment.getFormLayout(TestConstantsSample.GUEST_SPACE_APP_ID, null);
         assertNotNull(formLayout);
         assertEquals(4, formLayout.getLayout().size());
     }
 
     @Test
     public void testGetFormLayoutShouldSuccessGuestSpaceCert() throws KintoneAPIException {
-        FormLayout formLayout = this.certGuestAppManagerment.getFormLayout(TestConstants.GUEST_SPACE_APP_ID, null);
+        FormLayout formLayout = this.certGuestAppManagerment.getFormLayout(TestConstantsSample.GUEST_SPACE_APP_ID, null);
         assertNotNull(formLayout);
         assertEquals(4, formLayout.getLayout().size());
     }
@@ -3711,7 +3711,7 @@ public class AppTest {
         DepartmentSelectionField dsField = createDepartmentSelectionField(fieldCode);
 
         properties.put(fieldCode, dsField);
-        this.guestSpaceAppManagerment.addFormFields(TestConstants.GUEST_SPACE_APP_ID, properties, null);
+        this.guestSpaceAppManagerment.addFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, properties, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -3722,7 +3722,7 @@ public class AppTest {
         DepartmentSelectionField dsField = createDepartmentSelectionField(fieldCode);
 
         properties.put(fieldCode, dsField);
-        this.certGuestAppManagerment.addFormFields(TestConstants.GUEST_SPACE_APP_ID, properties, null);
+        this.certGuestAppManagerment.addFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, properties, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -10927,7 +10927,7 @@ public class AppTest {
         userSelectionField.setDefaultValue(userList);
 
         properties.put(fieldCode, userSelectionField);
-        this.guestSpaceAppManagerment.updateFormFields(TestConstants.GUEST_SPACE_APP_ID, properties, null);
+        this.guestSpaceAppManagerment.updateFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, properties, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -10946,7 +10946,7 @@ public class AppTest {
         userSelectionField.setDefaultValue(userList);
 
         properties.put(fieldCode, userSelectionField);
-        this.certGuestAppManagerment.updateFormFields(TestConstants.GUEST_SPACE_APP_ID, properties, null);
+        this.certGuestAppManagerment.updateFormFields(TestConstantsSample.GUEST_SPACE_APP_ID, properties, null);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -15384,7 +15384,7 @@ public class AppTest {
     @Test
     public void testAddPreviewAppInSpaceShouldSuccess() throws KintoneAPIException {
         AddPreviewAppResponse appPreviewResponse = this.appManagerment.addPreviewApp("AddPreviewApp_Test",
-                TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+                TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
     }
@@ -15392,7 +15392,7 @@ public class AppTest {
     @Test
     public void testAddPreviewAppInSpaceShouldSuccessCert() throws KintoneAPIException {
         AddPreviewAppResponse appPreviewResponse = this.certAppManagerment.addPreviewApp("AddPreviewApp_Test",
-                TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+                TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
     }
@@ -15400,7 +15400,7 @@ public class AppTest {
     @Test
     public void testAddPreviewAppInGuestSpaceShouldSuccess() throws KintoneAPIException {
         AddPreviewAppResponse appPreviewResponse = this.guestSpaceAppManagerment.addPreviewApp("AddPreviewApp_Test",
-                TestConstants.GUEST_SPACE_ID, TestConstants.GUEST_SPACE_THREAD_ID);
+                TestConstantsSample.GUEST_SPACE_ID, TestConstantsSample.GUEST_SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
     }
@@ -15408,142 +15408,142 @@ public class AppTest {
     @Test
     public void testAddPreviewAppInGuestSpaceShouldSuccessCert() throws KintoneAPIException {
         AddPreviewAppResponse appPreviewResponse = this.certGuestAppManagerment.addPreviewApp("AddPreviewApp_Test",
-                TestConstants.GUEST_SPACE_ID, TestConstants.GUEST_SPACE_THREAD_ID);
+                TestConstantsSample.GUEST_SPACE_ID, TestConstantsSample.GUEST_SPACE_THREAD_ID);
         assertNotNull(appPreviewResponse.getApp());
         assertNotNull(appPreviewResponse.getRevision());
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNoName() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("", TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp("", TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNoNameCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("", TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp("", TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNameNull() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp(null, TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp(null, TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNameNullCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp(null, TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp(null, TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNameOverflow() throws KintoneAPIException {
         this.appManagerment.addPreviewApp("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklm",
-                TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+                TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenNameOverflowCert() throws KintoneAPIException {
         this.certAppManagerment.addPreviewApp("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklm",
-                TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+                TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenSpaceNull() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", null, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", null, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenSpaceNullCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", null, TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", null, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenSpaceZero() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", 0, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", 0, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenSpaceZeroCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", 0, TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", 0, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenUnexistedSpace() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", 99999, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", 99999, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenUnexistedSpaceCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", 99999, TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", 99999, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadNull() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, null);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadNullCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, null);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, null);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadZero() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 0);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadZeroCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 0);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 0);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadUnexisted() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 9999);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 9999);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadUnexistedCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 9999);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 9999);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadNotBelongToSpace() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 130);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 130);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenThreadNotBelongToSpaceCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, 130);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, 130);
     }
 
     // Excute When Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppInSpaceShouldFailWhenSpaceFunctionOff() throws KintoneAPIException {
-        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID, TestConstants.SPACE_THREAD_ID);
+        this.appManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID, TestConstantsSample.SPACE_THREAD_ID);
     }
 
     // Excute When Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppInSpaceShouldFailWhenSpaceFunctionOffCert() throws KintoneAPIException {
-        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID,
-                TestConstants.SPACE_THREAD_ID);
+        this.certAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID,
+                TestConstantsSample.SPACE_THREAD_ID);
     }
 
     // Excute When Guest Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppInGuestSpaceShouldFailWhenGuestSpaceFunctionOff() throws KintoneAPIException {
-        this.guestSpaceAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.GUEST_SPACE_ID,
-                TestConstants.GUEST_SPACE_THREAD_ID);
+        this.guestSpaceAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.GUEST_SPACE_ID,
+                TestConstantsSample.GUEST_SPACE_THREAD_ID);
     }
 
     // Excute When Guest Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppInGuestSpaceShouldFailWhenGuestSpaceFunctionOffCert() throws KintoneAPIException {
-        this.certGuestAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.GUEST_SPACE_ID,
-                TestConstants.GUEST_SPACE_THREAD_ID);
+        this.certGuestAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.GUEST_SPACE_ID,
+                TestConstantsSample.GUEST_SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -15553,8 +15553,8 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testAddPreviewAppShouldFailWhenHasNoPermisssionForCreateAppInSpace() throws KintoneAPIException {
-        this.noAdminAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstants.SPACE_ID,
-                TestConstants.SPACE_THREAD_ID);
+        this.noAdminAppManagerment.addPreviewApp("AddPreviewApp_Test", TestConstantsSample.SPACE_ID,
+                TestConstantsSample.SPACE_THREAD_ID);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -15891,7 +15891,7 @@ public class AppTest {
     @Test(expected = KintoneAPIException.class)
     public void testDeployAppSettingsShouldFailWhenAppIsGuestSpace() throws KintoneAPIException {
         PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        previewAppRequest.setApp(TestConstantsSample.GUEST_SPACE_APP_ID);
         previewAppRequest.setRevision(-1);
 
         ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
@@ -15902,7 +15902,7 @@ public class AppTest {
     @Test
     public void testDeployAppSettingsShouldFailWhenAppIsGuestSpaceCert() throws KintoneAPIException {
         PreviewAppRequest previewAppRequest = new PreviewAppRequest();
-        previewAppRequest.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        previewAppRequest.setApp(TestConstantsSample.GUEST_SPACE_APP_ID);
         previewAppRequest.setRevision(-1);
 
         ArrayList<PreviewAppRequest> deployApps = new ArrayList<PreviewAppRequest>();
@@ -16111,7 +16111,7 @@ public class AppTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetAppDeployStatusShouldFailWhenAppIsGuestSpace() throws KintoneAPIException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         this.appManagerment.getAppDeployStatus(appIds);
     }
@@ -16119,7 +16119,7 @@ public class AppTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetAppDeployStatusShouldFailWhenAppIsGuestSpaceCert() throws KintoneAPIException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         this.certAppManagerment.getAppDeployStatus(appIds);
     }
@@ -16127,20 +16127,20 @@ public class AppTest {
     @Test
     public void testGetAppDeployStatusShouldSuccessWhenGuestSpace() throws KintoneAPIException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         GetAppDeployStatusResponse appDeployStatus = this.guestSpaceAppManagerment.getAppDeployStatus(appIds);
-        assertEquals(TestConstants.GUEST_SPACE_APP_ID, appDeployStatus.getApps().get(0).getApp().intValue());
+        assertEquals(TestConstantsSample.GUEST_SPACE_APP_ID, appDeployStatus.getApps().get(0).getApp().intValue());
         assertEquals("SUCCESS", appDeployStatus.getApps().get(0).getStatus().toString());
     }
 
     @Test
     public void testGetAppDeployStatusShouldSuccessWhenGuestSpaceCert() throws KintoneAPIException {
         ArrayList<Integer> appIds = new ArrayList<Integer>();
-        appIds.add(TestConstants.GUEST_SPACE_APP_ID);
+        appIds.add(TestConstantsSample.GUEST_SPACE_APP_ID);
 
         GetAppDeployStatusResponse appDeployStatus = this.certGuestAppManagerment.getAppDeployStatus(appIds);
-        assertEquals(TestConstants.GUEST_SPACE_APP_ID, appDeployStatus.getApps().get(0).getApp().intValue());
+        assertEquals(TestConstantsSample.GUEST_SPACE_APP_ID, appDeployStatus.getApps().get(0).getApp().intValue());
         assertEquals("SUCCESS", appDeployStatus.getApps().get(0).getStatus().toString());
     }
 
@@ -16811,22 +16811,22 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testGetViewShouldFailWhenAppInGuestSpaceInPreview() throws KintoneAPIException {
-        this.appManagerment.getViews(TestConstants.GUEST_SPACE_APP_ID, null, true);
+        this.appManagerment.getViews(TestConstantsSample.GUEST_SPACE_APP_ID, null, true);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetViewShouldFailWhenAppInGuestSpaceInPreviewCert() throws KintoneAPIException {
-        this.certAppManagerment.getViews(TestConstants.GUEST_SPACE_APP_ID, null, true);
+        this.certAppManagerment.getViews(TestConstantsSample.GUEST_SPACE_APP_ID, null, true);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetViewShouldFailWhenAppInGuestSpace() throws KintoneAPIException {
-        this.appManagerment.getViews(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.appManagerment.getViews(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetViewShouldFailWhenAppInGuestSpaceCert() throws KintoneAPIException {
-        this.certAppManagerment.getViews(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.certAppManagerment.getViews(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -20425,7 +20425,7 @@ public class AppTest {
 
     @Test
     public void testUpdateGeneralSettingsShouldSuccessWithFileUpload() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.jpg");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.jpg");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20436,7 +20436,7 @@ public class AppTest {
 
     @Test
     public void testUpdateGeneralSettingsShouldSuccessWithFileUploadCert() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.jpg");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.jpg");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20447,7 +20447,7 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateGeneralSettingsShouldFailWithInvalidFileUpload() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20458,7 +20458,7 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateGeneralSettingsShouldFailWithInvalidFileUploadCert() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20469,7 +20469,7 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateGeneralSettingsShouldFailWhenFileOverflow() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test1.jpg");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test1.jpg");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20480,7 +20480,7 @@ public class AppTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUpdateGeneralSettingsShouldFailWhenFileOverflowCert() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test1.jpg");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test1.jpg");
 
         GeneralSettings generalSettings = new GeneralSettings();
         Icon icon = new Icon(fileModel, null, IconType.FILE);
@@ -20826,19 +20826,19 @@ public class AppTest {
         GeneralSettings generalSettings = new GeneralSettings();
         ArrayList<PreviewAppRequest> apps = new ArrayList<>();
         PreviewAppRequest app = new PreviewAppRequest();
-        app.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        app.setApp(TestConstantsSample.GUEST_SPACE_APP_ID);
         apps.add(app);
 
         generalSettings.setName("Guest Space java sdk Test");
         generalSettings.setDescription("abcd");
         generalSettings.setTheme(IconTheme.GREEN);
 
-        this.guestSpaceAppManagerment.updateGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, generalSettings);
+        this.guestSpaceAppManagerment.updateGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, generalSettings);
 
         this.guestSpaceAppManagerment.deployAppSettings(apps, false);
         Thread.sleep(5000);
 
-        GeneralSettings response = this.guestSpaceAppManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID,
+        GeneralSettings response = this.guestSpaceAppManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID,
                 LanguageSetting.DEFAULT, false);
 
         assertEquals("abcd", response.getDescription());
@@ -20852,7 +20852,7 @@ public class AppTest {
         GeneralSettings generalSettings = new GeneralSettings();
         ArrayList<PreviewAppRequest> apps = new ArrayList<>();
         PreviewAppRequest app = new PreviewAppRequest();
-        app.setApp(TestConstants.GUEST_SPACE_APP_ID);
+        app.setApp(TestConstantsSample.GUEST_SPACE_APP_ID);
         apps.add(app);
 
         generalSettings.setName("Guest Space java sdk Test");
@@ -20860,12 +20860,12 @@ public class AppTest {
         generalSettings.setTheme(IconTheme.GREEN);
         generalSettings.setRevision(-1);
 
-        this.certGuestAppManagerment.updateGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, generalSettings);
+        this.certGuestAppManagerment.updateGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, generalSettings);
 
         this.certGuestAppManagerment.deployAppSettings(apps, false);
         Thread.sleep(5000);
 
-        GeneralSettings response = this.certGuestAppManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID,
+        GeneralSettings response = this.certGuestAppManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID,
                 LanguageSetting.DEFAULT, false);
 
         assertEquals("abcd", response.getDescription());
@@ -20992,37 +20992,37 @@ public class AppTest {
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenGuestSpaceFunctionOff() throws KintoneAPIException {
-        this.guestSpaceAppManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.guestSpaceAppManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 
     // Excute When Guest Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenGuestSpaceFunctionOffCert() throws KintoneAPIException {
-        this.certGuestAppManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.certGuestAppManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 
     // Excute When Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenSpaceFunctionOff() throws KintoneAPIException {
-        this.appManagerment.getGeneralSettings(TestConstants.SPACE_APP_ID, null, false);
+        this.appManagerment.getGeneralSettings(TestConstantsSample.SPACE_APP_ID, null, false);
     }
 
     // Excute When Space Function Off
     @Ignore
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenSpaceFunctionOffCert() throws KintoneAPIException {
-        this.certAppManagerment.getGeneralSettings(TestConstants.SPACE_APP_ID, null, false);
+        this.certAppManagerment.getGeneralSettings(TestConstantsSample.SPACE_APP_ID, null, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenAppInGuestSpace() throws KintoneAPIException {
-        this.appManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.appManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetGeneralSettingsShouldFailWhenAppInGuestSpaceCert() throws KintoneAPIException {
-        this.certAppManagerment.getGeneralSettings(TestConstants.GUEST_SPACE_APP_ID, null, false);
+        this.certAppManagerment.getGeneralSettings(TestConstantsSample.GUEST_SPACE_APP_ID, null, false);
     }
 }

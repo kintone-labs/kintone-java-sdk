@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.connection.ConnectionConstants;
@@ -40,9 +40,9 @@ public class BulkRequestParserTest {
     @Before
     public void setup() {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.connection = new Connection(TestConstants.DOMAIN, auth);
-        this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        this.connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.bulkRequest = new BulkRequest(this.connection);
         this.passwordAuthRecordManagerment = new Record(connection);
     }

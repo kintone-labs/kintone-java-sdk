@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -47,51 +47,51 @@ public class GetAllRecordsByCursorTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
+        passwordAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
 
         Auth passwordAuth2 = new Auth();
         passwordAuth2.setPasswordAuth("xxx", "xxx");
-        Connection passwordAuthConnection2 = new Connection(TestConstants.DOMAIN, passwordAuth2);
+        Connection passwordAuthConnection2 = new Connection(TestConstantsSample.DOMAIN, passwordAuth2);
         this.cursorPasswordAuthRecordManagerment = new Record(passwordAuthConnection2);
 
         Auth tokenAuth13 = new Auth();
         tokenAuth13.setApiToken(CURSOR_API_TOKEN);
-        Connection tokenConnection13 = new Connection(TestConstants.DOMAIN, tokenAuth13);
+        Connection tokenConnection13 = new Connection(TestConstantsSample.DOMAIN, tokenAuth13);
         this.cursorTokenRecordManagerment = new Record(tokenConnection13);
 
         Auth tokenAuth14 = new Auth();
         tokenAuth14.setApiToken(CURSOR_API_TOKEN2);
-        Connection tokenConnection14 = new Connection(TestConstants.DOMAIN, tokenAuth14);
+        Connection tokenConnection14 = new Connection(TestConstantsSample.DOMAIN, tokenAuth14);
         this.cursorRestrictedTokenRecordManagerment = new Record(tokenConnection14);
 
         Auth tokenAuth15 = new Auth();
         tokenAuth15.setApiToken(CURSOR_API_TOKEN3);
-        Connection tokenConnection15 = new Connection(TestConstants.DOMAIN, tokenAuth15);
+        Connection tokenConnection15 = new Connection(TestConstantsSample.DOMAIN, tokenAuth15);
         this.cursorAddOnlyTokenRecordManagerment = new Record(tokenConnection15);
 
         Auth tokenAuth16 = new Auth();
         tokenAuth16.setApiToken(CURSOR_API_TOKEN4);
-        Connection tokenConnection16 = new Connection(TestConstants.DOMAIN, tokenAuth16);
+        Connection tokenConnection16 = new Connection(TestConstantsSample.DOMAIN, tokenAuth16);
         this.cursorReadOnlyTokenRecordManagerment = new Record(tokenConnection16);
 
         Auth tokenAuth17 = new Auth();
         tokenAuth17.setApiToken(CURSOR_API_TOKEN5);
-        Connection tokenConnection17 = new Connection(TestConstants.DOMAIN, tokenAuth17);
+        Connection tokenConnection17 = new Connection(TestConstantsSample.DOMAIN, tokenAuth17);
         this.cursorManageOnlyTokenRecordManagerment = new Record(tokenConnection17);
 
         Auth cursorCertauth = new Auth();
-        cursorCertauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        cursorCertauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection cursorCertConnection = new Connection(TestConstants.SECURE_DOMAIN, cursorCertauth);
+        cursorCertauth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        cursorCertauth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection cursorCertConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, cursorCertauth);
         this.cursorCertRecordManagerment = new Record(cursorCertConnection);
 
         Auth cursorCertauth2 = new Auth();
         cursorCertauth2.setPasswordAuth("xxx", "xxx");
         cursorCertauth2.setClientCertByPath("src/test/resources/certificates/testUser/xxx.pfx", "xxx");
-        Connection cursorCertConnection2 = new Connection(TestConstants.SECURE_DOMAIN, cursorCertauth2);
+        Connection cursorCertConnection2 = new Connection(TestConstantsSample.SECURE_DOMAIN, cursorCertauth2);
         this.cursorRestrictedCertRecordManagerment = new Record(cursorCertConnection2);
 
         // get maximum "数値"field value in all records and set it uniqueKey.

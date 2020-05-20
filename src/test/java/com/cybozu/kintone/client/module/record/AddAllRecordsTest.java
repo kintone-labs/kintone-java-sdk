@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
@@ -27,15 +27,15 @@ public class AddAllRecordsTest {
 
     private static Integer APP_ID = 11;
     private static Integer GUEST_APP_ID = 15;
-    private static Integer GUEST_SPACE_ID = TestConstants.GUEST_SPACE_ID;
-    private static String API_TOKEN = TestConstants.API_TOKEN;
-    private static String API_TOKEN_GUEST = TestConstants.HAAPI_TOKEN;
-    private static String ADMIN_USER_NAME = TestConstants.ADMIN_USERNAME;
-    private static String ADMIN_USER_PASSWORD = TestConstants.ADMIN_PASSWORD;
-    private static String NO_PERMISSION_USER_NAME = TestConstants.USERNAME;
-    private static String NO_PERMISSION_USER_PASSWORD = TestConstants.PASSWORD;
-    private static String BASIC_USER_NAME = TestConstants.BASIC_USERNAME;
-    private static String BASIC_USER_PASSWORD = TestConstants.BASIC_PASSWORD;
+    private static Integer GUEST_SPACE_ID = TestConstantsSample.GUEST_SPACE_ID;
+    private static String API_TOKEN = TestConstantsSample.API_TOKEN;
+    private static String API_TOKEN_GUEST = TestConstantsSample.HAAPI_TOKEN;
+    private static String ADMIN_USER_NAME = TestConstantsSample.ADMIN_USERNAME;
+    private static String ADMIN_USER_PASSWORD = TestConstantsSample.ADMIN_PASSWORD;
+    private static String NO_PERMISSION_USER_NAME = TestConstantsSample.USERNAME;
+    private static String NO_PERMISSION_USER_PASSWORD = TestConstantsSample.PASSWORD;
+    private static String BASIC_USER_NAME = TestConstantsSample.BASIC_USERNAME;
+    private static String BASIC_USER_PASSWORD = TestConstantsSample.BASIC_PASSWORD;
 
     private Record passwordAuthRecord;
     private Record tokenAuthRecord;
@@ -51,7 +51,7 @@ public class AddAllRecordsTest {
         // create passwordAuthRecord
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(ADMIN_USER_NAME, ADMIN_USER_PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         this.passwordAuthRecord = new Record(passwordAuthConnection);
         this.attachment = new File(passwordAuthConnection);
 
@@ -70,24 +70,24 @@ public class AddAllRecordsTest {
         // create tokenAuthRecord
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
-        Connection tokenAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection tokenAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         this.tokenAuthRecord = new Record(tokenAuthConnection);
 
         // create tokenAuthRecord
         Auth tokenGuestAuth = new Auth();
         tokenGuestAuth.setApiToken(API_TOKEN_GUEST);
-        Connection tokenGuestAuthConnection = new Connection(TestConstants.DOMAIN, tokenGuestAuth, GUEST_SPACE_ID);
+        Connection tokenGuestAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenGuestAuth, GUEST_SPACE_ID);
         this.tokenGuestAuthRecord = new Record(tokenGuestAuthConnection);
 
         // create guest connection
         Auth guestAuth = new Auth();
         guestAuth.setPasswordAuth(ADMIN_USER_NAME, ADMIN_USER_PASSWORD);
-        this.guestConnection = new Connection(TestConstants.DOMAIN, guestAuth, GUEST_SPACE_ID);
+        this.guestConnection = new Connection(TestConstantsSample.DOMAIN, guestAuth, GUEST_SPACE_ID);
 
         // create passwordAuthRecord
         Auth basicUserAuth = new Auth();
         basicUserAuth.setPasswordAuth(BASIC_USER_NAME, BASIC_USER_PASSWORD);
-        Connection basicUserAuthConnection = new Connection(TestConstants.DOMAIN, basicUserAuth);
+        Connection basicUserAuthConnection = new Connection(TestConstantsSample.DOMAIN, basicUserAuth);
         this.basicUserAuthRecord = new Record(basicUserAuthConnection);
     }
 
@@ -359,7 +359,7 @@ public class AddAllRecordsTest {
 
         Auth auth = new Auth();
         auth.setPasswordAuth(NO_PERMISSION_USER_NAME, NO_PERMISSION_USER_PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
         Record recordWitnNoPermission = new Record(connection);
         // Preprocessing
         ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();

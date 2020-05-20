@@ -13,8 +13,8 @@
 	<description>
 		[deprecated]kintone Java SDK for REST API.
 		The repository/library is deprecated.
-                It is recommended to use a new version of Java client library.  
-                https://github.com/kintone/kintone-java-client
+		It is recommended to use a new version of Java client library.
+		https://github.com/kintone/kintone-java-client
 	</description>
 
 	<properties>

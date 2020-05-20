@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -41,22 +41,22 @@ public class BulkRequestTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.connection = new Connection(TestConstants.DOMAIN, auth);
-        this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        this.connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.bulkRequest = new BulkRequest(this.connection);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
-        this.tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
-        this.tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        this.tokenConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
+        this.tokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.bulktokenRequest = new BulkRequest(this.tokenConnection);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        this.certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        this.certConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        this.certConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        this.certConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.bulkRequestCert = new BulkRequest(this.certConnection);
     }
 

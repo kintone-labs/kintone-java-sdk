@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
@@ -30,9 +30,9 @@ public class UpdateAllRecordsTest {
 	@Before
     public void setup() throws KintoneAPIException {
 		Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
-        passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
+        passwordAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
         
 //		// get maximum "数値"field value in all records and set it uniqueKey.

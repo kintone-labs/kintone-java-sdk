@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -57,53 +57,53 @@ public class updateRecordsTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         //passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
-        Connection tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection tokenConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         this.tokenRecordManagerment = new Record(tokenConnection);
 
         Auth tokenAuth3 = new Auth();
         tokenAuth3.setApiToken(PROHIBIT_DUPLICATE_API_TOKEN);
-        Connection tokenConnection3 = new Connection(TestConstants.DOMAIN, tokenAuth3);
+        Connection tokenConnection3 = new Connection(TestConstantsSample.DOMAIN, tokenAuth3);
         this.prohibitDuplicateTokenRecordManagerment = new Record(tokenConnection3);
 
         Auth tokenAuth4 = new Auth();
         tokenAuth4.setApiToken(REQUIRED_FIELD_API_TOKEN);
-        Connection tokenConnection4 = new Connection(TestConstants.DOMAIN, tokenAuth4);
+        Connection tokenConnection4 = new Connection(TestConstantsSample.DOMAIN, tokenAuth4);
         this.requiredFieldTokenRecordManagerment = new Record(tokenConnection4);
 
         Auth tokenAuth5 = new Auth();
         tokenAuth5.setApiToken(NO_ADD_PERMISSION_API_TOKEN);
-        Connection tokenConnection5 = new Connection(TestConstants.DOMAIN, tokenAuth5);
+        Connection tokenConnection5 = new Connection(TestConstantsSample.DOMAIN, tokenAuth5);
         this.noAddPermissionTokenReocrdManagerment = new Record(tokenConnection5);
 
         Auth tokenAuth6 = new Auth();
         tokenAuth6.setApiToken(ADD_NO_VIEW_API_TOKEN);
-        Connection tokenConnection6 = new Connection(TestConstants.DOMAIN, tokenAuth6);
+        Connection tokenConnection6 = new Connection(TestConstantsSample.DOMAIN, tokenAuth6);
         this.addNoViewTokenRecordManagerment = new Record(tokenConnection6);
 
         Auth tokenGuestAuth = new Auth();
         tokenGuestAuth.setApiToken(GUEST_SPACE_API_TOKEN);
-        Connection tokenGuestConnection = new Connection(TestConstants.DOMAIN, tokenGuestAuth,
-                TestConstants.GUEST_SPACE_ID);
+        Connection tokenGuestConnection = new Connection(TestConstantsSample.DOMAIN, tokenGuestAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
         this.tokenGuestRecordManagerment = new Record(tokenGuestConnection);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection certConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
         this.certRecordManagerment = new Record(certConnection);
 
         Auth certGuestAuth = new Auth();
-        certGuestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certGuestAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection CertGuestConnection = new Connection(TestConstants.SECURE_DOMAIN, certGuestAuth,
-                TestConstants.GUEST_SPACE_ID);
+        certGuestAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certGuestAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection CertGuestConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certGuestAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
         this.certGuestRecordManagerment = new Record(CertGuestConnection);
 
         // get maximum "数値"field value in all records and set it uniqueKey.
@@ -803,8 +803,8 @@ public class updateRecordsTest {
         AddRecordsResponse addResponse = this.passwordAuthRecordManagerment.addRecords(APP_ID, records);
 
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -856,8 +856,8 @@ public class updateRecordsTest {
         AddRecordsResponse addResponse = this.tokenRecordManagerment.addRecords(APP_ID, records);
 
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");
@@ -909,9 +909,9 @@ public class updateRecordsTest {
         AddRecordsResponse addResponse = this.certRecordManagerment.addRecords(APP_ID, records);
 
         Auth certauth = new Auth();
-        certauth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certauth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certauth);
+        certauth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certauth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certauth);
         File attachmet = new File(connection);
 
         FileModel file1 = attachmet.upload("src/test/resources/record/ValidRecordValue.txt");

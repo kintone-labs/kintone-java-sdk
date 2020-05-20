@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.model.file.DownloadRequest;
@@ -50,32 +50,32 @@ public class ConnectionTest {
     public void setup() throws KintoneAPIException {
 
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.passwordConnection = new Connection(TestConstants.DOMAIN, auth);
-        this.passwordConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.passwordConnection = new Connection(TestConstantsSample.DOMAIN, auth);
+        this.passwordConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
-        this.tokenAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
-        this.tokenAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        this.tokenAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
+        this.tokenAuthConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        this.certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        this.certConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        this.certConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        this.certConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         Auth guestSpaceAuth = new Auth();
-        guestSpaceAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.guestSpaceConnection = new Connection(TestConstants.DOMAIN, guestSpaceAuth, TestConstants.GUEST_SPACE_ID);
-        this.guestSpaceConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        guestSpaceAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.guestSpaceConnection = new Connection(TestConstantsSample.DOMAIN, guestSpaceAuth, TestConstantsSample.GUEST_SPACE_ID);
+        this.guestSpaceConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         Auth guestSpaceCertAuth = new Auth();
-        guestSpaceCertAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        guestSpaceCertAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        this.guestSpaceCertConnection = new Connection(TestConstants.DOMAIN, guestSpaceCertAuth,
-                TestConstants.GUEST_SPACE_ID);
-        this.guestSpaceCertConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        guestSpaceCertAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        guestSpaceCertAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        this.guestSpaceCertConnection = new Connection(TestConstantsSample.DOMAIN, guestSpaceCertAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
+        this.guestSpaceCertConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class ConnectionTest {
     @Test
     public void testGetRequestShouldSuccessInGuestSpace() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
         JsonElement result = this.guestSpaceConnection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP,
                 body.toString());
         assertNotNull(result);
@@ -121,7 +121,7 @@ public class ConnectionTest {
     @Test
     public void testGetRequestShouldSuccessInGuestSpaceWithClientCert() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
         JsonElement result = this.guestSpaceCertConnection.request(ConnectionConstants.GET_REQUEST,
                 ConnectionConstants.APP, body.toString());
         assertNotNull(result);
@@ -131,9 +131,9 @@ public class ConnectionTest {
     @Test
     public void testGetRequestSetAuthShouldSuccess() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
         Connection connection = this.passwordConnection.setAuth(auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -146,10 +146,10 @@ public class ConnectionTest {
     @Test
     public void testGetRequestSetAuthShouldSuccessWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
         Connection connection = this.certConnection.setAuth(certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -164,10 +164,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testDownloadShouldFailWhenWrongUserWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         String fileKey = "xxx";
         DownloadRequest request = new DownloadRequest(fileKey);
@@ -181,12 +181,12 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testUploadShouldFailWhenWrongUserWithClientCert() throws Exception {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
-        File uploadFile = new File(TestConstants.UPLOAD_PATH + "test.txt");
+        File uploadFile = new File(TestConstantsSample.UPLOAD_PATH + "test.txt");
         this.certConnection.uploadFile(uploadFile.getName(), new FileInputStream(uploadFile.getAbsolutePath()));
     }
 
@@ -195,10 +195,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithWrongUserClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -208,10 +208,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithOtherUserPasswordCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, "123");
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, "123");
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -221,10 +221,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithOtherUserUsernameCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth("yfang1", TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth("yfang1", TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -235,10 +235,10 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithExpiredClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
         certAuth.setPasswordAuth("user2", "user2");
-        certAuth.setClientCertByPath(TestConstants.EXPIRED_CLIENT_CERT_PATH,
-                TestConstants.EXPIRED_CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setClientCertByPath(TestConstantsSample.EXPIRED_CLIENT_CERT_PATH,
+                TestConstantsSample.EXPIRED_CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -250,10 +250,10 @@ public class ConnectionTest {
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
         certAuth.setPasswordAuth("user2", "user2");
-        InputStream cert = new FileInputStream(TestConstants.EXPIRED_CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.EXPIRED_CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        InputStream cert = new FileInputStream(TestConstantsSample.EXPIRED_CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.EXPIRED_CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -263,11 +263,11 @@ public class ConnectionTest {
     @Test
     public void testGetRequestShouldSuccessWithInputStreamCert() throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -279,10 +279,10 @@ public class ConnectionTest {
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
         certAuth.setPasswordAuth("user2", "user2");
-        InputStream cert = new FileInputStream(TestConstants.EXPIRED_CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.EXPIRED_CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        InputStream cert = new FileInputStream(TestConstantsSample.EXPIRED_CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.EXPIRED_CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -293,11 +293,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWrongPasswordCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
         certAuth.setClientCert(cert, "123");
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -310,11 +310,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWithOtherUserClientCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -325,11 +325,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWithWrongLoginNameClientCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth("abc", TestConstants.PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth("abc", TestConstantsSample.PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -340,11 +340,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWithWrongLoginPasswordClientCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, "abc");
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, "abc");
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -355,11 +355,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWithOtherUserPasswordClientCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.ADMIN_PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -370,11 +370,11 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithInputStreamWithOtherUserNameClientCert()
             throws KintoneAPIException, FileNotFoundException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.PASSWORD);
-        InputStream cert = new FileInputStream(TestConstants.CLIENT_CERT_PATH);
-        certAuth.setClientCert(cert, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.PASSWORD);
+        InputStream cert = new FileInputStream(TestConstantsSample.CLIENT_CERT_PATH);
+        certAuth.setClientCert(cert, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -384,9 +384,9 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithSecureLinkWithoutCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -396,9 +396,9 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongDomain() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.WRONG_DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.WRONG_DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -408,10 +408,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongDomainWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.WRONG_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.WRONG_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -421,34 +421,34 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestInGuestSpaceShouldFailWhenGivenWrongDomain() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.WRONG_DOMAIN, auth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.WRONG_DOMAIN, auth, TestConstantsSample.GUEST_SPACE_ID);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
         connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP, body.toString());
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestInGuestSpaceShouldFailWhenGivenWrongDomainWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.WRONG_DOMAIN, certAuth, TestConstants.GUEST_SPACE_ID);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.WRONG_DOMAIN, certAuth, TestConstantsSample.GUEST_SPACE_ID);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
         connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP, body.toString());
     }
 
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongUsername() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth("dddd", TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth("dddd", TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -458,10 +458,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongUsernameWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth("dddd", TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth("dddd", TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -471,9 +471,9 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestsetAuthShouldFailWhenGivenWrongUsername() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth("dddd", TestConstants.PASSWORD);
+        auth.setPasswordAuth("dddd", TestConstantsSample.PASSWORD);
         Connection connection = this.passwordConnection.setAuth(auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -483,10 +483,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestsetAuthShouldFailWhenGivenWrongUsernameWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth("dddd", TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
+        certAuth.setPasswordAuth("dddd", TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
         Connection connection = this.certConnection.setAuth(certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -496,9 +496,9 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongPassword() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, "dddd");
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, "dddd");
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -508,10 +508,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongPasswordWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, "dddd");
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, "dddd");
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -521,9 +521,9 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestSetAuthShouldFailWhenGivenWrongPassword() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, "dddd");
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, "dddd");
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -533,10 +533,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestSetAuthShouldFailWhenGivenWrongPasswordWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, "dddd");
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, "dddd");
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
         Connection connection = this.certConnection.setAuth(certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -553,10 +553,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWhenGivenWrongSpaceIdWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", 10000);
@@ -567,8 +567,8 @@ public class ConnectionTest {
     public void testGetRequestShouldFailWithWrongTokenAuthentication() throws KintoneAPIException {
         Auth auth = new Auth();
         auth.setApiToken("");
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -578,10 +578,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithWrongClientCertPathCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.WRONG_CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.WRONG_CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -591,10 +591,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestShouldFailWithWrongClientPasswordCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, "111");
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, "111");
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -606,9 +606,9 @@ public class ConnectionTest {
             throws KintoneAPIException {
         Auth auth = new Auth();
         auth.setApiToken(API_TOKEN);
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -622,10 +622,10 @@ public class ConnectionTest {
     public void testGetRequestShouldSuccessWhenTokenAuthenticationNotAllowWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
         certAuth.setApiToken(API_TOKEN);
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -640,9 +640,9 @@ public class ConnectionTest {
             throws KintoneAPIException {
         Auth auth = new Auth();
         auth.setApiToken(API_TOKEN);
-        auth.setPasswordAuth("ABC", TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth("ABC", TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -653,10 +653,10 @@ public class ConnectionTest {
     public void testGetRequestWithInvalidClientCertShouldFailWhenTokenAuthenticationAllow() throws KintoneAPIException {
         Auth certAuth = new Auth();
         certAuth.setApiToken(API_TOKEN);
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.WRONG_CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.WRONG_CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", APP_ID);
@@ -667,10 +667,10 @@ public class ConnectionTest {
     public void testGetRequestShouldSuccessWithBasicAuthentication() throws KintoneAPIException {
 
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        auth.setBasicAuth(TestConstants.BASIC_USERNAME, TestConstants.BASIC_PASSWORD);
-        Connection connection = new Connection(TestConstants.BASIC_DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        auth.setBasicAuth(TestConstantsSample.BASIC_USERNAME, TestConstantsSample.BASIC_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.BASIC_DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", 1);
@@ -684,9 +684,9 @@ public class ConnectionTest {
     public void testGetRequestWithPasswordAuthenticationShouldFailWithBasicAuthenticationSite()
             throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        Connection connection = new Connection(TestConstants.BASIC_DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.BASIC_DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", 1);
@@ -696,10 +696,10 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestWithClientCertShouldFailWithBasicAuthenticationSite() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.BASIC_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.BASIC_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", 1);
@@ -709,11 +709,11 @@ public class ConnectionTest {
     @Test
     public void testGetRequestShouldSuccessWhenGivenBasicAuthenticationWithClientCert() throws KintoneAPIException {
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.ADMIN_USERNAME, TestConstants.ADMIN_PASSWORD);
-        certAuth.setBasicAuth(TestConstants.BASIC_USERNAME, TestConstants.BASIC_PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.BASIC_DOMAIN, certAuth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.ADMIN_USERNAME, TestConstantsSample.ADMIN_PASSWORD);
+        certAuth.setBasicAuth(TestConstantsSample.BASIC_USERNAME, TestConstantsSample.BASIC_PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.BASIC_DOMAIN, certAuth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         JsonObject body = new JsonObject();
         body.addProperty("id", 1);
@@ -893,7 +893,7 @@ public class ConnectionTest {
     @Test
     public void testGetRequestInGuestSpaceShouldSuccessWithPasswordAuthentication() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonElement result = this.guestSpaceConnection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP,
                 body.toString());
@@ -904,7 +904,7 @@ public class ConnectionTest {
     @Test
     public void testGetRequestInGuestSpaceShouldSuccessWithClientCert() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonElement result = this.guestSpaceCertConnection.request(ConnectionConstants.GET_REQUEST,
                 ConnectionConstants.APP, body.toString());
@@ -915,11 +915,11 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestInGuestSpaceShouldFailWhenGivenInvalidSpaceId() throws KintoneAPIException {
         Auth guestSpaceAuth = new Auth();
-        guestSpaceAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, guestSpaceAuth, 10000);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        guestSpaceAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, guestSpaceAuth, 10000);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP, body.toString());
     }
@@ -927,12 +927,12 @@ public class ConnectionTest {
     @Test(expected = KintoneAPIException.class)
     public void testGetRequestInGuestSpaceShouldFailWhenGivenInvalidSpaceIdWithClientCert() throws KintoneAPIException {
         Auth guestSpaceCertAuth = new Auth();
-        guestSpaceCertAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        guestSpaceCertAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection connection = new Connection(TestConstants.SECURE_DOMAIN, guestSpaceCertAuth, 10000);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        guestSpaceCertAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        guestSpaceCertAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.SECURE_DOMAIN, guestSpaceCertAuth, 10000);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         JsonObject body = new JsonObject();
-        body.addProperty("id", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("id", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         connection.request(ConnectionConstants.GET_REQUEST, ConnectionConstants.APP, body.toString());
     }
@@ -940,7 +940,7 @@ public class ConnectionTest {
     @Test
     public void testPostRequestInGuestSpaceShouldSuccess() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonObject textField = new JsonObject();
         textField.addProperty("value", "test");
@@ -956,7 +956,7 @@ public class ConnectionTest {
     @Test
     public void testPostRequestInGuestSpaceShouldSuccessWithClientCert() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonObject textField = new JsonObject();
         textField.addProperty("value", "test");
@@ -972,7 +972,7 @@ public class ConnectionTest {
     @Test
     public void testPutRequestInGuestSpaceShouldSuccess() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
         body.addProperty("id", 806);
 
         JsonObject textField = new JsonObject();
@@ -992,7 +992,7 @@ public class ConnectionTest {
     @Test
     public void testPutRequestInGuestSpaceShouldSuccessWithClientCert() throws KintoneAPIException {
         JsonObject body = new JsonObject();
-        body.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        body.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
         body.addProperty("id", 826);
 
         JsonObject textField = new JsonObject();
@@ -1012,7 +1012,7 @@ public class ConnectionTest {
     @Test
     public void testDeleteRequestInGuestSpaceShouldSuccess() throws KintoneAPIException {
         JsonObject postBody = new JsonObject();
-        postBody.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        postBody.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonObject textField = new JsonObject();
         textField.addProperty("value", "test");
@@ -1029,7 +1029,7 @@ public class ConnectionTest {
             String id = postResult.getAsJsonObject().get("id").getAsString();
 
             JsonObject deleteBody = new JsonObject();
-            deleteBody.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+            deleteBody.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
             JsonArray ids = new JsonArray();
             ids.add(id);
@@ -1046,7 +1046,7 @@ public class ConnectionTest {
     @Test
     public void testDeleteRequestInGuestSpaceShouldSuccessWithClientCert() throws KintoneAPIException {
         JsonObject postBody = new JsonObject();
-        postBody.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+        postBody.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
         JsonObject textField = new JsonObject();
         textField.addProperty("value", "test");
@@ -1062,7 +1062,7 @@ public class ConnectionTest {
             String id = postResult.getAsJsonObject().get("id").getAsString();
 
             JsonObject deleteBody = new JsonObject();
-            deleteBody.addProperty("app", TestConstants.GUEST_SPACE_APP_ID);
+            deleteBody.addProperty("app", TestConstantsSample.GUEST_SPACE_APP_ID);
 
             JsonArray ids = new JsonArray();
             ids.add(id);
@@ -1079,7 +1079,7 @@ public class ConnectionTest {
     @Test
     public void testUploadFileShouldSuccess() throws KintoneAPIException {
 
-        File uploadFile = new File(TestConstants.UPLOAD_PATH + "test.txt");
+        File uploadFile = new File(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         JsonElement result = null;
         try {
@@ -1096,7 +1096,7 @@ public class ConnectionTest {
     @Test
     public void testUploadFileShouldSuccessWithTokenAuthentication() throws KintoneAPIException {
 
-        File uploadFile = new File(TestConstants.UPLOAD_PATH + "test.txt");
+        File uploadFile = new File(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         JsonElement result = null;
         try {
@@ -1113,7 +1113,7 @@ public class ConnectionTest {
     @Test
     public void testUploadFileShouldSuccessWithClientCert() throws KintoneAPIException {
 
-        File uploadFile = new File(TestConstants.UPLOAD_PATH + "test.txt");
+        File uploadFile = new File(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         JsonElement result = null;
         try {
@@ -1206,9 +1206,9 @@ public class ConnectionTest {
     @Test
     public void testGetPathURIWhenGuestSpaceIdBiggerThanZeroShouldSuccess() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth, 163);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth, 163);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         String pathURI = connection.getPathURI(ConnectionConstants.APP_DEPLOY_PREVIEW);
         assertEquals("/k/guest/163/v1/preview/app/deploy.json", pathURI);
@@ -1217,9 +1217,9 @@ public class ConnectionTest {
     @Test
     public void testGetPathURIWhenGuestSpaceIdSmallerThanZeroShouldSuccess() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection connection = new Connection(TestConstants.DOMAIN, auth, -1);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth, -1);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
 
         String pathURI = connection.getPathURI(ConnectionConstants.APP_DEPLOY_PREVIEW);
         assertEquals("/k/v1/preview/app/deploy.json", pathURI);

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -24,10 +24,10 @@ public class CreateCursorTest {
     private static Integer APP_ID2 = 8;
     private static Integer APP_ID3 = 9;
     private static Integer APP_ID4 = 10;
-    private static String apiTokenCanReadRec = TestConstants.API_TOKEN;
-    private static String apiTokenCanReadRec2 = TestConstants.HAAPI_TOKEN;
-    private static String LOCALUSERNAME = TestConstants.BASIC_USERNAME;
-    private static String LOCALPASSWORD = TestConstants.BASIC_PASSWORD;
+    private static String apiTokenCanReadRec = TestConstantsSample.API_TOKEN;
+    private static String apiTokenCanReadRec2 = TestConstantsSample.HAAPI_TOKEN;
+    private static String LOCALUSERNAME = TestConstantsSample.BASIC_USERNAME;
+    private static String LOCALPASSWORD = TestConstantsSample.BASIC_PASSWORD;
 
     private RecordCursor passwordAuthRecordCursor;
     private RecordCursor passwordAuthRecordCursor2;
@@ -78,30 +78,30 @@ public class CreateCursorTest {
     public void setup() throws KintoneAPIException {
 
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
         this.recordManagerment = new Record(passwordAuthConnection);
 
         Auth passwordAuth2 = new Auth();
         passwordAuth2.setPasswordAuth(LOCALUSERNAME, LOCALPASSWORD);
-        Connection passwordAuthConnection2 = new Connection(TestConstants.DOMAIN, passwordAuth2);
+        Connection passwordAuthConnection2 = new Connection(TestConstantsSample.DOMAIN, passwordAuth2);
         this.passwordAuthRecordCursor2 = new RecordCursor(passwordAuthConnection2);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenCanReadRec);
-        Connection apiAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection apiAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         this.apiTokenAuthRecordCursor = new RecordCursor(apiAuthConnection);
 
         Auth tokenAuth2 = new Auth();
         tokenAuth2.setApiToken(apiTokenCanReadRec2);
-        Connection apiAuthConnection2 = new Connection(TestConstants.DOMAIN, tokenAuth2);
+        Connection apiAuthConnection2 = new Connection(TestConstantsSample.DOMAIN, tokenAuth2);
         this.apiTokenAuthRecordCursor2 = new RecordCursor(apiAuthConnection2);
 
         Auth passwordAuthCert = new Auth();
-        passwordAuthCert.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        passwordAuthCert.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        passwordAuthCert.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        passwordAuthCert.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection passwordAuthConnectionCert = new Connection(TestConstantsSample.DOMAIN, passwordAuthCert);
         this.passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         this.testRecord1 = createTestRecord();

@@ -1,6 +1,6 @@
 package com.cybozu.kintone.client;
 
-public class TestConstants {
+public class TestConstantsSample {
     public static final String DOMAIN = "https://xxx.cybozu.com";
     public static final String HADOMAIN = "https://xxx.cybozu-dev.com";
     public static final String BASIC_DOMAIN = "https://xxx.cybozu-dev.com";

@@ -1,7 +1,7 @@
 package com.cybozu.kintone.client.module.record;
 
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.BulksException;
@@ -18,9 +18,9 @@ public class DeleteAllRecordsByQueryTest {
     @Before
     public void setup() {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT, TestConstantsSample.PROXY_USERNAME, TestConstantsSample.PROXY_PASSWORD);
     }
 
     @Test

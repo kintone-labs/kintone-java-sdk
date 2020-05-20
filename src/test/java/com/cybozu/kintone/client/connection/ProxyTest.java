@@ -1,6 +1,6 @@
 package com.cybozu.kintone.client.connection;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
 import com.cybozu.kintone.client.module.app.App;
@@ -41,14 +41,14 @@ public class ProxyTest {
     public void setup() {
         clearAuthCache();
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
         this.auth = auth;
     }
 
     @Test(expected = KintoneAPIException.class)
     public void checkAppWithWrongAccount() throws KintoneAPIException {
-        Connection connection2 = new Connection(TestConstants.DOMAIN, auth);
-        connection2.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, "xxx", "xxx");
+        Connection connection2 = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection2.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT, "xxx", "xxx");
 
         App app2 = new App(connection2);
         app2.getApp(APP_ID).getAppId();
@@ -56,8 +56,8 @@ public class ProxyTest {
 
     @Test(expected = KintoneAPIException.class)
     public void checkAppWithEmptyAccount() throws KintoneAPIException {
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, "", "");
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT, "", "");
 
         App app = new App(connection);
         app.getApp(APP_ID).getAppId();
@@ -66,8 +66,8 @@ public class ProxyTest {
 
     @Test(expected = KintoneAPIException.class)
     public void checkAppWithoutAccount() throws KintoneAPIException {
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         App app = new App(connection);
         app.getApp(APP_ID).getAppId();
     }
@@ -78,8 +78,8 @@ public class ProxyTest {
         sslcontext.init(new KeyManager[0], new TrustManager[] {new TrustAnyTrustManager()}, new SecureRandom());
         SSLContext.setDefault(sslcontext);
         
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setHttpsProxy(TestConstants.PROXY_HOST_HTTPS, TestConstants.PROXY_PORT_HTTPS, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setHttpsProxy(TestConstantsSample.PROXY_HOST_HTTPS, TestConstantsSample.PROXY_PORT_HTTPS, TestConstantsSample.PROXY_USERNAME, TestConstantsSample.PROXY_PASSWORD);
         App app = new App(connection);
 
         app.getApp(APP_ID).getAppId();
@@ -87,8 +87,8 @@ public class ProxyTest {
 
     @Test
     public void checkAppWithRightAccount() throws KintoneAPIException {
-        Connection connection = new Connection(TestConstants.DOMAIN, auth);
-        connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT, TestConstants.PROXY_USERNAME, TestConstants.PROXY_PASSWORD);
+        Connection connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT, TestConstantsSample.PROXY_USERNAME, TestConstantsSample.PROXY_PASSWORD);
         App app = new App(connection);
 
         Assert.assertNotNull(app.getApp(APP_ID).getAppId());

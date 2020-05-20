@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -24,18 +24,18 @@ import com.cybozu.kintone.client.module.recordCursor.RecordCursor;
 public class GetRecordsTest {
     private static Integer APP_ID = 5;
 
-    String apiTokenCanReadRec = TestConstants.API_TOKEN;
-    String apiTokenHasNoPermission = TestConstants.HAAPI_TOKEN;
+    String apiTokenCanReadRec = TestConstantsSample.API_TOKEN;
+    String apiTokenHasNoPermission = TestConstantsSample.HAAPI_TOKEN;
 
-    String nameOfUserHasLimitedPermission = TestConstants.ADMIN_USERNAME;
-    String passOfUserHasLimitedPermission = TestConstants.ADMIN_PASSWORD;
-    String certPathOfUserHasLimitedPermission = TestConstants.CLIENT_CERT_PATH;
-    String certPassOfUserHasLimitedPermission = TestConstants.CLIENT_CERT_PASSWORD;
+    String nameOfUserHasLimitedPermission = TestConstantsSample.ADMIN_USERNAME;
+    String passOfUserHasLimitedPermission = TestConstantsSample.ADMIN_PASSWORD;
+    String certPathOfUserHasLimitedPermission = TestConstantsSample.CLIENT_CERT_PATH;
+    String certPassOfUserHasLimitedPermission = TestConstantsSample.CLIENT_CERT_PASSWORD;
 
-    String nameOfUserHasNoPermission = TestConstants.BASIC_USERNAME;
-    String passOfUserHasNoPermission = TestConstants.BASIC_PASSWORD;
-    String certPathOfUserHasNoPermission = TestConstants.HACLIENT_CERT_PATH;
-    String certPassOfUserHasNoPermission = TestConstants.HACLIENT_CERT_PASSWORD;
+    String nameOfUserHasNoPermission = TestConstantsSample.BASIC_USERNAME;
+    String passOfUserHasNoPermission = TestConstantsSample.BASIC_PASSWORD;
+    String certPathOfUserHasNoPermission = TestConstantsSample.HACLIENT_CERT_PATH;
+    String certPassOfUserHasNoPermission = TestConstantsSample.HACLIENT_CERT_PASSWORD;
 
     private RecordCursor passwordAuthRecordCursor;
     private RecordCursor passwordAuthRecordCursorCert;
@@ -84,20 +84,20 @@ public class GetRecordsTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
         this.recordManagerment = new Record(passwordAuthConnection);
 
         Auth passwordAuthCert = new Auth();
-        passwordAuthCert.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        passwordAuthCert.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        passwordAuthCert.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        passwordAuthCert.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection passwordAuthConnectionCert = new Connection(TestConstantsSample.DOMAIN, passwordAuthCert);
         this.passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenCanReadRec);
-        Connection apiAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection apiAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         this.apiTokenAuthRecordCursor = new RecordCursor(apiAuthConnection);
 
         this.testRecord1 = createTestRecord();
@@ -171,7 +171,7 @@ public class GetRecordsTest {
     public void testGetRecordsShouldSuccessWithOneRecord() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -191,7 +191,7 @@ public class GetRecordsTest {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
         passwordAuthCert.setClientCertByPath(certPathOfUserHasLimitedPermission, certPassOfUserHasLimitedPermission);
-        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        Connection passwordAuthConnectionCert = new Connection(TestConstantsSample.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -224,7 +224,7 @@ public class GetRecordsTest {
     public void testGetRecordsShouldFailWithInvalidUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         this.passwordAuthRecordCursor = new RecordCursor(passwordAuthConnection);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -241,7 +241,7 @@ public class GetRecordsTest {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasNoPermission, passOfUserHasNoPermission);
         passwordAuthCert.setClientCertByPath(certPathOfUserHasNoPermission, certPassOfUserHasNoPermission);
-        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        Connection passwordAuthConnectionCert = new Connection(TestConstantsSample.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -257,7 +257,7 @@ public class GetRecordsTest {
     public void testGetRecordsShouldFailWithInvalidToken() throws KintoneAPIException {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenHasNoPermission);
-        Connection tokenAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection tokenAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         RecordCursor tokenAuthRecordCursor = new RecordCursor(tokenAuthConnection);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -312,7 +312,7 @@ public class GetRecordsTest {
     public void testGetRecordsShouldFailWithStrangeUser() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
         passwordAuth.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         RecordCursor recordCursor = new RecordCursor(passwordAuthConnection);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -329,7 +329,7 @@ public class GetRecordsTest {
         Auth passwordAuthCert = new Auth();
         passwordAuthCert.setPasswordAuth(nameOfUserHasLimitedPermission, passOfUserHasLimitedPermission);
         passwordAuthCert.setClientCertByPath(certPassOfUserHasLimitedPermission, certPassOfUserHasLimitedPermission);
-        Connection passwordAuthConnectionCert = new Connection(TestConstants.DOMAIN, passwordAuthCert);
+        Connection passwordAuthConnectionCert = new Connection(TestConstantsSample.DOMAIN, passwordAuthCert);
         RecordCursor passwordAuthRecordCursorCert = new RecordCursor(passwordAuthConnectionCert);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();
@@ -345,7 +345,7 @@ public class GetRecordsTest {
     public void testGetRecordsShouldFailWithStrangeUserToken() throws KintoneAPIException {
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(apiTokenCanReadRec);
-        Connection tokenAuthConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection tokenAuthConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         RecordCursor tokenAuthRecordCursor = new RecordCursor(tokenAuthConnection);
 
         Integer lowerLimit = (Integer) this.testRecord1.get("数値").getValue();

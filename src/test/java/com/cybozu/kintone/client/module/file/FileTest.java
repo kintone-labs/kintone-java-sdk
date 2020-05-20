@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -39,28 +39,28 @@ public class FileTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth auth = new Auth();
-        auth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        this.connection = new Connection(TestConstants.DOMAIN, auth);
-        this.connection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        auth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        this.connection = new Connection(TestConstantsSample.DOMAIN, auth);
+        this.connection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.file = new File(this.connection);
 
         Auth tokenauth = new Auth();
         tokenauth.setApiToken(API_TOKEN);
-        this.tokenConnection = new Connection(TestConstants.DOMAIN, tokenauth);
-        this.tokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        this.tokenConnection = new Connection(TestConstantsSample.DOMAIN, tokenauth);
+        this.tokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.tokenFile = new File(this.tokenConnection);
 
         Auth noPermissiontokenauth = new Auth();
         noPermissiontokenauth.setApiToken(NO_DOWNLOAD_PERMISSION_API_TOKEN);
-        this.noPermissionTokenConnection = new Connection(TestConstants.DOMAIN, noPermissiontokenauth);
-        this.noPermissionTokenConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        this.noPermissionTokenConnection = new Connection(TestConstantsSample.DOMAIN, noPermissiontokenauth);
+        this.noPermissionTokenConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.noDownloadPermissionTokenFile = new File(this.noPermissionTokenConnection);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        this.certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
-        this.certConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        this.certConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
+        this.certConnection.setProxy(TestConstantsSample.PROXY_HOST, TestConstantsSample.PROXY_PORT);
         this.certFile = new File(this.certConnection);
     }
 
@@ -71,7 +71,7 @@ public class FileTest {
         AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
         Integer id = addResponse.getID();
 
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
@@ -103,7 +103,7 @@ public class FileTest {
         AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
         Integer id = addResponse.getID();
 
-        FileModel fileModel = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
@@ -135,7 +135,7 @@ public class FileTest {
         AddRecordResponse addResponse = recordManagement.addRecord(APP_ID, addRecord);
         Integer id = addResponse.getID();
 
-        FileModel fileModel = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
+        FileModel fileModel = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
 
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
@@ -180,7 +180,7 @@ public class FileTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUploadFailForNonExistPath() throws KintoneAPIException {
-        FileModel fileModel = this.file.upload(TestConstants.UPLOAD_PATH + "1");
+        FileModel fileModel = this.file.upload(TestConstantsSample.UPLOAD_PATH + "1");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
@@ -196,7 +196,7 @@ public class FileTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUploadFailForNonExistPathToken() throws KintoneAPIException {
-        FileModel fileModel = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "1");
+        FileModel fileModel = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "1");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
@@ -212,7 +212,7 @@ public class FileTest {
 
     @Test(expected = KintoneAPIException.class)
     public void testUploadFailForNonExistPathCert() throws KintoneAPIException {
-        FileModel fileModel = this.certFile.upload(TestConstants.UPLOAD_PATH + "1");
+        FileModel fileModel = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "1");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
         ArrayList<FileModel> al = new ArrayList<>();
         al.add(fileModel);
@@ -228,9 +228,9 @@ public class FileTest {
 
     @Test
     public void testUploadSuccessForMultiFileInMultiClass() throws KintoneAPIException {
-        FileModel fileModel1 = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.file.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.file.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -272,9 +272,9 @@ public class FileTest {
 
     @Test
     public void testUploadSuccessForMultiFileInMultiClassToken() throws KintoneAPIException {
-        FileModel fileModel1 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -316,9 +316,9 @@ public class FileTest {
 
     @Test
     public void testUploadSuccessForMultiFileInMultiClassCert() throws KintoneAPIException {
-        FileModel fileModel1 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -360,9 +360,9 @@ public class FileTest {
 
     @Test
     public void testUploadSuccessForMultiFileInOneClass() throws KintoneAPIException {
-        FileModel fileModel1 = this.file.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.file.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.file.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.file.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -394,9 +394,9 @@ public class FileTest {
     @Test
     public void testUploadSuccessForMultiFileInOneClassToken() throws KintoneAPIException {
 
-        FileModel fileModel1 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.tokenFile.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.tokenFile.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -428,9 +428,9 @@ public class FileTest {
     @Test
     public void testUploadSuccessForMultiFileInOneClassCert() throws KintoneAPIException {
 
-        FileModel fileModel1 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.txt");
-        FileModel fileModel2 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.pptx");
-        FileModel fileModel3 = this.certFile.upload(TestConstants.UPLOAD_PATH + "test.xlsx");
+        FileModel fileModel1 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.txt");
+        FileModel fileModel2 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.pptx");
+        FileModel fileModel3 = this.certFile.upload(TestConstantsSample.UPLOAD_PATH + "test.xlsx");
         HashMap<String, FieldValue> testRecord = new HashMap<String, FieldValue>();
 
         ArrayList<FileModel> al = new ArrayList<>();
@@ -499,7 +499,7 @@ public class FileTest {
         ArrayList<FileModel> fileList = (ArrayList<FileModel>) fileVal.getValue();
         // ファイルダウンロード
         FileModel fdata = fileList.get(0);
-        this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        this.file.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test
@@ -512,7 +512,7 @@ public class FileTest {
         ArrayList<FileModel> fileList = (ArrayList<FileModel>) fileVal.getValue();
         // ファイルダウンロード
         FileModel fdata = fileList.get(0);
-        this.tokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        this.tokenFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test
@@ -525,7 +525,7 @@ public class FileTest {
         ArrayList<FileModel> fileList = (ArrayList<FileModel>) fileVal.getValue();
         // ファイルダウンロード
         FileModel fdata = fileList.get(0);
-        this.certFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        this.certFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -537,7 +537,7 @@ public class FileTest {
         ArrayList<FileModel> fileList = (ArrayList<FileModel>) fileVal.getValue();
 
         FileModel fdata = fileList.get(0);
-        this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        this.file.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -550,7 +550,7 @@ public class FileTest {
 
         FileModel fdata = fileList.get(0);
         noDownloadPermissionTokenFile.download(fdata.getFileKey(),
-                TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+                TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test(expected = KintoneAPIException.class)
@@ -563,7 +563,7 @@ public class FileTest {
 
         FileModel fdata = fileList.get(0);
         File noPermissionCertFile = new File(certConnection);
-        noPermissionCertFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+        noPermissionCertFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
     }
 
     @Test
@@ -577,7 +577,7 @@ public class FileTest {
         // ファイルダウンロード
         for (int i = 0; i < fileList.size(); i++) {
             FileModel fdata = fileList.get(i);
-            this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "2/" + i + ".txt");
+            this.file.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "2/" + i + ".txt");
         }
     }
 
@@ -592,7 +592,7 @@ public class FileTest {
         // ファイルダウンロード
         for (int i = 0; i < fileList.size(); i++) {
             FileModel fdata = fileList.get(i);
-            this.tokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "2/" + i + ".txt");
+            this.tokenFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "2/" + i + ".txt");
         }
     }
 
@@ -607,7 +607,7 @@ public class FileTest {
         // ファイルダウンロード
         for (int i = 0; i < fileList.size(); i++) {
             FileModel fdata = fileList.get(i);
-            this.certFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "2/" + i + ".txt");
+            this.certFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "2/" + i + ".txt");
         }
     }
 
@@ -623,7 +623,7 @@ public class FileTest {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
             this.file.download("12345678910abcdefghijklmnopqrstuvwxyz",
-                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+                    TestConstantsSample.DOWNLOAD_PATH + "2/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
@@ -641,7 +641,7 @@ public class FileTest {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
             this.tokenFile.download("12345678910abcdefghijklmnopqrstuvwxyz",
-                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+                    TestConstantsSample.DOWNLOAD_PATH + "2/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
@@ -660,7 +660,7 @@ public class FileTest {
             // ファイルのダウンロード
             FileModel fdata = fileList.get(0);
             this.certFile.download("12345678910abcdefghijklmnopqrstuvwxyz",
-                    TestConstants.DOWNLOAD_PATH + "2/" + fdata.getName());
+                    TestConstantsSample.DOWNLOAD_PATH + "2/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: 12345678910abcdefghijklmnopqrstuvwxyz）が見つかりません。", ke.getMessage());
         }
@@ -676,7 +676,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            this.file.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+            this.file.download(null, TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
@@ -692,7 +692,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            tokenFile.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+            tokenFile.download(null, TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
@@ -708,7 +708,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            this.certFile.download(null, TestConstants.DOWNLOAD_PATH + "1/" + fdata.getName());
+            this.certFile.download(null, TestConstantsSample.DOWNLOAD_PATH + "1/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("指定したファイル（id: null）が見つかりません。", ke.getMessage());
         }
@@ -724,7 +724,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            this.file.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
+            this.file.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "3/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }
@@ -740,7 +740,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            this.tokenFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
+            this.tokenFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "3/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }
@@ -756,7 +756,7 @@ public class FileTest {
 
         try {
             FileModel fdata = fileList.get(0);
-            this.certFile.download(fdata.getFileKey(), TestConstants.DOWNLOAD_PATH + "3/" + fdata.getName());
+            this.certFile.download(fdata.getFileKey(), TestConstantsSample.DOWNLOAD_PATH + "3/" + fdata.getName());
         } catch (KintoneAPIException ke) {
             assertEquals("an error occurred while receiving data", ke.getMessage());
         }

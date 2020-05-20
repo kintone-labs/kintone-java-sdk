@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cybozu.kintone.client.TestConstants;
+import com.cybozu.kintone.client.TestConstantsSample;
 import com.cybozu.kintone.client.authentication.Auth;
 import com.cybozu.kintone.client.connection.Connection;
 import com.cybozu.kintone.client.exception.KintoneAPIException;
@@ -45,48 +45,48 @@ public class deleteRecordsTest {
     @Before
     public void setup() throws KintoneAPIException {
         Auth passwordAuth = new Auth();
-        passwordAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection passwordAuthConnection = new Connection(TestConstants.DOMAIN, passwordAuth);
+        passwordAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection passwordAuthConnection = new Connection(TestConstantsSample.DOMAIN, passwordAuth);
         //passwordAuthConnection.setProxy(TestConstants.PROXY_HOST, TestConstants.PROXY_PORT);
         this.passwordAuthRecordManagerment = new Record(passwordAuthConnection);
 
         Auth guestAuth = new Auth();
-        guestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        Connection gusetConnection = new Connection(TestConstants.DOMAIN, guestAuth, TestConstants.GUEST_SPACE_ID);
+        guestAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        Connection gusetConnection = new Connection(TestConstantsSample.DOMAIN, guestAuth, TestConstantsSample.GUEST_SPACE_ID);
         this.guestAuthRecordManagerment = new Record(gusetConnection);
 
         Auth tokenAuth = new Auth();
         tokenAuth.setApiToken(API_TOKEN);
-        Connection tokenConnection = new Connection(TestConstants.DOMAIN, tokenAuth);
+        Connection tokenConnection = new Connection(TestConstantsSample.DOMAIN, tokenAuth);
         this.tokenRecordManagerment = new Record(tokenConnection);
 
         Auth tokenAuth8 = new Auth();
         tokenAuth8.setApiToken(NO_DELETE_PERMISSION_API_TOKEN);
-        Connection tokenConnection8 = new Connection(TestConstants.DOMAIN, tokenAuth8);
+        Connection tokenConnection8 = new Connection(TestConstantsSample.DOMAIN, tokenAuth8);
         this.noDeletePermissionRecordManagerment = new Record(tokenConnection8);
 
         Auth tokenAuth9 = new Auth();
         tokenAuth9.setApiToken(NO_EDIT_PERMISSION_API_TOKEN);
-        Connection tokenConnection9 = new Connection(TestConstants.DOMAIN, tokenAuth9);
+        Connection tokenConnection9 = new Connection(TestConstantsSample.DOMAIN, tokenAuth9);
         this.noEditPermissionRecordManagerment = new Record(tokenConnection9);
 
         Auth tokenGuestAuth = new Auth();
         tokenGuestAuth.setApiToken(GUEST_SPACE_API_TOKEN);
-        Connection tokenGuestConnection = new Connection(TestConstants.DOMAIN, tokenGuestAuth,
-                TestConstants.GUEST_SPACE_ID);
+        Connection tokenGuestConnection = new Connection(TestConstantsSample.DOMAIN, tokenGuestAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
         this.tokenGuestRecordManagerment = new Record(tokenGuestConnection);
 
         Auth certAuth = new Auth();
-        certAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection certConnection = new Connection(TestConstants.SECURE_DOMAIN, certAuth);
+        certAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection certConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certAuth);
         this.certRecordManagerment = new Record(certConnection);
 
         Auth certGuestAuth = new Auth();
-        certGuestAuth.setPasswordAuth(TestConstants.USERNAME, TestConstants.PASSWORD);
-        certGuestAuth.setClientCertByPath(TestConstants.CLIENT_CERT_PATH, TestConstants.CLIENT_CERT_PASSWORD);
-        Connection CertGuestConnection = new Connection(TestConstants.SECURE_DOMAIN, certGuestAuth,
-                TestConstants.GUEST_SPACE_ID);
+        certGuestAuth.setPasswordAuth(TestConstantsSample.USERNAME, TestConstantsSample.PASSWORD);
+        certGuestAuth.setClientCertByPath(TestConstantsSample.CLIENT_CERT_PATH, TestConstantsSample.CLIENT_CERT_PASSWORD);
+        Connection CertGuestConnection = new Connection(TestConstantsSample.SECURE_DOMAIN, certGuestAuth,
+                TestConstantsSample.GUEST_SPACE_ID);
         this.certGuestRecordManagerment = new Record(CertGuestConnection);
 
         // get maximum "数値"field value in all records and set it uniqueKey.
