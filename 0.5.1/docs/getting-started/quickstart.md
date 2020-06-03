@@ -4,7 +4,7 @@
 
 * [Java SE](https://adoptopenjdk.net/) (Version 9 or later)
 * [maven](https://maven.apache.org/download.cgi) (Version 3.5.4 or later)
-* [kintone-java-sdk](https://github.com/kintone/kintone-java-sdk)
+* [kintone-java-sdk](https://github.com/kintone-labs/kintone-java-sdk)
 
 ## Code example
 

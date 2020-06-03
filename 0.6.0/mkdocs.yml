@@ -2,7 +2,7 @@ site_name: kintone Java SDK
 site_description: The SDK of kintone REST API client on Java
 site_favicon: favicon.ico
 
-repo_url: https://github.com/kintone/kintone-java-sdk
+repo_url: https://github.com/kintone-labs/kintone-java-sdk
 site_url: https://kintone.github.io/kintone-java-sdk/
 theme:
   name: 'material'

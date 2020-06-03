@@ -1,0 +1,61 @@
+site_name: kintone Java SDK
+site_description: The SDK of kintone REST API client on Java
+site_favicon: favicon.ico
+
+repo_url: https://github.com/kintone-labs/kintone-java-sdk
+site_url: https://kintone.github.io/kintone-java-sdk/
+theme:
+  name: 'material'
+  custom_dir: 'custom_theme'
+  favicon: favicon.ico
+  palette:
+    primary: 'Light Blue'
+    accent: 'Light Blue'
+  logo:
+   icon: 'cloud'
+extra_javascript:
+  - 'asset/js/extra.js'
+extra_css:
+  - 'asset/style/extra.css'
+extra:
+    version: 0.6.1
+markdown_extensions:
+  - admonition
+
+pages:
+- Home: index.md
+- Getting Started:
+  - Quickstart: getting-started/quickstart.md
+- Reference:
+  - Authentication: reference/authentication.md
+  - Connection: reference/connection.md
+  - Record: reference/record.md
+  - RecordCursor: reference/record-cursor.md
+  - Bulk Request: reference/bulk-request.md
+  - App: reference/app.md
+  - Kintone APIException: reference/kintone-api-exception.md
+  - Bulks Exception: reference/bulks-exception.md
+  - File: reference/file.md
+  - Model:
+    - App:
+      - App:
+        - App: reference/model/app/app/app-model.md
+        - AppDeployStatus: reference/model/app/app/app-deploy-status.md
+      - Form:
+        - Field:
+          - Input:
+            - Lookup: reference/model/app/form/field/input/form-fields-input-lookup.md
+            - Input: reference/model/app/form/field/input/form-fields-input.md
+            - Member: reference/model/app/form/field/input/form-fields-input-member.md
+            - Selection: reference/model/app/form/field/input/form-fields-input-selection.md
+            - Time: reference/model/app/form/field/input/form-fields-input-time.md
+        - Layout: reference/model/app/form/layout/form-layout.md
+      - General: reference/model/app/general/general-settings.md
+      - View: reference/model/app/view/view-model.md
+    - Cursor:
+      - RecordCursor: reference/model/cursor/record-cursor.md
+    - Record: reference/model/record/record-model.md
+    - File: reference/model/file/file-model.md
+    - Bulk Request: 
+      - Bulk Request: reference/model/bulk-request/bulk-request-model.md
+      - Bulk Request Response: reference/model/bulk-request/bulk-request-response.md
