@@ -1,0 +1,1743 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="The SDK of kintone REST API client on Java">
+      
+      
+        <link rel="canonical" href="https://kintone-labs.github.io/kintone-java-sdk/reference/bulk-request/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Bulk Request - kintone Java SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../asset/style/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#bulkrequest" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+
+  <!-- Top-level navigation -->
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+
+      <!-- Link to home -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.."
+            title="kintone Java SDK"
+            class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">cloud</i>
+          
+        </a>
+      </div>
+
+      <!-- Button to toggle drawer -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
+      </div>
+
+      <!-- Header title -->
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="../..">kintone Java SDK</a>&nbsp;<a style="text-decoration: underline;" href="../../../latest/versions">v0.5.0</a>
+        </div>
+      </div>
+
+      <!-- Button to open search dialogue -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+
+          <!-- Search interface -->
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+
+      <!-- Repository containing source -->
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/kintone-labs/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://kintone-labs.github.io/kintone-java-sdk/" title="kintone Java SDK" class="md-nav__button md-logo">
+      
+        <i class="md-icon">cloud</i>
+      
+    </a>
+    kintone Java SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/kintone-labs/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../record/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../record-cursor/" title="RecordCursor" class="md-nav__link">
+      RecordCursor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Bulk Request
+      </label>
+    
+    <a href="./" title="Bulk Request" class="md-nav__link md-nav__link--active">
+      Bulk Request
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addrecordapp-record" title="addRecord(app, record)" class="md-nav__link">
+    addRecord(app, record)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_1" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addrecordsapp-records" title="addRecords(app, records)" class="md-nav__link">
+    addRecords(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_2" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordbyidapp-id-record-revision" title="updateRecordByID(app, id, record, revision)" class="md-nav__link">
+    updateRecordByID(app, id, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_3" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordbyupdatekeyapp-updatekey-record-revision" title="updateRecordByUpdateKey(app, updateKey, record, revision)" class="md-nav__link">
+    updateRecordByUpdateKey(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_4" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsapp-records" title="updateRecords(app, records)" class="md-nav__link">
+    updateRecords(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_5" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleterecordsapp-ids" title="deleteRecords(app, ids)" class="md-nav__link">
+    deleteRecords(app, ids)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_6" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleterecordswithrevisionapp-idswithrevision" title="deleteRecordsWithRevision(app, idsWithRevision)" class="md-nav__link">
+    deleteRecordsWithRevision(app, idsWithRevision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_7" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordassigneesapp-record-assignees-revision" title="updateRecordAssignees(app, record, assignees, revision)" class="md-nav__link">
+    updateRecordAssignees(app, record, assignees, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_8" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordstatusapp-id-action-assignee-revision" title="updateRecordStatus(app, id, action, assignee, revision)" class="md-nav__link">
+    updateRecordStatus(app, id, action, assignee, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_9" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_10" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" title="execute()" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_11" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kintone-api-exception/" title="Kintone APIException" class="md-nav__link">
+      Kintone APIException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bulks-exception/" title="Bulks Exception" class="md-nav__link">
+      Bulks Exception
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Model
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        Model
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1" type="checkbox" id="nav-3-10-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-1" type="checkbox" id="nav-3-10-1-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-10-1-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/app/app-model/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/app/app-deploy-status/" title="AppDeployStatus" class="md-nav__link">
+      AppDeployStatus
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2" type="checkbox" id="nav-3-10-1-2">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2">
+      Form
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-10-1-2">
+        Form
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2-1" type="checkbox" id="nav-3-10-1-2-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2-1">
+      Field
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-3-10-1-2-1">
+        Field
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2-1-1" type="checkbox" id="nav-3-10-1-2-1-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2-1-1">
+      Input
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-3-10-1-2-1-1">
+        Input
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-lookup/" title="Lookup" class="md-nav__link">
+      Lookup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input/" title="Input" class="md-nav__link">
+      Input
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-member/" title="Member" class="md-nav__link">
+      Member
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-selection/" title="Selection" class="md-nav__link">
+      Selection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-time/" title="Time" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/layout/form-layout/" title="Layout" class="md-nav__link">
+      Layout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/general/general-settings/" title="General" class="md-nav__link">
+      General
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/view/view-model/" title="View" class="md-nav__link">
+      View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-2" type="checkbox" id="nav-3-10-2">
+    
+    <label class="md-nav__link" for="nav-3-10-2">
+      Cursor
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-2">
+        Cursor
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/cursor/record-cursor/" title="RecordCursor" class="md-nav__link">
+      RecordCursor
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/record/record-model/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/file/file-model/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-5" type="checkbox" id="nav-3-10-5">
+    
+    <label class="md-nav__link" for="nav-3-10-5">
+      Bulk Request
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-5">
+        Bulk Request
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/bulk-request/bulk-request-model/" title="Bulk Request" class="md-nav__link">
+      Bulk Request
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/bulk-request/bulk-request-response/" title="Bulk Request Response" class="md-nav__link">
+      Bulk Request Response
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addrecordapp-record" title="addRecord(app, record)" class="md-nav__link">
+    addRecord(app, record)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_1" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addrecordsapp-records" title="addRecords(app, records)" class="md-nav__link">
+    addRecords(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_2" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordbyidapp-id-record-revision" title="updateRecordByID(app, id, record, revision)" class="md-nav__link">
+    updateRecordByID(app, id, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_3" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordbyupdatekeyapp-updatekey-record-revision" title="updateRecordByUpdateKey(app, updateKey, record, revision)" class="md-nav__link">
+    updateRecordByUpdateKey(app, updateKey, record, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_4" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsapp-records" title="updateRecords(app, records)" class="md-nav__link">
+    updateRecords(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_5" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleterecordsapp-ids" title="deleteRecords(app, ids)" class="md-nav__link">
+    deleteRecords(app, ids)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_6" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleterecordswithrevisionapp-idswithrevision" title="deleteRecordsWithRevision(app, idsWithRevision)" class="md-nav__link">
+    deleteRecordsWithRevision(app, idsWithRevision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_7" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordassigneesapp-record-assignees-revision" title="updateRecordAssignees(app, record, assignees, revision)" class="md-nav__link">
+    updateRecordAssignees(app, record, assignees, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_8" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordstatusapp-id-action-assignee-revision" title="updateRecordStatus(app, id, action, assignee, revision)" class="md-nav__link">
+    updateRecordStatus(app, id, action, assignee, revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_9" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updaterecordsstatusapp-records" title="updateRecordsStatus(app, records)" class="md-nav__link">
+    updateRecordsStatus(app, records)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_10" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" title="execute()" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code_11" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kintone-labs/kintone-java-sdk/edit/master/docs/reference/bulk-request.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="bulkrequest">BulkRequest</h1>
+<p>The Bulk Request API allows multiple API requests to run on multiple kintone apps. The below API can be used with the Bulk Request API:</p>
+<ul>
+<li>Add Record</li>
+<li>Add Records</li>
+<li>Update Record</li>
+<li>Update Records</li>
+<li>Delete Records</li>
+<li>Update Status</li>
+<li>Update Statuses</li>
+<li>Update Assignees</li>
+</ul>
+<h2 id="constructor">Constructor</h2>
+<h3 id="parameter"><strong>Parameter</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connection</td>
+<td><a href="../connection">Connection</a></td>
+<td>yes</td>
+<td>The connection module of this SDK.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-code"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Init bulk request module</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+</pre>
+
+</details>
+
+<h2 id="methods">Methods</h2>
+<blockquote>
+<p>All below methods (excluded <code>execute()</code> method) will add request to queue, you must execute the <code>execute()</code> function to get result of BulkRequest.</p>
+</blockquote>
+<h3 id="addrecordapp-record">addRecord(app, record)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#addrecordappid-recorddata">Record - addRecord</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_1"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>add Record</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+
+Integer appID = 1;
+
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("sample_AddRecord");
+
+record.put("FieldCode1", fv);
+
+bulkRequestManager.addRecord(appID, record);
+</pre>
+
+</details>
+
+<h3 id="addrecordsapp-records">addRecords(app, records)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#addrecordsappid-recordsdata">Record - addRecords</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_2"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>add multiple Records</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+ArrayList<HashMap<String, FieldValue>> records = new ArrayList<HashMap<String, FieldValue>>();
+HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
+HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+
+Integer appID = 1;
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("sample_AddRecords1");
+
+FieldValue fv2 = new FieldValue();
+fv2.setType(FieldType.SINGLE_LINE_TEXT);
+fv2.setValue("sample_AddRecords2");
+
+record1.put("FieldCode1", fv);
+record2.put("FieldCode1", fv2);
+
+records.add(record1);
+records.add(record2);
+
+bulkRequestManager.addRecords(appID, records);
+</pre>
+
+</details>
+
+<h3 id="updaterecordbyidapp-id-record-revision">updateRecordByID(app, id, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordbyidappid-recordid-recorddata-revision">Record - updateRecordByID</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_3"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>update Record By ID</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+
+Integer appID = 1;
+Integer recordID = 1;
+Integer revision = 1;
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("sample_updateRecordById");
+
+record.put("FieldCode1", fv);
+
+bulkRequestManager.updateRecordByID(appID, recordID, record, revision);
+</pre>
+
+</details>
+
+<h3 id="updaterecordbyupdatekeyapp-updatekey-record-revision">updateRecordByUpdateKey(app, updateKey, record, revision)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordbyupdatekeyappid-updatekey-recorddata-revision">Record - updateRecordByUpdateKey</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_4"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>update Record By UpdateKey</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+HashMap<String, FieldValue> record = new HashMap<String, FieldValue>();
+RecordUpdateKey uKey = new RecordUpdateKey("文字列__1行__0", "unique_value1");
+
+Integer appID = 1;
+Integer revision = 1;
+
+FieldValue fv = new FieldValue();
+fv.setType(FieldType.SINGLE_LINE_TEXT);
+fv.setValue("sample_updateRecordByUpdateKey");
+
+record.put("FieldCode1", fv);
+
+bulkRequestManager.updateRecordByUpdateKey(appID, uKey, record, revision);
+</pre>
+
+</details>
+
+<h3 id="updaterecordsapp-records">updateRecords(app, records)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordsappid-recordsdata">Record - updateRecords</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_5"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>update multiple Records</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+HashMap<String, FieldValue> record1 = new HashMap<String, FieldValue>();
+HashMap<String, FieldValue> record2 = new HashMap<String, FieldValue>();
+
+Integer appID = 1;
+Integer recordId1 = 1;
+Integer recordId2 = 2;
+Integer revision = 1;
+
+FieldValue fv1 = new FieldValue();
+fv1.setType(FieldType.SINGLE_LINE_TEXT);
+fv1.setValue("test_updateRecords1");
+
+FieldValue fv2 = new FieldValue();
+fv2.setType(FieldType.SINGLE_LINE_TEXT);
+fv2.setValue("test_updateRecords2");
+
+record1.put("FieldCode1", fv1);
+record2.put("FieldCode1", fv2);
+
+ArrayList<RecordUpdateItem> records = new ArrayList<RecordUpdateItem>();
+records.add(new RecordUpdateItem(recordId1, revision, null, record1));
+records.add(new RecordUpdateItem(recordId2, null, null, record2));
+
+bulkRequestManager.updateRecords(appID, records);
+</pre>
+
+</details>
+
+<h3 id="deleterecordsapp-ids">deleteRecords(app, ids)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#deleterecordsappid-recordids">Record - deleteRecords</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_6"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Bulk Delete Records</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+
+Integer appID = 1;
+
+ArrayList<Integer> ids = new ArrayList<Integer>();
+ids.add(1);
+ids.add(2);
+
+
+bulkRequestManager.deleteRecords(appID, ids);
+</pre>
+
+</details>
+
+<h3 id="deleterecordswithrevisionapp-idswithrevision">deleteRecordsWithRevision(app, idsWithRevision)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#deleterecordswithrevisionappid-idswithrevision">Record - deleteRecordsWithRevision</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_7"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>delete Records With Revision</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+HashMap<Integer, Integer> idsWithRevision = new HashMap<Integer, Integer>();
+
+Integer appID = 1;
+
+idsWithRevision.put(1, 1);
+idsWithRevision.put(2, null);
+idsWithRevision.put(3, -1);
+
+bulkRequestManager.deleteRecordsWithRevision(appID, idsWithRevision);
+</pre>
+
+</details>
+
+<h3 id="updaterecordassigneesapp-record-assignees-revision">updateRecordAssignees(app, record, assignees, revision)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordassigneesappid-recordid-assignees-revision">Record - updateRecordAssignees</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_8"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Update the Assignees for the record</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+
+Integer appID = 1;
+Integer recordID =1;
+Integer revision = 1;
+
+ArrayList<String> assignees = new ArrayList<String>();
+assignees.add("sample_user");
+
+bulkRequestManager.updateRecordAssignees(appID, recordID, assignees, revision);
+</pre>
+
+</details>
+
+<h3 id="updaterecordstatusapp-id-action-assignee-revision">updateRecordStatus(app, id, action, assignee, revision)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordstatusappid-recordid-actionname-assignee-revision">Record - updateRecordStatus</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_9"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Update the status of a single record</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+
+Integer appID = 1;
+Integer recordID =1;
+String action = "処理開始";
+String assignee = "sample_user";
+Integer revision = 1;
+
+bulkRequestManager.updateRecordStatus(appID, recordID, action, assignee, revision);
+</pre>
+
+</details>
+
+<h3 id="updaterecordsstatusapp-records">updateRecordsStatus(app, records)</h3>
+<p><strong>Parameter</strong></p>
+<p>See at <a href="../record#updaterecordsstatusappid-recordsstatusupdate">Record - updateRecordsStatus</a></p>
+<p><strong>Return</strong></p>
+<p><a href="#bulkrequest">BulkRequest</a></p>
+<h3 id="sample-code_10"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Update the status of multiple records in bulk</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+ArrayList<RecordUpdateStatusItem> rusi = new ArrayList<RecordUpdateStatusItem>();
+
+Integer appID = 1;
+String action = "処理開始";
+String assignee = "sample_user1";
+Integer recordID1 =1;
+Integer recordID2 =2;
+Integer recordID3 =3;
+Integer revision1 = 1;
+Integer revision2 = null;
+Integer revision3 = -1;
+
+rusi.add(new RecordUpdateStatusItem(action, assignee, recordID1, revision1));
+rusi.add(new RecordUpdateStatusItem(action, assignee, recordID2, revision2));
+rusi.add(new RecordUpdateStatusItem(action, assignee, recordID3, revision3));
+
+bulkRequestManager.updateRecordsStatus(appID, rusi);
+</pre>
+
+</details>
+
+<h3 id="execute">execute()</h3>
+<blockquote>
+<p>Execute the bulk request and get data response</p>
+</blockquote>
+<p><strong>Parameter</strong></p>
+<p>(none)</p>
+<p><strong>Return</strong></p>
+<p><a href="../bulk-request-model#bulkrequestresponse">BulkRequestResponse</a></p>
+<h3 id="sample-code_11"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Execute bulk request</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+BulkRequest bulkRequestManager = new BulkRequest(connection);
+bulkRequestManager.addRecord(/*[Args]*/);
+bulkRequestManager.addRecords(/*[Args]*/);
+bulkRequestManager.updateRecords(/*[Args]*/);
+bulkRequestManager.deleteRecords(/*[Args]*/);
+
+try {
+  BulkRequestResponse responses = bulkRequestManager.execute();
+} catch (Exception e) {
+  System.out.println(e.getMessage());
+}
+</pre>
+
+</details>
+
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/213149287/">Get Record</a> <code>on developer network</code></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../record-cursor/" title="RecordCursor" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                RecordCursor
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../app/" title="App" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                App
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../asset/js/extra.js"></script>
+      
+    
+  </body>
+</html>

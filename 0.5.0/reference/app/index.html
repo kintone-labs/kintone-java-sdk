@@ -1,0 +1,2530 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="The SDK of kintone REST API client on Java">
+      
+      
+        <link rel="canonical" href="https://kintone-labs.github.io/kintone-java-sdk/reference/app/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>App - kintone Java SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../asset/style/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#app" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+
+  <!-- Top-level navigation -->
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+
+      <!-- Link to home -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.."
+            title="kintone Java SDK"
+            class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">cloud</i>
+          
+        </a>
+      </div>
+
+      <!-- Button to toggle drawer -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
+      </div>
+
+      <!-- Header title -->
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="../..">kintone Java SDK</a>&nbsp;<a style="text-decoration: underline;" href="../../../latest/versions">v0.5.0</a>
+        </div>
+      </div>
+
+      <!-- Button to open search dialogue -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+
+          <!-- Search interface -->
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+
+      <!-- Repository containing source -->
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/kintone-labs/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://kintone-labs.github.io/kintone-java-sdk/" title="kintone Java SDK" class="md-nav__button md-logo">
+      
+        <i class="md-icon">cloud</i>
+      
+    </a>
+    kintone Java SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/kintone-labs/kintone-java-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../record/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../record-cursor/" title="RecordCursor" class="md-nav__link">
+      RecordCursor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bulk-request/" title="Bulk Request" class="md-nav__link">
+      Bulk Request
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        App
+      </label>
+    
+    <a href="./" title="App" class="md-nav__link md-nav__link--active">
+      App
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getappinteger-appid" title="getApp(Integer appId)" class="md-nav__link">
+    getApp(Integer appId)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter_1" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsinteger-offset-integer-limit" title="getApps(Integer offset, Integer limit)" class="md-nav__link">
+    getApps(Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbyidslist-ids-integer-offset-integer-limit" title="getAppsByIDs(List ids, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByIDs(List ids, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbycodeslist-codes-integer-offset-integer-limit" title="getAppsByCodes(List codes, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByCodes(List codes, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbynamestring-name-integer-offset-integer-limit" title="getAppsByName(String name, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByName(String name, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbyspaceidslist-spaceids-integer-offset-integer-limit" title="getAppsBySpaceIDs(List spaceIds, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsBySpaceIDs(List spaceIds, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addpreviewappstring-name-integer-space-integer-thread" title="addPreviewApp(String name, Integer space, Integer thread)" class="md-nav__link">
+    addPreviewApp(String name, Integer space, Integer thread)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployappsettingsarray-apps-boolean-revert" title="deployAppSettings(Array apps, Boolean revert)" class="md-nav__link">
+    deployAppSettings(Array apps, Boolean revert)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappdeploystatuslist-apps" title="getAppDeployStatus(List apps)" class="md-nav__link">
+    getAppDeployStatus(List apps)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getformfieldsinteger-app-languagesetting-lang-boolean-ispreview" title="getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addformfieldsinteger-app-hashmap-fields-integer-revision" title="addFormFields(Integer app, HashMap fields, Integer revision)" class="md-nav__link">
+    addFormFields(Integer app, HashMap fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateformfieldsinteger-app-hashmap-fields-integer-revision" title="updateFormFields(Integer app, HashMap fields, Integer revision)" class="md-nav__link">
+    updateFormFields(Integer app, HashMap fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteformfieldsinteger-app-arraylist-fields-integer-revision" title="deleteFormFields(Integer app, ArrayList fields, Integer revision)" class="md-nav__link">
+    deleteFormFields(Integer app, ArrayList fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getformlayoutinteger-appid-boolean-ispreview" title="getFormLayout(Integer appId, Boolean isPreview)" class="md-nav__link">
+    getFormLayout(Integer appId, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateformlayoutinteger-app-arraylist-layout-integer-revision" title="updateFormLayout(Integer app, ArrayList layout, Integer revision)" class="md-nav__link">
+    updateFormLayout(Integer app, ArrayList layout, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getgeneralsettingsinteger-app-languagesetting-lang-boolean-ispreview" title="getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updategeneralsettingsinteger-app-generalsettings-generalsettings-integer-revision" title="updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)" class="md-nav__link">
+    updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getviewsinteger-app-languagesetting-lang-boolean-ispreview" title="getViews(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getViews(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateviewsinteger-app-hashmap-views-integer-revision" title="updateViews(Integer app, HashMap views, Integer revision)" class="md-nav__link">
+    updateViews(Integer app, HashMap views, Integer revision)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kintone-api-exception/" title="Kintone APIException" class="md-nav__link">
+      Kintone APIException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bulks-exception/" title="Bulks Exception" class="md-nav__link">
+      Bulks Exception
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Model
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        Model
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1" type="checkbox" id="nav-3-10-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-1" type="checkbox" id="nav-3-10-1-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-1">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-10-1-1">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/app/app-model/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/app/app-deploy-status/" title="AppDeployStatus" class="md-nav__link">
+      AppDeployStatus
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2" type="checkbox" id="nav-3-10-1-2">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2">
+      Form
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-10-1-2">
+        Form
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2-1" type="checkbox" id="nav-3-10-1-2-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2-1">
+      Field
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-3-10-1-2-1">
+        Field
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-1-2-1-1" type="checkbox" id="nav-3-10-1-2-1-1">
+    
+    <label class="md-nav__link" for="nav-3-10-1-2-1-1">
+      Input
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-3-10-1-2-1-1">
+        Input
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-lookup/" title="Lookup" class="md-nav__link">
+      Lookup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input/" title="Input" class="md-nav__link">
+      Input
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-member/" title="Member" class="md-nav__link">
+      Member
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-selection/" title="Selection" class="md-nav__link">
+      Selection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/field/input/form-fields-input-time/" title="Time" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/form/layout/form-layout/" title="Layout" class="md-nav__link">
+      Layout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/general/general-settings/" title="General" class="md-nav__link">
+      General
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/app/view/view-model/" title="View" class="md-nav__link">
+      View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-2" type="checkbox" id="nav-3-10-2">
+    
+    <label class="md-nav__link" for="nav-3-10-2">
+      Cursor
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-2">
+        Cursor
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/cursor/record-cursor/" title="RecordCursor" class="md-nav__link">
+      RecordCursor
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/record/record-model/" title="Record" class="md-nav__link">
+      Record
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/file/file-model/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-10-5" type="checkbox" id="nav-3-10-5">
+    
+    <label class="md-nav__link" for="nav-3-10-5">
+      Bulk Request
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-10-5">
+        Bulk Request
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/bulk-request/bulk-request-model/" title="Bulk Request" class="md-nav__link">
+      Bulk Request
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model/bulk-request/bulk-request-response/" title="Bulk Request Response" class="md-nav__link">
+      Bulk Request Response
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" title="Sample code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getappinteger-appid" title="getApp(Integer appId)" class="md-nav__link">
+    getApp(Integer appId)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter_1" title="Parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsinteger-offset-integer-limit" title="getApps(Integer offset, Integer limit)" class="md-nav__link">
+    getApps(Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbyidslist-ids-integer-offset-integer-limit" title="getAppsByIDs(List ids, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByIDs(List ids, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbycodeslist-codes-integer-offset-integer-limit" title="getAppsByCodes(List codes, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByCodes(List codes, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbynamestring-name-integer-offset-integer-limit" title="getAppsByName(String name, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsByName(String name, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappsbyspaceidslist-spaceids-integer-offset-integer-limit" title="getAppsBySpaceIDs(List spaceIds, Integer offset, Integer limit)" class="md-nav__link">
+    getAppsBySpaceIDs(List spaceIds, Integer offset, Integer limit)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addpreviewappstring-name-integer-space-integer-thread" title="addPreviewApp(String name, Integer space, Integer thread)" class="md-nav__link">
+    addPreviewApp(String name, Integer space, Integer thread)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployappsettingsarray-apps-boolean-revert" title="deployAppSettings(Array apps, Boolean revert)" class="md-nav__link">
+    deployAppSettings(Array apps, Boolean revert)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getappdeploystatuslist-apps" title="getAppDeployStatus(List apps)" class="md-nav__link">
+    getAppDeployStatus(List apps)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getformfieldsinteger-app-languagesetting-lang-boolean-ispreview" title="getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addformfieldsinteger-app-hashmap-fields-integer-revision" title="addFormFields(Integer app, HashMap fields, Integer revision)" class="md-nav__link">
+    addFormFields(Integer app, HashMap fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateformfieldsinteger-app-hashmap-fields-integer-revision" title="updateFormFields(Integer app, HashMap fields, Integer revision)" class="md-nav__link">
+    updateFormFields(Integer app, HashMap fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteformfieldsinteger-app-arraylist-fields-integer-revision" title="deleteFormFields(Integer app, ArrayList fields, Integer revision)" class="md-nav__link">
+    deleteFormFields(Integer app, ArrayList fields, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getformlayoutinteger-appid-boolean-ispreview" title="getFormLayout(Integer appId, Boolean isPreview)" class="md-nav__link">
+    getFormLayout(Integer appId, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateformlayoutinteger-app-arraylist-layout-integer-revision" title="updateFormLayout(Integer app, ArrayList layout, Integer revision)" class="md-nav__link">
+    updateFormLayout(Integer app, ArrayList layout, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getgeneralsettingsinteger-app-languagesetting-lang-boolean-ispreview" title="getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updategeneralsettingsinteger-app-generalsettings-generalsettings-integer-revision" title="updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)" class="md-nav__link">
+    updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getviewsinteger-app-languagesetting-lang-boolean-ispreview" title="getViews(Integer app, LanguageSetting lang, Boolean isPreview)" class="md-nav__link">
+    getViews(Integer app, LanguageSetting lang, Boolean isPreview)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateviewsinteger-app-hashmap-views-integer-revision" title="updateViews(Integer app, HashMap views, Integer revision)" class="md-nav__link">
+    updateViews(Integer app, HashMap views, Integer revision)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kintone-labs/kintone-java-sdk/edit/master/docs/reference/app.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="app">App</h1>
+<p>Gets general information of an App, including the name, description, related Space, creator and updater information.</p>
+<blockquote>
+<ul>
+<li>Permissions to view the App is needed.</li>
+<li>API Tokens cannot be used with this API.</li>
+</ul>
+</blockquote>
+<h2 id="constructor">Constructor</h2>
+<h3 id="parameter"><strong>Parameter</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connection</td>
+<td><a href="../connection">Connection</a></td>
+<td>yes</td>
+<td>The connection module of this SDK.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-code"><strong>Sample code</strong></h3>
+<details class="tab-container" open>
+<Summary>Init app module</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    // Init authentication
+    Auth kintoneAuth = new Auth()
+
+    // Password Authentication
+    String username = "your_usernamr"
+    String password = "your_password"
+    kintoneAuth = kintoneAuth.setPasswordAuth(username, password)
+    Connection connection = Connection( "your_domain", kintoneAuth )
+    App app = new App(connection)
+
+</pre>
+
+</details>
+
+<h2 id="methods">Methods</h2>
+<h3 id="getappinteger-appid">getApp(Integer appId)</h3>
+<blockquote>
+<p>Get single app</p>
+</blockquote>
+<h4 id="parameter_1"><strong>Parameter</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appId</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/app/app-model">AppModel</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get App</Summary>
+
+<strong class="tab-name">Source code</strong>
+<pre class="inline-code">
+
+    Integer appId = {your_app_id};
+    App appManagerment = new App(connection);
+    AppModel app = appManagerment.getApp(appId);
+
+</pre>
+
+</details>
+
+<h3 id="getappsinteger-offset-integer-limit">getApps(Integer offset, Integer limit)</h3>
+<blockquote>
+<p>Get multiple apps</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The offset off data result</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The limit number of result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="../model/app/app/app-model">AppModel</a>&gt;</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>Get Apps</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+Integer offset = 10;
+Integer limit = 50;
+
+App appManagerment = new App(connection);
+List<AppModel> appList = appManagerment.getApps(offset, limit);
+</pre>
+
+</details>
+
+<h3 id="getappsbyidslist-ids-integer-offset-integer-limit">getAppsByIDs(List<Integer> ids, Integer offset, Integer limit)</h3>
+<blockquote>
+<p>Get multiple apps by list of ids</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>List&lt;Integer></td>
+<td>yes</td>
+<td>The array of app ids</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The offset off data result</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The limit number of result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="../model/app/app/app-model">AppModel</a>&gt;</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get Apps By IDs</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+List<Integer> appIds = new List<Integer>();
+appIds.add({your_app_id});
+appIds.add({your_app_id});
+Integer offset = {your_limit};
+Integer limit = {your_offset};
+
+App appManagerment = new App(connection);
+List<AppModel> appList = appManagerment.getAppsByIDs(appIds, offset, limit);
+</pre>
+
+</details>
+
+<h3 id="getappsbycodeslist-codes-integer-offset-integer-limit">getAppsByCodes(List<String> codes, Integer offset, Integer limit)</h3>
+<blockquote>
+<p>Get multiple apps by a list of codes</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>codes</td>
+<td>List&lt;String></td>
+<td>yes</td>
+<td>The array of app codes</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The offset off data result</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The limit number of result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="../model/app/app/app-model">AppModel</a>&gt;</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get Apps By Codes</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+List<String> appCode = new List<String>();
+appCode.add({your_app_code});
+appCode.add({your_app_code});
+Integer limit = {your_limit};
+Integer offset = {your_offset};
+
+App appManagerment = new App(connection);
+List<AppModel> appList = appManagerment.getAppsByCodes(appCode, offset, limit);
+</pre>
+
+</details>
+
+<h3 id="getappsbynamestring-name-integer-offset-integer-limit">getAppsByName(String name, Integer offset, Integer limit)</h3>
+<blockquote>
+<p>Get multiple apps by name</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>yes</td>
+<td>The app name</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The offset off data result</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The limit number of result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="../model/app/app/app-model">AppModel</a>&gt;</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get Apps By Name</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+String appName = {your_app_name};
+Integer offset = {your_offset};
+Integer limit = {your_limit};
+
+App appManagerment = new App(connection);
+List<AppModel> appLlist = appManagerment.getAppsByName(name, offset, limit);
+</pre>
+
+</details>
+
+<h3 id="getappsbyspaceidslist-spaceids-integer-offset-integer-limit">getAppsBySpaceIDs(List<Integer> spaceIds, Integer offset, Integer limit)</h3>
+<blockquote>
+<p>Get multiple apps by list of space's ids</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spaceIds</td>
+<td>List&lt;Integer></td>
+<td>yes</td>
+<td>The array of space ids</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The offset off data result</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The limit number of result</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>List&lt;<a href="../model/app/app/app-model">AppModel</a>&gt;</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get Apps By Space IDs</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+List<Integer> spaceIds = new List<Integer>();
+spaseIds.add({your_space_id});
+spaseIds.add({your_space_id});
+Integer offset = {your_offset};
+Integer limit = {your_litmit};
+
+App appManagerment = new App(connection);
+List<AppModel> appList = appManagerment.getAppsBySpaceIDs(spaceIds, offset, limit);
+</pre>
+
+</details>
+
+<h3 id="addpreviewappstring-name-integer-space-integer-thread">addPreviewApp(String name, Integer space, Integer thread)</h3>
+<p>Creates a preview App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>yes</td>
+<td>The App name.<br>The maximum length is 64 characters.</td>
+</tr>
+<tr>
+<td>space</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The Space ID of where the App will be created.</td>
+</tr>
+<tr>
+<td>thread</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>The Thread ID of the thread in the Space where the App will be created.<br>It is recommended to ignore this parameter so that Apps are created in the default thread. <br>There is currently no helpful reason to create Apps in threads other than the default thread, as there are no visual representations in kintone of Apps being related to threads.<br> There are only visual representations of Apps being related to Spaces.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/app/preview-app">PreviewApp</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>add PreviewApp</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    Integer spaceId = {your_space_id} // Space will add this app
+    Integer threadId = {your_thread_id} // Thread will add this app
+
+    App appManagerment = new App(connection);
+    appManagerment.addPreviewApp(appName, spaceId, threadId);
+
+</pre>
+
+</details>
+
+<h3 id="deployappsettingsarray-apps-boolean-revert">deployAppSettings(Array<PreviewApp> apps, Boolean revert)</h3>
+<p>Updates the settings of a pre-live App to the live App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apps</td>
+<td>Array<PreviewApp></td>
+<td>yes</td>
+<td>The list of Apps to deploy the pre-live settings to the live Apps. The Maximum limit is 300.<br>If Apps are being deployed to Guest Spaces, Apps can only be deployed to the same Guest Space..</td>
+</tr>
+<tr>
+<td>revert</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Specify <b>"true"</b> to cancel all changes made to the pre-live settings. The pre-live settings will be reverted back to the current settings of the live app.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>None</p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>deploy AppSettings</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    Integer appId = {your_app_id}
+    Integer revision = {your_revision} // Revision of application to deploy
+    ArrayList<appPreview> appPreviewList = new ArrayList<appPreview>();
+    PreviewApp appPreview = new PreviewApp(appId, revision)
+
+    App appManagerment = new App(connection);
+    appManagerment.deployAppSettings(appPreviewList, false)
+
+</pre>
+
+</details>
+
+<h3 id="getappdeploystatuslist-apps">getAppDeployStatus(List<Integer> apps)</h3>
+<p>Updates the settings of a pre-live App to the live App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apps</td>
+<td>List<Integer></td>
+<td>yes</td>
+<td>The list of Apps to check the deploy statuses of. The Maximum limit is 300.<br>If Apps in Guest Spaces are specified, all Apps specified in the request must belong to that Guest Space.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/app/get-app-deploy-status-response">GetAppDeployStatusResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get App DeployStatus</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    List<Integer> appIds = new List<Integer>();
+    appIds.add({your_app_id});
+    appIds.add({your_app_id});
+
+    App appManagerment = new App(connection);
+    GetAppDeployStatusResponse res = appManagerment.getAppDeployStatus(appIds);
+    for (int i = 0; i < res.getApp.length; i++) {
+        print(res.getApp.get(i));
+    }
+
+</pre>
+
+</details>
+
+<h3 id="getformfieldsinteger-app-languagesetting-lang-boolean-ispreview">getFormFields(Integer app, LanguageSetting lang, Boolean isPreview)</h3>
+<p>Get field of the form in the kintone app</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appId</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The app ID</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>LanguageSetting</td>
+<td>(optional)</td>
+<td>The language code. Support: <ul><li>DEFAULT: Default language setting of system </li><li>JA: Japanese language setting</li><li>ZH: Chinese language setting</li><li>EN: English language setting</li></td>
+</tr>
+<tr>
+<td>isPreview</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Get the app form fields with a <a href="https://developer.kintone.io/hc/en-us/articles/115005509288">pre-live settings</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/form/field/form-fields">FormFields</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get FormFields</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    Integer appId = {your_app_id} // Integer
+    LanguageSetting lang = {language_code} // LanguageSetting .Ex: LanguageSetting.JA
+    Boolean isPreview = true;
+
+    App appManagerment = new App(connection);
+    FormFields fields appManagerment.getFormFields(appId, lang, isPreview)
+
+</pre>
+
+</details>
+
+<h3 id="addformfieldsinteger-app-hashmap-fields-integer-revision">addFormFields(Integer app, HashMap<String, Field> fields, Integer revision)</h3>
+<p>Adds fields to a form of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appId</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The app ID</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>Map</td>
+<td>(optional)</td>
+<td>The formFields which will add to form of kintone app <br> <em>Note:</em> <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul></td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/basic-response">BasicResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>add FormFields</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    Integer appId = {your_app_id} // App Id
+    String fieldCode = {field_code_string} // Field code of new Field. It must be not as same as any fields in Pre-Live App Setttings
+    Integer revision = {latest_revision_of_the_settings} // Integer
+
+    // Create Radio field instance and set properties
+    RadioButtonField addNewField = new RadioButtonField(fieldCode)
+    HashMap<String, OptionData> optionArray = new HashMap<String, OptionData>()
+    optionArray["1"] = OptionData("1","1")
+    optionArray["2"] = OptionData("2","2")
+    optionArray["3"] = OptionData("3","3")
+    addNewField.setOptions(optionArray)
+    addNewField.setNoLabel(false)
+    addNewField.setRequired(true)
+    addNewField.setLabel("Label Radio")
+    addNewField.setAlign(AlignLayout.VERTICAL)
+
+    // Add Field object into dictionary with key is Field Code
+    HashMap<String, Field> properties = new HashMap<String, Field>()
+    properties.put(fieldCode, addNewField);
+    // Another add field here
+
+    App appManagerment = new App(connection);
+    BasicResponse res = appManagerment.addFormFields(appId, properties, revision);
+
+</pre>
+
+</details>
+
+<h3 id="updateformfieldsinteger-app-hashmap-fields-integer-revision">updateFormFields(Integer app, HashMap<String, Field> fields, Integer revision)</h3>
+<p>Updates the field settings of fields in a form of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The app ID</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>Map</td>
+<td>(optional)</td>
+<td>The formFields which will add to form of kintone app <br> <em>Note:</em> <br> [String: Field]: <ul><li>Key: The field code of field on kintone app</li><li> Value:  The field settings of form field on kintone app </li> </ul></td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/basic-response">BasicResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>update FormFields</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    Integer appId = {your_app_id} // Integer
+    String fieldCode = {field_code_string} // String | fieldCode of exist fields in Pre-Live App Setttings
+    Integer revision = {latest_revision_of_the_settings} // Integer
+
+    // Create Field Object to Update
+    SingleLineTextField updateField = new SingleLineTextField(fieldCode)
+    updateField.setDefaultValue("Hello Kintone")
+    updateField.setRequired(true)
+
+    // Add Update Field object into dictionary with key is Field Code
+    HashMap<String, Field> properties = new HashMap<String, Field>()
+    properties.put(fieldCode, updateField);
+
+    App appManagerment = new App(connection);
+    BasicResponse res = appManagerment.updateFormFields(appId, properties, revision);
+
+</pre>
+
+</details>
+
+<h3 id="deleteformfieldsinteger-app-arraylist-fields-integer-revision">deleteFormFields(Integer app, ArrayList<String> fields, Integer revision)</h3>
+<blockquote>
+<p>Deletes fields from a form of an App.</p>
+</blockquote>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The app ID</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>Array&lt;String></td>
+<td>yes</td>
+<td>The list of field codes of the fields to delete.<br>Up to 100 field codes can be specified.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/basic-response">BasicResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>delete FormFields</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id} // Integer
+    ArrayList<String> fieldCodeArray = [{field_code_string}] // Array<String> | Array of fieldCodes of exist fields in Pre-Live App Setttings
+    int revision = {latest_revision_of_the_settings} // Integer
+
+    App appManagerment = new App(connection);
+    BasicResponse res = appManagerment.deleteFormFields(appId, fieldCodeArray, revision);
+
+</pre>
+
+</details>
+
+<h3 id="getformlayoutinteger-appid-boolean-ispreview">getFormLayout(Integer appId, Boolean isPreview)</h3>
+<p>Get the layout of form in kintone app</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>isPreview</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Get the app form layout with a <a href="https://developer.kintone.io/hc/en-us/articles/115005509288">pre-live settings</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/form/layout/form-layout">FormLayout</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get FormLayout</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id} // Integer
+    boolean isPreview = true
+
+    // Get a pre-live (preview) form fields
+    App appManagerment = new App(connection);
+    FormLayout res = appManagerment.getFormLayout(appId, isPreview)
+
+</pre>
+
+</details>
+
+<h3 id="updateformlayoutinteger-app-arraylist-layout-integer-revision">updateFormLayout(Integer app, ArrayList<ItemLayout> layout, Integer revision)</h3>
+<p>Updates the field layout info of a form in an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td></td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>Array&lt;ItemLayout></td>
+<td>yes</td>
+<td>A list of field layouts for each row.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/basic-response">BasicResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>update FormLayout</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id} // Integer
+    ArrayList<ItemLayout> itemLayoutRequest = new ArrayList<ItemLayout>();
+
+    // Row Layout
+    RowLayout rowLayout1 = new RowLayout();
+    ArrayList<FieldLayout> fieldsRowLayout1: new ArrayList<FieldLayout>();
+
+    FieldLayout singleFieldRowLayout1 = new FieldLayout();
+    singleFieldRowLayout1.setCode("Text");
+    singleFieldRowLayout1.setType(FieldType.SINGLE_LINE_TEXT.rawValue);
+    FieldSize singleFieldSizeRowLayout1 = new FieldSize();
+    singleFieldSizeRowLayout1.setWidth("193");
+    singleFieldRowLayout.setSize(singleFieldSizeRowLayout1);
+    fieldsRowLayout1.add(singleFieldRowLayout1!);
+
+    FieldLayout richTextFieldRowLayout1 = new FieldLayout();
+    richTextFieldRowLayout1.setCode("Rich_text");
+    richTextFieldRowLayout1.setType(FieldType.RICH_TEXT.rawValue);
+    FieldSize richTextFieldSizeRowLayout1 = new FieldSize();
+    richTextFieldSizeRowLayout1.setWidth("315")
+    richTextFieldSizeRowLayout1.setInnerHeight("125")
+    richTextFieldRowLayout1.setSize(richTextFieldSizeRowLayout1)
+    fieldsRowLayout1.add(richTextFieldRowLayout1!)
+
+    rowLayout1.setFields(fieldsRowLayout1)
+
+    // Subtable Layout
+    SubTableLayout subTableLayout = new SubTableLayout();
+    ArrayList<FieldLayout> fieldSubTableLayout = new ArrayList<FieldLayout>();
+
+    FieldLayout singleFieldSubTableLayout1 = new FieldLayout();
+    singleFieldSubTableLayout1.setCode("Text_0");
+    singleFieldSubTableLayout1.setType(FieldType.SINGLE_LINE_TEXT.rawValue);
+    FieldSize singleFieldSizeSubTableLayout1 = new FieldSize();
+    singleFieldSizeSubTableLayout1.setWidth("193");
+    singleFieldSubTableLayout1.setSize(singleFieldSizeSubTableLayout1);
+
+    fieldSubTableLayout.add(singleFieldSubTableLayout1!);
+    subTableLayout.setFields(fieldSubTableLayout);
+    subTableLayout.setCode("Table");
+
+    // GROUP Layout
+    GroupLayout groupLayout = new GroupLayout();
+    ArrayList<RowLayout> rowLayoutInGroup = new ArrayList<RowLayout>();
+    // Row Layout
+    RowLayout firstRowLayoutInGroup = new RowLayout();
+    ArrayList<FieldLayout> fieldsInRowLayoutInGroup = new ArrayList<FieldLayout>()
+    // Numeric Field Layout
+    FieldLayout numericFieldInRowLayoutInGroup = new FieldLayout();
+    numericFieldInRowLayoutInGroup.setCode("Number");
+    numericFieldInRowLayoutInGroup.setType(FieldType.NUMBER.rawValue);
+    // field size
+    FieldSize numericFieldSizeInRowLayoutInGroup = new FieldSize();
+    numericFieldSizeInRowLayoutInGroup.setWidth("200")
+    numericFieldInRowLayoutInGroup.setSize(numericFieldSizeInRowLayoutInGroup)
+
+    fieldsInRowLayoutInGroup.append(numericFieldInRowLayoutInGroup!)
+    firstRowLayoutInGroup.setFields(fieldsInRowLayoutInGroup)
+    rowLayoutInGroup.append(firstRowLayoutInGroup!)
+    groupLayout.setLayout(rowLayoutInGroup)
+    groupLayout.setCode("Field_group")
+
+    // Append layout
+    itemLayoutRequest.add(rowLayout1!)
+    itemLayoutRequest.add(subTableLayout!)
+    itemLayoutRequest.add(groupLayout!)
+
+    App appManagerment = new App(connection);
+    BasicResponse res = appManagerment.updateFormLayout(appId, itemLayoutRequest);
+
+</pre>
+
+</details>
+
+<h3 id="getgeneralsettingsinteger-app-languagesetting-lang-boolean-ispreview">getGeneralSettings(Integer app, LanguageSetting lang, Boolean isPreview)</h3>
+<p>Gets the description, name, icon, revision and color theme of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>LanguageSetting</td>
+<td>(optional)</td>
+<td>The localized language to retrieve the data in language constants</td>
+</tr>
+<tr>
+<td>isPreview</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Get general settings of the app with a <a href="https://developer.kintone.io/hc/en-us/articles/115005509288">pre-live settings</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/general/general-settings">GeneralSettings</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get GeneralSettings</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id};
+    LanguageSetting lang = {your_language_code} // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
+    boolean isPreview = true
+
+    App appManagerment = new App(connection);
+    GeneralSettings res = appManagerment.getGeneralSettings(appId, lang, isPreview);
+
+</pre>
+
+</details>
+
+<h3 id="updategeneralsettingsinteger-app-generalsettings-generalsettings-integer-revision">updateGeneralSettings(Integer app, GeneralSettings generalSettings, Integer revision)</h3>
+<p>Updates the description, name, icon, revision and color theme of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>generalSettings</td>
+<td>GeneralSettings</td>
+<td>(Conditional)</td>
+<td>The description, name, icon, revision and color theme of an App.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/basic-response">BasicResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>update general settings</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id};
+
+    GeneralSettings appGeneralSetting = new GeneralSettings();
+    appGeneralSetting.setName("GetViewsApp_Test");
+    appGeneralSetting.setDescription("<div>A list of great places to go!</div>");
+    Icon iconModel = new Icon("APP39", Icon.IconType.PRESET);
+    appGeneralSetting.setIcon(iconModel);
+    appGeneralSetting.setTheme(GeneralSettings.IconTheme.WHITE);
+
+    App appManagerment = new App(connection);
+    BasicResponse res = appManagerment.updateGeneralSettings(appId, appGeneralSetting);
+
+</pre>
+
+</details>
+
+<h3 id="getviewsinteger-app-languagesetting-lang-boolean-ispreview">getViews(Integer app, LanguageSetting lang, Boolean isPreview)</h3>
+<p>Gets the View settings of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>LanguageSetting</td>
+<td>(optional)</td>
+<td>The localized language to retrieve the data in language constants</td>
+</tr>
+<tr>
+<td>isPreview</td>
+<td>Boolean</td>
+<td>(optional)</td>
+<td>Get views of the app with a pre-live settings when isPreview param is set <b>true</b>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/view/update-views-response">GetViewsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>get Views</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id}
+    LanguageSetting lang = LanguageSetting.EN // LanguageSetting( EN | JA | ZH ). Ex: LanguageSetting.JA
+    boolean isPreview = true
+
+    App appManagerment = new App(connection);
+    GetViewsResponse res = app.getViews(appId, lang, isPreview);
+
+</pre>
+
+</details>
+
+<h3 id="updateviewsinteger-app-hashmap-views-integer-revision">updateViews(Integer app, HashMap<String, ViewModel> views, Integer revision)</h3>
+<p>Updates the View settings of an App.</p>
+<p><strong>Parameter </strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The kintone app id</td>
+</tr>
+<tr>
+<td>views</td>
+<td>HashMap<String, View></td>
+<td>yes</td>
+<td>An object of data of Views.</td>
+</tr>
+<tr>
+<td>revision</td>
+<td>Integer</td>
+<td>(optional)</td>
+<td>Specify the revision number of the settings that will be deployed.<br>The request will fail if the revision number is not the latest revision.<br>The revision will not be checked if this parameter is ignored, or -1 is specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p><a href="../model/app/view/update-views-response">UpdateViewsResponse</a></p>
+<p><strong>Sample code</strong></p>
+<details class="tab-container" open>
+<Summary>update Views</Summary>
+
+<strong class="tab-name">Source code</strong>
+
+<pre class="inline-code">
+
+    int appId = {your_app_id)}
+    int revision = {your_lastest_revision} //default: revision = -1
+
+    HashMap<String, ViewModel> viewEntry = new HashMap<String: ViewModel>();
+    ViewModel updateViewModel = new ViewModel();
+    updateViewModel.setName("ViewTest")
+    updateViewModel.setSort("Record_number desc")
+    updateViewModel.setType(ViewModel.ViewType.LIST)
+    updateViewModel.setFilterCond("Created_datetime = LAST_WEEK()")
+    updateViewModel.setIndex(1)
+    ArrayList<String> fieldsViews = new ArrayList<String>();
+    fieldsViews.add("Text");
+    fieldsViews.add("Text_Area");
+    fieldsViews.add("Created_datetime");
+    updateViewModel.setFields(fieldsViews);
+    viewEntry.put("ViewTest", updateViewModel);
+
+    ViewModel updateViewModel2 = new ViewModel();
+    updateViewModel2.setName("ViewTest2")
+    updateViewModel2.setSort("Record_number asc")
+    updateViewModel2.setType(ViewModel.ViewType.LIST)
+    updateViewModel2.setFilterCond("Created_datetime > LAST_WEEK()")
+    updateViewModel2.setIndex(0)
+
+    ArrayList<String> fieldsInViews2 = new ArrayList<String>();
+    fieldsInViews2.add("Text_Area");
+    fieldsInViews2.add("Created_datetime");
+    updateViewModel2.setFields(fieldsInViews2);
+
+    viewEntry.put("ViewTest2", updateViewModel2);
+
+    App appManagerment = new App(connection);
+    UpdateViewsResponse res = appManagerment.updateViews(appId, viewEntry, revision);
+
+</pre>
+
+</details>
+
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/212494888">Get App</a></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115005336727">Get Apps</a></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115005509288">Get Form fields</a></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115005506868">Add Form fields</a></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115005507788">Update Form fields</a></li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115005341187">Delete Form fields</a></p>
+</li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115005509068">Get Form Layout</a></p>
+</li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115005341427">Update Form Layout</a></p>
+</li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115004712547">Add Preview App</a></p>
+</li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115004881348">Deploy App Settings</a></li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115004890947">Get App Deploy Status</a></li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115004401787">Get Views</a></p>
+</li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115004880588">Update Views</a></p>
+</li>
+<li>
+<p><a href="https://developer.kintone.io/hc/en-us/articles/115004811668">Get General Settings</a></p>
+</li>
+<li><a href="https://developer.kintone.io/hc/en-us/articles/115004868628">Update General Settings</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../bulk-request/" title="Bulk Request" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Bulk Request
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../kintone-api-exception/" title="Kintone APIException" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Kintone APIException
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../asset/js/extra.js"></script>
+      
+    
+  </body>
+</html>
