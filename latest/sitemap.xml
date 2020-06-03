@@ -1,132 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/getting-started/quickstart/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/getting-started/quickstart/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/authentication/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/authentication/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/connection/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/connection/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/record/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/record/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/record-cursor/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/record-cursor/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/bulk-request/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/bulk-request/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/app/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/app/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/kintone-api-exception/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/kintone-api-exception/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/bulks-exception/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/bulks-exception/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/file/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/file/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/app/app-model/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/app/app-model/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/app/app-deploy-status/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/app/app-deploy-status/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-lookup/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-lookup/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-member/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-member/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-selection/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-selection/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-time/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/field/input/form-fields-input-time/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/form/layout/form-layout/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/form/layout/form-layout/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/general/general-settings/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/general/general-settings/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/app/view/view-model/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/app/view/view-model/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/cursor/record-cursor/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/cursor/record-cursor/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/record/record-model/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/record/record-model/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/file/file-model/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/file/file-model/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/bulk-request/bulk-request-model/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/bulk-request/bulk-request-model/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-java-sdk/reference/model/bulk-request/bulk-request-response/</loc>
+     <loc>https://kintone-labs.github.io/kintone-java-sdk/reference/model/bulk-request/bulk-request-response/</loc>
      <lastmod>2020-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
