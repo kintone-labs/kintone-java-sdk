@@ -40,7 +40,7 @@ $ cd lib
 
 ## References
 
-- [kintone-java-sdk](https://kintone.github.io/kintone-java-sdk/)
+- [kintone-java-sdk](https://kintone-labs.github.io/kintone-java-sdk/)
 
 
 ## License
